@@ -1,2 +1,6 @@
 menu.exe
-log.txt
+menu.o
+cadastro.o
+testeCadastro.exe
+SistemaControleEmpresarial.exe
+Makefile.win

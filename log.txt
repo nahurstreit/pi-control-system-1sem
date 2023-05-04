@@ -1,0 +1,15 @@
+04/05/2023
+Arquivos:
+- Adicionado na nova pasta testesFuncoes, arquivos de teste e teste de implementação.
+- Criado um novo código em pasta [testesCadastro], arquivo [testeCadastro] capaz de armazenar cadastros passados pelo usuário.
+- Na pasta [testesFuncoes] foi criado um projeto do DevC++, chamado SistemaControleEmpresarial.dev responsável por facilitar a comunicação de arquivos .c e .h por uma funcionalidade padrão do DevC++
+- Adicionado no projeto SistemaControleEmpresarial.dev a integração do menu.c v1.2 com os  arquivos cadastro.h e cadastro.c, responsáveis por armazenar as funcionalidades de cadastro, separadas do menu.
+
+Menu.c
+- No arquivo menu.c foi necessário chamar funções de cadastro através de outras funções, contudo permitiu a integração com funções presentes no próprio menu.c
+- No arquivo menu.c foram modificados alguns parâmetros para funções, com pointers, de modo a comunicar plenamente com os arquivos de cadastro e poder realizar mudanças em variáveis globais do arquivo menu.c mesmo no arquivo cadastro.c.
+- No arquivo menu.c foi adicionado uma nova função chamada exibirMensagem, capaz de exibir mensagens adversas que não erro.
+- No arquivo menu.c foi alterado o escopo de algumas variáveis para manipulação global, visto que seria muito complicado no prazo atual, redefinir variáveis globais para variáveis locais a serem passadas através de parâmetros das funções.
+
+.gitignore
+- Retirado gitignore do log.txt.
