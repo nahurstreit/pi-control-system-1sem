@@ -111,7 +111,14 @@ Display displayConsulta_Funcionario[2] = {
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
+Display displayRefConsulta_SemDados[2] = {
+	"|                                     Não há nenhum dado ainda.                                      |", 
+	"+----------------------------------------------------------------------------------------------------+",
+};
+
 int tamanhoDisplay;
+int contadorExistentes = 0;
+int *pContadorExistentes = &contadorExistentes;
 
 void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], Fornecedor fornecedores[], int *pEscolhaUser, int posicao) {
 	int i, j;
@@ -329,8 +336,7 @@ void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], 
 		printf("%s\n", pCopiaDisplay[i].linhaDisplay);
 	}
 }
-	int contadorExistentes = 0;
-	int *pContadorExistentes = &contadorExistentes;
+
 
 void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Funcionario funcionarios[], int vetorRefFuncionarios[], Fornecedor fornecedores[], int vetorRefFornecedores[], int *pEscolhaUser, int contadorDadosExistentes) {
 	int i, j;
@@ -440,6 +446,12 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 			break;
 		default:
 			printf("Não foi possível puxar os dados existentes");
+	}
+	
+	if(contadorDadosExistentes == 0) {
+		for(i = 0; i < 2; i++) {
+			printf("%s\n", displayRefConsulta_SemDados[i]);
+		}
 	}
 }
 void exibirCabecalhoAtual(Display *displayCabecalhoAtual) {

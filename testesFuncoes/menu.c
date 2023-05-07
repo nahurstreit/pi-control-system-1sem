@@ -43,7 +43,7 @@
 			3,
 			{
 				{"Criar novo Cadastro", 1, &exibirMenuNovoCadastro},
-				{"Modificar Cadastros", 2, &exibirMenuModificarCadastro},
+				{"Consultar e Modificar Cadastros", 2, &exibirMenuConsultarCadatro},
 				{"Voltar ao Menu Inicial", 0, &exibirMenuPrincipal},
 			}
 		};
@@ -63,8 +63,8 @@
 			//
 			
 			//Consultar Cadastros
-				Menu menuModificarCadastro = {
-					"MODIFICAR CADASTROS",
+				Menu menuConsultarCadatro = {
+					"CONSULTAR E MODIFICAR CADASTROS",
 					5,
 					{
 						"Clientes", 1, &executarConsultaCadastro,
@@ -74,6 +74,19 @@
 						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}
 				};
+				
+				//Menu de modificações do cadastro
+					Menu menuModificarCadastro = {
+						"CONSULTAR E MODIFICAR CADASTROS",
+						5,
+						{
+							"Alterar Campo Específico do Cadastro", 1, &executarAlterarCadastro,
+							"Alterar Todo o Cadastro", 2, &exibirMenuCadastro,
+							"Deletar o Cadastro", 3, &exibirMenuCadastro,
+							"Consultar Outro", 0, &exibirMenuConsultarCadatro,
+							"Voltar ao Menu Principal", 9, &exibirMenuPrincipal,
+						}
+					};
 			//
 	//
 	
@@ -134,8 +147,7 @@ int main() {
 	Menu *pMenuAtual = &menuAtual;
 	
 	//Estrutura de repetição do Menu
-	do{	
-		
+	do{
 		exibirInterfaceTitulo(pMenuAtual -> tituloDoMenu, 1);
 		
 		exibirMensagem(pMensagem);
@@ -218,8 +230,10 @@ void exibirMensagem(int *pMensagem) {
 		case 1:
 			exibirInterfaceInteracao("Sucesso! Cadastro Concluído!");
 			break;
-		default:
+		case 2:
+			exibirInterfaceInteracao("Sucesso! Campo alterado!");
 			break;
+		default: ;
 	}
 	
 	*pMensagem = 0;
@@ -252,10 +266,6 @@ void exibirErro(int *pErro) {
 	*pErro = 0;
 }
 
-/*
-Coloquei system("cls"), para fazer a limpagem das telas, mas estou enfrentando dificuldades em manter alguns padrões
-*/
-
 //Funções a serem executadas pelas opções dos Menus
 	//Funções de chamada do Menu
 		int exibirMenuPrincipal() {
@@ -274,14 +284,21 @@ Coloquei system("cls"), para fazer a limpagem das telas, mas estou enfrentando d
 							novoCadastro(pEscolhaUser, pMensagem, pErro);
 						}
 					
-					int exibirMenuModificarCadastro() {
-						menuAtual = menuModificarCadastro;
+					int exibirMenuConsultarCadatro() {
+						menuAtual = menuConsultarCadatro;
 					}
 						int executarConsultaCadastro(Menu *pMenuAtual, int *pErro) {
-							exibirTituloMenuAtual(pMenuAtual);
 							consultaCadastro(pEscolhaUser, pMensagem, pErro);
+							
 							menuAtual = menuModificarCadastro;
+							exibirInterfaceOpcoes(pMenuAtual);
+							receberOpcaoMenu(pEscolhaUser, pErro, pMenuAtual);
 						}
+							int executarAlterarCadastro() {
+								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
+								alterarCadastro(pEscolhaUser, pMensagem, pErro);
+							}
+						
 			//
 			
 			//Funções menuOrdemProducao

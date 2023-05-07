@@ -92,4 +92,5 @@ void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetor, int posicao, i
 
 int calcularDadosExistentes(int vetor[MAX_VETOR]);
 
+void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
 #endif

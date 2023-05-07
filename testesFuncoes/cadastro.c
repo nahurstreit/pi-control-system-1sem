@@ -94,6 +94,10 @@ TextoCampo *camposAtuais;
 	//
 //
 
+int tipoConsultaAtual;
+int *pTipoConsultaAtual = &tipoConsultaAtual;
+int posicaoConsultaAtual;
+
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
 int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	char stringHolder[MAX_STRING];
@@ -133,6 +137,7 @@ int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 		
 		stringHolder[strcspn(stringHolder, "\n")] = '\0';
 		inserirString(*pEscolhaUser, posicao, stringHolder, pContadorCampo);
+		contadorCampo++;
 
 	} while(contadorCampo < limiteContador);
 	
@@ -148,6 +153,8 @@ int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	int posicao, contadorDadosExistentes;
 	
+	tipoConsultaAtual = *pEscolhaUser;
+	
 	switch(*pEscolhaUser) {
 		case 1:
 			contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
@@ -161,9 +168,9 @@ int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	}
 	
 	do{
-		if(*pEscolhaUser == 1) exibirInterfaceTitulo("MODIFICAR CADASTROS DE CLIENTES", 1);
-		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
-		 else exibirInterfaceTitulo("MODIFICAR CADASTROS DE FORNECEDORES", 1);
+		if(*pEscolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
+		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
+		 else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
 	
 		exibirErro(pErro);
 		
@@ -171,22 +178,32 @@ int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	
 		switch(*pEscolhaUser) {
 			case 1:
-				printf("Digite o número de cadastro do Cliente ou [0] para Voltar: ");
+				printf("\nDigite o número de cadastro do Cliente ou [0] para Voltar: ");
 				scanf("%d", &posicao);
 				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefClientes, posicao, pErro);
 				break;
 			case 2:
-				printf("Digite o número de cadastro do Funcionário ou [0] para Voltar: ");
+				printf("\nDigite o número de cadastro do Funcionário ou [0] para Voltar: ");
 				scanf("%d", &posicao);
 				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefFuncionarios, posicao, pErro);
 				break;
 			case 3:
-				printf("Digite o número de cadastro do Fornecedor ou [0] para Voltar: ");
+				printf("\nDigite o número de cadastro do Fornecedor ou [0] para Voltar: ");
 				scanf("%d", &posicao);
 				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefFornecedores, posicao, pErro);
 				break;
 			default:
 				 *pErro = 3;
+		}
+		
+		posicaoConsultaAtual = posicao-1;
+		
+		if(*pErro == 0) {
+			if(*pEscolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
+		 	else if(*pEscolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
+		 	else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
+			exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao-1);
+			break;
 		}
 		
 		if(posicao == 0) {
@@ -327,7 +344,6 @@ void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRI
 			}
 			break;
 	}
-	(*contadorCampo)++;
 }
 
 void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicao, int *pErro) {
@@ -336,11 +352,7 @@ void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int 
 	if(vetorReferencia[posicao] == 0) {
 		*pErro = 4;
 	} else {
-		
-	exibirInterfaceTitulo("MODIFICAR CADASTRO", 1);
-	exibirErro(pErro);
-	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
-	getch();
+		exibirErro(pErro);
 	}
 }
 
@@ -367,4 +379,28 @@ int calcularDadosExistentes(int vetor[MAX_VETOR]) {
 	}
 	
 	return contadorDadosExistentes;
+}
+
+void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
+	char stringNova[MAX_STRING];
+	
+	int escolhaCampo = 0;
+	int *pEscolhaCampo = &escolhaCampo;
+	
+	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+	
+	printf("\n\nTipo Consulta atual: %d, posicaoConsulta: %d\n\n", tipoConsultaAtual, posicaoConsultaAtual);
+	printf("Digite o número do campo que você quer alterar: ");
+	scanf("%d", &escolhaCampo);
+	fflush(stdin);
+	
+	escolhaCampo -= 1;
+	
+	printf("Digite o novo valor do campo: ");
+	fgets(stringNova, MAX_STRING, stdin);
+	stringNova[strcspn(stringNova, "\n")] = '\0';
+	fflush(stdin);
+	
+	inserirString(tipoConsultaAtual, posicaoConsultaAtual, stringNova, pEscolhaCampo);
+	*pMensagem = 2;
 }

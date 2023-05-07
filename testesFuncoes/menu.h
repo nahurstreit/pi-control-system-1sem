@@ -23,8 +23,9 @@ typedef struct {
 			int exibirMenuCadastro();
 				int exibirMenuNovoCadastro();
 					int executarNovoCadastro();
-				int exibirMenuModificarCadastro();
+				int exibirMenuConsultarCadatro();
 					int executarConsultaCadastro();
+						int executarAlterarCadastro();
 			
 			int exibirMenuOrdemProducao();
 				int exibirMenuNovaOrdemProducao();
