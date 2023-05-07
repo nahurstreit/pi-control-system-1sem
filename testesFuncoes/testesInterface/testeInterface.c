@@ -1,6 +1,6 @@
 [Project]
-FileName=SistemaControleEmpresarial.dev
-Name=SistemaControleEmpresarial
+FileName=testeInterface.c
+Name=Projeto3
 Type=1
 Ver=2
 ObjFiles=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=6
+UnitCount=3
 
 [VersionInfo]
 Major=1
@@ -51,36 +51,6 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit2]
-FileName=cadastro.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit3]
-FileName=cadastro.h
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit1]
-FileName=menu.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
 FileName=interface.h
 CompileCpp=0
 Folder=
@@ -90,7 +60,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit5]
+[Unit3]
 FileName=interface.c
 CompileCpp=0
 Folder=
@@ -100,8 +70,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit6]
-FileName=menu.h
+[Unit1]
+FileName=main.c
 CompileCpp=0
 Folder=
 Compile=1

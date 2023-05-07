@@ -13,3 +13,10 @@ Menu.c
 
 .gitignore
 - Retirado gitignore do log.txt.
+
+05/05/2023
+Cadastro.c:
+- Alterado algumas lógicas
+- Alterado nome de variáveis para nome de variáveis mais descritivas com a lógica
+- Adicionado novo cadastro = fornecedores
+

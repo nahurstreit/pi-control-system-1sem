@@ -4,239 +4,201 @@
 #include <ctype.h>
 #include <string.h>
 
-#define MAX_STRING 50
-#define MAX_VETOR 100
+#include "menu.h"
+#include "cadastro.h"
+#include "interface.h"
 
-//Criação do struct(tipo) Cliente, para armazenar os dados dos clientes.
-typedef struct {
-	char nome[MAX_STRING];
-	char cpf[MAX_STRING];
-	char dataNascimento[MAX_STRING];
-	char endereco[MAX_STRING];
-	char numEndereco[6];
-	char compEndereco[MAX_STRING];
-	char refEndereco[MAX_STRING];
-	char cep[MAX_STRING];
-	char email[MAX_STRING];
-	char telefone[MAX_STRING];
-} Cliente;
-
-typedef struct {
-	char nome[MAX_STRING];
-	char cpf[MAX_STRING];
-	char dataNascimento[MAX_STRING];
-	char endereco[MAX_STRING];
-	char numEndereco[6];
-	char compEndereco[MAX_STRING];
-	char refEndereco[MAX_STRING];
-	char cep[MAX_STRING];
-	char email[MAX_STRING];
-	char telefone[MAX_STRING];
-} Funcionario;
-
-//Criação do struct(tipo) TextoCampo, para armazenar os textos que serão exibidos ao pedir para o usuário digitar alguma coisa no cadastro
-typedef struct {
-	char displayCampo[30];
-} TextoCampo;
 
 //Criação da vetor com nome camposCliente que é do tipo TextoCampo. Refere-se aos textos que serão exibidos ao pedir para os usuários digitarem os dados de cadastro do Cliente
 TextoCampo camposCliente[] = {
-	"o nome",
+	"o nome do cliente",
 	"o CPF",
 	"a data de nascimento",
+	"o telefone",
+	"o email",
 	"o endereço",
 	"o número",
 	"o complemento (se houver)",
-	"uma referência p/ o endereço",
+	"o bairro",
 	"o CEP",
-	"o email",
-	"o telefone",
+	"a cidade",
+	"o estado (sigla)",
 };
 
-//Criação da vetor com nome camposCliente que é do tipo TextoCampo. Refere-se aos textos que serão exibidos ao pedir para os usuários digitarem os dados de cadastro do Cliente
+//Criação da vetor com nome camposFuncionario que é do tipo TextoCampo. Refere-se aos textos que serão exibidos ao pedir para os usuários digitarem os dados de cadastro do Funcionário
 TextoCampo camposFuncionario[] = {
-	"o nome",
+	"o nome do funcionário",
+	"o estado na empresa",
 	"o CPF",
 	"a data de nascimento",
+	"o estado civil",
+	"a data de admissão",
+	"o salario base (R$)",
+	"o telefone",
+	"o email",
 	"o endereço",
 	"o número",
 	"o complemento (se houver)",
-	"uma referência p/ o endereço",
+	"o bairro",
 	"o CEP",
-	"o email",
-	"o telefone",
-	"a data de admissão",
-	""
+	"a cidade",
+	"o estado (sigla)",
 };
 
+//Criação da vetor com nome camposFornecedor que é do tipo TextoCampo. Refere-se aos textos que serão exibidos ao pedir para os usuários digitarem os dados de cadastro do Fornecedor
+TextoCampo camposFornecedor[] = {
+	"o nome fantasia",
+	"o CNPJ",
+	"o telefone",
+	"o email",
+	"o endereço",
+	"o número",
+	"o complemento (se houver)",
+	"o bairro",
+	"o CEP",
+	"a cidade",
+	"o estado (sigla)",
+};
+
+//Criação da variável global camposAtuais, do tipo TextoCamp, que será um pointer para os camposFuncionario, camposCliente ou camposFornecedor
 TextoCampo *camposAtuais;
 
-//Criação dos vetores
-Cliente clientes[MAX_VETOR];
-int vetorClientes[MAX_VETOR] = {0};
-int *pVetorClientes = vetorClientes;
+//Criação dos vetores para armazenar e controlar o armazenamento dos clientes
+	//Vetor de dados
+		Cliente clientes[MAX_VETOR];
+	//
+	
+	//Vetor de referência
+		int vetorRefClientes[MAX_VETOR] = {0};
+		int *pVetorRefClientes = vetorRefClientes; 	//Pointer para o vetor de referência
+	//
+//
+//Criação dos vetores para armazenar e controlar o armazenamento dos funcionários
+	//Vetor de dados
+		Funcionario funcionarios[MAX_VETOR];
+	//
 
-Funcionario funcionarios[MAX_VETOR];
-int vetorFuncionarios[MAX_VETOR] = {0};
-int *pVetorFuncionarios = vetorFuncionarios;
+	//Vetor de referência
+		int vetorRefFuncionarios[MAX_VETOR] = {0};
+		int *pVetorRefFuncionarios = vetorRefFuncionarios;
+	//
+//
+//Criação dos vetores para armazenar e controlar o armazenamento dos fornecedores
+	//Vetor de dados
+		Fornecedor fornecedores[MAX_VETOR];
+	//
 
-void placeStrings(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
-void showRegistro(int posicao, int campo);
-void exibirRegistroCliente(int posicao);
-void verificarDadosVetorDisponivel(int tipoVetor, int *vetor, int posicao);
+	//Vetor de referência
+		int vetorRefFornecedores[MAX_VETOR] = {0};
+		int *pVetorRefFornecedores = vetorRefFornecedores;
+	//
+//
 
-int posicaoDisponivel(int *vetor);
-
-int novoCadastro(int *pEscolhaUser, int *pMensagem) {
+//Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
+int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	char stringHolder[MAX_STRING];
-	int posicao, tipoCadastroAtual = 0, contadorCampo;
+	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int *pContadorCampo = &contadorCampo;
-	tipoCadastroAtual = *pEscolhaUser;
 	
-	
-	switch(*pEscolhaUser) {
+	switch(*pEscolhaUser) {//pEscolhaUser vem dentro de menu.c
 		case 1:
 			camposAtuais = camposCliente;
+			posicao = posicaoDisponivel(pVetorRefClientes);
+			limiteContador = 12;
 			break;
 		case 2:
 			camposAtuais = camposFuncionario;
+			posicao = posicaoDisponivel(pVetorRefFuncionarios);
+			limiteContador = 16;
+			break;
+		case 3:
+			camposAtuais = camposFornecedor;
+			posicao = posicaoDisponivel(pVetorRefFornecedores);
+			limiteContador = 11;
 			break;
 	}
 	
-	if(tipoCadastroAtual == 1) {
-		posicao = posicaoDisponivel(pVetorClientes);
-	} else if(tipoCadastroAtual == 2) {
-		posicao = posicaoDisponivel(pVetorFuncionarios);
-	}
 	contadorCampo = 0;
 	
 	do {
-		printf("Digite %s: ", camposAtuais[contadorCampo].displayCampo);
-		fgets(stringHolder, MAX_STRING, stdin);
-		stringHolder[strcspn(stringHolder, "\n")] = '\0';
+		 if(*pEscolhaUser == 1) exibirInterfaceTitulo("NOVO CADASTRO DE CLIENTE", 1);
+		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("NOVO CADASTRO DE FUNCIONÁRIO", 1);
+		 else exibirInterfaceTitulo("NOVO CADASTRO DE FORNECEDOR", 1);
 		
-		placeStrings(tipoCadastroAtual, posicao, stringHolder, pContadorCampo);
+		exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
+		
+		printf("\n\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
+		fgets(stringHolder, MAX_STRING, stdin);
 		fflush(stdin);
+		
+		stringHolder[strcspn(stringHolder, "\n")] = '\0';
+		inserirString(*pEscolhaUser, posicao, stringHolder, pContadorCampo);
+
+	} while(contadorCampo < limiteContador);
 	
-	} while(contadorCampo < 10);
+	exibirInterfaceTitulo("NOVO CADASTRO", 1);
+	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
+	printf("Enviando Cadastro...");
+	getch();
 	
 	*pMensagem = 1;
 }
 
+//Função de exibição de cadastros. A chamada desse função acontece em menu.c dentro de algumas opções.
+int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
+	int posicao, contadorDadosExistentes;
+	
+	switch(*pEscolhaUser) {
+		case 1:
+			contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
+			break;
+		case 2:
+			contadorDadosExistentes = calcularDadosExistentes(vetorRefFuncionarios);
+			break;
+		case 3:
+			contadorDadosExistentes = calcularDadosExistentes(vetorRefFornecedores);
+			break;
+	}
+	
+	do{
+		if(*pEscolhaUser == 1) exibirInterfaceTitulo("MODIFICAR CADASTROS DE CLIENTES", 1);
+		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
+		 else exibirInterfaceTitulo("MODIFICAR CADASTROS DE FORNECEDORES", 1);
+	
+		exibirErro(pErro);
+		
+		exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pEscolhaUser, contadorDadosExistentes);
+	
+		switch(*pEscolhaUser) {
+			case 1:
+				printf("Digite o número de cadastro do Cliente ou [0] para Voltar: ");
+				scanf("%d", &posicao);
+				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefClientes, posicao, pErro);
+				break;
+			case 2:
+				printf("Digite o número de cadastro do Funcionário ou [0] para Voltar: ");
+				scanf("%d", &posicao);
+				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefFuncionarios, posicao, pErro);
+				break;
+			case 3:
+				printf("Digite o número de cadastro do Fornecedor ou [0] para Voltar: ");
+				scanf("%d", &posicao);
+				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefFornecedores, posicao, pErro);
+				break;
+			default:
+				 *pErro = 3;
+		}
+		
+		if(posicao == 0) {
+			*pErro = 0;
+			break;
+		}
+		
+		fflush(stdin);
+	} while(*pErro == 4);
+}
 
-//int teste() {
-//	setlocale(LC_ALL, "Portuguese");
-//	
-//	int i, posicao, contadorCampo = 0;
-//	int tipoCadastroAtual;
-//	int opt = 3, optTipo;
-//	int *pContadorCampo = &contadorCampo;
-//	char stringHolder[MAX_STRING];
-//	char campoHolder[20];
-//	
-//	do{
-//		system("cls");
-//		printf("O que você quer fazer?\n");
-//		printf("[1] - Cadastrar Novo\n");
-//		printf("[2] - Consultar Existente\n");
-//		printf("[0] - Sair\n");
-//		printf("\nEscolha: ");
-//		scanf("%d", &opt);
-//		fflush(stdin);
-//		
-//		optTipo = 0;
-//		
-//		switch(opt) {
-//			case 1:
-//				system("cls");
-//				printf("Cadastrar Novo\n\n");
-//				printf("[1] Cliente\n");
-//				printf("[2] Funcionário\n");
-//				printf("[0] Voltar\n");
-//				printf("Escolha: ");
-//				scanf("%d", &optTipo);
-//				fflush(stdin);
-//				tipoCadastroAtual = 0;
-//				tipoCadastroAtual = optTipo;
-//				
-//				switch(optTipo) {
-//					case 1:
-//						camposAtuais = camposCliente;
-//						break;
-//					case 2:
-//						camposAtuais = camposFuncionario;
-//						break;
-//				}	
-//				
-//				do {
-//						
-//						if(optTipo == 1) {
-//							posicao = posicaoDisponivel(pVetorClientes);
-//						} else if(optTipo == 2) {
-//							posicao = posicaoDisponivel(pVetorFuncionarios);
-//						}
-//						contadorCampo = 0;
-//						
-//						do {
-//							printf("Digite %s: ", camposAtuais[contadorCampo].displayCampo);
-//							fgets(stringHolder, MAX_STRING, stdin);
-//							stringHolder[strcspn(stringHolder, "\n")] = '\0';
-//							
-//							placeStrings(tipoCadastroAtual, posicao, stringHolder, pContadorCampo);
-//							fflush(stdin);
-//										
-//						} while(contadorCampo < 10);
-//						
-//						printf("\n\nO que você quer fazer?\n");
-//						printf("\n[1] Cadastrar um Novo");
-//						printf("\n[9] Voltar");
-//						printf("\n\nEscolha: ");
-//						scanf("%d", &opt);
-//						fflush(stdin);
-//										
-//					} while(opt != 9);
-//				break;
-//			case 2:
-//				do{
-//					system("cls");
-//					printf("Consulta\n\n");
-//					printf("[1] Cliente\n");
-//					printf("[2] Funcionário\n\n");
-//					printf("Escolha: ");
-//					scanf("%d", &optTipo);
-//					fflush(stdin);
-//					
-//					switch(optTipo) {
-//						case 1:
-//							printf("Digite o número do cliente: ");
-//							scanf("%d", &posicao);
-//							fflush(stdin);
-//							verificarDadosVetorDisponivel(optTipo, vetorClientes, posicao); 
-//							break;
-//						case 2:
-//							printf("Digite o número do funcionário: ");
-//							scanf("%d", &posicao);
-//							fflush(stdin);
-//							verificarDadosVetorDisponivel(optTipo, vetorFuncionarios, posicao);
-//							break;
-//					}
-//
-//					
-//					printf("\n\nO que você quer fazer?\n");
-//					printf("\n[1] Consultar Novo");
-//					printf("\n[9] Voltar");
-//					printf("\n\nEscolha: ");
-//					scanf("%d", &opt);
-//					fflush(stdin);
-//					
-//					
-//				} while(opt != 9);
-//		}
-//		
-//	} while(opt != 0);
-//}
-
-void placeStrings(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
+void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
 	switch(tipoCadastro) {
 		case 1:
 			switch(*contadorCampo) {
@@ -249,28 +211,33 @@ void placeStrings(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRIN
 				case 2:
 					strcpy(clientes[posicaoDisponivel].dataNascimento, string);
 					break;
-				case 3:
-					strcpy(clientes[posicaoDisponivel].endereco, string);
+				case 3 :
+					strcpy(clientes[posicaoDisponivel].telefone, string);
 					break;
 				case 4:
-					strcpy(clientes[posicaoDisponivel].numEndereco, string);
-					break;
+					strcpy(clientes[posicaoDisponivel].email, string);
+					break;	
 				case 5:
-					strcpy(clientes[posicaoDisponivel].compEndereco, string);
+					strcpy(clientes[posicaoDisponivel].endereco, string);
 					break;
 				case 6:
-					strcpy(clientes[posicaoDisponivel].refEndereco, string);
+					strcpy(clientes[posicaoDisponivel].numEndereco, string);
 					break;
 				case 7:
-					strcpy(clientes[posicaoDisponivel].cep, string);
+					strcpy(clientes[posicaoDisponivel].compEndereco, string);
 					break;
 				case 8:
-					strcpy(clientes[posicaoDisponivel].email, string);
+					strcpy(clientes[posicaoDisponivel].bairro, string);
+					break;
+				case 9:
+					strcpy(clientes[posicaoDisponivel].cep, string);
+					break;
+				case 10:
+					strcpy(clientes[posicaoDisponivel].cidade, string);
 					break;
 				default:
-					strcpy(clientes[posicaoDisponivel].telefone, string);
+					strcpy(clientes[posicaoDisponivel].estado, string);
 			}
-
 			break;
 		case 2:
 			switch(*contadorCampo) {
@@ -278,86 +245,126 @@ void placeStrings(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRIN
 					strcpy(funcionarios[posicaoDisponivel].nome, string);
 					break;
 				case 1:
+					strcpy(funcionarios[posicaoDisponivel].estadoEmpresa, string);
+					break;				
+				case 2:
 					strcpy(funcionarios[posicaoDisponivel].cpf, string);
 					break;
-				case 2:
+				case 3:
 					strcpy(funcionarios[posicaoDisponivel].dataNascimento, string);
 					break;
-				case 3:
-					strcpy(funcionarios[posicaoDisponivel].endereco, string);
-					break;
 				case 4:
-					strcpy(funcionarios[posicaoDisponivel].numEndereco, string);
+					strcpy(funcionarios[posicaoDisponivel].estadoCivil, string);
 					break;
 				case 5:
-					strcpy(funcionarios[posicaoDisponivel].compEndereco, string);
+					strcpy(funcionarios[posicaoDisponivel].dataAdmissao, string);
 					break;
 				case 6:
-					strcpy(funcionarios[posicaoDisponivel].refEndereco, string);
+					strcpy(funcionarios[posicaoDisponivel].salarioBase, string);
 					break;
 				case 7:
-					strcpy(funcionarios[posicaoDisponivel].cep, string);
+					strcpy(funcionarios[posicaoDisponivel].telefone, string);
 					break;
 				case 8:
 					strcpy(funcionarios[posicaoDisponivel].email, string);
+					break;	
+				case 9:
+					strcpy(funcionarios[posicaoDisponivel].endereco, string);
 					break;
-				default:
-					strcpy(funcionarios[posicaoDisponivel].telefone, string);
+				case 10:
+					strcpy(funcionarios[posicaoDisponivel].numEndereco, string);
+					break;
+				case 11:
+					strcpy(funcionarios[posicaoDisponivel].compEndereco, string);
+					break;
+				case 12:
+					strcpy(funcionarios[posicaoDisponivel].bairro, string);
+					break;
+				case 13:
+					strcpy(funcionarios[posicaoDisponivel].cep, string);
+					break;
+				case 14:
+					strcpy(funcionarios[posicaoDisponivel].cidade, string);
+					break;
+				default: 
+					strcpy(funcionarios[posicaoDisponivel].estado, string);
+			}
+			break;
+		case 3:
+			switch(*contadorCampo) {
+				case 0:
+					strcpy(fornecedores[posicaoDisponivel].nomeFantasia, string);
+					break;
+				case 1:
+					strcpy(fornecedores[posicaoDisponivel].cnpj, string);
+					break;
+				case 2:
+					strcpy(fornecedores[posicaoDisponivel].telefone, string);
+					break;
+				case 3:
+					strcpy(fornecedores[posicaoDisponivel].email, string);
+					break;
+				case 4:
+					strcpy(fornecedores[posicaoDisponivel].endereco, string);
+					break;
+				case 5:
+					strcpy(fornecedores[posicaoDisponivel].numEndereco, string);
+					break;
+				case 6:
+					strcpy(fornecedores[posicaoDisponivel].compEndereco, string);
+					break;
+				case 7:
+					strcpy(fornecedores[posicaoDisponivel].bairro, string);
+					break;
+				case 8:
+					strcpy(fornecedores[posicaoDisponivel].cep, string);
+					break;
+				case 9:
+					strcpy(fornecedores[posicaoDisponivel].cidade, string);
+					break;
+				default: 
+					strcpy(fornecedores[posicaoDisponivel].estado, string);
 			}
 			break;
 	}
 	(*contadorCampo)++;
 }
 
-void exibirRegistroCliente(int posicao) {
-	printf("Nome: %s\n", clientes[posicao].nome);
-	printf("CPF: %s\n", clientes[posicao].cpf);
-	printf("Endereço: %s\t", clientes[posicao].endereco);
-	printf("Número: %s\t", clientes[posicao].numEndereco);
-	printf("Complemento: %s\n", clientes[posicao].compEndereco);
-	printf("Referência: %s\n", clientes[posicao].refEndereco);
-	printf("CEP: %s\n", clientes[posicao].cep);
-	printf("E-mail: %s\n", clientes[posicao].email);
-	printf("Telefone: %s\n", clientes[posicao].telefone);
-}
-
-void exibirRegistroFuncionario(int posicao) {
-	printf("Nome: %s\n", funcionarios[posicao].nome);
-	printf("CPF: %s\n", funcionarios[posicao].cpf);
-	printf("Endereço: %s\t", funcionarios[posicao].endereco);
-	printf("Número: %s\t", funcionarios[posicao].numEndereco);
-	printf("Complemento: %s\n", funcionarios[posicao].compEndereco);
-	printf("Referência: %s\n", funcionarios[posicao].refEndereco);
-	printf("CEP: %s\n", funcionarios[posicao].cep);
-	printf("E-mail: %s\n", funcionarios[posicao].email);
-	printf("Telefone: %s\n", funcionarios[posicao].telefone);
-}
-
-void verificarDadosVetorDisponivel(int tipoVetor, int *vetor, int posicao) {
-	if(vetor[posicao] == 0) {
-	printf("Não existem registros para esse código!");
+void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicao, int *pErro) {
+	posicao -= 1;
+	
+	if(vetorReferencia[posicao] == 0) {
+		*pErro = 4;
 	} else {
-		switch(tipoVetor) {
-			case 1:
-				exibirRegistroCliente(posicao);
-				break;
-			case 2:
-				exibirRegistroFuncionario(posicao);
-				break;
-		}
-		printf("\n\n");
+		
+	exibirInterfaceTitulo("MODIFICAR CADASTRO", 1);
+	exibirErro(pErro);
+	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
+	getch();
 	}
 }
 
-int posicaoDisponivel(int *vetor) {
+int posicaoDisponivel(int *vetorReferencia) {
 	int i;
 	
 	for(i = 0; i < MAX_VETOR; i++) {
-		if(vetor[i] == 0) {
-			vetor[i] = 1;
+		if(vetorReferencia[i] == 0) {
+			vetorReferencia[i] = 1;
 			break;
 		}
 	}
 	
 	return i;
+}
+
+int calcularDadosExistentes(int vetor[MAX_VETOR]) {
+	int i, contadorDadosExistentes = 0;
+	
+	for(i = 0; i < MAX_VETOR; i++) {
+		if(vetor[i] == 1) {
+			contadorDadosExistentes++;
+		}
+	}
+	
+	return contadorDadosExistentes;
 }

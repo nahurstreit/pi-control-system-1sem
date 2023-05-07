@@ -1,6 +1,10 @@
 menu.exe
 menu.o
 cadastro.o
+interface.o
 testeCadastro.exe
 SistemaControleEmpresarial.exe
 Makefile.win
+main.o
+ProjetoTesteInterface.exe
+testeInterface.exe
