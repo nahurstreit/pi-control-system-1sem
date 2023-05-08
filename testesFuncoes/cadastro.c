@@ -143,7 +143,7 @@ int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	
 	exibirInterfaceTitulo("NOVO CADASTRO", 1);
 	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
-	printf("Enviando Cadastro...");
+	printf("\n\nEnviando Cadastro...");
 	getch();
 	
 	*pMensagem = 1;
@@ -171,7 +171,8 @@ int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado)
 		if(*pEscolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
 		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
 		 else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
-	
+		
+		exibirMensagem(pMensagem);
 		exibirErro(pErro);
 		
 		exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pEscolhaUser, contadorDadosExistentes);
@@ -389,22 +390,39 @@ void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	int escolhaCampo = 0;
 	int *pEscolhaCampo = &escolhaCampo;
 	
-	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+	char tituloHolder[50];
 	
-	printf("\n\nTipo Consulta atual: %d, posicaoConsulta: %d\n\n", tipoConsultaAtual, posicaoConsultaAtual);
-	printf("Digite o número do campo que você quer alterar: ");
+	switch(tipoConsultaAtual) {
+		case 1: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE CLIENTES"); break;
+		case 2: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FUNCIONARIOS"); break;
+		case 3: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES"); break;
+	}
+	
+	exibirInterfaceTitulo(tituloHolder, 1);
+	
+	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+
+	switch(tipoConsultaAtual) {
+		case 1: camposAtuais = camposCliente; break;
+		case 2: camposAtuais = camposFuncionario; break;
+		case 3: camposAtuais = camposFornecedor; break;
+	}
+
+
+	printf("\n\nDigite o número do campo que você quer alterar: ");
 	scanf("%d", &escolhaCampo);
 	fflush(stdin);
 	
 	escolhaCampo -= 1;
 	
+	printf("\nVocê está alterando %s.\n", camposAtuais[escolhaCampo].displayCampo);
 	printf("Digite o novo valor do campo: ");
 	fgets(stringNova, MAX_STRING, stdin);
 	stringNova[strcspn(stringNova, "\n")] = '\0';
 	fflush(stdin);
 	
 	alterarString(tipoConsultaAtual, posicaoConsultaAtual, stringNova, escolhaCampo);
-	exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTRO", 1);
+	exibirInterfaceTitulo(tituloHolder, 1);
 	exibirInterfaceInteracao("Sucesso! Campo modificado!");
 	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
 }
@@ -543,6 +561,14 @@ void alterarString(int tipoConsulta, int posicao, char stringNova[MAX_STRING], i
 void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int *pErro) {
 	int escolhaAlterar = 0, contadorDadosExistentes = 0;
 	
+	char tituloHolder[50];
+	
+	switch(tipoConsultaAtual) {
+		case 1: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE CLIENTES"); break;
+		case 2: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FUNCIONARIOS"); break;
+		case 3: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES"); break;
+	}
+	
 	exibirInterfaceTitulo("ATENÇÃO!", 1);
 	
 	switch(*pTipoConsultaAtual) {
@@ -558,26 +584,26 @@ void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int
 	}
 	
 	switch(tipo) {
-		case 1:
-			exibirInterfaceAlerta("Você tem certeza que deseja EXCLUIR o cadastro? Essa decisão é IRREVERSÍVEL!");
-			printf("\n\n[1] Sim, tenho certeza!\t\t[2] Não, deixe-me pensar...\n\n");
-			printf("Opção: ");
-			scanf("%d", &escolhaAlterar);
-				
-				if(escolhaAlterar == 1) {
-					excluirCadastro(posicaoConsultaAtual);
-					exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTRO", 1);
-					exibirInterfaceInteracao("Cadastro excluído!");
-					exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pTipoConsultaAtual, contadorDadosExistentes);
-					*pEscolhaUserMod = 0;
-					*pMensagem = 3;	
-				} else {
-					exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTRO", 1);
-					exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
-					break;
-				}
-		break;
+		case 1: exibirInterfaceAlerta("Você tem certeza que deseja EXCLUIR o cadastro? Essa decisão é IRREVERSÍVEL! "); break;
+		case 2: exibirInterfaceAlerta("Você tem certeza que deseja ALTERAR TODO o cadastro? Essa decisão é IRREVERSÍVEL!"); break;
 	}
+	
+	printf("\n\n[1] Sim, tenho certeza!\t\t[2] Não, deixe-me pensar...\n\n");
+	printf("Opção: ");
+	scanf("%d", &escolhaAlterar);
+	fflush(stdin);
+		
+		if(escolhaAlterar == 1) {
+			*pEscolhaUserMod = 0;
+			*pMensagem = 3;
+			excluirCadastro(posicaoConsultaAtual);
+			exibirInterfaceTitulo(tituloHolder, 1);
+			exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pTipoConsultaAtual, contadorDadosExistentes);
+		} else {
+			exibirInterfaceTitulo(tituloHolder, 1);
+			exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+		}
+
 }
 
 void excluirCadastro(int posicao) {
@@ -595,7 +621,7 @@ void excluirCadastro(int posicao) {
 			strcpy(clientes[posicao].cep, "");
 			strcpy(clientes[posicao].cidade, "");
 			strcpy(clientes[posicao].estado, "");
-			vetorRefClientes[posicao] = 0;
+			pVetorRefClientes[posicao] = 0;
 			break;
 		case 2:
 			strcpy(funcionarios[posicao].nome, "");
@@ -614,7 +640,7 @@ void excluirCadastro(int posicao) {
 			strcpy(funcionarios[posicao].cep, "");
 			strcpy(funcionarios[posicao].cidade, "");
 			strcpy(funcionarios[posicao].estado, "");
-			vetorRefFuncionarios[posicao] = 0;
+			pVetorRefFuncionarios[posicao] = 0;
 			break;
 		case 3:
 			strcpy(fornecedores[posicao].nomeFantasia, "");
@@ -628,7 +654,7 @@ void excluirCadastro(int posicao) {
 			strcpy(fornecedores[posicao].cep, "");
 			strcpy(fornecedores[posicao].cidade, "");
 			strcpy(fornecedores[posicao].estado, "");
-			vetorRefFornecedores[posicao] = 0;
+			pVetorRefFornecedores[posicao] = 0;
 			break;
 	}
 }

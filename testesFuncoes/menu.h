@@ -1,8 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#define MAX_VETOR 100
-
 //Definição do tipo OpcaoDoMenu
 typedef struct {
 	char textoDaOpcao[50];

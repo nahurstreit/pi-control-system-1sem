@@ -346,107 +346,110 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 	
 	Display displayItemAtual[2];
 	
+	int dadosEncontrados = contadorDadosExistentes;
+	
 	switch(*pEscolhaUser) {
 		case 1 :
 			displayCabecalhoAtual = displayCabecalhoConsultaClientes;
 			exibirCabecalhoAtual(displayCabecalhoAtual);
-			for(i = 0; i < contadorDadosExistentes; i++) {
-				if(vetorRefClientes[i] == 0) {
-					continue;
-				} 
-				for(j = 0; j < 2; j++) {
-					displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
-				}
+			for(i = 0; i < MAX_VETOR; i++) {
 				
-				sprintf(&iString[0],"%d", i + 1);
-				for(j = 0; j < strlen(iString); j++) {
-					displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
-				}
-				
-				for(j = 0; j < strlen(clientes[i].nome); j++) {
-					displayItemAtual[0].linhaDisplay[16 + j] = clientes[i].nome[j];
-				}
-				
-				for(j = 0; j < strlen(clientes[i].cpf); j++) {
-					displayItemAtual[0].linhaDisplay[57 + j] = clientes[i].cpf[j];
-				}
-				
-				for(j = 0; j < strlen(clientes[i].telefone); j++) {
-					displayItemAtual[0].linhaDisplay[74 + j] = clientes[i].telefone[j];
-				}
-				
-				for(j = 0; j < 2; j++) {
-					printf("%s\n", displayItemAtual[j].linhaDisplay);
+				if(vetorRefClientes[i] == 1) {
+	
+					for(j = 0; j < 2; j++) {
+						displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
+					}
+					
+					sprintf(&iString[0],"%d", i + 1);
+					for(j = 0; j < strlen(iString); j++) {
+						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
+					}
+					
+					for(j = 0; j < strlen(clientes[i].nome); j++) {
+						displayItemAtual[0].linhaDisplay[16 + j] = clientes[i].nome[j];
+					}
+					
+					for(j = 0; j < strlen(clientes[i].cpf); j++) {
+						displayItemAtual[0].linhaDisplay[57 + j] = clientes[i].cpf[j];
+					}
+					
+					for(j = 0; j < strlen(clientes[i].telefone); j++) {
+						displayItemAtual[0].linhaDisplay[74 + j] = clientes[i].telefone[j];
+					}
+					
+					for(j = 0; j < 2; j++) {
+						printf("%s\n", displayItemAtual[j].linhaDisplay);
+					}
 				}
 			}
 			break;
 		case 2:
 			displayCabecalhoAtual = displayCabecalhoConsultaFuncionarios;
 			exibirCabecalhoAtual(displayCabecalhoAtual);
-			for(i = 0; i < contadorDadosExistentes; i++) {
-				if(vetorRefFuncionarios[i] == 0) {
-					continue;
-				} 
-				for(j = 0; j < 2; j++) {
-					displayItemAtual[j] = displayConsulta_Funcionario[j];
-				}
-				
-				sprintf(&iString[0],"%d", i + 1);
-				for(j = 0; j < strlen(iString); j++) {
-					displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
-				}
-				
-				for(j = 0; j < strlen(funcionarios[i].estadoEmpresa); j++) {
-					displayItemAtual[0].linhaDisplay[13 + j] = funcionarios[i].estadoEmpresa[j];
-				}
-				
-				for(j = 0; j < strlen(funcionarios[i].nome); j++) {
-					displayItemAtual[0].linhaDisplay[26 + j] = funcionarios[i].nome[j];
-				}
-				
-				for(j = 0; j < strlen(funcionarios[i].cpf); j++) {
-					displayItemAtual[0].linhaDisplay[63 + j] = funcionarios[i].cpf[j];
-				}
-				
-				for(j = 0; j < strlen(funcionarios[i].telefone); j++) {
-					displayItemAtual[0].linhaDisplay[86 + j] = funcionarios[i].telefone[j];
-				}
-				
-				for(j = 0; j < 2; j++) {
-					printf("%s\n", displayItemAtual[j].linhaDisplay);
+			for(i = 0; i < MAX_VETOR; i++) {
+				if(vetorRefFuncionarios[i] == 1) {
+						
+					for(j = 0; j < 2; j++) {
+						displayItemAtual[j] = displayConsulta_Funcionario[j];
+					}
+					
+					sprintf(&iString[0],"%d", i + 1);
+					for(j = 0; j < strlen(iString); j++) {
+						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
+					}
+					
+					for(j = 0; j < strlen(funcionarios[i].estadoEmpresa); j++) {
+						displayItemAtual[0].linhaDisplay[13 + j] = funcionarios[i].estadoEmpresa[j];
+					}
+					
+					for(j = 0; j < strlen(funcionarios[i].nome); j++) {
+						displayItemAtual[0].linhaDisplay[26 + j] = funcionarios[i].nome[j];
+					}
+					
+					for(j = 0; j < strlen(funcionarios[i].cpf); j++) {
+						displayItemAtual[0].linhaDisplay[63 + j] = funcionarios[i].cpf[j];
+					}
+					
+					for(j = 0; j < strlen(funcionarios[i].telefone); j++) {
+						displayItemAtual[0].linhaDisplay[86 + j] = funcionarios[i].telefone[j];
+					}
+					
+					for(j = 0; j < 2; j++) {
+						printf("%s\n", displayItemAtual[j].linhaDisplay);
+					}
 				}
 			}
 			break;
 		case 3:
 			displayCabecalhoAtual = displayCabecalhoConsultaFornecedores;
 			exibirCabecalhoAtual(displayCabecalhoAtual);
-			for(i = 0; i < contadorDadosExistentes; i++) {
-				if(vetorRefFornecedores[i] == 0) {
-					continue;
-				}
-				for(j = 0; j < 2; j++) {
-					displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
-				}
-				
-				sprintf(&iString[0],"%d", i + 1);
-				for(j = 0; j < strlen(iString); j++) {
-					displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
-				}
-				
-				for(j = 0; j < strlen(fornecedores[i].nomeFantasia); j++) {
-					displayItemAtual[0].linhaDisplay[16 + j] = fornecedores[i].nomeFantasia[j];
-				}
-				
-				for(j = 0; j < strlen(fornecedores[i].cnpj); j++) {
-					displayItemAtual[0].linhaDisplay[57 + j] = fornecedores[i].cnpj[j];
-				}
-				
-				for(j = 0; j < strlen(fornecedores[i].telefone); j++) {
-					displayItemAtual[0].linhaDisplay[74 + j] = fornecedores[i].telefone[j];
-				}
-				
-				for(j = 0; j < 2; j++) {
-					printf("%s\n", displayItemAtual[j].linhaDisplay);
+			for(i = 0; i < MAX_VETOR; i++) {
+				if(vetorRefFornecedores[i] == 1) {
+					
+					for(j = 0; j < 2; j++) {
+						displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
+					}
+					
+					sprintf(&iString[0],"%d", i + 1);
+					for(j = 0; j < strlen(iString); j++) {
+						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
+					}
+					
+					for(j = 0; j < strlen(fornecedores[i].nomeFantasia); j++) {
+						displayItemAtual[0].linhaDisplay[16 + j] = fornecedores[i].nomeFantasia[j];
+					}
+					
+					for(j = 0; j < strlen(fornecedores[i].cnpj); j++) {
+						displayItemAtual[0].linhaDisplay[57 + j] = fornecedores[i].cnpj[j];
+					}
+					
+					for(j = 0; j < strlen(fornecedores[i].telefone); j++) {
+						displayItemAtual[0].linhaDisplay[74 + j] = fornecedores[i].telefone[j];
+					}
+					
+					for(j = 0; j < 2; j++) {
+						printf("%s\n", displayItemAtual[j].linhaDisplay);
+					}
 				}
 			}
 			break;
@@ -559,7 +562,7 @@ void exibirInterfaceAlerta(char string[]) {
 		printf(" ");
 	}
 	printf("%s", string);
-	for(i = 0; i < ((MAX_LINHA - tamanhoString)/2) - 1; i++) {
+	for(i = 0; i < ((MAX_LINHA - tamanhoString)/2) - 2; i++) {
 		printf(" ");
 	}
 	printf("x\nx");

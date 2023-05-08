@@ -8,3 +8,4 @@ Makefile.win
 main.o
 ProjetoTesteInterface.exe
 testeInterface.exe
+programa.exe

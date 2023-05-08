@@ -1,8 +1,8 @@
 #ifndef CADASTRO_H
 #define CADASTRO_H
 
+#define MAX_VETOR 100
 #define MAX_STRING 50
-
 
 //Criação do struct(tipo) Cliente, para armazenar os dados dos clientes.
 typedef struct {

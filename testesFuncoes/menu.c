@@ -244,7 +244,7 @@ void exibirMensagem(int *pMensagem) {
 
 //Função de exibição de erros
 void exibirErro(int *pErro) {
-	char res[50] = {0};
+	char res[50];
 	switch(*pErro) {
 		case 0:
 			break;
@@ -342,11 +342,19 @@ void exibirErro(int *pErro) {
 					executarAlterarCadastro();
 					break;
 				case 2:
+					executarExcluirCadastro(2, pEscolhaUserMod, pMensagem, pErro);
+					if(escolhaUserMod == 0) {
+						exibirMenuNovoCadastro();
+						executarNovoCadastro(pMenuAtual, pErro);
+						menuAtual = menuConsultarCadastro;
+						executarConsultaCadastro(pMenuAtual, pErro);
+					}
 					break;
 				case 3:
 					executarExcluirCadastro(1, pEscolhaUserMod, pMensagem, pErro);
 					if(escolhaUserMod == 0) {
-						exibirMenuConsultarCadastro();
+						menuAtual = menuConsultarCadastro;
+						executarConsultaCadastro(pMenuAtual, pErro);
 					}
 					break;
 				case 0:
