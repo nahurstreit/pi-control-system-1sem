@@ -150,7 +150,7 @@ int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 }
 
 //Função de exibição de cadastros. A chamada desse função acontece em menu.c dentro de algumas opções.
-int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
+int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado) {
 	int posicao, contadorDadosExistentes;
 	
 	tipoConsultaAtual = *pEscolhaUser;
@@ -203,11 +203,13 @@ int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 		 	else if(*pEscolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
 		 	else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
 			exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao-1);
+			*estado = 1;
 			break;
 		}
 		
 		if(posicao == 0) {
 			*pErro = 0;
+			*estado = 0;
 			break;
 		}
 		
@@ -401,6 +403,234 @@ void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	stringNova[strcspn(stringNova, "\n")] = '\0';
 	fflush(stdin);
 	
-	inserirString(tipoConsultaAtual, posicaoConsultaAtual, stringNova, pEscolhaCampo);
-	*pMensagem = 2;
+	alterarString(tipoConsultaAtual, posicaoConsultaAtual, stringNova, escolhaCampo);
+	exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTRO", 1);
+	exibirInterfaceInteracao("Sucesso! Campo modificado!");
+	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
 }
+
+void alterarString(int tipoConsulta, int posicao, char stringNova[MAX_STRING], int campo) {
+	switch(tipoConsulta) {
+		case 1:
+			switch(campo) {
+				case 0:
+					strcpy(clientes[posicao].nome, stringNova);
+					break;
+				case 1:
+					strcpy(clientes[posicao].cpf, stringNova);
+					break;
+				case 2:
+					strcpy(clientes[posicao].dataNascimento, stringNova);
+					break;
+				case 3 :
+					strcpy(clientes[posicao].telefone, stringNova);
+					break;
+				case 4:
+					strcpy(clientes[posicao].email, stringNova);
+					break;	
+				case 5:
+					strcpy(clientes[posicao].endereco, stringNova);
+					break;
+				case 6:
+					strcpy(clientes[posicao].numEndereco, stringNova);
+					break;
+				case 7:
+					strcpy(clientes[posicao].compEndereco, stringNova);
+					break;
+				case 8:
+					strcpy(clientes[posicao].bairro, stringNova);
+					break;
+				case 9:
+					strcpy(clientes[posicao].cep, stringNova);
+					break;
+				case 10:
+					strcpy(clientes[posicao].cidade, stringNova);
+					break;
+				default:
+					strcpy(clientes[posicao].estado, stringNova);
+			}
+			break;
+		case 2:
+			switch(campo) {
+				case 0:
+					strcpy(funcionarios[posicao].nome, stringNova);
+					break;
+				case 1:
+					strcpy(funcionarios[posicao].estadoEmpresa, stringNova);
+					break;				
+				case 2:
+					strcpy(funcionarios[posicao].cpf, stringNova);
+					break;
+				case 3:
+					strcpy(funcionarios[posicao].dataNascimento, stringNova);
+					break;
+				case 4:
+					strcpy(funcionarios[posicao].estadoCivil, stringNova);
+					break;
+				case 5:
+					strcpy(funcionarios[posicao].dataAdmissao, stringNova);
+					break;
+				case 6:
+					strcpy(funcionarios[posicao].salarioBase, stringNova);
+					break;
+				case 7:
+					strcpy(funcionarios[posicao].telefone, stringNova);
+					break;
+				case 8:
+					strcpy(funcionarios[posicao].email, stringNova);
+					break;	
+				case 9:
+					strcpy(funcionarios[posicao].endereco, stringNova);
+					break;
+				case 10:
+					strcpy(funcionarios[posicao].numEndereco, stringNova);
+					break;
+				case 11:
+					strcpy(funcionarios[posicao].compEndereco, stringNova);
+					break;
+				case 12:
+					strcpy(funcionarios[posicao].bairro, stringNova);
+					break;
+				case 13:
+					strcpy(funcionarios[posicao].cep, stringNova);
+					break;
+				case 14:
+					strcpy(funcionarios[posicao].cidade, stringNova);
+					break;
+				default: 
+					strcpy(funcionarios[posicao].estado, stringNova);
+			}
+			break;
+		case 3:
+			switch(campo) {
+				case 0:
+					strcpy(fornecedores[posicao].nomeFantasia, stringNova);
+					break;
+				case 1:
+					strcpy(fornecedores[posicao].cnpj, stringNova);
+					break;
+				case 2:
+					strcpy(fornecedores[posicao].telefone, stringNova);
+					break;
+				case 3:
+					strcpy(fornecedores[posicao].email, stringNova);
+					break;
+				case 4:
+					strcpy(fornecedores[posicao].endereco, stringNova);
+					break;
+				case 5:
+					strcpy(fornecedores[posicao].numEndereco, stringNova);
+					break;
+				case 6:
+					strcpy(fornecedores[posicao].compEndereco, stringNova);
+					break;
+				case 7:
+					strcpy(fornecedores[posicao].bairro, stringNova);
+					break;
+				case 8:
+					strcpy(fornecedores[posicao].cep, stringNova);
+					break;
+				case 9:
+					strcpy(fornecedores[posicao].cidade, stringNova);
+					break;
+				default: 
+					strcpy(fornecedores[posicao].estado, stringNova);
+			}
+			break;
+	}
+}
+
+void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int *pErro) {
+	int escolhaAlterar = 0, contadorDadosExistentes = 0;
+	
+	exibirInterfaceTitulo("ATENÇÃO!", 1);
+	
+	switch(*pTipoConsultaAtual) {
+		case 1:
+			contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
+			break;
+		case 2:
+			contadorDadosExistentes = calcularDadosExistentes(vetorRefFuncionarios);
+			break;
+		case 3:
+			contadorDadosExistentes = calcularDadosExistentes(vetorRefFornecedores);
+			break;
+	}
+	
+	switch(tipo) {
+		case 1:
+			exibirInterfaceAlerta("Você tem certeza que deseja EXCLUIR o cadastro? Essa decisão é IRREVERSÍVEL!");
+			printf("\n\n[1] Sim, tenho certeza!\t\t[2] Não, deixe-me pensar...\n\n");
+			printf("Opção: ");
+			scanf("%d", &escolhaAlterar);
+				
+				if(escolhaAlterar == 1) {
+					excluirCadastro(posicaoConsultaAtual);
+					exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTRO", 1);
+					exibirInterfaceInteracao("Cadastro excluído!");
+					exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pTipoConsultaAtual, contadorDadosExistentes);
+					*pEscolhaUserMod = 0;
+					*pMensagem = 3;	
+				} else {
+					exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTRO", 1);
+					exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+					break;
+				}
+		break;
+	}
+}
+
+void excluirCadastro(int posicao) {
+	switch(tipoConsultaAtual) {
+		case 1:
+			strcpy(clientes[posicao].nome, "");
+			strcpy(clientes[posicao].cpf, "");
+			strcpy(clientes[posicao].dataNascimento, "");
+			strcpy(clientes[posicao].telefone, "");
+			strcpy(clientes[posicao].email, "");
+			strcpy(clientes[posicao].endereco, "");
+			strcpy(clientes[posicao].numEndereco, "");
+			strcpy(clientes[posicao].compEndereco, "");
+			strcpy(clientes[posicao].bairro, "");
+			strcpy(clientes[posicao].cep, "");
+			strcpy(clientes[posicao].cidade, "");
+			strcpy(clientes[posicao].estado, "");
+			vetorRefClientes[posicao] = 0;
+			break;
+		case 2:
+			strcpy(funcionarios[posicao].nome, "");
+			strcpy(funcionarios[posicao].estadoEmpresa, "");
+			strcpy(funcionarios[posicao].cpf, "");
+			strcpy(funcionarios[posicao].dataNascimento, "");
+			strcpy(funcionarios[posicao].estadoCivil, "");
+			strcpy(funcionarios[posicao].dataAdmissao, "");
+			strcpy(funcionarios[posicao].salarioBase, "");
+			strcpy(funcionarios[posicao].telefone, "");
+			strcpy(funcionarios[posicao].email, "");
+			strcpy(funcionarios[posicao].endereco, "");
+			strcpy(funcionarios[posicao].numEndereco, "");
+			strcpy(funcionarios[posicao].compEndereco, "");
+			strcpy(funcionarios[posicao].bairro, "");
+			strcpy(funcionarios[posicao].cep, "");
+			strcpy(funcionarios[posicao].cidade, "");
+			strcpy(funcionarios[posicao].estado, "");
+			vetorRefFuncionarios[posicao] = 0;
+			break;
+		case 3:
+			strcpy(fornecedores[posicao].nomeFantasia, "");
+			strcpy(fornecedores[posicao].cnpj, "");
+			strcpy(fornecedores[posicao].telefone, "");
+			strcpy(fornecedores[posicao].email, "");
+			strcpy(fornecedores[posicao].endereco, "");
+			strcpy(fornecedores[posicao].numEndereco, "");
+			strcpy(fornecedores[posicao].compEndereco, "");
+			strcpy(fornecedores[posicao].bairro, "");
+			strcpy(fornecedores[posicao].cep, "");
+			strcpy(fornecedores[posicao].cidade, "");
+			strcpy(fornecedores[posicao].estado, "");
+			vetorRefFornecedores[posicao] = 0;
+			break;
+	}
+}
+
+

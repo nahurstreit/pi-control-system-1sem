@@ -43,7 +43,7 @@
 			3,
 			{
 				{"Criar novo Cadastro", 1, &exibirMenuNovoCadastro},
-				{"Consultar e Modificar Cadastros", 2, &exibirMenuConsultarCadatro},
+				{"Consultar e Modificar Cadastros", 2, &exibirMenuConsultarCadastro},
 				{"Voltar ao Menu Inicial", 0, &exibirMenuPrincipal},
 			}
 		};
@@ -63,7 +63,7 @@
 			//
 			
 			//Consultar Cadastros
-				Menu menuConsultarCadatro = {
+				Menu menuConsultarCadastro = {
 					"CONSULTAR E MODIFICAR CADASTROS",
 					5,
 					{
@@ -83,7 +83,7 @@
 							"Alterar Campo Específico do Cadastro", 1, &executarAlterarCadastro,
 							"Alterar Todo o Cadastro", 2, &exibirMenuCadastro,
 							"Deletar o Cadastro", 3, &exibirMenuCadastro,
-							"Consultar Outro", 0, &exibirMenuConsultarCadatro,
+							"Consultar Outro", 0, &exibirMenuConsultarCadastro,
 							"Voltar ao Menu Principal", 9, &exibirMenuPrincipal,
 						}
 					};
@@ -233,6 +233,8 @@ void exibirMensagem(int *pMensagem) {
 		case 2:
 			exibirInterfaceInteracao("Sucesso! Campo alterado!");
 			break;
+		case 3:
+			exibirInterfaceInteracao("Cadastro Excluído!");
 		default: ;
 	}
 	
@@ -284,15 +286,16 @@ void exibirErro(int *pErro) {
 							novoCadastro(pEscolhaUser, pMensagem, pErro);
 						}
 					
-					int exibirMenuConsultarCadatro() {
-						menuAtual = menuConsultarCadatro;
+					int exibirMenuConsultarCadastro() {
+						menuAtual = menuConsultarCadastro;
 					}
 						int executarConsultaCadastro(Menu *pMenuAtual, int *pErro) {
-							consultaCadastro(pEscolhaUser, pMensagem, pErro);
-							
-							menuAtual = menuModificarCadastro;
-							exibirInterfaceOpcoes(pMenuAtual);
-							receberOpcaoMenu(pEscolhaUser, pErro, pMenuAtual);
+							int estado = 0;
+							int *pEstado = &estado;
+							consultaCadastro(pEscolhaUser, pMensagem, pErro, pEstado);
+							if(estado == 1) {
+								receberOpcoesDeCadastro();
+							}
 						}
 							int executarAlterarCadastro() {
 								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
@@ -322,4 +325,36 @@ void exibirErro(int *pErro) {
 		}
 	//
 	
+	void receberOpcoesDeCadastro() {
+		int escolhaUserMod = 1;
+		int *pEscolhaUserMod = &escolhaUserMod;
+		Menu *pMenuAtual = &menuAtual;
+		
+		while(escolhaUserMod == 1 || escolhaUserMod == 2 || escolhaUserMod == 3) {
+			menuAtual = menuModificarCadastro;
+			exibirInterfaceOpcoes(pMenuAtual);
+			exibirMensagem(pMensagem);
+			scanf("%d", &escolhaUserMod);
+			fflush(stdin);
+			
+			switch(escolhaUserMod) {
+				case 1:
+					executarAlterarCadastro();
+					break;
+				case 2:
+					break;
+				case 3:
+					executarExcluirCadastro(1, pEscolhaUserMod, pMensagem, pErro);
+					if(escolhaUserMod == 0) {
+						exibirMenuConsultarCadastro();
+					}
+					break;
+				case 0:
+					exibirMenuConsultarCadastro();
+					break;
+				default:
+					exibirMenuPrincipal();
+			}
+		}
+	}
 //

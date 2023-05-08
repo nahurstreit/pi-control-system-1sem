@@ -26,4 +26,6 @@ void exibirInterfaceOpcoes(Menu *pMenuAtual);
 
 void exibirTextoMeio(char string[]);
 
+void exibirInterfaceAlerta(char string[]);
+
 #endif

@@ -23,7 +23,7 @@ typedef struct {
 			int exibirMenuCadastro();
 				int exibirMenuNovoCadastro();
 					int executarNovoCadastro();
-				int exibirMenuConsultarCadatro();
+				int exibirMenuConsultarCadastro();
 					int executarConsultaCadastro();
 						int executarAlterarCadastro();
 			
@@ -40,6 +40,8 @@ typedef struct {
 //Declaração de funções de uso
 	//Usada para receber o input do usuário e retornar erro caso seja digitado uma letra, ou um número que não tem no menu
 	int receberOpcaoMenu(int *pEscolhaUser, int *pErr, Menu *pMenuAtual);
+	
+	void receberOpcoesDeCadastro();
 	
 	//Exibe uma mensagem caso seja passada como parâmetro
 	void exibirMensagem(int *pMensagem);

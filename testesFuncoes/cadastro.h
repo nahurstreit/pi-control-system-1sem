@@ -3,9 +3,6 @@
 
 #define MAX_STRING 50
 
-//Funções cadastro:
-int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
-int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
 
 //Criação do struct(tipo) Cliente, para armazenar os dados dos clientes.
 typedef struct {
@@ -65,6 +62,10 @@ typedef struct {
 } TextoCampo;
 
 //Declaração das funções a serem utilizadas pelo código
+
+//Funções cadastro:
+int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
+int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado);
 	
 //Explicação detalhada de posicaoDisponivel:
 		int posicaoDisponivel(int *vetor);
@@ -93,4 +94,11 @@ void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetor, int posicao, i
 int calcularDadosExistentes(int vetor[MAX_VETOR]);
 
 void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
+
+void alterarString(int tipoCadastro, int posicao, char stringNova[MAX_STRING], int campo);
+
+void excluirCadastro(int posicao);
+
+void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int *pErro);
+
 #endif

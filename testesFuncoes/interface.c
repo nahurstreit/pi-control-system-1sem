@@ -351,7 +351,9 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 			displayCabecalhoAtual = displayCabecalhoConsultaClientes;
 			exibirCabecalhoAtual(displayCabecalhoAtual);
 			for(i = 0; i < contadorDadosExistentes; i++) {
-				
+				if(vetorRefClientes[i] == 0) {
+					continue;
+				} 
 				for(j = 0; j < 2; j++) {
 					displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
 				}
@@ -382,7 +384,9 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 			displayCabecalhoAtual = displayCabecalhoConsultaFuncionarios;
 			exibirCabecalhoAtual(displayCabecalhoAtual);
 			for(i = 0; i < contadorDadosExistentes; i++) {
-
+				if(vetorRefFuncionarios[i] == 0) {
+					continue;
+				} 
 				for(j = 0; j < 2; j++) {
 					displayItemAtual[j] = displayConsulta_Funcionario[j];
 				}
@@ -417,7 +421,9 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 			displayCabecalhoAtual = displayCabecalhoConsultaFornecedores;
 			exibirCabecalhoAtual(displayCabecalhoAtual);
 			for(i = 0; i < contadorDadosExistentes; i++) {
-				
+				if(vetorRefFornecedores[i] == 0) {
+					continue;
+				}
 				for(j = 0; j < 2; j++) {
 					displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
 				}
@@ -520,7 +526,7 @@ void exibirInterfaceOpcoes(Menu *pMenuAtual) {
 	for(i = 0; i < numOpcoes; i++) {
 		printf(" [%d] - %s\n\n", pMenuAtual -> opcoes[i].numeroDaOpcao, pMenuAtual -> opcoes[i].textoDaOpcao);
 	}
-	for(i = 0; i < MAX_LINHA; i++) {
+	for(i = 0; i < MAX_LINHA - 1; i++) {
 		printf("~");
 	}
 	
@@ -529,11 +535,39 @@ void exibirInterfaceOpcoes(Menu *pMenuAtual) {
 }
 
 void exibirTextoMeio(char string[]) {
-	int i, tamanhoString = 0;
+	int i, tamanhoString = strlen(string);
 	
 	for(i = 0; i < (MAX_LINHA - tamanhoString)/2; i++) {
 		printf(" ");
 	}
 	printf(string);
 	printf("\n");
+}
+
+void exibirInterfaceAlerta(char string[]) {
+	int i, tamanhoString = strlen(string);
+	
+	for(i = 0; i < MAX_LINHA - 1; i++) {
+		printf("x");
+	}
+	printf("\nx");
+	for(i = 0; i < MAX_LINHA - 3; i++) {
+		printf(" ");
+	}
+	printf("x\nx");
+	for(i = 0; i < ((MAX_LINHA - tamanhoString)/2) - 1; i++) {
+		printf(" ");
+	}
+	printf("%s", string);
+	for(i = 0; i < ((MAX_LINHA - tamanhoString)/2) - 1; i++) {
+		printf(" ");
+	}
+	printf("x\nx");
+	for(i = 0; i < MAX_LINHA - 3; i++) {
+		printf(" ");
+	}
+	printf("x\n");
+	for(i = 0; i < MAX_LINHA - 1; i++) {
+		printf("x");
+	}
 }
