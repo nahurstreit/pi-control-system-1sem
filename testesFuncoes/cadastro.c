@@ -28,7 +28,7 @@ TextoCampo camposCliente[] = {
 //Criação da vetor com nome camposFuncionario que é do tipo TextoCampo. Refere-se aos textos que serão exibidos ao pedir para os usuários digitarem os dados de cadastro do Funcionário
 TextoCampo camposFuncionario[] = {
 	"o nome do funcionário",
-	"o estado na empresa",
+	"o status na empresa",
 	"o CPF",
 	"a data de nascimento",
 	"o estado civil",
@@ -99,7 +99,7 @@ int *pTipoConsultaAtual = &tipoConsultaAtual;
 int posicaoConsultaAtual;
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
-int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
+void novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	char stringHolder[MAX_STRING];
 	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int *pContadorCampo = &contadorCampo;
@@ -150,7 +150,7 @@ int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 }
 
 //Função de exibição de cadastros. A chamada desse função acontece em menu.c dentro de algumas opções.
-int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado) {
+void consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado) {
 	int posicao, contadorDadosExistentes;
 	
 	tipoConsultaAtual = *pEscolhaUser;
@@ -265,7 +265,7 @@ void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRI
 					strcpy(funcionarios[posicaoDisponivel].nome, string);
 					break;
 				case 1:
-					strcpy(funcionarios[posicaoDisponivel].estadoEmpresa, string);
+					strcpy(funcionarios[posicaoDisponivel].status, string);
 					break;				
 				case 2:
 					strcpy(funcionarios[posicaoDisponivel].cpf, string);
@@ -349,13 +349,11 @@ void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRI
 	}
 }
 
-void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicao, int *pErro) {
-	posicao -= 1;
+void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicaoConsultada, int *pErro) {
+	posicaoConsultada -= 1;
 	
-	if(vetorReferencia[posicao] == 0) {
+	if(vetorReferencia[posicaoConsultada] == 0) {
 		*pErro = 4;
-	} else {
-		exibirErro(pErro);
 	}
 }
 
@@ -372,11 +370,11 @@ int posicaoDisponivel(int *vetorReferencia) {
 	return i;
 }
 
-int calcularDadosExistentes(int vetor[MAX_VETOR]) {
+int calcularDadosExistentes(int vetorReferencia[MAX_VETOR]) {
 	int i, contadorDadosExistentes = 0;
 	
 	for(i = 0; i < MAX_VETOR; i++) {
-		if(vetor[i] == 1) {
+		if(vetorReferencia[i] == 1) {
 			contadorDadosExistentes++;
 		}
 	}
@@ -474,7 +472,7 @@ void alterarString(int tipoConsulta, int posicao, char stringNova[MAX_STRING], i
 					strcpy(funcionarios[posicao].nome, stringNova);
 					break;
 				case 1:
-					strcpy(funcionarios[posicao].estadoEmpresa, stringNova);
+					strcpy(funcionarios[posicao].status, stringNova);
 					break;				
 				case 2:
 					strcpy(funcionarios[posicao].cpf, stringNova);
@@ -558,7 +556,7 @@ void alterarString(int tipoConsulta, int posicao, char stringNova[MAX_STRING], i
 	}
 }
 
-void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int *pErro) {
+void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod, int *pMensagem, int *pErro) {
 	int escolhaAlterar = 0, contadorDadosExistentes = 0;
 	
 	char tituloHolder[50];
@@ -583,7 +581,7 @@ void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int
 			break;
 	}
 	
-	switch(tipo) {
+	switch(tipoTexto) {
 		case 1: exibirInterfaceAlerta("Você tem certeza que deseja EXCLUIR o cadastro? Essa decisão é IRREVERSÍVEL! "); break;
 		case 2: exibirInterfaceAlerta("Você tem certeza que deseja ALTERAR TODO o cadastro? Essa decisão é IRREVERSÍVEL!"); break;
 	}
@@ -593,70 +591,67 @@ void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int
 	scanf("%d", &escolhaAlterar);
 	fflush(stdin);
 		
-		if(escolhaAlterar == 1) {
-			*pEscolhaUserMod = 0;
-			*pMensagem = 3;
-			excluirCadastro(posicaoConsultaAtual);
-			exibirInterfaceTitulo(tituloHolder, 1);
-			exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pTipoConsultaAtual, contadorDadosExistentes);
-		} else {
-			exibirInterfaceTitulo(tituloHolder, 1);
-			exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
-		}
-
-}
-
-void excluirCadastro(int posicao) {
-	switch(tipoConsultaAtual) {
-		case 1:
-			strcpy(clientes[posicao].nome, "");
-			strcpy(clientes[posicao].cpf, "");
-			strcpy(clientes[posicao].dataNascimento, "");
-			strcpy(clientes[posicao].telefone, "");
-			strcpy(clientes[posicao].email, "");
-			strcpy(clientes[posicao].endereco, "");
-			strcpy(clientes[posicao].numEndereco, "");
-			strcpy(clientes[posicao].compEndereco, "");
-			strcpy(clientes[posicao].bairro, "");
-			strcpy(clientes[posicao].cep, "");
-			strcpy(clientes[posicao].cidade, "");
-			strcpy(clientes[posicao].estado, "");
-			pVetorRefClientes[posicao] = 0;
-			break;
-		case 2:
-			strcpy(funcionarios[posicao].nome, "");
-			strcpy(funcionarios[posicao].estadoEmpresa, "");
-			strcpy(funcionarios[posicao].cpf, "");
-			strcpy(funcionarios[posicao].dataNascimento, "");
-			strcpy(funcionarios[posicao].estadoCivil, "");
-			strcpy(funcionarios[posicao].dataAdmissao, "");
-			strcpy(funcionarios[posicao].salarioBase, "");
-			strcpy(funcionarios[posicao].telefone, "");
-			strcpy(funcionarios[posicao].email, "");
-			strcpy(funcionarios[posicao].endereco, "");
-			strcpy(funcionarios[posicao].numEndereco, "");
-			strcpy(funcionarios[posicao].compEndereco, "");
-			strcpy(funcionarios[posicao].bairro, "");
-			strcpy(funcionarios[posicao].cep, "");
-			strcpy(funcionarios[posicao].cidade, "");
-			strcpy(funcionarios[posicao].estado, "");
-			pVetorRefFuncionarios[posicao] = 0;
-			break;
-		case 3:
-			strcpy(fornecedores[posicao].nomeFantasia, "");
-			strcpy(fornecedores[posicao].cnpj, "");
-			strcpy(fornecedores[posicao].telefone, "");
-			strcpy(fornecedores[posicao].email, "");
-			strcpy(fornecedores[posicao].endereco, "");
-			strcpy(fornecedores[posicao].numEndereco, "");
-			strcpy(fornecedores[posicao].compEndereco, "");
-			strcpy(fornecedores[posicao].bairro, "");
-			strcpy(fornecedores[posicao].cep, "");
-			strcpy(fornecedores[posicao].cidade, "");
-			strcpy(fornecedores[posicao].estado, "");
-			pVetorRefFornecedores[posicao] = 0;
-			break;
+	if(escolhaAlterar == 1) {
+		*pEscolhaUserMod = 0;
+		*pMensagem = 3;
+		excluirCadastro(posicaoConsultaAtual);
+		exibirInterfaceTitulo(tituloHolder, 1);
+		exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pTipoConsultaAtual, contadorDadosExistentes);
+	} else {
+		exibirInterfaceTitulo(tituloHolder, 1);
+		exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
 	}
 }
 
-
+void excluirCadastro() {
+	switch(tipoConsultaAtual) {
+		case 1:
+			strcpy(clientes[posicaoConsultaAtual].nome, "");
+			strcpy(clientes[posicaoConsultaAtual].cpf, "");
+			strcpy(clientes[posicaoConsultaAtual].dataNascimento, "");
+			strcpy(clientes[posicaoConsultaAtual].telefone, "");
+			strcpy(clientes[posicaoConsultaAtual].email, "");
+			strcpy(clientes[posicaoConsultaAtual].endereco, "");
+			strcpy(clientes[posicaoConsultaAtual].numEndereco, "");
+			strcpy(clientes[posicaoConsultaAtual].compEndereco, "");
+			strcpy(clientes[posicaoConsultaAtual].bairro, "");
+			strcpy(clientes[posicaoConsultaAtual].cep, "");
+			strcpy(clientes[posicaoConsultaAtual].cidade, "");
+			strcpy(clientes[posicaoConsultaAtual].estado, "");
+			vetorRefClientes[posicaoConsultaAtual] = 0;
+			break;
+		case 2:
+			strcpy(funcionarios[posicaoConsultaAtual].nome, "");
+			strcpy(funcionarios[posicaoConsultaAtual].status, "");
+			strcpy(funcionarios[posicaoConsultaAtual].cpf, "");
+			strcpy(funcionarios[posicaoConsultaAtual].dataNascimento, "");
+			strcpy(funcionarios[posicaoConsultaAtual].estadoCivil, "");
+			strcpy(funcionarios[posicaoConsultaAtual].dataAdmissao, "");
+			strcpy(funcionarios[posicaoConsultaAtual].salarioBase, "");
+			strcpy(funcionarios[posicaoConsultaAtual].telefone, "");
+			strcpy(funcionarios[posicaoConsultaAtual].email, "");
+			strcpy(funcionarios[posicaoConsultaAtual].endereco, "");
+			strcpy(funcionarios[posicaoConsultaAtual].numEndereco, "");
+			strcpy(funcionarios[posicaoConsultaAtual].compEndereco, "");
+			strcpy(funcionarios[posicaoConsultaAtual].bairro, "");
+			strcpy(funcionarios[posicaoConsultaAtual].cep, "");
+			strcpy(funcionarios[posicaoConsultaAtual].cidade, "");
+			strcpy(funcionarios[posicaoConsultaAtual].estado, "");
+			vetorRefFuncionarios[posicaoConsultaAtual] = 0;
+			break;
+		case 3:
+			strcpy(fornecedores[posicaoConsultaAtual].nomeFantasia, "");
+			strcpy(fornecedores[posicaoConsultaAtual].cnpj, "");
+			strcpy(fornecedores[posicaoConsultaAtual].telefone, "");
+			strcpy(fornecedores[posicaoConsultaAtual].email, "");
+			strcpy(fornecedores[posicaoConsultaAtual].endereco, "");
+			strcpy(fornecedores[posicaoConsultaAtual].numEndereco, "");
+			strcpy(fornecedores[posicaoConsultaAtual].compEndereco, "");
+			strcpy(fornecedores[posicaoConsultaAtual].bairro, "");
+			strcpy(fornecedores[posicaoConsultaAtual].cep, "");
+			strcpy(fornecedores[posicaoConsultaAtual].cidade, "");
+			strcpy(fornecedores[posicaoConsultaAtual].estado, "");
+			vetorRefFornecedores[posicaoConsultaAtual] = 0;
+			break;
+	}
+}

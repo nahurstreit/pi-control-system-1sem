@@ -4,101 +4,268 @@
 #define MAX_VETOR 100
 #define MAX_STRING 50
 
-//Criação do struct(tipo) Cliente, para armazenar os dados dos clientes.
-typedef struct {
-	char nome[MAX_STRING];
-	char cpf[MAX_STRING];
-	char dataNascimento[MAX_STRING];
-	char telefone[MAX_STRING];
-	char email[MAX_STRING];
-	char endereco[MAX_STRING];
-	char numEndereco[6];
-	char compEndereco[MAX_STRING];
-	char bairro[MAX_STRING];
-	char cep[MAX_STRING];
-	char cidade[MAX_STRING];
-	char estado[MAX_STRING];
+//Structs
+	/**
+	 * @brief Definição do struct do tipo Cliente, para armazenar de forma categórica os dados do cliente.
+	 **/
+	typedef struct {
+		char nome[MAX_STRING];
+		char cpf[MAX_STRING];
+		char dataNascimento[MAX_STRING];
+		char telefone[MAX_STRING];
+		char email[MAX_STRING];
+		char endereco[MAX_STRING];
+		char numEndereco[6];
+		char compEndereco[MAX_STRING];
+		char bairro[MAX_STRING];
+		char cep[MAX_STRING];
+		char cidade[MAX_STRING];
+		char estado[MAX_STRING];
+	} Cliente;
+	
+	/**
+	 * @brief Definição do struct do tipo Funcionário, para armazenar de forma categórica os dados do funcionário.
+	 **/
+	typedef struct {
+		char nome[MAX_STRING];
+		char status[MAX_STRING];
+		char cpf[MAX_STRING];
+		char dataNascimento[MAX_STRING];
+		char estadoCivil[MAX_STRING];
+		char dataAdmissao[MAX_STRING];
+		char salarioBase[MAX_STRING];
+		char telefone[MAX_STRING];
+		char email[MAX_STRING];
+		char endereco[MAX_STRING];
+		char numEndereco[6];
+		char compEndereco[MAX_STRING];
+		char bairro[MAX_STRING];
+		char cep[MAX_STRING];
+		char cidade[MAX_STRING];
+		char estado[MAX_STRING];
+	} Funcionario;
+	
+	/**
+	 * @brief Definição do struct do tipo Fornecedor, para armazenar de forma categórica os dados do fornecedor.
+	 **/
+	typedef struct {
+		char nomeFantasia[MAX_STRING];
+		char cnpj[MAX_STRING];
+		char telefone[MAX_STRING];
+		char email[MAX_STRING];
+		char endereco[MAX_STRING];
+		char numEndereco[6];
+		char compEndereco[MAX_STRING];
+		char bairro[MAX_STRING];
+		char cep[MAX_STRING];
+		char cidade[MAX_STRING];
+		char estado[MAX_STRING];
+	} Fornecedor;
+	
+	/**
+	 * @brief Definição do struct do tipo TextoCampo, para armazenar os textos que serão exibidos na hora de pedir e alterar os dados de um cadastro.
+	 **/
+	typedef struct {
+		char displayCampo[30];
+	} TextoCampo;
 
-} Cliente;
-
-//Criação do struct(tipo) Funcionario, para armazenar os dados dos funcionarios.
-typedef struct {
-	char nome[MAX_STRING];
-	char estadoEmpresa[MAX_STRING];
-	char cpf[MAX_STRING];
-	char dataNascimento[MAX_STRING];
-	char estadoCivil[MAX_STRING];
-	char dataAdmissao[MAX_STRING];
-	char salarioBase[MAX_STRING];
-	char telefone[MAX_STRING];
-	char email[MAX_STRING];
-	char endereco[MAX_STRING];
-	char numEndereco[6];
-	char compEndereco[MAX_STRING];
-	char bairro[MAX_STRING];
-	char cep[MAX_STRING];
-	char cidade[MAX_STRING];
-	char estado[MAX_STRING];
-} Funcionario;
-
-//Criação do struct(tipo) Fornecedor, para armazenar os dados dos fornecedores.
-typedef struct {
-	char nomeFantasia[MAX_STRING];
-	char cnpj[MAX_STRING];
-	char telefone[MAX_STRING];
-	char email[MAX_STRING];
-	char endereco[MAX_STRING];
-	char numEndereco[6];
-	char compEndereco[MAX_STRING];
-	char bairro[MAX_STRING];
-	char cep[MAX_STRING];
-	char cidade[MAX_STRING];
-	char estado[MAX_STRING];
-} Fornecedor;
-
-//Criação do struct(tipo) TextoCampo, para armazenar os textos que serão exibidos ao pedir para o usuário digitar alguma coisa no cadastro
-typedef struct {
-	char displayCampo[30];
-} TextoCampo;
+//
 
 //Declaração das funções a serem utilizadas pelo código
-
-//Funções cadastro:
-int novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
-int consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado);
+	/**
+	 * @brief: Cria um novo cadastro de acordo com a escolha do usuário
+	 * 
+	 * @note: Utiliza outras funções da interface.c, menu.c e dados.c para exibir informações na tela, ler dados do usuário, validar e inserir
+	 * informações no vetor de dados.
+	 *
+	 * @details A função recebe três ponteiros: pEscolhaUser, pMensagem e pErro. A partir da escolha do usuário, a função define qual tipo de
+	 * cadastro deve ser realizado (cliente, funcionário ou fornecedor). Em seguida, ela exibe um formulário na tela para o usuário preencher
+	 * e insere as informações no vetor de dados. Por fim, a função exibe uma mensagem de confirmação na tela e atualiza o ponteiro pMensagem para 1.
+	 * 
+	 * @param pEscolhaUser Ponteiro para a escolha do usuário (cliente, funcionário ou fornecedor)
+	 * @param pMensagem Ponteiro para mensagem de sucesso ou erro na operação
+	 * @param pErro Ponteiro para possível erro durante a operação
+	 *
+	 * @return: Nenhum.
+	 **/
+	void novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
 	
-//Explicação detalhada de posicaoDisponivel:
-		int posicaoDisponivel(int *vetor);
-		/* posicaoDisponivel é a função responsável por percorrer os, aqui chamados, vetores de referência(vetorRefClientes, vetorRefFuncionarios, vetorFornecedores)
-		os quais armazenam em si apenas 0 ou 1 e correlacionar com a mesma posição nos, aqui chamados, vetores de dados(funcionarios, clientes, fornecedores). 
-		Quando um vetor de referência tem em sua posição x (vetorExemplo[X]) o valor 1 guardado, significa que o vetor de dados correspondente , 
-		na sua posição  x (exemplo[X]), já tem os dados de campo preenchidos. Isso significa que já existem dados naquele espaço do vetor de dados, e a
-		função posicaoDisponivel, que recebe um ponteiro para um vetor de referência, percorre pelo vetor passado como parâmetro e indica qual é a primeira
-		posição, dentro do vetor de dados, que tem um número zero. Como os vetores de referência e vetores de dados estão relacionados, a mesma posição
-		no vetor de dados será uma posição que não tem nenhum dado cadastrado. Logo em cima desse texto, na parte (1), está declarado em Clientes
-		um exemplo do que é um vetor de referência e um vetor de dado*/
-//
+
+	/**
+	 * @brief Função responsável por consultar um cadastro de acordo com a escolha do usuário e exibir os dados na tela para seguir com o acesso ao dado
+	 * e posteriormente a modificação do dado.
+	 *
+	 * @details Esta função recebe como entrada quatro ponteiros: pEscolhaUser, pMensagem, pErro e estado, os quais são utilizados para identificar 
+	 * a opção de escolha do usuário, exibir mensagens e erros na tela e controlar o estado atual da função quando o usuário estiver modificando um cadastro.
+	 * A função inicia com um switch-case para calcular a quantidade de dados existentes no vetor correspondente à escolha do usuário. 
+	 * Em seguida, um loop do-while é iniciado para exibir a interface de consulta e receber a posição do cadastro a ser consultado ou modificação. 
+	 * Dependendo da escolha do usuário, é exibido o título correspondente na interface de consulta e uma mensagem e/ou erro, caso exista. 
+	 * Em seguida, a interface de dados é exibida e, dependendo da opção do usuário, a posição do cadastro é recebida e verificada se é válida. 
+	 * Se a posição for válida, a interface de formulário é exibida com os dados do cadastro correspondente e o estado da função é alterado para 1. 
+	 * Caso contrário, é exibido um erro ou a função retorna ao estado inicial. 
+	 * O loop do-while continua até que a posição do cadastro seja válida ou o usuário opte por voltar para o menu principal.
+	 *
+	 * @param pEscolhaUser Ponteiro para a escolha do usuário (1 para clientes, 2 para funcionários, 3 para fornecedores).
+	 * @param pMensagem Ponteiro para a mensagem que será exibida na tela.
+	 * @param pErro Ponteiro para o código de erro, que será atualizado durante a execução da função.
+	 * @param estado Ponteiro para o estado atual do programa (utilizado na alteração de cadastro).
+	 *
+	 * @return: Nenhum.
+	*/
+	void consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado);
+
+
+	/**
+	 * @brief: Função responsável por percorrer um vetor de referência e indicar a primeira posição disponível em um vetor de dados.
+	 *
+	 * @note: Vetor de referência e vetor de dados são estruturas de dados que permitem armazenar informações de forma organizada. 
+	 * O vetor de referência é uma estrutura auxiliar que contém apenas valores binários (0 ou 1), que indicam se uma posição correspondente no vetor de dados
+	 * está preenchida (1) ou não (0). Já o vetor de dados é a estrutura principal que armazena os dados reais de cadastro.
+	 * O vetor de referência e o vetor de dados estão relacionados, de forma que cada posição no vetor de referência corresponde a uma posição no vetor de dados. 
+	 * Quando o valor em uma posição do vetor de referência é 1, significa que a posição correspondente no vetor de dados já contém dados armazenados. 
+	 * Por outro lado, quando o valor em uma posição do vetor de referência é 0, indica que a posição correspondente no vetor de dados está disponível
+	 * para receber novos dados.
+	 *
+	 * @details: A função posicaoDisponivel percorre o vetor de referência, verificando qual é a primeira posição que contém o valor 0. Ao encontrar a primeira
+	 * posição disponível, a função marca essa posição como ocupada (atribuindo o valor 1 ao vetor de referência) e retorna o índice da posição no vetor de dados
+	 * correspondente. Isso permite que novos dados possam ser inseridos em uma posição vazia do vetor de dados de forma organizada e sem sobreposição de dados.
+	 *
+	 * @param vetorReferencia Ponteiro para o vetor de referência a ser percorrido.
+	 *
+	 * @return: A primeira posição disponível no vetor de dados.
+	 **/
+	int posicaoDisponivel(int *vetorReferencia);
+
+
+	/**
+	 * @brief: Insere uma string em uma posição de cadastro de acordo com o tipo de cadastro e contador de campo.
+	 *
+	 * @details: A função insere a string em uma posição específica do cadastro de acordo com o tipo de cadastro e o contador de campo.
+	 * O tipo de cadastro é usado para determinar em qual estrutura (clientes, funcionários ou fornecedores) a string será inserida.
+	 * O contador de campo é usado para determinar em qual campo da estrutura a string será inserida, de acordo com a ordem dos campos
+	 * definida na estrutura correspondente.
+	 *
+	 * @param tipoCadastro inteiro que indica o tipo de cadastro: 1 para clientes, 2 para funcionários e 3 para fornecedores.
+	 * @param posicaoDisponivel inteiro que indica a posição disponível para inserir a string.
+	 * @param string qual é a string a ser inserida.
+	 * @param contadorCampo ponteiro inteiro que aponta para o contador de campos do cadastro correspondente.
+	 *
+	 * @return: Nenhum.
+	 **/
+	void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
+
+ 
+	/**
+	  * @brief: Verifica se o valor da posição consultada, no vetor de referência, é igual a zero.
+	  *
+	  * @attention: A posição escolhida pelo usuário é reduzida em 1 para que possa ser acessada corretamente no vetor de referência.
+	  * @remark: A posição do vetor é equivalente ao número de cadastro. Como a posição dos vetores começam sempre na unidade 0, para ser
+	  * humanamente intuitivo de interpretar e pensar nos cadastros, o lógico seria pensar que a numeração dos cadastros deve começar a partir do número 1,
+	  * não do número 0. Para resolver tal problema, APENAS NA EXIBIÇÃO, sempre é adicionado uma unidade em relação à posição verdadeira do vetor.
+	  * Dessa forma, mesmo que o primeiro dado seja armazenado na posição [0] do vetor, para o usuário o número de cadastro do primeiro dado será 1.
+	  * Como o usuário vai acabar vendo um número diferente daquele que representa a verdadeira posição que ele quer acessar no vetor de dados, 
+	  * faz-se necessário subtrair uma unidade ao receber seu input, para consultar o cadastro correto.
+	  * Tal aplicação também facilita tornar 0 um valor exclusivo para voltar ao menu anterior.
+	  *
+	  * @details: Essa função recebe a escolha do usuário, o vetor de referência, a posição escolhida pelo usuário e um ponteiro para o valor do erro. 
+	  * Caso o valor da posição do vetor de referência seja igual a zero, a função atualiza o valor do erro para 4.
+	  * Isso faz com que exiba a mensagem indicando que não houve retorno algum, e que o usuário precisa digitar um valor válido.
+	  *
+	  * @param pEscolhaUser Ponteiro para o valor da escolha do usuário.
+	  * @param vetorReferencia Vetor de referência a ser verificado.
+	  * @param posicao Posição escolhida pelo usuário.
+	  * @param pErro Ponteiro para o valor do erro.
+	  *
+	  * @return: Nenhum	
+	  **/
+	void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicaoConsultada, int *pErro);
 	
-//inserirString tem como objetivo pegar o input do usuário e colocar dentro da estrutura: (camposFuncionário, ou camposCliente, ou camposFornecedor) em uma posição que atualmente não esteja ocupada retornada pela função [posicaoDisponivel]
-void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
+		
+	/**
+	 * @brief: Calcula a quantidade de dados existentes no vetor de referência.
+	 *
+	 * @details: A função recebe como parâmetro um vetor de dados, e percorre todo o vetor verificando se cada posição contém o valor 1.
+	 * Caso a posição contenha 1, o contador de dados existentes é incrementado. No final, a função retorna o número total de dados existentes no vetor.
+	 *
+	 * @param vetorReferencia Vetor de referência a ser analisado.
+	 *
+	 * @return: Retorna o número de dados existentes no vetor.
+	 **/
+	int calcularDadosExistentes(int vetorReferencia[MAX_VETOR]);
 
-/*Através de um input de usuário, que será referido como "número de cadastro", mas será usado na função, como a posição dentro dos vetores, 
-verifica através vetor de referência, se o valor em vetorExemplo[número de cadastro//posicao] = 0, se for, exibe erro, senão, executa a função 
-de exibição específica, escolhida anteriormente e armazenada em *pEscolhaUser. *pEscolha user é uma variável que vem do arquivo menu.c durante
- a execução dos menus. Seus valores dentro da verificação de dados resultam em: 
- valor 1 = exibirRegistroCliente
- valor 2 = exibirRegistroFuncionario
- valor 3 = exibirRegistroFornecedor */
-void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetor, int posicao, int *pErro);
+	/**
+	 * @brief: Função que permite a alteração de um campo específico do cadastro do usuário.
+	 *
+	 * @note: A função utiliza outros elementos e funções previamente declarados no código, como o vetor de campos "camposAtuais",
+	 * a string de título "tituloHolder", e as funções "exibirInterfaceTitulo", "exibirInterfaceFormularios", "alterarString"
+	 * e "exibirInterfaceInteracao".
+	 *
+	 * @details: A função exibe o título e formulários do cadastro do usuário, permitindo que ele escolha qual campo deseja alterar
+	 * e digitando o novo valor do campo. Em seguida, a função atualiza a string do campo no vetor de dados do cadastro, exibe a mensagem de
+	 * sucesso e os novos formulários do cadastro atualizado.
+	 *
+	 * @param pEscolhaUser Ponteiro para a escolha do usuário em relação ao cadastro que deseja alterar.
+	 * @param pMensagem Ponteiro para a mensagem de interação com o usuário.
+	 * @param pErro Ponteiro para a variável que indica se ocorreu algum erro na execução da função.
+	 * 
+	 * @return: Nenhum
+	 **/
+	void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
+	
 
-int calcularDadosExistentes(int vetor[MAX_VETOR]);
+	/**
+	 * @brief: Altera uma string em uma determinada posição de acordo com o tipo de consulta e o campo escolhido.
+	 *
+	 * @details: A função realiza a alteração de uma string de um cadastro específico, baseado no tipo de consulta e no campo escolhido. 
+	 * É utilizado o comando switch para verificar o tipo de consulta e, em seguida, outro switch para verificar o campo escolhido. 
+	 * A string antiga é substituída pela nova utilizando a função strcpy().
+	 *
+	 * @param tipoConsulta O tipo de consulta (1 = clientes, 2 = funcionários, 3 = fornecedores).
+	 * @param posicao A posição do cadastro a ser alterado.
+	 * @param stringNova A nova string a ser inserida.
+	 * @param campo O campo do cadastro a ser alterado.
+	 *
+	 * @return: Nenhum.
+	 **/
+	void alterarString(int tipoCadastro, int posicao, char stringNova[MAX_STRING], int campo);
+	
+	
+	/**
+	 * @brief: Função para excluir um registro de cliente, funcionário ou fornecedor, dependendo do tipo de consulta atual.
+	 *
+	 * @note: A função atualiza o vetor global correspondente (clientes, funcionarios ou fornecedores) e o vetor de referência 
+	 * correspondente (vetorRefClientes, vetorRefFuncionarios ou vetorRefFornecedores) na posição da consulta atual (definida anteriormente 
+	 * quando o usuário seleciona "Consultar (1) Clientes, (2) Funcionários, (3) Fornecedores") tornando esses registros vazios e 
+	 * definindo a posição como não ocupada (0).
+	 *
+	 * @details: A função utiliza um switch para determinar o tipo de consulta atual (clientes, funcionarios ou fornecedores). 
+	 * Em seguida, a função copia strings vazias ("") para cada campo do registro na posição da consulta atual do vetor correspondente 
+	 * e define a posição como não ocupada no vetor de referência. Isso garante que o registro seja excluído da base de dados.
+	 *
+	 * @return: Nenhum.
+	 **/
+	void excluirCadastro();
 
-void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
 
-void alterarString(int tipoCadastro, int posicao, char stringNova[MAX_STRING], int campo);
-
-void excluirCadastro(int posicao);
-
-void executarExcluirCadastro(int tipo, int *pEscolhaUserMod, int *pMensagem, int *pErro);
+	/**
+	 * @brief: Função responsável por executar a exclusão de um cadastro específico.
+	 *
+	 * @note: O título e perguntas mudam de acordo com o tipo escolhido. A função utiliza as variáveis globais vetorRefClientes,
+	 * vetorRefFuncionarios e vetorRefFornecedores.
+	 *
+	 * @details: A função inicia com a exibição de uma mensagem de atenção para o usuário. Em seguida, realiza a contagem de cadastros existentes
+	 * de acordo com o tipo de consulta atual. (definida anteriormente quando o usuário seleciona "Consultar (1) Clientes, (2) Funcionários, (3) Fornecedores")
+	 * Depois, exibe a mensagem correspondente ao tipo de operação escolhida pelo usuário (exclusão ou modificação).
+	 * Caso o usuário confirme a operação, a função realiza a exclusão do cadastro na posição atual da consulta e atualiza a interface de dados
+	 * de consulta com as informações atualizadas. Caso contrário, exibe novamente a interface de formulários para que o usuário possa realizar alguma outra operação.
+	 *
+	 * @param tipoTexto Tipo de textos a serem exibidos (1 - Textos para exclusão, 2 - Textos para modificação).
+	 * @param pEscolhaUserMod Ponteiro para variável que armazena a escolha do usuário para modificação.
+	 * @param pMensagem Ponteiro para variável que armazena o código da mensagem a ser exibida na interface.
+	 * @param pErro Ponteiro para variável que armazena o código de erro, se houver.
+	 *
+	 * @return: Não há retorno explícito, mas atualiza as variáveis apontadas pelos ponteiros passados como parâmetros.
+	 **/
+	void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod, int *pMensagem, int *pErro);
 
 #endif

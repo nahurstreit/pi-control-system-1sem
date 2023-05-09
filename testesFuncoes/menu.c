@@ -17,10 +17,10 @@
 		"tituloDoMenu", [String]
 		numeroDeOpçõesDesseMenu, [Int]
 		{ //Inicialização das opções do Menu
-			{"Texto da opção", numeroDaOpção, funçãoASerExecutada}, [String, Int, Function]
+			{"Texto da opção", numeroDaOpção, &funçãoASerExecutada}, [String, Int, Function]
 			...
 			...
-			{"Texto da opção", numeroDaOpção, funçãoASerExecutada}, [String, Int, Function]
+			{"Texto da opção", numeroDaOpção, &funçãoASerExecutada}, [String, Int, Function]
 		}
 	};
 	
@@ -28,10 +28,10 @@
 	//menuPrincipal
 		Menu menuPrincipal = {
 			"MENU",
-			3,
+			2,
 			{
 				{"Cadastros", 1, &exibirMenuCadastro},
-				{"Ordem de Produção", 2, &exibirMenuOrdemProducao},
+//				{"Ordem de Produção", 2, &exibirMenuOrdemProducao},
 				{"Sair", 0, &fimDoMenu},
 			}
 		};
@@ -127,79 +127,49 @@
 
 //Criação de variáveis de escopo global para manipulação em funções
 	Menu menuAtual; //Variável do tipo Menu que armazenará qual é o Menu Atual do programa.
+	Menu *pMenuAtual = &menuAtual;
+	
 	int escolhaUser; //Variável que armazenará qual é o valor digitado pelo usuário nas opções do Menu.
 	int *pEscolhaUser = &escolhaUser;
+	
 	int loopMenu = 1; //Variável responsável por controlar o loop do 'do while' dentro da função main, sendo o único jeito de encerrar o menu, caso seja digitado a opção 0 dentro do menu principal.
-//
-	//Setando valores genéricos para as variáveis importantes
-	int erro = 0;
-	int mensagem = 0;
-	
-	//Ponteiros das variáveis importantes
-	int *pErro = &erro;
-	int *pMensagem = &mensagem;
-	
 
-int main() {
+	int mensagem = 0; //Variável que armazena o valor atual de Mensagem
+	int *pMensagem = &mensagem;	//Definição de ponteiro para poder passar a mensagem como parâmetro em funções
+	
+	int erro = 0; //Variável que armazena o valor atual de Erro
+	int *pErro = &erro; //Definição de ponteiro para poder passar o erro como parâmetro em funções
+//
+
+void main() {
 	setlocale(LC_ALL, "Portuguese");
 	
 	menuAtual = menuPrincipal;
-	Menu *pMenuAtual = &menuAtual;
-	
-	//Estrutura de repetição do Menu
+
 	do{
-		exibirInterfaceTitulo(pMenuAtual -> tituloDoMenu, 1);
+	    system("color E0");
+	    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    	SMALL_RECT rect = {0, 0, 101, 42}; // Define o tamanho da janela
+
+    	SetConsoleWindowInfo(hConsole, TRUE, &rect); // Define o tamanho da janela
+    
+    	SetWindowLong(GetConsoleWindow(), GWL_STYLE, GetWindowLong(GetConsoleWindow(), GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
+		exibirInterfaceTitulo(pMenuAtual -> tituloDoMenu, 1);		
 		
-		exibirMensagem(pMensagem);
+		exibirMensagem(pMensagem); //Exibindo eventuais mensagens, por padrão erro = 0, portanto, sem mensagens
 		
 		exibirErro(pErro); //Exibindo eventuais erros, por padrão erro = 0, portanto, sem erros
 		
 		exibirInterfaceOpcoes(pMenuAtual);
 		
-		receberOpcaoMenu(pEscolhaUser, pErro, pMenuAtual); //Solicita a escolha do usuário e fazer o tratamento de erros
+		receberOpcaoMenu(pEscolhaUser, pErro, pMenuAtual); //Solicita a escolha do usuário e faz o tratamento de erros
 		
 	} while (loopMenu != 0);
 	
 	printf("\n\nPrograma encerrado com sucesso!");
-	return 0;
 }
 
-//Função que exibe o título do menuAtual, foi feita separada do resto para poder ser utilizada mesmo que não exista um menu.
-void exibirTituloMenuAtual(Menu *pMenuAtual){
-	
-	//Vars
-		int i;
-		int limiteCharTitulo = (TAM_TITULO_MENU - strlen(pMenuAtual -> tituloDoMenu) - 2)/2; //limite de caracteres # = tamanho máximo do menu (definido no começo do código - o tamanho do titulo atual - 2(espaços em branco adicionados no printf(" %s ") tudo isso divido por 2, pois serão feitas duas vezes, para que fique a mesma quantidade de # do lado esquerdo e do lado direito
-	//
-	
-	//For do lado esquerdo
-	for(i = 0; i < limiteCharTitulo; i++) {
-		putchar('#');
-	}
-	
-	//Titulo do Menu
-	printf(" %s ", pMenuAtual -> tituloDoMenu);
-	
-	//For do lado direito
-	for(i = 0; i < limiteCharTitulo; i++) {
-		putchar('#');
-	}
-	
-	//Pulando linhas depois do titulo completo
-	printf("\n\n");
-}
-
-//Função que exibe as opções dentro do menuAtual
-void exibirOpcoesMenuAtual(Menu *pMenuAtual) {
-	int i;
-	
-	for(i = 0; i < pMenuAtual -> numeroDeOpcoes; i++) {
-		printf("[%d] - %s\n", pMenuAtual -> opcoes[i].numeroDaOpcao, pMenuAtual -> opcoes[i].textoDaOpcao);
-	}
-}
-
-//Função que recebe o input do usuário e trata erros de entrada inválida ou opção inexistente
-int receberOpcaoMenu(int *pEscolhaUser, int *pErro, Menu *pMenuAtual) {
+void receberOpcaoMenu(int *pEscolhaUser, int *pErro, Menu *pMenuAtual) {
 	
 	int i;
 	int valid = scanf("%d", pEscolhaUser);
@@ -221,28 +191,28 @@ int receberOpcaoMenu(int *pEscolhaUser, int *pErro, Menu *pMenuAtual) {
 	} else {
 		*pErro = 1;
 	}
-	return 0;
 }
 
-//Funçaõ de exibição de mensagens
 void exibirMensagem(int *pMensagem) {
+	char res[50];
+	
 	switch(*pMensagem) {
 		case 1:
-			exibirInterfaceInteracao("Sucesso! Cadastro Concluído!");
+			strcpy(res, "Sucesso! Cadastro Concluído!");
 			break;
 		case 2:
-			exibirInterfaceInteracao("Sucesso! Campo alterado!");
+			strcpy(res, "Sucesso! Campo alterado!");
 			break;
 		case 3:
-			exibirInterfaceInteracao("Cadastro Excluído!");
-		default: ;
+			strcpy(res, "Cadastro Excluído!");
+			break;
+		default:;
 	}
 	
+	if(*pMensagem != 0) exibirInterfaceInteracao(res);
 	*pMensagem = 0;
-	
 }
 
-//Função de exibição de erros
 void exibirErro(int *pErro) {
 	char res[50];
 	switch(*pErro) {
@@ -259,45 +229,44 @@ void exibirErro(int *pErro) {
 			break;
 		case 4:
 			strcpy(res, "Erro: Não existe nenhum registro para esse Número de Cadastro!");
-		default:
 			break;
+		default:;
 	}
 	
 	if(*pErro != 0) exibirInterfaceInteracao(res);
-	
 	*pErro = 0;
 }
 
 //Funções a serem executadas pelas opções dos Menus
 	//Funções de chamada do Menu
-		int exibirMenuPrincipal() {
+		void exibirMenuPrincipal() {
 			menuAtual = menuPrincipal;
 		}
 		
 			//Funções menuCadastro
-				int exibirMenuCadastro() {
+				void exibirMenuCadastro() {
 					menuAtual = menuCadastro;
 				}
 				
-					int exibirMenuNovoCadastro() {
+					void exibirMenuNovoCadastro() {
 						menuAtual = menuNovoCadastro;
 					}
-						int executarNovoCadastro(Menu *pMenuAtual, int *pErro) {
+						void executarNovoCadastro(Menu *pMenuAtual, int *pErro) {
 							novoCadastro(pEscolhaUser, pMensagem, pErro);
 						}
 					
-					int exibirMenuConsultarCadastro() {
+					void exibirMenuConsultarCadastro() {
 						menuAtual = menuConsultarCadastro;
 					}
-						int executarConsultaCadastro(Menu *pMenuAtual, int *pErro) {
+						void executarConsultaCadastro(Menu *pMenuAtual, int *pErro) {
 							int estado = 0;
 							int *pEstado = &estado;
 							consultaCadastro(pEscolhaUser, pMensagem, pErro, pEstado);
 							if(estado == 1) {
-								receberOpcoesDeCadastro();
+								receberOpcoesAlteracaoCadastro();
 							}
 						}
-							int executarAlterarCadastro() {
+							void executarAlterarCadastro() {
 								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
 								alterarCadastro(pEscolhaUser, pMensagem, pErro);
 							}
@@ -305,45 +274,44 @@ void exibirErro(int *pErro) {
 			//
 			
 			//Funções menuOrdemProducao
-				int exibirMenuOrdemProducao() {
+				void exibirMenuOrdemProducao() {
 					menuAtual = menuOrdemProducao;
 				}
-					int exibirMenuNovaOrdemProducao() {
+					void exibirMenuNovaOrdemProducao() {
 						menuAtual = menuNovaOrdemProducao;
 					}
 					
-					int exibirMenuConsultarOrdemProducao() {
+					void exibirMenuConsultarOrdemProducao() {
 						menuAtual = menuConsultarOrdemProducao;
 					}
 			//
 	//
 	
 	//Função de fim do Menu
-		int fimDoMenu() {
+		void fimDoMenu() {
 			loopMenu = 0;
-			return 0;
 		}
 	//
-	
-	void receberOpcoesDeCadastro() {
-		int escolhaUserMod = 1;
-		int *pEscolhaUserMod = &escolhaUserMod;
-		Menu *pMenuAtual = &menuAtual;
+
+//Função de recebimento de opções na parte de Alteração de cadastro
+	void receberOpcoesAlteracaoCadastro() {
+		int escolhaUserAlterar = 1;
+		int *pEscolhaUserAlterar = &escolhaUserAlterar;
 		
-		while(escolhaUserMod == 1 || escolhaUserMod == 2 || escolhaUserMod == 3) {
+		while(escolhaUserAlterar == 1 || escolhaUserAlterar == 2 || escolhaUserAlterar == 3) {
 			menuAtual = menuModificarCadastro;
 			exibirInterfaceOpcoes(pMenuAtual);
 			exibirMensagem(pMensagem);
-			scanf("%d", &escolhaUserMod);
+			scanf("%d", &escolhaUserAlterar);
 			fflush(stdin);
 			
-			switch(escolhaUserMod) {
+			switch(escolhaUserAlterar) {
 				case 1:
 					executarAlterarCadastro();
 					break;
 				case 2:
-					executarExcluirCadastro(2, pEscolhaUserMod, pMensagem, pErro);
-					if(escolhaUserMod == 0) {
+					executarExcluirCadastro(2, pEscolhaUserAlterar, pMensagem, pErro);
+					if(escolhaUserAlterar == 0) {
 						exibirMenuNovoCadastro();
 						executarNovoCadastro(pMenuAtual, pErro);
 						menuAtual = menuConsultarCadastro;
@@ -351,8 +319,8 @@ void exibirErro(int *pErro) {
 					}
 					break;
 				case 3:
-					executarExcluirCadastro(1, pEscolhaUserMod, pMensagem, pErro);
-					if(escolhaUserMod == 0) {
+					executarExcluirCadastro(1, pEscolhaUserAlterar, pMensagem, pErro);
+					if(escolhaUserAlterar == 0) {
 						menuAtual = menuConsultarCadastro;
 						executarConsultaCadastro(pMenuAtual, pErro);
 					}

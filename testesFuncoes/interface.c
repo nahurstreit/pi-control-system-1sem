@@ -8,18 +8,7 @@
 #include "cadastro.h"
 #include "interface.h"
 
-/*
-"+----------------------------------------------------------------------------------------------------+",
-"|                                                                                                    |",
-*/
-//16 / 32
-				//11 / 63
-				//16 /59
-				//16 /93
-				//19 / 59
-				//12 /43 / 94
-
-Display formularioCadastroCliente[13] = {
+Display displayRefFormularioCadastroCliente[13] = {
 	"+----------------------------------------------------------------------------------------------------+",
 	"| Num Cadastro:     | [1] Nome:                                                                      |", //NumCadastro: 16 // Nome: 32 -> 100
 	"+----------------------------------------------------------------------------------------------------+", 
@@ -35,7 +24,7 @@ Display formularioCadastroCliente[13] = {
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
-Display formularioCadastroFuncionario[15] = {
+Display displayRefFormularioCadastroFuncionario[15] = {
 	"+----------------------------------------------------------------------------------------------------+",
 	"| Num Cadastro:     | [1] Nome:                                                | [2] Status:         |", //NumCadastro: 16-> 19 // Nome: 32 ->  // Status: 93
 	"+----------------------------------------------------------------------------------------------------+",
@@ -53,7 +42,7 @@ Display formularioCadastroFuncionario[15] = {
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
-Display formularioCadastroFornecedor[11] = {
+Display displayRefFormularioCadastroFornecedor[11] = {
 	"+----------------------------------------------------------------------------------------------------+",
 	"| Num Cadastro:     | [1] Nome Fantasia:                                                             |", //NumCadastro: 16-> 19 // Nome Fantasia: 41 -> 100
 	"+----------------------------------------------------------------------------------------------------+",
@@ -73,47 +62,52 @@ Display displayRefTitulo[3] = {
 	"======================================================================================================",
 };
 
-Display displayRefInteracao[3] = {
-	"....................................",
-	"|                                  |",
-	"....................................",
-};
-
-Display displayRefOpcoes[] = {
-	"Opções",
-};
-
-Display displayCabecalhoConsultaClientes[MAX_CABECALHO] = {
+Display displayRefCabecalhoConsultaClientes[MAX_CABECALHO] = {
 	"+----------------------------------------------------------------------------------------------------+",
 	"| Nº Cadastro |                Nome                   |       CPF       |          Telefone          |",
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
-Display displayCabecalhoConsultaFuncionarios[MAX_CABECALHO] = {
+Display displayRefCabecalhoConsultaFuncionarios[MAX_CABECALHO] = {
 	"+----------------------------------------------------------------------------------------------------+",
 	"|  Status  | Nº Cadastro |                Nome                   |       CPF       |     Telefone    |",
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
-Display displayCabecalhoConsultaFornecedores[MAX_CABECALHO] = {
+Display displayRefCabecalhoConsultaFornecedores[MAX_CABECALHO] = {
 	"+----------------------------------------------------------------------------------------------------+",
-	"| Nº Cadastro |             Nome Fantasia             |      CNPJ       |          Telefone          |",
+	"| Nº Cadastro |             Nome Fantasia             |         CNPJ          |       Telefone       |",
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
-Display displayConsulta_ClienteFornecedor[2] = {
+Display displayRefConsulta_Cliente[2] = {
 	"|             |                                       |                 |                            |", //7 //16 -> 50
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
-Display displayConsulta_Funcionario[2] = {
+Display displayRefConsulta_Funcionario[2] = {
 	"|          |             |                                       |                 |                 |", //7 //13 //26 -> 63 // 67 // 86
+	"+----------------------------------------------------------------------------------------------------+",
+};
+
+Display displayRefConsulta_Fornecedor[2] = {
+	"|             |                                       |                       |                      |", //7 //16 -> 50
 	"+----------------------------------------------------------------------------------------------------+",
 };
 
 Display displayRefConsulta_SemDados[2] = {
 	"|                                     Não há nenhum dado ainda.                                      |", 
 	"+----------------------------------------------------------------------------------------------------+",
+};
+
+Display displayRefLogoTipo[] = {
+	"                  _____           _       ______                     _               ",
+	"                 |  __ \\         | |     |  ____|                   | |             ",
+	"                 | |__) |   ___  | |_    | |__      ___    ___    __| |   ___   _ __ ",
+	"                 |  ___/   / _ \\ | __|   |  __|    / _ \\  / _ \\  / _` |  / _ \\ | '__|",
+	"                 | |      |  __/ | |_    | |      |  __/ |  __/ | (_| | |  __/ | |   ",
+	"                 |_|       \\___|  \\__|   |_|       \\___|  \\___|  \\__,_|  \\___| |_|",
+	
 };
 
 int tamanhoDisplay;
@@ -129,16 +123,16 @@ void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], 
 	
 	switch(*pEscolhaUser) {
 		case 1:
-			tamanhoDisplay = sizeof(formularioCadastroCliente);
-			pDisplayAtual = formularioCadastroCliente;
+			tamanhoDisplay = sizeof(displayRefFormularioCadastroCliente);
+			pDisplayAtual = displayRefFormularioCadastroCliente;
 			break;
 		case 2:
-			tamanhoDisplay = sizeof(formularioCadastroFuncionario);
-			pDisplayAtual = formularioCadastroFuncionario;
+			tamanhoDisplay = sizeof(displayRefFormularioCadastroFuncionario);
+			pDisplayAtual = displayRefFormularioCadastroFuncionario;
 			break;
 		case 3:
-			tamanhoDisplay = sizeof(formularioCadastroFornecedor);
-			pDisplayAtual = formularioCadastroFornecedor;
+			tamanhoDisplay = sizeof(displayRefFormularioCadastroFornecedor);
+			pDisplayAtual = displayRefFormularioCadastroFornecedor;
 			break;
 	}
 	
@@ -218,8 +212,8 @@ void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], 
 						pCopiaDisplay[1].linhaDisplay[32 + j] = funcionarios[posicao].nome[j];
 					}
 				//Display Status
-					for(j = 0; j < strlen(funcionarios[posicao].estadoEmpresa); j++) {
-						pCopiaDisplay[1].linhaDisplay[93 + j] = funcionarios[posicao].estadoEmpresa[j];
+					for(j = 0; j < strlen(funcionarios[posicao].status); j++) {
+						pCopiaDisplay[1].linhaDisplay[93 + j] = funcionarios[posicao].status[j];
 					}
 				//Display CPF
 					for(j = 0; j < strlen(funcionarios[posicao].cpf); j++) {
@@ -350,14 +344,14 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 	
 	switch(*pEscolhaUser) {
 		case 1 :
-			displayCabecalhoAtual = displayCabecalhoConsultaClientes;
-			exibirCabecalhoAtual(displayCabecalhoAtual);
+			displayCabecalhoAtual = displayRefCabecalhoConsultaClientes;
+			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);
 			for(i = 0; i < MAX_VETOR; i++) {
 				
 				if(vetorRefClientes[i] == 1) {
 	
 					for(j = 0; j < 2; j++) {
-						displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
+						displayItemAtual[j] = displayRefConsulta_Cliente[j];
 					}
 					
 					sprintf(&iString[0],"%d", i + 1);
@@ -370,7 +364,7 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 					}
 					
 					for(j = 0; j < strlen(clientes[i].cpf); j++) {
-						displayItemAtual[0].linhaDisplay[57 + j] = clientes[i].cpf[j];
+						displayItemAtual[0].linhaDisplay[56 + j] = clientes[i].cpf[j];
 					}
 					
 					for(j = 0; j < strlen(clientes[i].telefone); j++) {
@@ -384,34 +378,34 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 			}
 			break;
 		case 2:
-			displayCabecalhoAtual = displayCabecalhoConsultaFuncionarios;
-			exibirCabecalhoAtual(displayCabecalhoAtual);
+			displayCabecalhoAtual = displayRefCabecalhoConsultaFuncionarios;
+			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);
 			for(i = 0; i < MAX_VETOR; i++) {
 				if(vetorRefFuncionarios[i] == 1) {
 						
 					for(j = 0; j < 2; j++) {
-						displayItemAtual[j] = displayConsulta_Funcionario[j];
+						displayItemAtual[j] = displayRefConsulta_Funcionario[j];
 					}
 					
 					sprintf(&iString[0],"%d", i + 1);
 					for(j = 0; j < strlen(iString); j++) {
-						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
+						displayItemAtual[0].linhaDisplay[18 + j] = iString[j];
 					}
 					
-					for(j = 0; j < strlen(funcionarios[i].estadoEmpresa); j++) {
-						displayItemAtual[0].linhaDisplay[13 + j] = funcionarios[i].estadoEmpresa[j];
+					for(j = 0; j < strlen(funcionarios[i].status); j++) {
+						displayItemAtual[0].linhaDisplay[2 + j] = funcionarios[i].status[j];
 					}
 					
 					for(j = 0; j < strlen(funcionarios[i].nome); j++) {
-						displayItemAtual[0].linhaDisplay[26 + j] = funcionarios[i].nome[j];
+						displayItemAtual[0].linhaDisplay[27 + j] = funcionarios[i].nome[j];
 					}
 					
 					for(j = 0; j < strlen(funcionarios[i].cpf); j++) {
-						displayItemAtual[0].linhaDisplay[63 + j] = funcionarios[i].cpf[j];
+						displayItemAtual[0].linhaDisplay[67 + j] = funcionarios[i].cpf[j];
 					}
 					
 					for(j = 0; j < strlen(funcionarios[i].telefone); j++) {
-						displayItemAtual[0].linhaDisplay[86 + j] = funcionarios[i].telefone[j];
+						displayItemAtual[0].linhaDisplay[85 + j] = funcionarios[i].telefone[j];
 					}
 					
 					for(j = 0; j < 2; j++) {
@@ -421,13 +415,13 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 			}
 			break;
 		case 3:
-			displayCabecalhoAtual = displayCabecalhoConsultaFornecedores;
-			exibirCabecalhoAtual(displayCabecalhoAtual);
+			displayCabecalhoAtual = displayRefCabecalhoConsultaFornecedores;
+			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);
 			for(i = 0; i < MAX_VETOR; i++) {
 				if(vetorRefFornecedores[i] == 1) {
 					
 					for(j = 0; j < 2; j++) {
-						displayItemAtual[j] = displayConsulta_ClienteFornecedor[j];
+						displayItemAtual[j] = displayRefConsulta_Fornecedor[j];
 					}
 					
 					sprintf(&iString[0],"%d", i + 1);
@@ -440,11 +434,11 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 					}
 					
 					for(j = 0; j < strlen(fornecedores[i].cnpj); j++) {
-						displayItemAtual[0].linhaDisplay[57 + j] = fornecedores[i].cnpj[j];
+						displayItemAtual[0].linhaDisplay[56 + j] = fornecedores[i].cnpj[j];
 					}
 					
 					for(j = 0; j < strlen(fornecedores[i].telefone); j++) {
-						displayItemAtual[0].linhaDisplay[74 + j] = fornecedores[i].telefone[j];
+						displayItemAtual[0].linhaDisplay[80 + j] = fornecedores[i].telefone[j];
 					}
 					
 					for(j = 0; j < 2; j++) {
@@ -463,7 +457,8 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 		}
 	}
 }
-void exibirCabecalhoAtual(Display *displayCabecalhoAtual) {
+
+void exibirInterfaceCabecalhoAtual(Display *displayCabecalhoAtual) {
 	int i;
 	for(i = 0; i < MAX_CABECALHO; i++) {
 		printf("%s\n", displayCabecalhoAtual[i]);
@@ -475,7 +470,8 @@ void exibirInterfaceTitulo(char string[], int limpar) {
 	int tamanhoString = strlen(string);
 	int posicaoTitulo = (MAX_LINHA - tamanhoString)/2;
 	
-	if(limpar == 1) system("cls");  
+	if(limpar == 1) system("cls"); 
+	exibirLogotipo();
 	
 	Display displayCopia[3];
 	
@@ -509,13 +505,9 @@ void exibirInterfaceInteracao(char string[]) {
 }
 
 void exibirInterfaceOpcoes(Menu *pMenuAtual) {
-	
 	int i;
 	int numOpcoes = pMenuAtual -> numeroDeOpcoes;
 	char stringMeio[10] = " Opções ";
-	
-	Display displayCopia[1];
-	displayCopia[0] = displayRefOpcoes[0];
 
 	for(i = 0; i < (MAX_LINHA - strlen(stringMeio))/2; i++) {
 		printf("~");
@@ -534,17 +526,6 @@ void exibirInterfaceOpcoes(Menu *pMenuAtual) {
 	}
 	
 	printf("\n\nOpção: ");
-	
-}
-
-void exibirTextoMeio(char string[]) {
-	int i, tamanhoString = strlen(string);
-	
-	for(i = 0; i < (MAX_LINHA - tamanhoString)/2; i++) {
-		printf(" ");
-	}
-	printf(string);
-	printf("\n");
 }
 
 void exibirInterfaceAlerta(char string[]) {
@@ -573,4 +554,24 @@ void exibirInterfaceAlerta(char string[]) {
 	for(i = 0; i < MAX_LINHA - 1; i++) {
 		printf("x");
 	}
+}
+
+void exibirTextoMeio(char string[]) {
+	int i, tamanhoString = strlen(string);
+	
+	for(i = 0; i < (MAX_LINHA - tamanhoString)/2; i++) {
+		printf(" ");
+	}
+	printf(string);
+	printf("\n");
+}
+
+void exibirLogotipo() {
+	int i;
+	
+	for(i = 0; i < (sizeof(displayRefLogoTipo) / sizeof(Display));i++) {
+		printf("%s\n", displayRefLogoTipo[i]);
+	}
+	printf("\n");
+
 }

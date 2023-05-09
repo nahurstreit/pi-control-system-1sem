@@ -63,3 +63,25 @@ Interface.c:
 - Correção e refinamento no funcionamento da interface
 - Reformulado as lógicas de exibição dos cadastros disponíveis em memória ao entrar na tela de consulta de um tipo de cadastro(clientes, funcionários ou fornecedores)
 
+09/05/2023
+Menu.h:
+- Adição de comentários explicativos sobre o uso das funções no arquivo menu.c;
+- Adição da biblioteca <windows.h>;
+Menu.c:
+- Retiradas funções que já não tinham mais uso;
+- Redefinição de tipos de algumas funções, trocando de int para void;
+- Redefinição do nome de algumas variáveis para nomes mais explicativos;
+- Redefinição da cor e bloqueio do tamanho da tela;
+- Adição da exibição da logotipo no menu inteiro;
+Cadastro.h:
+- Adição de comentários explicativos sobre o uso das funções no arquivo cadastro.c;
+Cadastro.c:
+- Redefinição do nome de algumas variáveis para nomes mais explicativos;
+- Redefinição de tipos de algumas funções, trocando de int para void;
+Interface.h:
+- Adição de comentários explicativos sobre o uso das funções no arquivo interface.c;
+Interface.c:
+- Redefinição do nome de algumas variáveis para nomes mais explicativos;
+- Adição de uma layout de display de item para fornecedor, separada de item para cliente;
+- Adição de uma nova função responsável por exibir a logotipo;
+- Modificação da exibirInterfaceCabecalhoAtual para exibir a logotipo junto com o título em todas as páginas do menu;
