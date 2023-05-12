@@ -143,8 +143,8 @@ void novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	
 	exibirInterfaceTitulo("NOVO CADASTRO", 1);
 	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
-	printf("\n\nEnviando Cadastro...");
-	getch();
+	printf("\n\nEnviando Cadastro...\n");
+	system("pause");
 	
 	*pMensagem = 1;
 }

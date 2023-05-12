@@ -43,10 +43,11 @@
 				void exibirMenuConsultarCadastro();
 					void executarConsultaCadastro();
 						void executarAlterarCadastro();
-			
+		/** Para uso posterior
 			void exibirMenuOrdemProducao();
 				void exibirMenuNovaOrdemProducao();
 				void exibirMenuConsultarOrdemProducao();
+		**/				
 	//
 
 	/**
