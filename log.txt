@@ -25,7 +25,7 @@ Arquivos:
 - Adicionado no projeto SistemaControleEmpresarial.dev a integração do menu.c v1.2 com os  arquivos cadastro.h e cadastro.c, responsáveis por armazenar as funcionalidades de cadastro, separadas do menu.
 - Retirado log.txt. do gitignore
 
-Menu.c
+menu.c
 - No arquivo menu.c foi necessário chamar funções de cadastro através de outras funções, contudo permitiu a integração com funções presentes no próprio menu.c
 - No arquivo menu.c foram modificados alguns parâmetros para funções, com pointers, de modo a comunicar plenamente com os arquivos de cadastro e poder realizar mudanças em variáveis globais do arquivo menu.c mesmo no arquivo cadastro.c.
 - No arquivo menu.c foi adicionado uma nova função chamada exibirMensagem, capaz de exibir mensagens adversas que não erro.
@@ -34,7 +34,7 @@ Menu.c
 
 
 05/05/2023
-Cadastro.c:
+cadastro.c:
 - Refinação de algumas lógicas
 - Alterado nomes de algumas variáveis para nome mais descritivas com a lógica
 - Adicionado e implementado novo tipo de cadastro = fornecedores
@@ -49,21 +49,21 @@ Arquivos:
 	- cadastro.c: Arquivo de cadastros (cadastros novos, manipulação de cadastros existentes e algumas chamadas secundárias[chamadas de exibição])
 	- interface.c: Arquivo de interfaces (armazenamento de templates, manipulação dos templates para a tabulação de dados no chamado display)
 
-Cadastro.c:
+cadastro.c:
 - Redefinição em lógicas e implementação Inicial da alteração de cadastros já existentes
 
-Interface.c:
+interface.c:
 - Criação de modelos chamados displayRef que funcionam como um layout já definido. Em seguida através da chamada de funções esse template é copiado e então são alterados linhas específicas com os dados nos lugares corretos
 - Criação de um display que sempre atualiza os dados conforme o usuário vai inserindo dados no cadastro
 
 07/05/2023
-Menu.c:
+menu.c:
 - Alteração da lógica de acesso interno ao consultar um cadastro. Não houve exito em modular essa parte, fazendo necessário a criação de uma função separada da função padrão de receber valores, para distribuir as funções conforme o número digitado
 
-Cadastros.c:
+cadastros.c:
 - Adição da exclusão definitiva de um usuário
 
-Interface.c:
+interface.c:
 - Trabalhada melhor a disposição da interface
 - Criação de um display que mostra informações mínimas dos usuários já cadastrados no sistema
 - Alteração de algumas lógicas para corrigir bugs da interface
@@ -72,38 +72,78 @@ Interface.c:
 Arquivos:
 - Adicionado programa.exe em gitignore
 
-Menu.c:
+menu.c:
 - Refinado as interações para exclusão e alteração completa de um usuário
 
-Cadastro.c:
+cadastro.c:
 - Adicionado o caminho para a alteração completa de um usuário
 
-Interface.c:
+interface.c:
 - Correção e refinamento no funcionamento da interface
 - Reformulado as lógicas de exibição dos cadastros disponíveis em memória ao entrar na tela de consulta de um tipo de cadastro(clientes, funcionários ou fornecedores)
 
 09/05/2023
-Menu.h:
+menu.h:
 - Adição de comentários explicativos sobre o uso das funções no arquivo menu.c;
 - Adição da biblioteca <windows.h>;
-Menu.c:
+menu.c:
 - Retiradas funções que já não tinham mais uso;
 - Redefinição de tipos de algumas funções, trocando de int para void;
 - Redefinição do nome de algumas variáveis para nomes mais explicativos;
 - Redefinição da cor e bloqueio do tamanho da tela;
 - Adição da exibição da logotipo no menu inteiro;
-Cadastro.h:
+
+cadastro.h:
 - Adição de comentários explicativos sobre o uso das funções no arquivo cadastro.c;
-Cadastro.c:
+cadastro.c:
 - Redefinição do nome de algumas variáveis para nomes mais explicativos;
 - Redefinição de tipos de algumas funções, trocando de int para void;
-Interface.h:
+
+interface.h:
 - Adição de comentários explicativos sobre o uso das funções no arquivo interface.c;
-Interface.c:
+interface.c:
 - Redefinição do nome de algumas variáveis para nomes mais explicativos;
 - Adição de uma layout de display de item para fornecedor, separada de item para cliente;
 - Adição de uma nova função responsável por exibir a logotipo;
 - Modificação da exibirInterfaceCabecalhoAtual para exibir a logotipo junto com o título em todas as páginas do menu;
 
 12/05/2023
-Foi feito uma reorganização dos arquivos da branch (functions_test), para poder fazer um merge com a main branch. Branch secundária foi deletada.
+- Foi feito uma reorganização dos arquivos da branch (functions_test), para poder fazer um merge com a main branch. Branch secundária foi deletada.
+
+17/05/2023
+testeConexao
+- Adição de testes para manipulação e criação de arquivos de texto. Com o objetivo de armazenar as estruturas de dados, populadas pelo programa.
+
+18/05/2023
+[Refatoração]
+Arquivos e pastas
+- Nova pasta: global. Responsável por armazenar os códigos de cabeçalho globais. Como structs e defines.
+- Nova pasta: global/global_var. Responsável por armazenar o código de cabecalho e o código em c, da declaração de variáveis globais.
+	- Variáveis globais adicionadas:
+		- menuAtual
+		- escolhaUser
+		- erro
+		- mensagem
+		- vetor de dados e referência: clientes
+		- vetor de dados e referência: funcionários
+		- vetor de dados e referência: fornecedores
+- Adição de novos arquivos em gitignore: programa.exe, global_var.o, Projeto1.exe, Projeto1.layout, testeInicialConexao.exe, testeInicialConexao.o: 
+
+menu.h, menu.c, cadastro.h, cadastro.c, interface.h, interface.c
+- Redução no número de ponteiros em funções e mudança de local de algumas variáveis para escopo global. Com a adição de variáveis globais, não se faz mais necessário passar ponteiros como parâmetro em diversas funções para a mudança de variáveis. Agora, basta alterar o valor da variável global.
+- Redução da redundância nos includes.
+	- Os includes foram reduzidos através do include global.h, que contém os principais includes de bibliotecas padrão, além de includes globais de: defines, structs e variáveis.
+
+menu.h e menu.c
+- Structs realocados (global): OpcaoDoMenu, Menu
+- Variáveis realocadas (global): menuAtual, escolhaUser, erro, mensagem	
+- Ponteiros não mais necessários: pMenuAtual, pEscolhaUser, pErro, pMensagem
+
+cadastro.h e cadastro.c
+- Structs realocados (global): Cliente, Funcionario, Fornecedor, TextoCampo
+- Variáveis realocadas (global): clientes[], funcionarios[], fornecedores[], vetorRef(Clientes, Funcionários, Fornecedores)
+- Ponteiros não mais necessários: pMenuAtual, pErro, pMensagem, pEscolhaUser, pVetorRef(Clientes, Funcionarios, Fornecedores)
+
+interface.h e interface.c
+- Struct realocado (global): Display
+- Ponteiros não mais necessários: pMenuAtual, pEscolhaUser, clientes, funcionarios, fornecedores, pVetorRef(Clientes, Funcionarios, Fornecedores)

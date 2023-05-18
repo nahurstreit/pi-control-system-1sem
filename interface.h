@@ -1,27 +1,6 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "menu.h"
-#include "cadastro.h"
-
-#define MAX_LINHA 103
-#define MAX_CABECALHO 3
-
-	/**
-	 * @brief: Define uma estrutura de dados do tipo Display, que é utilizada para armazenar uma string que representa uma linha
-	 * do display da interface gráfica do programa.
-	 *
-	 * @details: A estrutura Display é utilizada para representar as linhas do display da interface gráfica do programa, sendo que cada 
-	 * elemento do array de Display corresponde a uma linha. A constante MAX_LINHA representa o tamanho máximo que cada linha pode ter.
-	 * A estrutura é utilizada em diversos pontos do código para exibir informações para o usuário de forma visualmente agradável e organizada.
-	 *
-	 * @param linhaDisplay Array de caracteres que armazena a string que representa uma linha do display.
-	 *
-	 **/
-	typedef struct {
-		char linhaDisplay[MAX_LINHA];
-	} Display;
-
 //Funções de interface:
 	/**
 	 * @brief: Esta função é responsável por exibir na tela um formulário gráfico com as informações de um cliente, funcionário ou fornecedor, 
@@ -48,7 +27,7 @@
 	 *
 	 * @return: a função não possui retorno.
 	 **/
-	void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], Fornecedor fornecedores[], int *pEscolhaUser, int posicao);
+	void exibirInterfaceFormularios(int posicao);
 	
 
 	/**
@@ -74,7 +53,7 @@
 	 *
 	 *@return: Nenhum.
 	 **/	
-	void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Funcionario funcionarios[], int vetorRefFuncionarios[], Fornecedor fornecedores[], int vetorRefFornecedores[], int *pEscolhaUser, int contadorDadosExistentes);
+	void exibirInterfaceDadosConsulta(int contadorDadosExistentes);
 
 	/**
 	 * @brief: Exibe um título na interface gráfica.
@@ -130,7 +109,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	void exibirInterfaceOpcoes(Menu *pMenuAtual);
+	void exibirInterfaceOpcoes();
 	
 	
 	/**

@@ -1,76 +1,6 @@
 #ifndef CADASTRO_H
 #define CADASTRO_H
 
-#define MAX_VETOR 100
-#define MAX_STRING 50
-
-//Structs
-	/**
-	 * @brief Definição do struct do tipo Cliente, para armazenar de forma categórica os dados do cliente.
-	 **/
-	typedef struct {
-		char nome[MAX_STRING];
-		char cpf[MAX_STRING];
-		char dataNascimento[MAX_STRING];
-		char telefone[MAX_STRING];
-		char email[MAX_STRING];
-		char endereco[MAX_STRING];
-		char numEndereco[6];
-		char compEndereco[MAX_STRING];
-		char bairro[MAX_STRING];
-		char cep[MAX_STRING];
-		char cidade[MAX_STRING];
-		char estado[MAX_STRING];
-	} Cliente;
-	
-	/**
-	 * @brief Definição do struct do tipo Funcionário, para armazenar de forma categórica os dados do funcionário.
-	 **/
-	typedef struct {
-		char nome[MAX_STRING];
-		char status[MAX_STRING];
-		char cpf[MAX_STRING];
-		char dataNascimento[MAX_STRING];
-		char estadoCivil[MAX_STRING];
-		char dataAdmissao[MAX_STRING];
-		char salarioBase[MAX_STRING];
-		char telefone[MAX_STRING];
-		char email[MAX_STRING];
-		char endereco[MAX_STRING];
-		char numEndereco[6];
-		char compEndereco[MAX_STRING];
-		char bairro[MAX_STRING];
-		char cep[MAX_STRING];
-		char cidade[MAX_STRING];
-		char estado[MAX_STRING];
-	} Funcionario;
-	
-	/**
-	 * @brief Definição do struct do tipo Fornecedor, para armazenar de forma categórica os dados do fornecedor.
-	 **/
-	typedef struct {
-		char nomeFantasia[MAX_STRING];
-		char cnpj[MAX_STRING];
-		char telefone[MAX_STRING];
-		char email[MAX_STRING];
-		char endereco[MAX_STRING];
-		char numEndereco[6];
-		char compEndereco[MAX_STRING];
-		char bairro[MAX_STRING];
-		char cep[MAX_STRING];
-		char cidade[MAX_STRING];
-		char estado[MAX_STRING];
-	} Fornecedor;
-	
-	/**
-	 * @brief Definição do struct do tipo TextoCampo, para armazenar os textos que serão exibidos na hora de pedir e alterar os dados de um cadastro.
-	 **/
-	typedef struct {
-		char displayCampo[30];
-	} TextoCampo;
-
-//
-
 //Declaração das funções a serem utilizadas pelo código
 	/**
 	 * @brief: Cria um novo cadastro de acordo com a escolha do usuário
@@ -78,17 +8,14 @@
 	 * @note: Utiliza outras funções da interface.c, menu.c e dados.c para exibir informações na tela, ler dados do usuário, validar e inserir
 	 * informações no vetor de dados.
 	 *
-	 * @details A função recebe três ponteiros: pEscolhaUser, pMensagem e pErro. A partir da escolha do usuário, a função define qual tipo de
-	 * cadastro deve ser realizado (cliente, funcionário ou fornecedor). Em seguida, ela exibe um formulário na tela para o usuário preencher
-	 * e insere as informações no vetor de dados. Por fim, a função exibe uma mensagem de confirmação na tela e atualiza o ponteiro pMensagem para 1.
+	 * @details A partir da escolha do usuário, a função define qual tipo de cadastro deve ser realizado (cliente, funcionário ou fornecedor). 
+	 * Em seguida, ela exibe um formulário na tela para o usuário preencher e insere as informações no vetor de dados. 
+	 * Por fim, a função exibe uma mensagem de confirmação na tela e atualiza o valor de mensagem para 0.
 	 * 
-	 * @param pEscolhaUser Ponteiro para a escolha do usuário (cliente, funcionário ou fornecedor)
-	 * @param pMensagem Ponteiro para mensagem de sucesso ou erro na operação
-	 * @param pErro Ponteiro para possível erro durante a operação
 	 *
 	 * @return: Nenhum.
 	 **/
-	void novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
+	void novoCadastro();
 	
 
 	/**
@@ -105,14 +32,11 @@
 	 * Caso contrário, é exibido um erro ou a função retorna ao estado inicial. 
 	 * O loop do-while continua até que a posição do cadastro seja válida ou o usuário opte por voltar para o menu principal.
 	 *
-	 * @param pEscolhaUser Ponteiro para a escolha do usuário (1 para clientes, 2 para funcionários, 3 para fornecedores).
-	 * @param pMensagem Ponteiro para a mensagem que será exibida na tela.
-	 * @param pErro Ponteiro para o código de erro, que será atualizado durante a execução da função.
 	 * @param estado Ponteiro para o estado atual do programa (utilizado na alteração de cadastro).
 	 *
 	 * @return: Nenhum.
 	*/
-	void consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado);
+	void consultaCadastro(int *estado);
 
 
 	/**
@@ -145,14 +69,13 @@
 	 * O contador de campo é usado para determinar em qual campo da estrutura a string será inserida, de acordo com a ordem dos campos
 	 * definida na estrutura correspondente.
 	 *
-	 * @param tipoCadastro inteiro que indica o tipo de cadastro: 1 para clientes, 2 para funcionários e 3 para fornecedores.
 	 * @param posicaoDisponivel inteiro que indica a posição disponível para inserir a string.
 	 * @param string qual é a string a ser inserida.
 	 * @param contadorCampo ponteiro inteiro que aponta para o contador de campos do cadastro correspondente.
 	 *
 	 * @return: Nenhum.
 	 **/
-	void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
+	void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
 
  
 	/**
@@ -171,14 +94,12 @@
 	  * Caso o valor da posição do vetor de referência seja igual a zero, a função atualiza o valor do erro para 4.
 	  * Isso faz com que exiba a mensagem indicando que não houve retorno algum, e que o usuário precisa digitar um valor válido.
 	  *
-	  * @param pEscolhaUser Ponteiro para o valor da escolha do usuário.
 	  * @param vetorReferencia Vetor de referência a ser verificado.
 	  * @param posicao Posição escolhida pelo usuário.
-	  * @param pErro Ponteiro para o valor do erro.
 	  *
 	  * @return: Nenhum	
 	  **/
-	void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicaoConsultada, int *pErro);
+	void verificarDadosVetorDisponivel(int *vetorReferencia, int posicaoConsultada);
 	
 		
 	/**
@@ -204,13 +125,10 @@
 	 * e digitando o novo valor do campo. Em seguida, a função atualiza a string do campo no vetor de dados do cadastro, exibe a mensagem de
 	 * sucesso e os novos formulários do cadastro atualizado.
 	 *
-	 * @param pEscolhaUser Ponteiro para a escolha do usuário em relação ao cadastro que deseja alterar.
-	 * @param pMensagem Ponteiro para a mensagem de interação com o usuário.
-	 * @param pErro Ponteiro para a variável que indica se ocorreu algum erro na execução da função.
 	 * 
 	 * @return: Nenhum
 	 **/
-	void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro);
+	void alterarCadastro();
 	
 
 	/**
@@ -220,14 +138,13 @@
 	 * É utilizado o comando switch para verificar o tipo de consulta e, em seguida, outro switch para verificar o campo escolhido. 
 	 * A string antiga é substituída pela nova utilizando a função strcpy().
 	 *
-	 * @param tipoConsulta O tipo de consulta (1 = clientes, 2 = funcionários, 3 = fornecedores).
 	 * @param posicao A posição do cadastro a ser alterado.
 	 * @param stringNova A nova string a ser inserida.
 	 * @param campo O campo do cadastro a ser alterado.
 	 *
 	 * @return: Nenhum.
 	 **/
-	void alterarString(int tipoCadastro, int posicao, char stringNova[MAX_STRING], int campo);
+	void alterarString(int posicao, char stringNova[MAX_STRING], int campo);
 	
 	
 	/**
@@ -261,11 +178,9 @@
 	 *
 	 * @param tipoTexto Tipo de textos a serem exibidos (1 - Textos para exclusão, 2 - Textos para modificação).
 	 * @param pEscolhaUserMod Ponteiro para variável que armazena a escolha do usuário para modificação.
-	 * @param pMensagem Ponteiro para variável que armazena o código da mensagem a ser exibida na interface.
-	 * @param pErro Ponteiro para variável que armazena o código de erro, se houver.
 	 *
 	 * @return: Não há retorno explícito, mas atualiza as variáveis apontadas pelos ponteiros passados como parâmetros.
 	 **/
-	void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod, int *pMensagem, int *pErro);
+	void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod);
 
 #endif

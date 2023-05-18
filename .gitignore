@@ -9,3 +9,8 @@ main.o
 ProjetoTesteInterface.exe
 testeInterface.exe
 programa.exe
+global_var.o
+Projeto1.exe
+Projeto1.layout
+testeInicialConexao.exe
+testeInicialConexao.o

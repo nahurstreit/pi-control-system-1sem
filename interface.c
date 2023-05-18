@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <locale.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
-
-#include "menu.h"
-#include "cadastro.h"
+#include "global/global.h"
 #include "interface.h"
 
 Display displayRefFormularioCadastroCliente[13] = {
@@ -114,14 +107,14 @@ int tamanhoDisplay;
 int contadorExistentes = 0;
 int *pContadorExistentes = &contadorExistentes;
 
-void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], Fornecedor fornecedores[], int *pEscolhaUser, int posicao) {
+void exibirInterfaceFormularios(int posicao) {
 	int i, j;
 	char posicaoString[3];
 	Display *pDisplayAtual;
 	Display copiaDisplay[20];
 	Display *pCopiaDisplay = copiaDisplay;
 	
-	switch(*pEscolhaUser) {
+	switch(escolhaUser) {
 		case 1:
 			tamanhoDisplay = sizeof(displayRefFormularioCadastroCliente);
 			pDisplayAtual = displayRefFormularioCadastroCliente;
@@ -147,7 +140,7 @@ void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], 
 		/*Substitui nas linhas do copiaDisplay, em espaços específicos, os conteúdo presentes no vetor de dados. Como o vetor por padrão tem o número zero em todos os campos,
 		 ao tentar imprimir nas linhas um tipo char, o resultado da atribuição fica como null. Dessa forma, por mais que, se acessados, os dados do vetor de dados for 0, 
 		 nada é atribuido, portanto a linha permanece intacta até que seja adicionada uma string. */
-		switch(*pEscolhaUser) {
+		switch(escolhaUser) {
 			case 1:
 				//Display Número de cadastro
 					for(j = 0; j < strlen(posicaoString); j++) {
@@ -332,7 +325,7 @@ void exibirInterfaceFormularios(Cliente clientes[], Funcionario funcionarios[], 
 }
 
 
-void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Funcionario funcionarios[], int vetorRefFuncionarios[], Fornecedor fornecedores[], int vetorRefFornecedores[], int *pEscolhaUser, int contadorDadosExistentes) {
+void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 	int i, j;
 	char iString[3];
 	
@@ -342,7 +335,7 @@ void exibirInterfaceDadosConsulta(Cliente clientes[], int vetorRefClientes[], Fu
 	
 	int dadosEncontrados = contadorDadosExistentes;
 	
-	switch(*pEscolhaUser) {
+	switch(escolhaUser) {
 		case 1 :
 			displayCabecalhoAtual = displayRefCabecalhoConsultaClientes;
 			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);
@@ -504,9 +497,9 @@ void exibirInterfaceInteracao(char string[]) {
 	printf("\n\n");
 }
 
-void exibirInterfaceOpcoes(Menu *pMenuAtual) {
+void exibirInterfaceOpcoes() {
 	int i;
-	int numOpcoes = pMenuAtual -> numeroDeOpcoes;
+	int numOpcoes = menuAtual.numeroDeOpcoes;
 	char stringMeio[10] = " Opções ";
 
 	for(i = 0; i < (MAX_LINHA - strlen(stringMeio))/2; i++) {
@@ -519,7 +512,7 @@ void exibirInterfaceOpcoes(Menu *pMenuAtual) {
 	
 	printf("\n\n");
 	for(i = 0; i < numOpcoes; i++) {
-		printf(" [%d] - %s\n\n", pMenuAtual -> opcoes[i].numeroDaOpcao, pMenuAtual -> opcoes[i].textoDaOpcao);
+		printf(" [%d] - %s\n\n", menuAtual.opcoes[i].numeroDaOpcao, menuAtual.opcoes[i].textoDaOpcao);
 	}
 	for(i = 0; i < MAX_LINHA - 1; i++) {
 		printf("~");

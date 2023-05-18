@@ -1,13 +1,5 @@
-#include <stdio.h>
-#include <locale.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-
-#include "menu.h"
+#include "global/global.h"
 #include "cadastro.h"
-#include "interface.h"
-
 
 //Criação da vetor com nome camposCliente que é do tipo TextoCampo. Refere-se aos textos que serão exibidos ao pedir para os usuários digitarem os dados de cadastro do Cliente
 TextoCampo camposCliente[] = {
@@ -63,61 +55,30 @@ TextoCampo camposFornecedor[] = {
 //Criação da variável global camposAtuais, do tipo TextoCamp, que será um pointer para os camposFuncionario, camposCliente ou camposFornecedor
 TextoCampo *camposAtuais;
 
-//Criação dos vetores para armazenar e controlar o armazenamento dos clientes
-	//Vetor de dados
-		Cliente clientes[MAX_VETOR];
-	//
-	
-	//Vetor de referência
-		int vetorRefClientes[MAX_VETOR] = {0};
-		int *pVetorRefClientes = vetorRefClientes; 	//Pointer para o vetor de referência
-	//
-//
-//Criação dos vetores para armazenar e controlar o armazenamento dos funcionários
-	//Vetor de dados
-		Funcionario funcionarios[MAX_VETOR];
-	//
-
-	//Vetor de referência
-		int vetorRefFuncionarios[MAX_VETOR] = {0};
-		int *pVetorRefFuncionarios = vetorRefFuncionarios;
-	//
-//
-//Criação dos vetores para armazenar e controlar o armazenamento dos fornecedores
-	//Vetor de dados
-		Fornecedor fornecedores[MAX_VETOR];
-	//
-
-	//Vetor de referência
-		int vetorRefFornecedores[MAX_VETOR] = {0};
-		int *pVetorRefFornecedores = vetorRefFornecedores;
-	//
-//
-
 int tipoConsultaAtual;
 int *pTipoConsultaAtual = &tipoConsultaAtual;
 int posicaoConsultaAtual;
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
-void novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
+void novoCadastro() {
 	char stringHolder[MAX_STRING];
 	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int *pContadorCampo = &contadorCampo;
 	
-	switch(*pEscolhaUser) {//pEscolhaUser vem dentro de menu.c
+	switch(escolhaUser) {//pEscolhaUser vem dentro de menu.c
 		case 1:
 			camposAtuais = camposCliente;
-			posicao = posicaoDisponivel(pVetorRefClientes);
+			posicao = posicaoDisponivel(vetorRefClientes);
 			limiteContador = 12;
 			break;
 		case 2:
 			camposAtuais = camposFuncionario;
-			posicao = posicaoDisponivel(pVetorRefFuncionarios);
+			posicao = posicaoDisponivel(vetorRefFuncionarios);
 			limiteContador = 16;
 			break;
 		case 3:
 			camposAtuais = camposFornecedor;
-			posicao = posicaoDisponivel(pVetorRefFornecedores);
+			posicao = posicaoDisponivel(vetorRefFornecedores);
 			limiteContador = 11;
 			break;
 	}
@@ -125,37 +86,37 @@ void novoCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	contadorCampo = 0;
 	
 	do {
-		 if(*pEscolhaUser == 1) exibirInterfaceTitulo("NOVO CADASTRO DE CLIENTE", 1);
-		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("NOVO CADASTRO DE FUNCIONÁRIO", 1);
+		 if(escolhaUser == 1) exibirInterfaceTitulo("NOVO CADASTRO DE CLIENTE", 1);
+		 else if(escolhaUser == 2) exibirInterfaceTitulo("NOVO CADASTRO DE FUNCIONÁRIO", 1);
 		 else exibirInterfaceTitulo("NOVO CADASTRO DE FORNECEDOR", 1);
 		
-		exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
+		exibirInterfaceFormularios(posicao);
 		
 		printf("\n\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
 		fgets(stringHolder, MAX_STRING, stdin);
 		fflush(stdin);
 		
 		stringHolder[strcspn(stringHolder, "\n")] = '\0';
-		inserirString(*pEscolhaUser, posicao, stringHolder, pContadorCampo);
+		inserirString(posicao, stringHolder, pContadorCampo);
 		contadorCampo++;
 
 	} while(contadorCampo < limiteContador);
 	
 	exibirInterfaceTitulo("NOVO CADASTRO", 1);
-	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao);
+	exibirInterfaceFormularios(posicao);
 	printf("\n\nEnviando Cadastro...\n");
 	system("pause");
 	
-	*pMensagem = 1;
+	mensagem = 1;
 }
 
 //Função de exibição de cadastros. A chamada desse função acontece em menu.c dentro de algumas opções.
-void consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado) {
+void consultaCadastro(int *estado) {
 	int posicao, contadorDadosExistentes;
 	
-	tipoConsultaAtual = *pEscolhaUser;
+	tipoConsultaAtual = escolhaUser;
 	
-	switch(*pEscolhaUser) {
+	switch(escolhaUser) {
 		case 1:
 			contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
 			break;
@@ -168,58 +129,58 @@ void consultaCadastro(int *pEscolhaUser, int *pMensagem, int *pErro, int *estado
 	}
 	
 	do{
-		if(*pEscolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
-		 else if(*pEscolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
+		if(escolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
+		 else if(escolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
 		 else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
 		
-		exibirMensagem(pMensagem);
-		exibirErro(pErro);
+		exibirMensagem();
+		exibirErro();
 		
-		exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pEscolhaUser, contadorDadosExistentes);
+		exibirInterfaceDadosConsulta(contadorDadosExistentes);
 	
-		switch(*pEscolhaUser) {
+		switch(escolhaUser) {
 			case 1:
 				printf("\nDigite o número de cadastro do Cliente ou [0] para Voltar: ");
 				scanf("%d", &posicao);
-				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefClientes, posicao, pErro);
+				verificarDadosVetorDisponivel(vetorRefClientes, posicao);
 				break;
 			case 2:
 				printf("\nDigite o número de cadastro do Funcionário ou [0] para Voltar: ");
 				scanf("%d", &posicao);
-				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefFuncionarios, posicao, pErro);
+				verificarDadosVetorDisponivel(vetorRefFuncionarios, posicao);
 				break;
 			case 3:
 				printf("\nDigite o número de cadastro do Fornecedor ou [0] para Voltar: ");
 				scanf("%d", &posicao);
-				verificarDadosVetorDisponivel(pEscolhaUser, vetorRefFornecedores, posicao, pErro);
+				verificarDadosVetorDisponivel(vetorRefFornecedores, posicao);
 				break;
 			default:
-				 *pErro = 3;
+				 erro = 3;
 		}
 		
 		posicaoConsultaAtual = posicao-1;
 		
-		if(*pErro == 0) {
-			if(*pEscolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
-		 	else if(*pEscolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
+		if(erro == 0) {
+			if(escolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
+		 	else if(escolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
 		 	else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
-			exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pEscolhaUser, posicao-1);
+			exibirInterfaceFormularios(posicao-1);
 			*estado = 1;
 			break;
 		}
 		
 		if(posicao == 0) {
-			*pErro = 0;
+			erro = 0;
 			*estado = 0;
 			break;
 		}
 		
 		fflush(stdin);
-	} while(*pErro == 4);
+	} while(erro == 4);
 }
 
-void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
-	switch(tipoCadastro) {
+void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
+	switch(escolhaUser) {
 		case 1:
 			switch(*contadorCampo) {
 				case 0:
@@ -349,11 +310,11 @@ void inserirString(int tipoCadastro, int posicaoDisponivel, char string[MAX_STRI
 	}
 }
 
-void verificarDadosVetorDisponivel(int *pEscolhaUser, int *vetorReferencia, int posicaoConsultada, int *pErro) {
+void verificarDadosVetorDisponivel(int *vetorReferencia, int posicaoConsultada) {
 	posicaoConsultada -= 1;
 	
 	if(vetorReferencia[posicaoConsultada] == 0) {
-		*pErro = 4;
+		erro = 4;
 	}
 }
 
@@ -382,7 +343,7 @@ int calcularDadosExistentes(int vetorReferencia[MAX_VETOR]) {
 	return contadorDadosExistentes;
 }
 
-void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
+void alterarCadastro() {
 	char stringNova[MAX_STRING];
 	
 	int escolhaCampo = 0;
@@ -390,7 +351,7 @@ void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	
 	char tituloHolder[50];
 	
-	switch(tipoConsultaAtual) {
+	switch(escolhaUser) {
 		case 1: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE CLIENTES"); break;
 		case 2: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FUNCIONARIOS"); break;
 		case 3: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES"); break;
@@ -398,9 +359,9 @@ void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	
 	exibirInterfaceTitulo(tituloHolder, 1);
 	
-	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+	exibirInterfaceFormularios(posicaoConsultaAtual);
 
-	switch(tipoConsultaAtual) {
+	switch(escolhaUser) {
 		case 1: camposAtuais = camposCliente; break;
 		case 2: camposAtuais = camposFuncionario; break;
 		case 3: camposAtuais = camposFornecedor; break;
@@ -419,14 +380,15 @@ void alterarCadastro(int *pEscolhaUser, int *pMensagem, int *pErro) {
 	stringNova[strcspn(stringNova, "\n")] = '\0';
 	fflush(stdin);
 	
-	alterarString(tipoConsultaAtual, posicaoConsultaAtual, stringNova, escolhaCampo);
+	alterarString(posicaoConsultaAtual, stringNova, escolhaCampo);
+	mensagem = 2;
 	exibirInterfaceTitulo(tituloHolder, 1);
-	exibirInterfaceInteracao("Sucesso! Campo modificado!");
-	exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+	exibirMensagem();
+	exibirInterfaceFormularios(posicaoConsultaAtual);
 }
 
-void alterarString(int tipoConsulta, int posicao, char stringNova[MAX_STRING], int campo) {
-	switch(tipoConsulta) {
+void alterarString(int posicao, char stringNova[MAX_STRING], int campo) {
+	switch(escolhaUser) {
 		case 1:
 			switch(campo) {
 				case 0:
@@ -556,7 +518,7 @@ void alterarString(int tipoConsulta, int posicao, char stringNova[MAX_STRING], i
 	}
 }
 
-void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod, int *pMensagem, int *pErro) {
+void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod) {
 	int escolhaAlterar = 0, contadorDadosExistentes = 0;
 	
 	char tituloHolder[50];
@@ -593,13 +555,13 @@ void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod, int *pMensagem
 		
 	if(escolhaAlterar == 1) {
 		*pEscolhaUserMod = 0;
-		*pMensagem = 3;
+		mensagem = 3;
 		excluirCadastro(posicaoConsultaAtual);
 		exibirInterfaceTitulo(tituloHolder, 1);
-		exibirInterfaceDadosConsulta(clientes, vetorRefClientes, funcionarios, vetorRefFuncionarios, fornecedores, vetorRefFornecedores, pTipoConsultaAtual, contadorDadosExistentes);
+		exibirInterfaceDadosConsulta(contadorDadosExistentes);
 	} else {
 		exibirInterfaceTitulo(tituloHolder, 1);
-		exibirInterfaceFormularios(clientes, funcionarios, fornecedores, pTipoConsultaAtual, posicaoConsultaAtual);
+		exibirInterfaceFormularios(posicaoConsultaAtual);
 	}
 }
 
