@@ -147,3 +147,7 @@ cadastro.h e cadastro.c
 interface.h e interface.c
 - Struct realocado (global): Display
 - Ponteiros não mais necessários: pMenuAtual, pEscolhaUser, clientes, funcionarios, fornecedores, pVetorRef(Clientes, Funcionarios, Fornecedores)
+
+18/05/2023 - 19/05/2023
+Cadastro.c
+- Adicionada uma funcionalidade para cancelar ou alterar um dado no cadastro, em tempo de execução, antes mesmo de confirmar os dados.

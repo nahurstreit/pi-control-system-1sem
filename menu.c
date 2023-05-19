@@ -135,10 +135,10 @@ void main() {
 	    system("color E0"); //Definição da cor do sistema
 	    
 	    // Comente esse código para tirar a trava de tela
-		    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-			SMALL_RECT rect = {0, 0, 101, 42}; // Define o tamanho da janela
-			SetConsoleWindowInfo(hConsole, TRUE, &rect); // Define o tamanho da janela
-			SetWindowLong(GetConsoleWindow(), GWL_STYLE, GetWindowLong(GetConsoleWindow(), GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
+//		    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+//			SMALL_RECT rect = {0, 0, 101, 42}; // Define o tamanho da janela
+//			SetConsoleWindowInfo(hConsole, TRUE, &rect); // Define o tamanho da janela
+//			SetWindowLong(GetConsoleWindow(), GWL_STYLE, GetWindowLong(GetConsoleWindow(), GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
     	//Comente esse código para tirar a trava de tela
     	
 		exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);		
@@ -216,6 +216,18 @@ void exibirErro() {
 			break;
 		case 4:
 			strcpy(res, "Erro: Não existe nenhum registro para esse Número de Cadastro!");
+			break;
+		case 5:
+			strcpy(res, "Erro: Você ainda não digitou nenhum campo para poder alterar!");
+			break;
+		case 6:
+			strcpy(res, "Erro: Campo inválido!");
+			break;
+		case 7:
+			strcpy(res, "Erro: Você ainda não digitou esse campo!");
+			break;
+		case 8:
+			strcpy(res, "Erro: Você só pode alterar o primeiro campo!");
 			break;
 		default:;
 	}
@@ -302,6 +314,7 @@ void exibirErro() {
 					executarExcluirCadastro(2, pEscolhaUserAlterar);
 					if(escolhaUserAlterar == 0) {
 						exibirMenuNovoCadastro();
+						mensagem = 0;
 						executarNovoCadastro();
 						menuAtual = menuConsultarCadastro;
 						executarConsultaCadastro();

@@ -161,7 +161,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	void excluirCadastro();
+	void excluirCadastro(int posicaoConsultaAtual);
 
 
 	/**
