@@ -1,6 +1,9 @@
 #ifndef CADASTRO_H
 #define CADASTRO_H
 
+#include "../global/global.h"
+#include "cadastro_var/cadastro_var.h"
+
 //Declaração das funções a serem utilizadas pelo código
 	/**
 	 * @brief: Cria um novo cadastro de acordo com a escolha do usuário
@@ -15,7 +18,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	void novoCadastro();
+	extern void novoCadastro();
 	
 
 	/**
@@ -36,7 +39,7 @@
 	 *
 	 * @return: Nenhum.
 	*/
-	void consultaCadastro(int *estado);
+	extern void consultaCadastro(int *estado);
 
 
 	/**
@@ -58,7 +61,7 @@
 	 *
 	 * @return: A primeira posição disponível no vetor de dados.
 	 **/
-	int posicaoDisponivel(int *vetorReferencia);
+	extern int posicaoDisponivel(int *vetorReferencia);
 
 
 	/**
@@ -75,7 +78,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
+	extern void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
 
  
 	/**
@@ -99,7 +102,7 @@
 	  *
 	  * @return: Nenhum	
 	  **/
-	void verificarDadosVetorDisponivel(int *vetorReferencia, int posicaoConsultada);
+	extern void verificarDadosVetorDisponivel(int *vetorReferencia, int posicaoConsultada);
 	
 		
 	/**
@@ -112,7 +115,7 @@
 	 *
 	 * @return: Retorna o número de dados existentes no vetor.
 	 **/
-	int calcularDadosExistentes(int vetorReferencia[MAX_VETOR]);
+	extern int calcularDadosExistentes(int vetorReferencia[MAX_VETOR]);
 
 	/**
 	 * @brief: Função que permite a alteração de um campo específico do cadastro do usuário.
@@ -128,7 +131,7 @@
 	 * 
 	 * @return: Nenhum
 	 **/
-	void alterarCadastro();
+	extern void alterarCadastro();
 	
 
 	/**
@@ -144,7 +147,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	void alterarString(int posicao, char stringNova[MAX_STRING], int campo);
+	extern void alterarString(int posicao, char stringNova[MAX_STRING], int campo);
 	
 	
 	/**
@@ -161,7 +164,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	void excluirCadastro(int posicaoConsultaAtual);
+	extern void excluirCadastro(int posicaoConsultaAtual);
 
 
 	/**
@@ -181,6 +184,8 @@
 	 *
 	 * @return: Não há retorno explícito, mas atualiza as variáveis apontadas pelos ponteiros passados como parâmetros.
 	 **/
-	void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod);
+	extern void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod);
+	
+	extern bool validarPalavraChave(char string[], char stringChave[]);
 
 #endif

@@ -1,18 +1,23 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "../global/global.h"
+#include "../cadastro/cadastro.h"
+#include "../interface/interface.h"
+#include "menu_var/menu_var.h"
+
 //Declaração das funções de chamada das opções
 	/**
 	 * @brief Funções de chamada das opções do menu
 	 * @return Nenhum
 	 **/
-		void exibirMenuPrincipal();
-			void exibirMenuCadastro();
-				void exibirMenuNovoCadastro();
-					void executarNovoCadastro();
-				void exibirMenuConsultarCadastro();
-					void executarConsultaCadastro();
-						void executarAlterarCadastro();
+		extern void exibirMenuPrincipal();
+			extern void exibirMenuCadastro();
+				extern void exibirMenuNovoCadastro();
+					extern void executarNovoCadastro();
+				extern void exibirMenuConsultarCadastro();
+					extern void executarConsultaCadastro();
+						extern void executarAlterarCadastro();
 		/** Para uso posterior
 			void exibirMenuOrdemProducao();
 				void exibirMenuNovaOrdemProducao();
@@ -27,7 +32,7 @@
 	 *
 	 * @return int Retorna 0 se a função foi executada com sucesso
 	 **/
-	void fimDoMenu();
+	extern void fimDoMenu();
 	
 //
 
@@ -46,7 +51,7 @@
 	 *	
 	 * @return Nenhum.
 	 **/
-	void receberOpcaoMenu();
+	extern void receberOpcaoMenu();
 	
 	/** 
 	 * @brief Exibe uma mensagem de acordo com o código fornecido e chama a função de exibição da interface.
@@ -54,7 +59,7 @@
 	 *
 	 * @return Nenhum.
 	 **/
-	void exibirMensagem();
+	extern void exibirMensagem();
 
 
 	/**
@@ -63,7 +68,7 @@
 	 *
 	 * @return Nenhum.
 	 */
-	void exibirErro();
+	extern void exibirErro();
 	
 	/**
 	 * @brief Função que recebe as opções do usuário na tela de modificar cadastro e executa as ações correspondentes. 
@@ -91,7 +96,7 @@
 	 * - Caso contrário, se digitar 9 ou qualquer outra coisa, a função exibe o menu principal.
 	 * @return void
 	 */
-	void receberOpcoesAlteracaoCadastro();
+	extern void receberOpcoesAlteracaoCadastro();
 //
 
 #endif

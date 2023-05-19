@@ -1,6 +1,8 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
+#include "interface_var/interface_var.h"
+
 //Funções de interface:
 	/**
 	 * @brief: Esta função é responsável por exibir na tela um formulário gráfico com as informações de um cliente, funcionário ou fornecedor, 

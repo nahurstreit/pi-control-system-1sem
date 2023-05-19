@@ -149,5 +149,11 @@ interface.h e interface.c
 - Ponteiros não mais necessários: pMenuAtual, pEscolhaUser, clientes, funcionarios, fornecedores, pVetorRef(Clientes, Funcionarios, Fornecedores)
 
 18/05/2023 - 19/05/2023
-Cadastro.c
+cadastro.c
 - Adicionada uma funcionalidade para cancelar ou alterar um dado no cadastro, em tempo de execução, antes mesmo de confirmar os dados.
+
+19/05/2023
+Arquivos:
+- Redistribuição de todas as funções dos arquivos: menu.c, cadastro.c e interface.c, para arquivos separados e com apenas uma função.
+- Criação de vários arquivos, em destaque, a alternância da função main, antes em menu.c para o arquivo main.c.
+- Melhora na codificação do .gitignore, para incluir todos os arquivos .o e .exe
