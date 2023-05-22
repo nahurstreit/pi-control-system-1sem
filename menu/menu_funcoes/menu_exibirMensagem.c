@@ -14,6 +14,9 @@ void exibirMensagem() {
 		case 3:
 			strcpy(res, "Cadastro Excluído!");
 			break;
+		case 4:
+			strcpy(res, "Cadastro Cancelado!");
+			break;
 		default:;
 	}
 	

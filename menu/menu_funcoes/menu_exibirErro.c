@@ -30,6 +30,9 @@ void exibirErro() {
 		case 8:
 			strcpy(res, "Erro: Você só pode alterar o primeiro campo!");
 			break;
+		case 9:
+			strcpy(res, "Erro ao ler os dados registrados no sistema.");
+			break;
 		default:;
 	}
 	

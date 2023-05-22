@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../arquivo/arquivo.h"
 #include "../cadastro.h"
 
 void alterarCadastro() {
@@ -39,6 +40,7 @@ void alterarCadastro() {
 	fflush(stdin);
 	
 	alterarString(posicaoConsultaAtual, stringNova, escolhaCampo);
+	handleSalvar(escolhaUser);
 	mensagem = 2;
 	exibirInterfaceTitulo(tituloHolder, 1);
 	exibirMensagem();

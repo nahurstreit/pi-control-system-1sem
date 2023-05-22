@@ -1,6 +1,7 @@
 #include "../../global/global.h"
 #include "../cadastro.h"
 
+
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
 void novoCadastro() {
 	char stringHolder[MAX_STRING];
@@ -127,14 +128,13 @@ void novoCadastro() {
 	
 	//Se o usuário digitar 'SAIR', não exibirá a mensagem de "enviando cadastro". Apenas retornará ao menu anterior.
 	if(saida == 0) {
+		handleSalvar(escolhaUser);
 		exibirInterfaceTitulo("NOVO CADASTRO", 1);
 		exibirInterfaceFormularios(posicao);
 		printf("\n\nEnviando Cadastro...\n");
 		system("pause");
 		mensagem = 1;
 	} else {
-		mensagem = 0;
+		mensagem = 4;
 	}
-
 }
-

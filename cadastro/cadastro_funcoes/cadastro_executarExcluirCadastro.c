@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../arquivo/arquivo.h"
 #include "../cadastro.h"
 
 void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod) {
@@ -40,6 +41,7 @@ void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod) {
 		*pEscolhaUserMod = 0;
 		mensagem = 3;
 		excluirCadastro(posicaoConsultaAtual);
+		handleSalvar(escolhaUser);
 		exibirInterfaceTitulo(tituloHolder, 1);
 		exibirInterfaceDadosConsulta(contadorDadosExistentes);
 	} else {

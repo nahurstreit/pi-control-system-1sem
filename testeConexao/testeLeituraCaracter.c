@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CLIENTES 100
+#define MAX_VETOR 100
 #define MAX_CAMPO 50
 #define MAX_STRING 50
 
@@ -24,57 +24,12 @@
 		char cidade[MAX_STRING];
 		char estado[MAX_STRING];
 	} Cliente;
-	
-	/**
-	 * @brief Definição do struct do tipo Funcionário, para armazenar de forma categórica os dados do funcionário.
-	 **/
-	typedef struct {
-		char nome[MAX_STRING];
-		char status[MAX_STRING];
-		char cpf[MAX_STRING];
-		char dataNascimento[MAX_STRING];
-		char estadoCivil[MAX_STRING];
-		char dataAdmissao[MAX_STRING];
-		char salarioBase[MAX_STRING];
-		char telefone[MAX_STRING];
-		char email[MAX_STRING];
-		char endereco[MAX_STRING];
-		char numEndereco[6];
-		char compEndereco[MAX_STRING];
-		char bairro[MAX_STRING];
-		char cep[MAX_STRING];
-		char cidade[MAX_STRING];
-		char estado[MAX_STRING];
-	} Funcionario;
-	
-	/**
-	 * @brief Definição do struct do tipo Fornecedor, para armazenar de forma categórica os dados do fornecedor.
-	 **/
-	typedef struct {
-		char nomeFantasia[MAX_STRING];
-		char cnpj[MAX_STRING];
-		char telefone[MAX_STRING];
-		char email[MAX_STRING];
-		char endereco[MAX_STRING];
-		char numEndereco[6];
-		char compEndereco[MAX_STRING];
-		char bairro[MAX_STRING];
-		char cep[MAX_STRING];
-		char cidade[MAX_STRING];
-		char estado[MAX_STRING];
-	} Fornecedor;
-//
-
-void lerArquivoCliente();
-void lerArquivoFuncionario();
-void lerArquivoFornecedor();
 
 int main() {
 	int j;
 	int i;
+	Cliente clientes[MAX_VETOR];
 	lerArquivoCliente();
-	lerArquivoFuncionario();
-	lerArquivoFornecedor();
 	
 	// Teste: imprime os campos dos clientes
     for (j = 0; j < i; j++) {
@@ -89,48 +44,95 @@ int main() {
 }
 
 void lerArquivoCliente() {
-	    struct Cliente clientes[MAX_CLIENTES];
+	     
     FILE *arquivo;
     char linha[MAX_CAMPO * 2]; // tamanho máximo da linha no arquivo
 
-    arquivo = fopen("dadosCliente.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+    arquivo = fopen("data_Clientes.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
 
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        return 1;
     }
 
     int i = 0, j;
-    while (fgets(linha, sizeof(linha), arquivo) != NULL && i < MAX_CLIENTES) {
+    while (fgets(linha, sizeof(linha), arquivo) != NULL && i < MAX_VETOR) {
         linha[strcspn(linha, "\n")] = '\0';
     
         char *token = strtok(linha, ";");
 
         if (token != NULL) {
-            strncpy(clientes[i].nome, token, MAX_CAMPO - 1);
-            clientes[i].nome[MAX_CAMPO - 1] = '\0';
+            strcpy(clientes[i].nome, token);
         }
 
         token = strtok(NULL, ";");
 
         if (token != NULL) {
-            strncpy(clientes[i].cpf, token, MAX_CAMPO - 1);
-            clientes[i].idade[MAX_CAMPO - 1] = '\0';
+            strncpy(clientes[i].cpf, token);
         }
         
         token = strtok(NULL, ";");
 
         if (token != NULL) {
-            strncpy(clientes[i].dataNascimento, token, MAX_CAMPO - 1);
-            clientes[i].idade[MAX_CAMPO - 1] = '\0';
+            strncpy(clientes[i].dataNascimento, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].telefone, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].email, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].endereco, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].numEndereco, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].compEndereco, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].bairro, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].cep, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].cidade, token);
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+            strncpy(clientes[i].estado, token);
         }
 
         i++;
     }
 
     fclose(arquivo);
-    
-
-    return 0;
 }
 

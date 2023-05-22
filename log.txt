@@ -157,3 +157,10 @@ Arquivos:
 - Redistribuição de todas as funções dos arquivos: menu.c, cadastro.c e interface.c, para arquivos separados e com apenas uma função.
 - Criação de vários arquivos, em destaque, a alternância da função main, antes em menu.c para o arquivo main.c.
 - Melhora na codificação do .gitignore, para incluir todos os arquivos .o e .exe
+
+22/05/2023
+Arquivos:
+- Criado arquivos e pastas referentes ao salvamento de dados inseridos no sistema.
+
+arquivo.h e arquivos_
+- Responsáveis por controlar a interação de salvamento no vetor e salvamento no arquivo de texto, distribuídos em outras pastas dentro da nova pasta chamada: "data".

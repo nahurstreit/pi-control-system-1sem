@@ -2,10 +2,13 @@
 #include "menu/menu.h"
 #include "cadastro/cadastro.h"
 #include "interface/interface.h"
+#include "arquivo/arquivo.h"
 
 void main() {
 	setlocale(LC_ALL, "Portuguese");
 	menuAtual = menuPrincipal;
+	
+	popularVetores();
 
 	do{
 	    system("color E0"); //Definição da cor do sistema
@@ -17,7 +20,7 @@ void main() {
 //			SetWindowLong(GetConsoleWindow(), GWL_STYLE, GetWindowLong(GetConsoleWindow(), GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
     	//Comente esse código para tirar a trava de tela
     	
-		exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);		
+		exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);	
 		
 		exibirMensagem(); //Exibindo eventuais mensagens, por padrão erro = 0, portanto, sem mensagens
 		

@@ -2,6 +2,7 @@
 #define CADASTRO_H
 
 #include "../global/global.h"
+#include "../arquivo/arquivo.h"
 #include "cadastro_var/cadastro_var.h"
 
 //Declaração das funções a serem utilizadas pelo código
