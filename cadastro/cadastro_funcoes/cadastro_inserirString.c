@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../validar/validar.h"
 #include "../cadastro.h"
 
 void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
@@ -6,127 +7,130 @@ void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contador
 		case 1:
 			switch(*contadorCampo) {
 				case 0:
-					strcpy(clientes[posicaoDisponivel].nome, string);
+					if(validarEntrada(string, true, false, true, MAX_CAMPO_NOME__CLIENTE)) strcpy(clientes[posicaoDisponivel].nome, string);
 					break;
 				case 1:
-					strcpy(clientes[posicaoDisponivel].cpf, string);
+					if(validarCPF(string)) strcpy(clientes[posicaoDisponivel].cpf, string);
 					break;
 				case 2:
-					strcpy(clientes[posicaoDisponivel].dataNascimento, string);
+					if(validarDataNascimento(string)) strcpy(clientes[posicaoDisponivel].dataNascimento, string);
 					break;
 				case 3 :
-					strcpy(clientes[posicaoDisponivel].telefone, string);
+					if(validarTelefone(string)) strcpy(clientes[posicaoDisponivel].telefone, string);
 					break;
 				case 4:
-					strcpy(clientes[posicaoDisponivel].email, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_EMAIL__CLIENTE)) strcpy(clientes[posicaoDisponivel].email, string);
 					break;	
 				case 5:
-					strcpy(clientes[posicaoDisponivel].endereco, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_ENDERECO__CLIENTE)) strcpy(clientes[posicaoDisponivel].endereco, string);
 					break;
 				case 6:
-					strcpy(clientes[posicaoDisponivel].numEndereco, string);
+					if(validarEntrada(string, true, true, false, MAX_CAMPO_NUMENDERECO__CLIENTE)) strcpy(clientes[posicaoDisponivel].numEndereco, string);
 					break;
 				case 7:
-					strcpy(clientes[posicaoDisponivel].compEndereco, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_COMPENDERECO__CLIENTE)) strcpy(clientes[posicaoDisponivel].compEndereco, string);
 					break;
 				case 8:
-					strcpy(clientes[posicaoDisponivel].bairro, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_BAIRRO__CLIENTE)) strcpy(clientes[posicaoDisponivel].bairro, string);
 					break;
 				case 9:
-					strcpy(clientes[posicaoDisponivel].cep, string);
+					if(validarCEP(string)) strcpy(clientes[posicaoDisponivel].cep, string);
 					break;
 				case 10:
-					strcpy(clientes[posicaoDisponivel].cidade, string);
+					if(validarEntrada(string, true, false, true, MAX_CAMPO_CIDADE__CLIENTE)) strcpy(clientes[posicaoDisponivel].cidade, string);
 					break;
 				default:
-					strcpy(clientes[posicaoDisponivel].estado, string);
+					if(validarEstado(string)) strcpy(clientes[posicaoDisponivel].estado, string);
 			}
 			break;
 		case 2:
 			switch(*contadorCampo) {
 				case 0:
-					strcpy(funcionarios[posicaoDisponivel].nome, string);
+					if(validarEntrada(string, true, false, true, MAX_CAMPO_NOME__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].nome, string);
 					break;
 				case 1:
-					strcpy(funcionarios[posicaoDisponivel].status, string);
+					if(validarStatus(string)) strcpy(funcionarios[posicaoDisponivel].status, string);
 					break;				
 				case 2:
-					strcpy(funcionarios[posicaoDisponivel].cpf, string);
+					if(validarCPF(string)) strcpy(funcionarios[posicaoDisponivel].cpf, string);
 					break;
 				case 3:
-					strcpy(funcionarios[posicaoDisponivel].dataNascimento, string);
+					if(validarDataNascimento(string)) strcpy(funcionarios[posicaoDisponivel].dataNascimento, string);					
 					break;
 				case 4:
-					strcpy(funcionarios[posicaoDisponivel].estadoCivil, string);
+					if(validarEstadoCivil(string)) strcpy(funcionarios[posicaoDisponivel].estadoCivil, string);
 					break;
 				case 5:
-					strcpy(funcionarios[posicaoDisponivel].dataAdmissao, string);
+					if(validarDataAdmissao(string)) strcpy(funcionarios[posicaoDisponivel].dataAdmissao, string);
 					break;
 				case 6:
-					strcpy(funcionarios[posicaoDisponivel].salarioBase, string);
+					if(validarEntrada(string, false, true, false, 10)) strcpy(funcionarios[posicaoDisponivel].salarioBase, string);
 					break;
 				case 7:
-					strcpy(funcionarios[posicaoDisponivel].telefone, string);
+					if(validarTelefone(string)) strcpy(funcionarios[posicaoDisponivel].telefone, string);					
 					break;
 				case 8:
-					strcpy(funcionarios[posicaoDisponivel].email, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_EMAIL__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].email, string);
 					break;	
 				case 9:
-					strcpy(funcionarios[posicaoDisponivel].endereco, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_ENDERECO__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].endereco, string);
 					break;
 				case 10:
-					strcpy(funcionarios[posicaoDisponivel].numEndereco, string);
+					if(validarEntrada(string, true, true, false, MAX_CAMPO_NUMENDERECO__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].numEndereco, string);
 					break;
 				case 11:
-					strcpy(funcionarios[posicaoDisponivel].compEndereco, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_COMPENDERECO__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].compEndereco, string);
 					break;
 				case 12:
-					strcpy(funcionarios[posicaoDisponivel].bairro, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_BAIRRO__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].bairro, string);
 					break;
 				case 13:
-					strcpy(funcionarios[posicaoDisponivel].cep, string);
+					if(validarCEP(string)) strcpy(funcionarios[posicaoDisponivel].cep, string);
 					break;
 				case 14:
-					strcpy(funcionarios[posicaoDisponivel].cidade, string);
+					if(validarEntrada(string, true, false, true, MAX_CAMPO_CIDADE__FUNCIONARIO)) strcpy(funcionarios[posicaoDisponivel].cidade, string);
 					break;
 				default: 
-					strcpy(funcionarios[posicaoDisponivel].estado, string);
+					if(validarEstado(string)) strcpy(funcionarios[posicaoDisponivel].estado, string);
 			}
 			break;
 		case 3:
 			switch(*contadorCampo) {
 				case 0:
-					strcpy(fornecedores[posicaoDisponivel].nomeFantasia, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_NOMEFANTASIA__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].nomeFantasia, string);
 					break;
 				case 1:
-					strcpy(fornecedores[posicaoDisponivel].cnpj, string);
+					if(validarCNPJ(string)) strcpy(fornecedores[posicaoDisponivel].cnpj, string);
 					break;
 				case 2:
-					strcpy(fornecedores[posicaoDisponivel].telefone, string);
+					if(validarTelefone(string)) strcpy(fornecedores[posicaoDisponivel].telefone, string);	
 					break;
 				case 3:
-					strcpy(fornecedores[posicaoDisponivel].email, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_EMAIL__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].email, string);
 					break;
 				case 4:
-					strcpy(fornecedores[posicaoDisponivel].endereco, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_SITE__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].site, string);
 					break;
 				case 5:
-					strcpy(fornecedores[posicaoDisponivel].numEndereco, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_ENDERECO__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].endereco, string);					
 					break;
 				case 6:
-					strcpy(fornecedores[posicaoDisponivel].compEndereco, string);
+					if(validarEntrada(string, true, true, false, MAX_CAMPO_NUMENDERECO__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].numEndereco, string);					
 					break;
 				case 7:
-					strcpy(fornecedores[posicaoDisponivel].bairro, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_COMPENDERECO__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].compEndereco, string);					
 					break;
 				case 8:
-					strcpy(fornecedores[posicaoDisponivel].cep, string);
+					if(validarEntrada(string, false, true, true, MAX_CAMPO_BAIRRO__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].bairro, string);
 					break;
 				case 9:
-					strcpy(fornecedores[posicaoDisponivel].cidade, string);
+					if(validarCEP(string)) strcpy(fornecedores[posicaoDisponivel].cep, string);
 					break;
-				default: 
-					strcpy(fornecedores[posicaoDisponivel].estado, string);
+				case 10:
+					if(validarEntrada(string, true, false, true, MAX_CAMPO_CIDADE__FORNECEDOR)) strcpy(fornecedores[posicaoDisponivel].cidade, string);					
+					break;
+				default:
+					if(validarEstado(string)) strcpy(fornecedores[posicaoDisponivel].estado, string);					
 			}
 			break;
 	}

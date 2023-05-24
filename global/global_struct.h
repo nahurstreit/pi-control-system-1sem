@@ -42,7 +42,7 @@
 		char telefone[MAX_STRING];
 		char email[MAX_STRING];
 		char endereco[MAX_STRING];
-		char numEndereco[6];
+		char numEndereco[MAX_STRING];
 		char compEndereco[MAX_STRING];
 		char bairro[MAX_STRING];
 		char cep[MAX_STRING];
@@ -64,7 +64,7 @@
 		char telefone[MAX_STRING];
 		char email[MAX_STRING];
 		char endereco[MAX_STRING];
-		char numEndereco[6];
+		char numEndereco[MAX_STRING];
 		char compEndereco[MAX_STRING];
 		char bairro[MAX_STRING];
 		char cep[MAX_STRING];
@@ -80,8 +80,9 @@
 		char cnpj[MAX_STRING];
 		char telefone[MAX_STRING];
 		char email[MAX_STRING];
+		char site[MAX_STRING];
 		char endereco[MAX_STRING];
-		char numEndereco[6];
+		char numEndereco[MAX_STRING];
 		char compEndereco[MAX_STRING];
 		char bairro[MAX_STRING];
 		char cep[MAX_STRING];
@@ -93,7 +94,7 @@
 	 * @brief Definição do struct do tipo TextoCampo, para armazenar os textos que serão exibidos na hora de pedir e alterar os dados de um cadastro.
 	 **/
 	typedef struct {
-		char displayCampo[30];
+		char displayCampo[70];
 	} TextoCampo;
 
 //

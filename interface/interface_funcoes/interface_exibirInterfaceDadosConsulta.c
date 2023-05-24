@@ -2,7 +2,7 @@
 #include "../interface.h"
 
 void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
-	int i, j;
+	int i, j, k;
 	char iString[3];
 	
 	Display *displayCabecalhoAtual;
@@ -28,8 +28,18 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
 					}
 					
-					for(j = 0; j < strlen(clientes[i].nome); j++) {
+					if(strlen(clientes[i].nome) > 34) {
+						k = 34;
+					} else {
+						k = strlen(clientes[i].nome);
+					}
+					for(j = 0; j < k; j++) {
 						displayItemAtual[0].linhaDisplay[16 + j] = clientes[i].nome[j];
+					}
+					if(k != strlen(clientes[i].nome)) {
+						displayItemAtual[0].linhaDisplay[16 + k] = '.';
+						displayItemAtual[0].linhaDisplay[16 + k+1] = '.';
+						displayItemAtual[0].linhaDisplay[16 + k+2] = '.';
 					}
 					
 					for(j = 0; j < strlen(clientes[i].cpf); j++) {
@@ -65,8 +75,20 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 						displayItemAtual[0].linhaDisplay[2 + j] = funcionarios[i].status[j];
 					}
 					
-					for(j = 0; j < strlen(funcionarios[i].nome); j++) {
+					if(strlen(funcionarios[i].nome) > 34) {
+						k = 34;
+					} else {
+						k = strlen(funcionarios[i].nome);
+					}
+					
+					for(j = 0; j < k; j++) {
 						displayItemAtual[0].linhaDisplay[27 + j] = funcionarios[i].nome[j];
+					}
+					
+					if(k != strlen(funcionarios[i].nome)) {
+						displayItemAtual[0].linhaDisplay[27 + k] = '.';
+						displayItemAtual[0].linhaDisplay[27 + k+1] = '.';
+						displayItemAtual[0].linhaDisplay[27 + k+2] = '.';
 					}
 					
 					for(j = 0; j < strlen(funcionarios[i].cpf); j++) {
@@ -98,8 +120,20 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
 					}
 					
-					for(j = 0; j < strlen(fornecedores[i].nomeFantasia); j++) {
+					if(strlen(fornecedores[i].nomeFantasia) > 34) {
+						k = 34;
+					} else {
+						k = strlen(fornecedores[i].nomeFantasia);
+					}
+					
+					for(j = 0; j < k; j++) {
 						displayItemAtual[0].linhaDisplay[16 + j] = fornecedores[i].nomeFantasia[j];
+					}
+					
+					if(k != strlen(funcionarios[i].nome)) {
+						displayItemAtual[0].linhaDisplay[16 + k] = '.';
+						displayItemAtual[0].linhaDisplay[16 + k+1] = '.';
+						displayItemAtual[0].linhaDisplay[16 + k+2] = '.';
 					}
 					
 					for(j = 0; j < strlen(fornecedores[i].cnpj); j++) {

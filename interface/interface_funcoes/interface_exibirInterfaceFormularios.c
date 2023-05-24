@@ -174,39 +174,43 @@ void exibirInterfaceFormularios(int posicao) {
 					}
 				//Display Telefone
 					for(j = 0; j < strlen(fornecedores[posicao].telefone); j++) {
-						pCopiaDisplay[3].linhaDisplay[47 + j] = fornecedores[posicao].telefone[j];
+						pCopiaDisplay[3].linhaDisplay[61 + j] = fornecedores[posicao].telefone[j];
 					}
 				//Display E-mail
 					for(j = 0; j < strlen(fornecedores[posicao].email); j++) {
-						pCopiaDisplay[3].linhaDisplay[78 + j] = fornecedores[posicao].email[j];
+						pCopiaDisplay[5].linhaDisplay[13 + j] = fornecedores[posicao].email[j];
+					}
+				//Display Site
+					for(j = 0; j < strlen(fornecedores[posicao].site); j++) {
+						pCopiaDisplay[5].linhaDisplay[57 + j] = fornecedores[posicao].site[j];
 					}
 				//Display Endereço
 					for(j = 0; j < strlen(fornecedores[posicao].endereco); j++) {
-						pCopiaDisplay[5].linhaDisplay[16 + j] = fornecedores[posicao].endereco[j];
+						pCopiaDisplay[7].linhaDisplay[16 + j] = fornecedores[posicao].endereco[j];
 					}
 				//Display Número Endereço
 					for(j = 0; j < strlen(fornecedores[posicao].numEndereco); j++) {
-						pCopiaDisplay[5].linhaDisplay[93 + j] = fornecedores[posicao].numEndereco[j];
+						pCopiaDisplay[7].linhaDisplay[93 + j] = fornecedores[posicao].numEndereco[j];
 					}
 				//Display Complemento Endereço
 					for(j = 0; j < strlen(fornecedores[posicao].compEndereco); j++) {
-						pCopiaDisplay[7].linhaDisplay[19 + j] = fornecedores[posicao].compEndereco[j];
+						pCopiaDisplay[9].linhaDisplay[19 + j] = fornecedores[posicao].compEndereco[j];
 					}
 				//Display Bairro
 					for(j = 0; j < strlen(fornecedores[posicao].bairro); j++) {
-						pCopiaDisplay[7].linhaDisplay[59 + j] = fornecedores[posicao].bairro[j];
+						pCopiaDisplay[9].linhaDisplay[59 + j] = fornecedores[posicao].bairro[j];
 					}
 				//Display CEP
 					for(j = 0; j < strlen(fornecedores[posicao].cep); j++) {
-						pCopiaDisplay[9].linhaDisplay[11 + j] = fornecedores[posicao].cep[j];
+						pCopiaDisplay[11].linhaDisplay[12 + j] = fornecedores[posicao].cep[j];
 					}
 				//Display Cidade
 					for(j = 0; j < strlen(fornecedores[posicao].cidade); j++) {
-						pCopiaDisplay[9].linhaDisplay[42 + j] = fornecedores[posicao].cidade[j];
+						pCopiaDisplay[11].linhaDisplay[44 + j] = fornecedores[posicao].cidade[j];
 					}
 				//Display Estado
 					for(j = 0; j < strlen(fornecedores[posicao].estado); j++) {
-						pCopiaDisplay[9].linhaDisplay[94 + j] = fornecedores[posicao].estado[j];
+						pCopiaDisplay[11].linhaDisplay[94 + j] = fornecedores[posicao].estado[j];
 					}
 				break;
 			default:

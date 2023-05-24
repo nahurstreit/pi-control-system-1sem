@@ -5,17 +5,17 @@ void exibirMensagem() {
 	char res[50];
 	
 	switch(mensagem) {
-		case 1:
+		case Mensagem_Cadastro_Novo:
 			strcpy(res, "Sucesso! Cadastro Concluído!");
 			break;
-		case 2:
-			strcpy(res, "Sucesso! Campo alterado!");
-			break;
-		case 3:
+		case Mensagem_Cadastro_Excluido:
 			strcpy(res, "Cadastro Excluído!");
 			break;
-		case 4:
+		case Mensagem_Cadastro_Cancelado:
 			strcpy(res, "Cadastro Cancelado!");
+			break;
+		case Mensagem_CampoAlterado:
+			strcpy(res, "Sucesso! Campo alterado!");
 			break;
 		default:;
 	}

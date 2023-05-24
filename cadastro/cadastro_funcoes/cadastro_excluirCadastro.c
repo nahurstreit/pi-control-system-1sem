@@ -42,6 +42,7 @@ void excluirCadastro(int posicaoConsultaAtual) {
 			strcpy(fornecedores[posicaoConsultaAtual].cnpj, "");
 			strcpy(fornecedores[posicaoConsultaAtual].telefone, "");
 			strcpy(fornecedores[posicaoConsultaAtual].email, "");
+			strcpy(fornecedores[posicaoConsultaAtual].site, "");
 			strcpy(fornecedores[posicaoConsultaAtual].endereco, "");
 			strcpy(fornecedores[posicaoConsultaAtual].numEndereco, "");
 			strcpy(fornecedores[posicaoConsultaAtual].compEndereco, "");

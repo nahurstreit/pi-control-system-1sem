@@ -1,7 +1,6 @@
 #include "../../global/global.h"
 #include "../cadastro.h"
 
-
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
 void novoCadastro() {
 	char stringHolder[MAX_STRING];
@@ -28,7 +27,7 @@ void novoCadastro() {
 		case 3:
 			camposAtuais = camposFornecedor;
 			posicao = posicaoDisponivel(vetorRefFornecedores);
-			limiteContador = 11;
+			limiteContador = 12;
 			break;
 	}
 	
@@ -92,11 +91,11 @@ void novoCadastro() {
 					if(contadorCampo == holderContadorCampo) {
 						continue;
 					} else if(contadorCampo < 0 || contadorCampo >= limiteContador) {
-						erro = 6;
+						erro = Erro_NovoCadastro_Mudar_CampoInvalido;
 						contadorCampo = holderContadorCampo;
 						continue;
 					} else if(contadorCampo > holderContadorCampo && contadorCampo < limiteContador) {
-						erro = 7; 
+						erro = Erro_NovoCadastro_Mudar_AindaNaoDigitou; 
 						contadorCampo = holderContadorCampo;
 						continue;
 					} else {
@@ -105,7 +104,7 @@ void novoCadastro() {
 					}
 				}
 			} else {
-				erro = alterar > 0 ? 8 : 5;
+				erro = alterar > 0 ? Erro_NovoCadastro_Mudar_SoPodeOPrimeiro : Erro_NovoCadastro_Mudar_NenhumCampoAinda;
 				continue;
 			}
 		}
@@ -114,15 +113,15 @@ void novoCadastro() {
 		inserirString(posicao, stringHolder, pContadorCampo);
 		
 		//Caso o usuário tente mudar um dado e consiga alterar o dado com sucesso, exibe uma mensagem indicando que o campo foi alterado. Se não estiver mudando um dado, a mensagem não aparece.
-		if(alterar > 0) {
-			mensagem = 2;
+		if(alterar > 0 && erro == 0) {
+			mensagem = Mensagem_CampoAlterado;
 			contadorCampo = holderContadorCampo;
 			alterar = 0;
 			continue;
 		}
 		
 		//Fluxo normal de contador, para ir percorrendo entre os campos.
-		contadorCampo++;
+		if(erro == 0) contadorCampo++;
 
 	} while(contadorCampo < limiteContador);
 	
@@ -133,8 +132,8 @@ void novoCadastro() {
 		exibirInterfaceFormularios(posicao);
 		printf("\n\nEnviando Cadastro...\n");
 		system("pause");
-		mensagem = 1;
+		mensagem = Mensagem_Cadastro_Novo;
 	} else {
-		mensagem = 4;
+		mensagem = Mensagem_Cadastro_Cancelado;
 	}
 }

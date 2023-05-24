@@ -13,6 +13,6 @@ void handleSalvar(int caso) {
 			salvarArquivo_Fornecedores();
 			break;
 		default:
-			erro = 9;
+			erro = Erro_Arquivo_ErroAoLerArquivos;
 	}
 }

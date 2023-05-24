@@ -3,6 +3,7 @@
 
 #include "../global/global.h"
 #include "../arquivo/arquivo.h"
+#include "../validar/validar.h"
 #include "cadastro_var/cadastro_var.h"
 
 //Declaração das funções a serem utilizadas pelo código
@@ -187,6 +188,5 @@
 	 **/
 	extern void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod);
 	
-	extern bool validarPalavraChave(char string[], char stringChave[]);
 
 #endif

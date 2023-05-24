@@ -6,7 +6,7 @@
 
 void main() {
 	setlocale(LC_ALL, "Portuguese");
-	menuAtual = menuPrincipal;
+	menuAtual = menuCadastro;
 	
 	popularVetores();
 

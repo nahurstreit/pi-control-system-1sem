@@ -4,7 +4,7 @@
 //Funções a serem executadas pelas opções dos Menus
 	//Funções de chamada do Menu
 		void exibirMenuPrincipal() {
-			menuAtual = menuPrincipal;
+			menuAtual = menuCadastro;
 		}
 		
 			//Funções menuCadastro

@@ -7,6 +7,5 @@ void exibirLogotipo() {
 	for(i = 0; i < 6;i++) {
 		printf("%s\n", displayRefLogoTipo[i]);
 	}
-	printf("\n");
 
 }

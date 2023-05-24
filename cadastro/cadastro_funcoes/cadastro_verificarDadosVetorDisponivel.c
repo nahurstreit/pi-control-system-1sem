@@ -5,6 +5,6 @@ void verificarDadosVetorDisponivel(int *vetorReferencia, int posicaoConsultada) 
 	posicaoConsultada -= 1;
 	
 	if(vetorReferencia[posicaoConsultada] == 0) {
-		erro = 4;
+		erro = Erro_Consulta_NaoExiste;
 	}
 }

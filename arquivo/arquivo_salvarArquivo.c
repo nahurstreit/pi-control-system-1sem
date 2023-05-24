@@ -11,7 +11,7 @@ void salvarArquivo_Clientes(){
 
     if(pArq_Clientes == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        erro = 9;
+        erro = Erro_Arquivo_ErroAoLerArquivos;
     }
 	
 	int contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
@@ -20,54 +20,28 @@ void salvarArquivo_Clientes(){
 	char stringLinha[MAX_STRING * 11];
 	char *pStringLinha = stringLinha;
 	
-	char stringNome[MAX_STRING];
-	char stringCpf[MAX_STRING];
-	char stringDataNascimento[MAX_STRING];
-	char stringTelefone[MAX_STRING];
-	char stringEmail[MAX_STRING];
-	char stringEndereco[MAX_STRING];
-	char stringNumEndereco[6];
-	char stringCompEndereco[MAX_STRING];
-	char stringBairro[MAX_STRING];
-	char stringCep[MAX_STRING];
-	char stringCidade[MAX_STRING];
-	char stringEstado[MAX_STRING];
-	
 	for(i = 0; i < MAX_VETOR; i++) {
 		strcpy(stringLinha, "");
 		
 		if(contadorDadosExistentes <= 0) break;
 		
 		if(vetorRefClientes[i] == 1) {
-			strcpy(stringNome, clientes[i].nome);
-			strcpy(stringCpf, clientes[i].cpf);
-			strcpy(stringDataNascimento, clientes[i].dataNascimento);
-			strcpy(stringTelefone, clientes[i].telefone);
-			strcpy(stringEmail, clientes[i].email);
-			strcpy(stringEndereco, clientes[i].endereco);
-			strcpy(stringNumEndereco, clientes[i].numEndereco);
-			strcpy(stringCompEndereco, clientes[i].compEndereco);
-			strcpy(stringBairro, clientes[i].bairro);
-			strcpy(stringCep, clientes[i].cep);
-			strcpy(stringCidade, clientes[i].cidade);
-			strcpy(stringEstado, clientes[i].estado);
-			
-			criarLinhaArquivo(pStringLinha, stringNome);
-			criarLinhaArquivo(pStringLinha, stringCpf);
-			criarLinhaArquivo(pStringLinha, stringDataNascimento);
-			criarLinhaArquivo(pStringLinha, stringTelefone);
-			criarLinhaArquivo(pStringLinha, stringEmail);
-			criarLinhaArquivo(pStringLinha, stringEndereco);
-			criarLinhaArquivo(pStringLinha, stringNumEndereco);
-			criarLinhaArquivo(pStringLinha, stringCompEndereco);
-			criarLinhaArquivo(pStringLinha, stringBairro);
-			criarLinhaArquivo(pStringLinha, stringCep);
-			criarLinhaArquivo(pStringLinha, stringCidade);
-			criarLinhaArquivo(pStringLinha, stringEstado);
+			criarLinhaArquivo(pStringLinha, clientes[i].nome);
+			criarLinhaArquivo(pStringLinha, clientes[i].cpf);
+			criarLinhaArquivo(pStringLinha, clientes[i].dataNascimento);
+			criarLinhaArquivo(pStringLinha, clientes[i].telefone);
+			criarLinhaArquivo(pStringLinha, clientes[i].email);
+			criarLinhaArquivo(pStringLinha, clientes[i].endereco);
+			criarLinhaArquivo(pStringLinha, clientes[i].numEndereco);
+			criarLinhaArquivo(pStringLinha, clientes[i].compEndereco);
+			criarLinhaArquivo(pStringLinha, clientes[i].bairro);
+			criarLinhaArquivo(pStringLinha, clientes[i].cep);
+			criarLinhaArquivo(pStringLinha, clientes[i].cidade);
+			criarLinhaArquivo(pStringLinha, clientes[i].estado);
 			strcat(stringLinha, "\n");
 			contadorDadosExistentes--;
 		} else {
-			strcat(stringLinha, "!<>\n");
+			strcat(stringLinha, "!<>;\n");
 		}
 		
 		fprintf(pArq_Clientes, stringLinha);
@@ -85,7 +59,7 @@ void salvarArquivo_Funcionarios(){
 
     if(pArq_Funcionarios == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        erro = 9;
+        erro = Erro_Arquivo_ErroAoLerArquivos;
     }
 	
 	int contadorDadosExistentes = calcularDadosExistentes(vetorRefFuncionarios);
@@ -94,66 +68,32 @@ void salvarArquivo_Funcionarios(){
 	char stringLinha[MAX_STRING * 11];
 	char *pStringLinha = stringLinha;
 	
-	char stringNome[MAX_STRING];
-	char stringStatus[MAX_STRING];
-	char stringCpf[MAX_STRING];
-	char stringDataNascimento[MAX_STRING];
-	char stringEstadoCivil[MAX_STRING];
-	char stringDataAdmissao[MAX_STRING];
-	char stringSalarioBase[MAX_STRING];
-	char stringTelefone[MAX_STRING];
-	char stringEmail[MAX_STRING];
-	char stringEndereco[MAX_STRING];
-	char stringNumEndereco[6];
-	char stringCompEndereco[MAX_STRING];
-	char stringBairro[MAX_STRING];
-	char stringCep[MAX_STRING];
-	char stringCidade[MAX_STRING];
-	char stringEstado[MAX_STRING];
-	
 	for(i = 0; i < MAX_VETOR; i++) {
 		strcpy(stringLinha, "");
 		
 		if(contadorDadosExistentes <= 0) break;
 		
-		if(vetorRefFuncionarios[i] == 1) {
-			strcpy(stringNome, funcionarios[i].nome);
-			strcpy(stringStatus, funcionarios[i].status);
-			strcpy(stringCpf, funcionarios[i].cpf);
-			strcpy(stringDataNascimento, funcionarios[i].dataNascimento);
-			strcpy(stringEstadoCivil, funcionarios[i].estadoCivil);
-			strcpy(stringDataAdmissao, funcionarios[i].dataAdmissao);
-			strcpy(stringSalarioBase, funcionarios[i].salarioBase);
-			strcpy(stringTelefone, funcionarios[i].telefone);
-			strcpy(stringEmail, funcionarios[i].email);
-			strcpy(stringEndereco, funcionarios[i].endereco);
-			strcpy(stringNumEndereco, funcionarios[i].numEndereco);
-			strcpy(stringCompEndereco, funcionarios[i].compEndereco);
-			strcpy(stringBairro, funcionarios[i].bairro);
-			strcpy(stringCep, funcionarios[i].cep);
-			strcpy(stringCidade, funcionarios[i].cidade);
-			strcpy(stringEstado, funcionarios[i].estado);
-			
-			criarLinhaArquivo(pStringLinha, stringNome);
-			criarLinhaArquivo(pStringLinha, stringStatus);
-			criarLinhaArquivo(pStringLinha, stringCpf);
-			criarLinhaArquivo(pStringLinha, stringDataNascimento);
-			criarLinhaArquivo(pStringLinha, stringEstadoCivil);
-			criarLinhaArquivo(pStringLinha, stringDataAdmissao);
-			criarLinhaArquivo(pStringLinha, stringSalarioBase);
-			criarLinhaArquivo(pStringLinha, stringTelefone);
-			criarLinhaArquivo(pStringLinha, stringEmail);
-			criarLinhaArquivo(pStringLinha, stringEndereco);
-			criarLinhaArquivo(pStringLinha, stringNumEndereco);
-			criarLinhaArquivo(pStringLinha, stringCompEndereco);
-			criarLinhaArquivo(pStringLinha, stringBairro);
-			criarLinhaArquivo(pStringLinha, stringCep);
-			criarLinhaArquivo(pStringLinha, stringCidade);
-			criarLinhaArquivo(pStringLinha, stringEstado);
+		if(vetorRefFuncionarios[i] == 1) {			
+			criarLinhaArquivo(pStringLinha, funcionarios[i].nome);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].status);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].cpf);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].dataNascimento);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].estadoCivil);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].dataAdmissao);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].salarioBase);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].telefone);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].email);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].endereco);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].numEndereco);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].compEndereco);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].bairro);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].cep);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].cidade);
+			criarLinhaArquivo(pStringLinha, funcionarios[i].estado);
 			strcat(stringLinha, "\n");
 			contadorDadosExistentes--;
 		} else {
-			strcat(stringLinha, "!<>\n");
+			strcat(stringLinha, "!<>;\n");
 		}
 		
 		fprintf(pArq_Funcionarios, stringLinha);
@@ -171,7 +111,7 @@ void salvarArquivo_Fornecedores(){
 
     if(pArq_Fornecedores == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        erro = 9;
+        erro = Erro_Arquivo_ErroAoLerArquivos;
     }
 	
 	int contadorDadosExistentes = calcularDadosExistentes(vetorRefFornecedores);
@@ -180,51 +120,28 @@ void salvarArquivo_Fornecedores(){
 	char stringLinha[MAX_STRING * 11];
 	char *pStringLinha = stringLinha;
 	
-	char stringNomeFantasia[MAX_STRING];
-	char stringCnpj[MAX_STRING];
-	char stringTelefone[MAX_STRING];
-	char stringEmail[MAX_STRING];
-	char stringEndereco[MAX_STRING];
-	char stringNumEndereco[6];
-	char stringCompEndereco[MAX_STRING];
-	char stringBairro[MAX_STRING];
-	char stringCep[MAX_STRING];
-	char stringCidade[MAX_STRING];
-	char stringEstado[MAX_STRING];
-	
 	for(i = 0; i < MAX_VETOR; i++) {
 		strcpy(stringLinha, "");
 		
 		if(contadorDadosExistentes <= 0) break;
 		
 		if(vetorRefFornecedores[i] == 1) {
-			strcpy(stringNomeFantasia, fornecedores[i].nomeFantasia);
-			strcpy(stringCnpj, fornecedores[i].cnpj);
-			strcpy(stringTelefone, fornecedores[i].telefone);
-			strcpy(stringEmail, fornecedores[i].email);
-			strcpy(stringEndereco, fornecedores[i].endereco);
-			strcpy(stringNumEndereco, fornecedores[i].numEndereco);
-			strcpy(stringCompEndereco, fornecedores[i].compEndereco);
-			strcpy(stringBairro, fornecedores[i].bairro);
-			strcpy(stringCep, fornecedores[i].cep);
-			strcpy(stringCidade, fornecedores[i].cidade);
-			strcpy(stringEstado, fornecedores[i].estado);
-			
-			criarLinhaArquivo(pStringLinha, stringNomeFantasia);
-			criarLinhaArquivo(pStringLinha, stringCnpj);
-			criarLinhaArquivo(pStringLinha, stringTelefone);
-			criarLinhaArquivo(pStringLinha, stringEmail);
-			criarLinhaArquivo(pStringLinha, stringEndereco);
-			criarLinhaArquivo(pStringLinha, stringNumEndereco);
-			criarLinhaArquivo(pStringLinha, stringCompEndereco);
-			criarLinhaArquivo(pStringLinha, stringBairro);
-			criarLinhaArquivo(pStringLinha, stringCep);
-			criarLinhaArquivo(pStringLinha, stringCidade);
-			criarLinhaArquivo(pStringLinha, stringEstado);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].nomeFantasia);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].cnpj);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].telefone);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].email);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].site);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].endereco);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].numEndereco);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].compEndereco);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].bairro);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].cep);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].cidade);
+			criarLinhaArquivo(pStringLinha, fornecedores[i].estado);
 			strcat(stringLinha, "\n");
 			contadorDadosExistentes--;
 		} else {
-			strcat(stringLinha, "!<>\n");
+			strcat(stringLinha, "!<>;\n");
 		}
 		
 		fprintf(pArq_Fornecedores, stringLinha);

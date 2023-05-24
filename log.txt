@@ -159,8 +159,28 @@ Arquivos:
 - Melhora na codificação do .gitignore, para incluir todos os arquivos .o e .exe
 
 22/05/2023
-Arquivos:
-- Criado arquivos e pastas referentes ao salvamento de dados inseridos no sistema.
+Arquivos: 
+(arquivo)
+- Criado arquivos e pastas referentes ao salvamento de dados inseridos no sistema. Pastas e arquivos chamados de "arquivos".
+	- Responsável por fazer a ponte entre o programa, que utiliza de vetores para fazer exibições e armazenamentos, entre o sistema de armazenamento em arquivos .txt;
+	-Fora adotada a estratégia de: 
+		- Campos vazios são representados por: <>
+		- Linhas vazias são representadas por !<>
 
-arquivo.h e arquivos_
-- Responsáveis por controlar a interação de salvamento no vetor e salvamento no arquivo de texto, distribuídos em outras pastas dentro da nova pasta chamada: "data".
+23/05/2023 e 24/05/2023
+(global)
+- Redefinição dos tipos das variáveis globais: 'erro' e 'mensagem', para enums que facilitam a leitura e identificação de exibição de erros no código. 
+
+(validar)
+- Adicionado arquivos e pastas referentes à validação de dados no sistema.
+	- Adicionada validação para inputs de todos os cadastros.
+	- Adicionada validação com cálculo para CPF e CNPJ, além de Estados do Brasil.
+
+(interface e cadastro)
+- Melhorado o tamanho máximo de inputs de usuário para se adequar ao espaçamento da interface.
+- Melhorado o display simplificado para nomes de usuário maiores do que o normal.
+- Adicionado novo campo aos fornecedores para melhorar o espaçamento da interface. Campo novo: site.
+- Em cadastro a função validarPalavraChave foi realocada para as pastas de validar.
+
+(data)
+- Adicionado nas três categorias de registro, arquivos de teste com 50, 100 e 1000 cadastros, para teste de desempenho e volume. Para usar, basta copiar e colar dentro do arquivo respectivo da categoria. Exemplo: Em clientes, copiar o conteúdo de data_Clientes(50units).txt para data_Clientes.txt.

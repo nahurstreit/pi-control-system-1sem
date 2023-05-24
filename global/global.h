@@ -11,6 +11,7 @@
 
 #include "global_define.h"
 #include "global_struct.h"
+#include "global_enum.h"
 #include "global_var/global_var.h"
 
 #endif

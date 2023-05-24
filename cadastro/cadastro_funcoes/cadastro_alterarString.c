@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../validar/validar.h"
 #include "../cadastro.h"
 
 void alterarString(int posicao, char stringNova[MAX_STRING], int campo) {
@@ -6,127 +7,130 @@ void alterarString(int posicao, char stringNova[MAX_STRING], int campo) {
 		case 1:
 			switch(campo) {
 				case 0:
-					strcpy(clientes[posicao].nome, stringNova);
+					if(validarEntrada(stringNova, true, false, true, MAX_CAMPO_NOME__CLIENTE)) strcpy(clientes[posicao].nome, stringNova);
 					break;
 				case 1:
-					strcpy(clientes[posicao].cpf, stringNova);
+					if(validarCPF(stringNova)) strcpy(clientes[posicao].cpf, stringNova);
 					break;
 				case 2:
-					strcpy(clientes[posicao].dataNascimento, stringNova);
+					if(validarDataNascimento(stringNova)) strcpy(clientes[posicao].dataNascimento, stringNova);
 					break;
 				case 3 :
-					strcpy(clientes[posicao].telefone, stringNova);
+					if(validarTelefone(stringNova)) strcpy(clientes[posicao].telefone, stringNova);
 					break;
 				case 4:
-					strcpy(clientes[posicao].email, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_EMAIL__CLIENTE)) strcpy(clientes[posicao].email, stringNova);
 					break;	
 				case 5:
-					strcpy(clientes[posicao].endereco, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_ENDERECO__CLIENTE)) strcpy(clientes[posicao].endereco, stringNova);
 					break;
 				case 6:
-					strcpy(clientes[posicao].numEndereco, stringNova);
+					if(validarEntrada(stringNova, true, true, false, MAX_CAMPO_NUMENDERECO__CLIENTE)) strcpy(clientes[posicao].numEndereco, stringNova);
 					break;
 				case 7:
-					strcpy(clientes[posicao].compEndereco, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_COMPENDERECO__CLIENTE)) strcpy(clientes[posicao].compEndereco, stringNova);
 					break;
 				case 8:
-					strcpy(clientes[posicao].bairro, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_BAIRRO__CLIENTE)) strcpy(clientes[posicao].bairro, stringNova);
 					break;
 				case 9:
-					strcpy(clientes[posicao].cep, stringNova);
+					if(validarCEP(stringNova)) strcpy(clientes[posicao].cep, stringNova);
 					break;
 				case 10:
-					strcpy(clientes[posicao].cidade, stringNova);
+					if(validarEntrada(stringNova, true, false, true, MAX_CAMPO_CIDADE__CLIENTE)) strcpy(clientes[posicao].cidade, stringNova);
 					break;
 				default:
-					strcpy(clientes[posicao].estado, stringNova);
+					if(validarEstado(stringNova)) strcpy(clientes[posicao].estado, stringNova);
 			}
 			break;
 		case 2:
 			switch(campo) {
 				case 0:
-					strcpy(funcionarios[posicao].nome, stringNova);
+					if(validarEntrada(stringNova, true, false, true, MAX_CAMPO_NOME__FUNCIONARIO)) strcpy(funcionarios[posicao].nome, stringNova);
 					break;
 				case 1:
-					strcpy(funcionarios[posicao].status, stringNova);
+					if(validarStatus(stringNova)) strcpy(funcionarios[posicao].status, stringNova);
 					break;				
 				case 2:
-					strcpy(funcionarios[posicao].cpf, stringNova);
+					if(validarCPF(stringNova)) strcpy(funcionarios[posicao].cpf, stringNova);
 					break;
 				case 3:
-					strcpy(funcionarios[posicao].dataNascimento, stringNova);
+					if(validarDataNascimento(stringNova)) strcpy(funcionarios[posicao].dataNascimento, stringNova);					
 					break;
 				case 4:
-					strcpy(funcionarios[posicao].estadoCivil, stringNova);
+					if(validarEstadoCivil(stringNova)) strcpy(funcionarios[posicao].estadoCivil, stringNova);
 					break;
 				case 5:
-					strcpy(funcionarios[posicao].dataAdmissao, stringNova);
+					if(validarDataAdmissao(stringNova)) strcpy(funcionarios[posicao].dataAdmissao, stringNova);
 					break;
 				case 6:
-					strcpy(funcionarios[posicao].salarioBase, stringNova);
+					if(validarEntrada(stringNova, false, true, false, 10)) strcpy(funcionarios[posicao].salarioBase, stringNova);
 					break;
 				case 7:
-					strcpy(funcionarios[posicao].telefone, stringNova);
+					if(validarTelefone(stringNova)) strcpy(funcionarios[posicao].telefone, stringNova);					
 					break;
 				case 8:
-					strcpy(funcionarios[posicao].email, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_EMAIL__FUNCIONARIO)) strcpy(funcionarios[posicao].email, stringNova);
 					break;	
 				case 9:
-					strcpy(funcionarios[posicao].endereco, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_ENDERECO__FUNCIONARIO)) strcpy(funcionarios[posicao].endereco, stringNova);
 					break;
 				case 10:
-					strcpy(funcionarios[posicao].numEndereco, stringNova);
+					if(validarEntrada(stringNova, true, true, false, MAX_CAMPO_NUMENDERECO__FUNCIONARIO)) strcpy(funcionarios[posicao].numEndereco, stringNova);
 					break;
 				case 11:
-					strcpy(funcionarios[posicao].compEndereco, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_COMPENDERECO__FUNCIONARIO)) strcpy(funcionarios[posicao].compEndereco, stringNova);
 					break;
 				case 12:
-					strcpy(funcionarios[posicao].bairro, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_BAIRRO__FUNCIONARIO)) strcpy(funcionarios[posicao].bairro, stringNova);
 					break;
 				case 13:
-					strcpy(funcionarios[posicao].cep, stringNova);
+					if(validarCEP(stringNova)) strcpy(funcionarios[posicao].cep, stringNova);
 					break;
 				case 14:
-					strcpy(funcionarios[posicao].cidade, stringNova);
+					if(validarEntrada(stringNova, true, false, true, MAX_CAMPO_CIDADE__FUNCIONARIO)) strcpy(funcionarios[posicao].cidade, stringNova);
 					break;
 				default: 
-					strcpy(funcionarios[posicao].estado, stringNova);
+					if(validarEstado(stringNova)) strcpy(funcionarios[posicao].estado, stringNova);
 			}
 			break;
 		case 3:
 			switch(campo) {
 				case 0:
-					strcpy(fornecedores[posicao].nomeFantasia, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_NOMEFANTASIA__FORNECEDOR)) strcpy(fornecedores[posicao].nomeFantasia, stringNova);
 					break;
 				case 1:
-					strcpy(fornecedores[posicao].cnpj, stringNova);
+					if(validarCNPJ(stringNova)) strcpy(fornecedores[posicao].cnpj, stringNova);
 					break;
 				case 2:
-					strcpy(fornecedores[posicao].telefone, stringNova);
+					if(validarTelefone(stringNova)) strcpy(fornecedores[posicao].telefone, stringNova);	
 					break;
 				case 3:
-					strcpy(fornecedores[posicao].email, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_EMAIL__FORNECEDOR)) strcpy(fornecedores[posicao].email, stringNova);
 					break;
 				case 4:
-					strcpy(fornecedores[posicao].endereco, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_SITE__FORNECEDOR)) strcpy(fornecedores[posicao].site, stringNova);
 					break;
 				case 5:
-					strcpy(fornecedores[posicao].numEndereco, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_ENDERECO__FORNECEDOR)) strcpy(fornecedores[posicao].endereco, stringNova);					
 					break;
 				case 6:
-					strcpy(fornecedores[posicao].compEndereco, stringNova);
+					if(validarEntrada(stringNova, true, true, false, MAX_CAMPO_NUMENDERECO__FORNECEDOR)) strcpy(fornecedores[posicao].numEndereco, stringNova);					
 					break;
 				case 7:
-					strcpy(fornecedores[posicao].bairro, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_COMPENDERECO__FORNECEDOR)) strcpy(fornecedores[posicao].compEndereco, stringNova);					
 					break;
 				case 8:
-					strcpy(fornecedores[posicao].cep, stringNova);
+					if(validarEntrada(stringNova, false, true, true, MAX_CAMPO_BAIRRO__FORNECEDOR)) strcpy(fornecedores[posicao].bairro, stringNova);
 					break;
 				case 9:
-					strcpy(fornecedores[posicao].cidade, stringNova);
+					if(validarCEP(stringNova)) strcpy(fornecedores[posicao].cep, stringNova);
 					break;
-				default: 
-					strcpy(fornecedores[posicao].estado, stringNova);
+				case 10:
+					if(validarEntrada(stringNova, true, false, true, MAX_CAMPO_CIDADE__FORNECEDOR)) strcpy(fornecedores[posicao].cidade, stringNova);					
+					break;
+				default:
+					if(validarEstado(stringNova)) strcpy(fornecedores[posicao].estado, stringNova);					
 			}
 			break;
 	}

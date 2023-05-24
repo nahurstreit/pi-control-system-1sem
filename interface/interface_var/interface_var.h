@@ -10,7 +10,7 @@
 		
 		extern Display displayRefFormularioCadastroFuncionario[15];
 		
-		extern Display displayRefFormularioCadastroFornecedor[11];
+		extern Display displayRefFormularioCadastroFornecedor[13];
 	//
 
 	//Display de consulta

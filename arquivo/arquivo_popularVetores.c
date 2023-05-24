@@ -19,7 +19,7 @@ void popularVetor_Clientes() {
 
     if(pArq_Clientes == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        erro = 9;
+        erro = Erro_Arquivo_ErroAoLerArquivos;
     }
 
     int i = 0;
@@ -80,7 +80,7 @@ void popularVetor_Clientes() {
 	        if (token != NULL) {
 	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(clientes[i].numEndereco, token, 6 - 1);
-	            clientes[i].numEndereco[6] = '\0';
+	            clientes[i].numEndereco[MAX_STRING - 1] = '\0';
 	        }
 	        
 	        token = strtok(NULL, ";");
@@ -138,7 +138,7 @@ void popularVetor_Funcionarios() {
 
     if(pArq_Funcionarios == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        erro = 9;
+        erro = Erro_Arquivo_ErroAoLerArquivos;
     }
 
     int i = 0;
@@ -149,6 +149,7 @@ void popularVetor_Funcionarios() {
         
         if(!checarLinhaNula(token)) {
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].nome, token, MAX_STRING - 1);
 	            funcionarios[i].nome[MAX_STRING - 1] = '\0';
 	        }
@@ -156,6 +157,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	        
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].status, token, MAX_STRING - 1);
 	            funcionarios[i].status[MAX_STRING - 1] = '\0';
 	        }
@@ -163,6 +165,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].cpf, token, MAX_STRING - 1);
 	            funcionarios[i].cpf[MAX_STRING - 1] = '\0';
 	        }
@@ -170,6 +173,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].dataNascimento, token, MAX_STRING - 1);
 	            funcionarios[i].dataNascimento[MAX_STRING - 1] = '\0';
 	        }
@@ -177,6 +181,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	        
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].estadoCivil, token, MAX_STRING - 1);
 	            funcionarios[i].estadoCivil[MAX_STRING - 1] = '\0';
 	        }
@@ -184,6 +189,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	        
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].dataAdmissao, token, MAX_STRING - 1);
 	            funcionarios[i].dataAdmissao[MAX_STRING - 1] = '\0';
 	        }
@@ -191,6 +197,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	        
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].salarioBase, token, MAX_STRING - 1);
 	            funcionarios[i].salarioBase[MAX_STRING - 1] = '\0';
 	        }
@@ -198,6 +205,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].telefone, token, MAX_STRING - 1);
 	            funcionarios[i].telefone[MAX_STRING - 1] = '\0';
 	        }
@@ -205,6 +213,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].email, token, MAX_STRING - 1);
 	            funcionarios[i].email[MAX_STRING - 1] = '\0';
 	        }
@@ -212,6 +221,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].endereco, token, MAX_STRING - 1);
 	            funcionarios[i].endereco[MAX_STRING - 1] = '\0';
 	        }
@@ -219,13 +229,15 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].numEndereco, token, 6 - 1);
-	            funcionarios[i].numEndereco[6] = '\0';
+	            funcionarios[i].numEndereco[MAX_STRING - 1] = '\0';
 	        }
 	        
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].compEndereco, token, MAX_STRING - 1);
 	            funcionarios[i].compEndereco[MAX_STRING - 1] = '\0';
 	        }
@@ -233,6 +245,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].bairro, token, MAX_STRING - 1);
 	            funcionarios[i].bairro[MAX_STRING - 1] = '\0';
 	        }
@@ -240,6 +253,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].cep, token, MAX_STRING - 1);
 	            funcionarios[i].cep[MAX_STRING - 1] = '\0';
 	        }
@@ -247,6 +261,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].cidade, token, MAX_STRING - 1);
 	            funcionarios[i].cidade[MAX_STRING - 1] = '\0';
 	        }
@@ -254,6 +269,7 @@ void popularVetor_Funcionarios() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(funcionarios[i].estado, token, MAX_STRING - 1);
 	            funcionarios[i].estado[MAX_STRING - 1] = '\0';
 	        }
@@ -273,7 +289,7 @@ void popularVetor_Fornecedores() {
 
     if(pArq_Fornecedores == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        erro = 9;
+        erro = Erro_Arquivo_ErroAoLerArquivos;
     }
 
     int i = 0;
@@ -284,6 +300,7 @@ void popularVetor_Fornecedores() {
         
         if(!checarLinhaNula(token)) {
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].nomeFantasia, token, MAX_STRING - 1);
 	            fornecedores[i].nomeFantasia[MAX_STRING - 1] = '\0';
 	        }
@@ -291,6 +308,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].cnpj, token, MAX_STRING - 1);
 	            fornecedores[i].cnpj[MAX_STRING - 1] = '\0';
 	        }
@@ -298,6 +316,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].telefone, token, MAX_STRING - 1);
 	            fornecedores[i].telefone[MAX_STRING - 1] = '\0';
 	        }
@@ -305,6 +324,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].email, token, MAX_STRING - 1);
 	            fornecedores[i].email[MAX_STRING - 1] = '\0';
 	        }
@@ -312,6 +332,15 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	            strncpy(fornecedores[i].site, token, MAX_STRING - 1);
+	            fornecedores[i].site[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].endereco, token, MAX_STRING - 1);
 	            fornecedores[i].endereco[MAX_STRING - 1] = '\0';
 	        }
@@ -319,13 +348,15 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].numEndereco, token, 6 - 1);
-	            fornecedores[i].numEndereco[6] = '\0';
+	            fornecedores[i].numEndereco[MAX_STRING - 1] = '\0';
 	        }
 	        
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].compEndereco, token, MAX_STRING - 1);
 	            fornecedores[i].compEndereco[MAX_STRING - 1] = '\0';
 	        }
@@ -333,6 +364,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].bairro, token, MAX_STRING - 1);
 	            fornecedores[i].bairro[MAX_STRING - 1] = '\0';
 	        }
@@ -340,6 +372,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].cep, token, MAX_STRING - 1);
 	            fornecedores[i].cep[MAX_STRING - 1] = '\0';
 	        }
@@ -347,6 +380,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].cidade, token, MAX_STRING - 1);
 	            fornecedores[i].cidade[MAX_STRING - 1] = '\0';
 	        }
@@ -354,6 +388,7 @@ void popularVetor_Fornecedores() {
 	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
 	            strncpy(fornecedores[i].estado, token, MAX_STRING - 1);
 	            fornecedores[i].estado[MAX_STRING - 1] = '\0';
 	        }

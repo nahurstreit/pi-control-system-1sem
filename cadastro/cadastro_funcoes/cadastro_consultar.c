@@ -44,7 +44,7 @@ void consultaCadastro(int *estado) {
 				verificarDadosVetorDisponivel(vetorRefFornecedores, posicao);
 				break;
 			default:
-				 erro = 3;
+				 erro = Erro_Consulta_NaoPossivel;
 		}
 		
 		posicaoConsultaAtual = posicao-1;
@@ -65,5 +65,5 @@ void consultaCadastro(int *estado) {
 		}
 		
 		fflush(stdin);
-	} while(erro == 4);
+	} while(erro == Erro_Consulta_NaoExiste);
 }

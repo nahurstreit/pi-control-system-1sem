@@ -3,13 +3,14 @@
 
 #include "../global_define.h"
 #include "../global_struct.h"
+#include "../global_enum.h"
 
 extern Menu menuAtual;
 
 extern 	int escolhaUser; //Variável que armazenará qual é o valor digitado pelo usuário nas opções do Menu.
 
-extern int erro;
-extern int mensagem;
+extern Erro erro;
+extern Mensagem mensagem;
 
 //Vetores para armazenar e controlar o armazenamento dos clientes
 extern Cliente clientes[MAX_VETOR];

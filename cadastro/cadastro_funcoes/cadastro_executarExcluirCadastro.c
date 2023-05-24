@@ -39,7 +39,7 @@ void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod) {
 		
 	if(escolhaAlterar == 1) {
 		*pEscolhaUserMod = 0;
-		mensagem = 3;
+		mensagem = Mensagem_Cadastro_Excluido;
 		excluirCadastro(posicaoConsultaAtual);
 		handleSalvar(escolhaUser);
 		exibirInterfaceTitulo(tituloHolder, 1);

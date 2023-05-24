@@ -34,20 +34,20 @@
 			{
 				{"Criar novo Cadastro", 1, &exibirMenuNovoCadastro},
 				{"Consultar e Modificar Cadastros", 2, &exibirMenuConsultarCadastro},
-				{"Voltar ao Menu Inicial", 0, &exibirMenuPrincipal},
+				{"Sair", 0, &fimDoMenu},
 			}
 		};
 		
 			//Criar novo Cadastro
 				Menu menuNovoCadastro = {
 					"NOVO CADASTRO",
-					5,
+					4,
 					{
 						"Clientes", 1, &executarNovoCadastro,
 						"Funcionários", 2, &executarNovoCadastro,
 						"Fornecedores", 3, &executarNovoCadastro,
 						"Voltar ao Menu Anterior", 0, &exibirMenuCadastro,
-						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
+//						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}
 				};
 			//
@@ -55,13 +55,13 @@
 			//Consultar Cadastros
 				Menu menuConsultarCadastro = {
 					"CONSULTAR E MODIFICAR CADASTROS",
-					5,
+					4,
 					{
 						"Clientes", 1, &executarConsultaCadastro,
 						"Funcionários", 2, & executarConsultaCadastro,
 						"Fornecedores", 3, &executarConsultaCadastro,
 						"Voltar ao Menu Anterior", 0, &exibirMenuCadastro,
-						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
+//						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}
 				};
 				
@@ -74,7 +74,7 @@
 							"Alterar Todo o Cadastro", 2, &exibirMenuCadastro,
 							"Deletar o Cadastro", 3, &exibirMenuCadastro,
 							"Consultar Outro", 0, &exibirMenuConsultarCadastro,
-							"Voltar ao Menu Principal", 9, &exibirMenuPrincipal,
+							"Voltar ao Menu de Cadastros", 9, &exibirMenuPrincipal,
 						}
 					};
 			//
