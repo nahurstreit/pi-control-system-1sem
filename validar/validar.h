@@ -4,6 +4,7 @@
 
 //Funções de remoção
 void removerCaracteresEspeciais(char *pString, bool permitirEspacos);
+void removerPontoVirgula(char *pString);
 
 //Funções de verificação
 bool verificarContemLetras(char pString[]);

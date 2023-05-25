@@ -188,5 +188,7 @@
 	 **/
 	extern void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod);
 	
+	extern int consultarCPFouCNPJ(char string[]);
+	
 
 #endif

@@ -1,9 +1,11 @@
 #include "../../global/global.h"
-#include "../cadastro.h"
+#include "../../cadastro/cadastro.h"
+#include "../producao.h"
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
-void novoCadastro() {
+void novaOrdem() {
 	char stringHolder[MAX_STRING];
+	int escolhaEntrada = 5;
 	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int holderContadorCampo;
 	int *pContadorCampo = &contadorCampo;
@@ -13,50 +15,29 @@ void novoCadastro() {
 		int saida, alterar; //Variáveis responsáveis por controlar se o usuário está tentando sair ou alterar algum dado, durante o registro de um novo cadastro.
 	//
 	
-	switch(escolhaUser) {
-		case 1:
-			camposAtuais = camposCliente;
-			posicao = posicaoDisponivel(vetorRefClientes);
-			limiteContador = 12;
-			break;
-		case 2:
-			camposAtuais = camposFuncionario;
-			posicao = posicaoDisponivel(vetorRefFuncionarios);
-			limiteContador = 16;
-			break;
-		case 3:
-			camposAtuais = camposFornecedor;
-			posicao = posicaoDisponivel(vetorRefFornecedores);
-			limiteContador = 12;
-			break;
-		case 4:
-			camposAtuais = camposProduto;
-			posicao = posicaoDisponivel(vetorRefProdutos);
-			limiteContador = 2;
-			break;
-	}
+	posicao = posicaoDisponivel(vetorRefProducoes);
+	limiteContador = 5;
+	escolhaUser = 5;
 	
 	contadorCampo = 0;
+	alterar = 0;
 	
 	do {
 		saida = 0; //Zerando o valor de saída para poder controlar a exibição da mensagem de saída caso o usuário não digitar "SAIR".
-		 if(escolhaUser == 1) exibirInterfaceTitulo("NOVO CADASTRO DE CLIENTE", 1);
-		 else if(escolhaUser == 2) exibirInterfaceTitulo("NOVO CADASTRO DE FUNCIONÁRIO", 1);
-		 else if(escolhaUser == 3) exibirInterfaceTitulo("NOVO CADASTRO DE FORNECEDOR", 1);
-		 else exibirInterfaceTitulo("NOVO CADASTRO DE PRODUTO", 1);
+		exibirInterfaceTitulo("NOVA ORDEM DE PRODUÇÃO", 1);
 		
 		exibirMensagem();
 		exibirErro();
 
-		exibirInterfaceFormularios(posicao);
+		exibirInterfaceNovaProducao(posicao);
 		
 		//Exibe uma mensagem diferente na parte de baixo do formulário. Se o usuário estiver digitando o primeiro dado, apenas exibirá a opção de voltar, caso esteja em algum outro dado, aparece o texto de mudar.
 		contadorCampo > 0 ? exibirTextoMeio("Digite 'SAIR' para voltar ou 'MUDAR' para alterar algum dado.\n") :
 							exibirTextoMeio("Digite 'SAIR' para voltar\n");
 		
 		//Exibe uma mensagem diferente caso seja a primeira vez que esteja digitando um dado, ou se estiver digitando o dado novamente
-		alterar > 0 ? printf("\n[%d] Digite novamente %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo) :
-					  printf("\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
+		alterar > 0 ? printf("\n[%d] Digite novamente %s: ", contadorCampo+1, camposOrdem[contadorCampo].displayCampo) :
+					  printf("\n[%d] Digite %s: ", contadorCampo+1, camposOrdem[contadorCampo].displayCampo);
 		
 		//Recebe o dado
 		fgets(stringHolder, MAX_STRING, stdin);
@@ -116,7 +97,7 @@ void novoCadastro() {
 		}
 		
 		//Insere a string no vetor de dados
-		inserirString(posicao, stringHolder, pContadorCampo);
+		inserirStringProd(posicao, stringHolder, pContadorCampo);
 		
 		//Caso o usuário tente mudar um dado e consiga alterar o dado com sucesso, exibe uma mensagem indicando que o campo foi alterado. Se não estiver mudando um dado, a mensagem não aparece.
 		if(alterar > 0 && erro == 0) {
@@ -128,12 +109,14 @@ void novoCadastro() {
 		
 		//Fluxo normal de contador, para ir percorrendo entre os campos.
 		if(erro == 0) contadorCampo++;
+		
+		handleSalvar(escolhaUser);
 
 	} while(contadorCampo < limiteContador);
 	
 	//Se o usuário digitar 'SAIR', não exibirá a mensagem de "enviando cadastro". Apenas retornará ao menu anterior.
 	if(saida == 0) {
-		handleSalvar(escolhaUser);
+		
 		exibirInterfaceTitulo("NOVO CADASTRO", 1);
 		exibirInterfaceFormularios(posicao);
 		printf("\n\nEnviando Cadastro...\n");

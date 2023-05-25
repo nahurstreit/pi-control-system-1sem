@@ -4,8 +4,9 @@
 void exibirInterfaceFormularios(int posicao) {
 	int i, j;
 	char posicaoString[3];
+	char stringValorProduto[MAX_STRING];
 	Display *pDisplayAtual;
-	Display copiaDisplay[20];
+	Display copiaDisplay[30];
 	Display *pCopiaDisplay = copiaDisplay;
 	
 	switch(escolhaUser) {
@@ -21,11 +22,23 @@ void exibirInterfaceFormularios(int posicao) {
 			tamanhoDisplay = sizeof(displayRefFormularioCadastroFornecedor);
 			pDisplayAtual = displayRefFormularioCadastroFornecedor;
 			break;
+		case 4:
+			tamanhoDisplay = sizeof(displayRefFormularioCadastroProduto);
+			pDisplayAtual = displayRefFormularioCadastroProduto;
+			break;
+		case 5:
+			tamanhoDisplay = sizeof(displayRefFormularioNovaOrdem);
+			pDisplayAtual = displayRefFormularioNovaOrdem;
+			break;
 	}
+	
+	
 	
 	tamanhoDisplay /= sizeof(Display);
 	//Transforma a posição passada pelo usuário como int, para string, para conseguir ser exibida ao usuário
 	sprintf(&posicaoString[0], "%d", posicao+1);
+	
+	
 	
 	//Copia os formulários de Display em uma variável do tipo Display chamada copiaDisplay.
 	for(i = 0; i < tamanhoDisplay; i++) {
@@ -211,6 +224,18 @@ void exibirInterfaceFormularios(int posicao) {
 				//Display Estado
 					for(j = 0; j < strlen(fornecedores[posicao].estado); j++) {
 						pCopiaDisplay[11].linhaDisplay[94 + j] = fornecedores[posicao].estado[j];
+					}
+				break;
+			case 4:
+					for(j = 0; j < strlen(posicaoString); j++) {
+						pCopiaDisplay[1].linhaDisplay[11 + j] = posicaoString[j];
+					}
+					for(j = 0; j < strlen(produtos[posicao].nomeProduto); j++) {
+						pCopiaDisplay[1].linhaDisplay[38 + j] = produtos[posicao].nomeProduto[j];
+					}
+					sprintf(stringValorProduto, "%.2f", produtos[posicao].valorUnitario);
+					for(j = 0; j < strlen(stringValorProduto); j++) {
+						pCopiaDisplay[1].linhaDisplay[92 + j] = stringValorProduto[j];
 					}
 				break;
 			default:

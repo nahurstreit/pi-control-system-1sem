@@ -22,6 +22,10 @@ extern int vetorRefFuncionarios[MAX_VETOR];
 extern Fornecedor fornecedores[MAX_VETOR];
 extern int vetorRefFornecedores[MAX_VETOR];
 
+extern Produto produtos[MAX_VETOR];
+extern int vetorRefProdutos[MAX_VETOR];
 
+extern Producao producoes[MAX_VETOR];
+extern int vetorRefProducoes[MAX_VETOR];
 
 #endif

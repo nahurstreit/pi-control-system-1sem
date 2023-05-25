@@ -19,8 +19,14 @@ void exibirErro() {
 		case Erro_Input_CPF_Invalido:
 			strcpy(res, "Erro: CPF inválido!");
 			break;
+		case Erro_Input_CPF_JaCadastrado:
+			strcpy(res, "Erro: CPF já cadastrado no sistema!");
+			break;
 		case Erro_Input_CNPJ_Invalido:
 			strcpy(res, "Erro: CNPJ inválido!");
+			break;
+		case Erro_Input_CNPJ_JaCadastrado:
+			strcpy(res, "Erro: CNPJ já cadastrado no sistema!");
 			break;
 		case Erro_Input_DataNascimento_Invalida:
 			strcpy(res, "Erro: Data de Nascimento inválida!");
@@ -47,7 +53,7 @@ void exibirErro() {
 			strcpy(res, "Erro: Não foi possível realizar sua consulta!");
 			break;
 		case Erro_Consulta_NaoExiste:
-			strcpy(res, "Erro: Não existe nenhum registro para esse Número de Cadastro!");
+			strcpy(res, "Erro: Não existe nenhum registro para essa consulta!");
 			break;
 		case Erro_NovoCadastro_Mudar_NenhumCampoAinda:
 			strcpy(res, "Erro: Você ainda não digitou nenhum campo para poder alterar!");

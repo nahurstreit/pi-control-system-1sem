@@ -4,7 +4,7 @@
 //Funções a serem executadas pelas opções dos Menus
 	//Funções de chamada do Menu
 		void exibirMenuPrincipal() {
-			menuAtual = menuCadastro;
+			menuAtual = menuPrincipal;
 		}
 		
 			//Funções menuCadastro
@@ -16,6 +16,10 @@
 						menuAtual = menuNovoCadastro;
 					}
 						void executarNovoCadastro() {
+							novoCadastro();
+						}
+						
+						void executarNovoProduto() {
 							novoCadastro();
 						}
 					
@@ -37,12 +41,14 @@
 						
 			//
 			
-		/** Para uso posterior
+
 			//Funções menuOrdemProducao
 				void exibirMenuOrdemProducao() {
 					menuAtual = menuOrdemProducao;
 				}
 					void exibirMenuNovaOrdemProducao() {
+						escolhaUser = 5;
+						novaOrdem();
 						menuAtual = menuNovaOrdemProducao;
 					}
 					
@@ -50,7 +56,6 @@
 						menuAtual = menuConsultarOrdemProducao;
 					}
 			//
-		**/
 	//
 	
 	//Função de fim do Menu

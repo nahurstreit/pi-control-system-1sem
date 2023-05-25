@@ -3,6 +3,8 @@
 #include "../cadastro.h"
 
 void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
+	float valorUnit;
+	
 	switch(escolhaUser) {
 		case 1:
 			switch(*contadorCampo) {
@@ -131,6 +133,18 @@ void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contador
 					break;
 				default:
 					if(validarEstado(string)) strcpy(fornecedores[posicaoDisponivel].estado, string);					
+			}
+			break;
+		case 4:
+			switch(*contadorCampo) {
+				case 0:
+					removerPontoVirgula(string);
+					if(validarEntrada(string, false, true, true, 30)) strcpy(produtos[posicaoDisponivel].nomeProduto, string);
+					break;
+				case 1:
+					valorUnit = atof(string);
+					produtos[posicaoDisponivel].valorUnitario = valorUnit;
+					break;
 			}
 			break;
 	}

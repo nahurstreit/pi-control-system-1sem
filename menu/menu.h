@@ -15,14 +15,14 @@
 			extern void exibirMenuCadastro();
 				extern void exibirMenuNovoCadastro();
 					extern void executarNovoCadastro();
+					extern void executarNovoProduto();
 				extern void exibirMenuConsultarCadastro();
 					extern void executarConsultaCadastro();
 						extern void executarAlterarCadastro();
-		/** Para uso posterior
+
 			void exibirMenuOrdemProducao();
 				void exibirMenuNovaOrdemProducao();
-				void exibirMenuConsultarOrdemProducao();
-		**/				
+				void exibirMenuConsultarOrdemProducao();			
 	//
 
 	/**

@@ -18,10 +18,10 @@
 	//menuPrincipal
 		Menu menuPrincipal = {
 			"MENU",
-			2,
+			3,
 			{
 				{"Cadastros", 1, &exibirMenuCadastro},
-//				{"Ordem de Produção", 2, &exibirMenuOrdemProducao},
+				{"Ordem de Produção", 2, &exibirMenuOrdemProducao},
 				{"Sair", 0, &fimDoMenu},
 			}
 		};
@@ -34,20 +34,21 @@
 			{
 				{"Criar novo Cadastro", 1, &exibirMenuNovoCadastro},
 				{"Consultar e Modificar Cadastros", 2, &exibirMenuConsultarCadastro},
-				{"Sair", 0, &fimDoMenu},
+				{"Voltar ao Menu Inicial", 0, &exibirMenuPrincipal},
 			}
 		};
 		
 			//Criar novo Cadastro
 				Menu menuNovoCadastro = {
 					"NOVO CADASTRO",
-					4,
+					6,
 					{
 						"Clientes", 1, &executarNovoCadastro,
 						"Funcionários", 2, &executarNovoCadastro,
 						"Fornecedores", 3, &executarNovoCadastro,
+						"Produtos", 4, &executarNovoCadastro,
 						"Voltar ao Menu Anterior", 0, &exibirMenuCadastro,
-//						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
+						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}
 				};
 			//
@@ -55,13 +56,14 @@
 			//Consultar Cadastros
 				Menu menuConsultarCadastro = {
 					"CONSULTAR E MODIFICAR CADASTROS",
-					4,
+					5,
 					{
 						"Clientes", 1, &executarConsultaCadastro,
 						"Funcionários", 2, & executarConsultaCadastro,
 						"Fornecedores", 3, &executarConsultaCadastro,
+						"Produtos", 4, &executarConsultaCadastro,
 						"Voltar ao Menu Anterior", 0, &exibirMenuCadastro,
-//						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
+						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}
 				};
 				
@@ -80,7 +82,6 @@
 			//
 	//
 	
-/** Para uso Posterior
 	//menuOrdemProducao
 		Menu menuOrdemProducao = {
 			"ORDEM PRODUÇÃO",
@@ -114,7 +115,6 @@
 				};
 			//
 	//
-**/
 //
 
 //Criação de variáveis de escopo global para manipulação em funções

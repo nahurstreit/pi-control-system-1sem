@@ -12,6 +12,12 @@ void handleSalvar(int caso) {
 		case 3:
 			salvarArquivo_Fornecedores();
 			break;
+		case 4:
+			salvarArquivo_Produtos();
+			break;
+		case 5:
+			salvarArquivo_Producoes();
+			break;
 		default:
 			erro = Erro_Arquivo_ErroAoLerArquivos;
 	}

@@ -49,6 +49,11 @@ TextoCampo camposFornecedor[] = {
 	"o estado (sigla)",
 };
 
+TextoCampo camposProduto[] = {
+	"o nome do produto",
+	"o valor unitário de venda produto",
+};
+
 TextoCampo *camposAtuais;
 
 int tipoConsultaAtual;

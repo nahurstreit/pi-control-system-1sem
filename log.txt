@@ -184,3 +184,10 @@ Arquivos:
 
 (data)
 - Adicionado nas três categorias de registro, arquivos de teste com 50, 100 e 1000 cadastros, para teste de desempenho e volume. Para usar, basta copiar e colar dentro do arquivo respectivo da categoria. Exemplo: Em clientes, copiar o conteúdo de data_Clientes(50units).txt para data_Clientes.txt.
+
+25/05/2023
+(validacao)
+- Adicionada validação que impede a duplicação de CPFs e CNPJs no sistema.
+
+(cadastro e interface)
+- Adicionada uma nova categoria de cadastro: produtos. Responsável por armazenar dados de produtos para exibir na ordem de produção.

@@ -5,6 +5,7 @@ bool operacoesCNPJ(int *pCnpj);
 
 bool validarCNPJ(char *pCnpj) {
     int cnpjInt[14];
+    int i;
 
     removerCaracteresEspeciais(pCnpj, false);
     pCnpj[14] = '\0';
@@ -21,6 +22,13 @@ bool validarCNPJ(char *pCnpj) {
 
     vetorStringParaInteiro(pCnpj, cnpjInt, 14);
     vetorInteiroParaString(cnpjInt, pCnpj, 2);
+    
+    for(i = 0; i < MAX_VETOR; i++) {
+    	if(strncmp(pCnpj, fornecedores[i].cnpj, strlen(pCnpj)) == 0) {
+    		erro = Erro_Input_CNPJ_JaCadastrado;
+    		return false;
+		}
+	}
 
     if(operacoesCNPJ(cnpjInt)) {
         return true;

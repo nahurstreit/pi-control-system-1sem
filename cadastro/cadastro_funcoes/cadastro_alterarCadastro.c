@@ -16,6 +16,7 @@ void alterarCadastro() {
 		case 1: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE CLIENTES"); break;
 		case 2: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FUNCIONARIOS"); break;
 		case 3: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES"); break;
+		case 4: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE PRODUTOS"); break;
 	}
 	
 	do{
@@ -31,6 +32,7 @@ void alterarCadastro() {
 			case 1: camposAtuais = camposCliente; break;
 			case 2: camposAtuais = camposFuncionario; break;
 			case 3: camposAtuais = camposFornecedor; break;
+			case 4: camposAtuais = camposProduto; break;
 		}
 		
 		if(alterar == 0) {

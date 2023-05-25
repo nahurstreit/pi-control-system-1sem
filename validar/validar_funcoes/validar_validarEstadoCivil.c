@@ -3,6 +3,8 @@
 
 bool validarEstadoCivil(char *pString) {
 	
+	removerPontoVirgula(pString);
+	
 	if(verificarContemNumeros(pString)) {
 		erro = Erro_Input_ApenasLetras;
 		return false;

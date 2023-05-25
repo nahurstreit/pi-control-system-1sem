@@ -23,7 +23,6 @@
 			//
 	//
 	
-/** Para uso Posterior
 	//menuOrdemProducao
 		Menu menuOrdemProducao;
 		
@@ -35,7 +34,6 @@
 				Menu menuConsultarOrdemProducao;
 			//
 	//
-**/
 //
 
 //Criação de variáveis de escopo global para manipulação em funções

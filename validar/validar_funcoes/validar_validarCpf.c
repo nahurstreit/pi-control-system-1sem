@@ -5,6 +5,7 @@ bool operacoesCPF(int *pVetorIntCpf);
 
 bool validarCPF(char *pCpf) {
 	int cpfInt[11];
+	int i;
 	
     removerCaracteresEspeciais(pCpf, false);
     pCpf[11] = '\0';
@@ -21,6 +22,26 @@ bool validarCPF(char *pCpf) {
 
     vetorStringParaInteiro(pCpf, cpfInt, 11);
     vetorInteiroParaString(cpfInt, pCpf, 1);
+    
+    switch(escolhaUser) {
+    	case 1:
+		    for(i = 0; i < MAX_VETOR; i++) {
+		    	if(strncmp(pCpf, clientes[i].cpf, strlen(pCpf)) == 0) {
+		    		erro = Erro_Input_CPF_JaCadastrado;
+		    		return false;
+				}
+			}
+    		break;
+    	case 2:
+	    	for(i = 0; i < MAX_VETOR; i++) {
+		    	if(strncmp(pCpf, funcionarios[i].cpf, strlen(pCpf)) == 0) {
+		    		erro = Erro_Input_CPF_JaCadastrado;
+		    		return false;
+				}
+			}
+    		break;
+	}
+    
 
     if(operacoesCPF(cpfInt)) {
         return true;

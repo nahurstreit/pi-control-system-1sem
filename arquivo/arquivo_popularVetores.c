@@ -4,11 +4,13 @@
 void popularVetor_Clientes();
 void popularVetor_Funcionarios();
 void popularVetor_Fornecedores();
+void popularVetor_Produtos();
 
 void popularVetores() {
     popularVetor_Clientes();
     popularVetor_Funcionarios();
     popularVetor_Fornecedores();
+    popularVetor_Produtos();
 }
 
 void popularVetor_Clientes() {
@@ -398,4 +400,49 @@ void popularVetor_Fornecedores() {
         i++;
     }
     fclose(pArq_Fornecedores);
+}
+
+void popularVetor_Produtos() {
+	FILE *pArq_Produtos;
+    char linha[MAX_STRING * 20]; // tamanho máximo da linha no arquivo
+    
+    char stringValorUnit[MAX_STRING];
+    float valorUnit;
+
+    pArq_Produtos = fopen("data/produtos/data_Produtos.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+
+    if(pArq_Produtos == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        erro = Erro_Arquivo_ErroAoLerArquivos;
+    }
+
+    int i = 0;
+    while (fgets(linha, sizeof(linha), pArq_Produtos) != NULL && i < MAX_VETOR) {
+        linha[strcspn(linha, "\n")] = '\0';
+		
+        char *token = strtok(linha, ";");
+        
+        if(!checarLinhaNula(token)) {
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	            strncpy(produtos[i].nomeProduto, token, MAX_STRING - 1);
+	            produtos[i].nomeProduto[MAX_STRING - 1] = '\0';
+	        }
+	
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(stringValorUnit, token, MAX_STRING - 1);
+	        	stringValorUnit[MAX_STRING - 1] = '\0';
+	        	valorUnit = atof(stringValorUnit);
+	        	produtos[i].valorUnitario = valorUnit;
+	        }
+	        
+	        vetorRefProdutos[i] = 1;
+		}
+        i++;
+    }
+    
+    fclose(pArq_Produtos);
 }

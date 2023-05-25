@@ -52,5 +52,10 @@ void excluirCadastro(int posicaoConsultaAtual) {
 			strcpy(fornecedores[posicaoConsultaAtual].estado, "");
 			vetorRefFornecedores[posicaoConsultaAtual] = 0;
 			break;
+		case 4:
+			strcpy(produtos[posicaoConsultaAtual].nomeProduto, "");
+			produtos[posicaoConsultaAtual].valorUnitario = 0.0;
+			vetorRefProdutos[posicaoConsultaAtual] = 0;
+			break;
 	}
 }

@@ -149,3 +149,93 @@ void salvarArquivo_Fornecedores(){
 	
 	fclose(pArq_Fornecedores);
 }
+
+void salvarArquivo_Produtos(){
+	
+	FILE *pArq_Produtos;
+    char linha[MAX_STRING * 4]; // tamanho máximo da linha no arquivo
+    char stringValorUnit[MAX_STRING];
+
+    pArq_Produtos = fopen("data/produtos/data_Produtos.txt", "w"); // substitua "dados.txt" pelo nome do seu arquivo
+
+    if(pArq_Produtos == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        erro = Erro_Arquivo_ErroAoLerArquivos;
+    }
+	
+	int contadorDadosExistentes = calcularDadosExistentes(vetorRefProdutos);
+	int i, j;
+	
+	char stringLinha[MAX_STRING * 11];
+	char *pStringLinha = stringLinha;
+	
+	for(i = 0; i < MAX_VETOR; i++) {
+		strcpy(stringLinha, "");
+		
+		sprintf(stringValorUnit, "%.2f", produtos[i].valorUnitario);
+		
+		if(contadorDadosExistentes <= 0) break;
+		
+		if(vetorRefFornecedores[i] == 1) {
+			criarLinhaArquivo(pStringLinha, produtos[i].nomeProduto);
+			criarLinhaArquivo(pStringLinha, stringValorUnit);
+			strcat(stringLinha, "\n");
+			contadorDadosExistentes--;
+		} else {
+			strcat(stringLinha, "!<>;\n");
+		}
+		
+		fprintf(pArq_Produtos, stringLinha);
+	}
+	
+	fclose(pArq_Produtos);
+}
+
+void salvarArquivo_Producoes(){
+	
+	FILE *pArq_Producao;
+    char linha[MAX_STRING * 4]; // tamanho máximo da linha no arquivo
+
+    pArq_Producao = fopen("data/producoes/data_Producoes.txt", "w"); // substitua "dados.txt" pelo nome do seu arquivo
+
+    if(pArq_Producao == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        erro = Erro_Arquivo_ErroAoLerArquivos;
+    }
+	
+	int contadorDadosExistentes = calcularDadosExistentes(vetorRefProducoes);
+	int i, j;
+	
+	char stringLinha[MAX_STRING * 11];
+	char *pStringLinha = stringLinha;
+	
+	for(i = 0; i < MAX_VETOR; i++) {
+		strcpy(stringLinha, "");
+		
+		if(contadorDadosExistentes <= 0) break;
+		
+		if(vetorRefClientes[i] == 1) {
+			criarLinhaArquivo(pStringLinha, producoes[i].data);
+			criarLinhaArquivo(pStringLinha, producoes[i].numCadCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].nomeCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].cpfCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].enderecoCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].numEnderecoCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].compEnderecoCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].cepCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].bairroCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].cidadeCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].estadoCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].numCadFuncionario);
+			criarLinhaArquivo(pStringLinha, producoes[i].nomeFuncionario);
+			strcat(stringLinha, "\n");
+			contadorDadosExistentes--;
+		} else {
+			strcat(stringLinha, "!<>;\n");
+		}
+		
+		fprintf(pArq_Producao, stringLinha);
+	}
+	
+	fclose(pArq_Producao);
+}

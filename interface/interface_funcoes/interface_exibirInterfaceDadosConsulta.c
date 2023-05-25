@@ -130,7 +130,7 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 						displayItemAtual[0].linhaDisplay[16 + j] = fornecedores[i].nomeFantasia[j];
 					}
 					
-					if(k != strlen(funcionarios[i].nome)) {
+					if(k != strlen(fornecedores[i].nomeFantasia)) {
 						displayItemAtual[0].linhaDisplay[16 + k] = '.';
 						displayItemAtual[0].linhaDisplay[16 + k+1] = '.';
 						displayItemAtual[0].linhaDisplay[16 + k+2] = '.';
@@ -150,6 +150,49 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 				}
 			}
 			break;
+		case 4:
+			displayCabecalhoAtual = displayRefCabecalhoConsultaProdutos;
+			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);
+			char stringValorUnit[MAX_STRING];
+			for(i = 0; i < MAX_VETOR; i++) {
+				if(vetorRefProdutos[i] == 1) {
+					for(j = 0; j < 2; j++) {
+						displayItemAtual[j] = displayRefConsulta_Produto[j];
+					}
+					
+					sprintf(&iString[0],"%d", i + 1);
+					for(j = 0; j < strlen(iString); j++) {
+						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
+					}
+					
+					if(strlen(produtos[i].nomeProduto) > 60) {
+						k = 60;
+					} else {
+						k = strlen(produtos[i].nomeProduto);
+					}
+					
+					for(j = 0; j < k; j++) {
+						displayItemAtual[0].linhaDisplay[16 + j] = produtos[i].nomeProduto[j];
+					}
+					
+					if(k != strlen(produtos[i].nomeProduto)) {
+						displayItemAtual[0].linhaDisplay[16 + k] = '.';
+						displayItemAtual[0].linhaDisplay[16 + k+1] = '.';
+						displayItemAtual[0].linhaDisplay[16 + k+2] = '.';
+					}
+					
+					sprintf(stringValorUnit, "R$ %.2f", produtos[i].valorUnitario);
+					for(j = 0; j < strlen(stringValorUnit); j++) {
+						displayItemAtual[0].linhaDisplay[82 + j] = stringValorUnit[j];
+					}
+					
+					for(j = 0; j < 2; j++) {
+						printf("%s\n", displayItemAtual[j].linhaDisplay);
+					}
+				}
+			}
+			
+			break;		
 		default:
 			printf("Não foi possível puxar os dados existentes");
 	}

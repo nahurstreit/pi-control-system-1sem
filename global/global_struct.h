@@ -116,4 +116,37 @@
 	} Display;
 //
 
+
+typedef struct {
+	int codigoProduto;
+	char nomeProduto[MAX_STRING];
+	float valorUnitario;
+} Produto;
+
+typedef struct {
+	char codigoProduto[MAX_STRING];
+	char nome[MAX_STRING];
+	char quantidade[MAX_STRING];
+	char valorUnit[MAX_STRING];
+} Item;
+
+typedef struct {
+	char codigoOrdem[MAX_STRING];
+	char data[MAX_STRING];
+	char numCadCliente[MAX_STRING];
+	char numCadFuncionario[MAX_STRING];
+	Item itens[MAX_VETOR];
+	char valorTotal[MAX_STRING];
+	char nomeCliente[MAX_STRING];
+	char cpfCliente[MAX_STRING];
+	char nomeFuncionario[MAX_STRING];
+	char enderecoCliente[MAX_STRING];
+	char numEnderecoCliente[MAX_STRING];
+	char compEnderecoCliente[MAX_STRING];
+	char cepCliente[MAX_STRING];
+	char bairroCliente[MAX_STRING];
+	char cidadeCliente[MAX_STRING];
+	char estadoCliente[MAX_STRING];
+} Producao;
+
 #endif

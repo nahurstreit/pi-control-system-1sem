@@ -3,6 +3,8 @@
 
 bool validarEntrada(char *pString, bool removerCaracteres, bool permitirNumeros, bool permitirLetras, int tamanhoMaximoString) {
     
+    removerPontoVirgula(pString);
+    
 	if(removerCaracteres) removerCaracteresEspeciais(pString, true);
 	
 	pString[tamanhoMaximoString + 1] = '\0';

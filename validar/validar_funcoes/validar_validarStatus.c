@@ -4,6 +4,8 @@
 bool validarStatus(char *pString) {
 	int i;
 	
+	removerPontoVirgula(pString);
+	
 	if(pString[0] == '1' || validarPalavraChave(pString, "ATIVO") || validarPalavraChave(pString, "ATIVA")) {
 		strcpy(pString, "Ativo");
 		return true;
