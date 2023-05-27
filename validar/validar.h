@@ -15,6 +15,9 @@ bool validarEntrada(char *pString, bool removerCaracteresEspeciais, bool permiti
 //Funções de conversão
 void vetorStringParaInteiro(char *pString, int *pVetorIntDestino, int qtdChar);
 void vetorInteiroParaString(int pVetor[], char pString[], int caso);
+void receberAnoAtual(char data[]);
+void completarDataAbreviada(char data[], bool permiteDataFutura);
+void redefinirFormato(char string[], const int excluirPosicoes[]);
 
 //Funções de Validação
 extern bool validarCPF(char *pCpf);
@@ -33,6 +36,8 @@ extern bool validarCEP(char *pString);
 
 extern bool validarEstado(char pString[]);
 
-extern bool validarPalavraChave(char string[], char stringChave[]); 
+extern bool validarPalavraChave(char string[], char stringChave[]);
+
+extern bool validarData(char pString[], char dataInicio[], char dataFim[], bool permitirAtalhos, bool impossivelMaiorQueHoje);
 
 #endif

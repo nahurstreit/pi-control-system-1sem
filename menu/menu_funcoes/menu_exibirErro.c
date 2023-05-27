@@ -70,6 +70,9 @@ void exibirErro() {
 		case Erro_Arquivo_ErroAoLerArquivos:
 			strcpy(res, "Erro ao ler os dados registrados no sistema.");
 			break;
+		case Erro_Arquivo_ImpossivelLerDataAtual:
+			strcpy(res, "Erro ao ler a data de hoje! Por favor, insira-a manualmente!");
+			break;
 		default:;
 	}
 	

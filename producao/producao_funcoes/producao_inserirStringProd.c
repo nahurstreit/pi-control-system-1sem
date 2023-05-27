@@ -6,17 +6,44 @@
 void inserirStringProd(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
 	int x;
 	char stringData[MAX_STRING];
-	int vetorData[8];
+	int vetorDataAtual[8];
+	char dataAtual[8];
+	
 	switch(*contadorCampo) {
 		case 0:
-			if(validarDataAdmissao(string)) {
-				removerCaracteresEspeciais(string, false);
-				if(strlen(string) == 8) {
-				vetorStringParaInteiro(string, vetorData, 8);
-				sprintf(string, "%d%d/%d%d/%d%d", vetorData[0], vetorData[1], vetorData[2], vetorData[3], vetorData[6], vetorData[7]);
-				}
-				strcpy(producoes[posicaoDisponivel].data, string);
-			}
+			
+			if(validarData(string, "01/01/2018", "24/05/2023", true, true));
+//			
+//			if(validarPalavraChave(string, "HOJE") || validarPalavraChave(string, "H")) {
+//				char diaTempFile[] = "dia_temp.txt";
+//				FILE *pDiaTempFile;
+//				
+//				system("echo %date% > dia_temp.txt");
+//				
+//				pDiaTempFile = fopen(diaTempFile, "r");
+//				
+//				if(pDiaTempFile) {
+//					fgets(string, 11, pDiaTempFile);
+//				} else {
+//					erro = Erro_Arquivo_ImpossivelLerDataAtual;
+//					break;
+//				}
+//				
+//				fclose(pDiaTempFile);
+//				remove(diaTempFile);
+//			}
+//			
+//			removerCaracteresEspeciais(string, false);
+//			
+//			if(strlen(string) == 8) {
+//				vetorStringParaInteiro(string, vetorDataAtual, 8);
+//				sprintf(string, "%d%d/%d%d/%d%d", vetorDataAtual[0], vetorDataAtual[1], vetorDataAtual[2], vetorDataAtual[3], vetorDataAtual[6], vetorDataAtual[7]);
+//			} else {
+//				vetorStringParaInteiro(string, vetorDataAtual, 6);
+//				sprintf(string, "%d%d/%d%d/%d%d", vetorDataAtual[0], vetorDataAtual[1], vetorDataAtual[2], vetorDataAtual[3], vetorDataAtual[4], vetorDataAtual[5]);
+//			}
+//			
+			strcpy(producoes[posicaoDisponivel].data, string);
 			break;
 		case 1:
 			
@@ -43,6 +70,7 @@ void inserirStringProd(int posicaoDisponivel, char string[MAX_STRING], int *cont
 			sprintf(producoes[posicaoDisponivel].numCadCliente, "%d", x+1);
 			strcpy(producoes[posicaoDisponivel].nomeCliente, clientes[x].nome);
 			strcpy(producoes[posicaoDisponivel].cpfCliente, clientes[x].cpf);
+			strcpy(producoes[posicaoDisponivel].telefoneCliente, clientes[x].telefone);
 			strcpy(producoes[posicaoDisponivel].enderecoCliente, clientes[x].endereco);
 			strcpy(producoes[posicaoDisponivel].numEnderecoCliente, clientes[x].numEndereco);
 			strcpy(producoes[posicaoDisponivel].compEnderecoCliente, clientes[x].compEndereco);

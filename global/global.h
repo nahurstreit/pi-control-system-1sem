@@ -8,6 +8,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <time.h>
 
 #include "global_define.h"
 #include "global_struct.h"

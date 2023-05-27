@@ -134,12 +134,10 @@ typedef struct {
 	char codigoOrdem[MAX_STRING];
 	char data[MAX_STRING];
 	char numCadCliente[MAX_STRING];
-	char numCadFuncionario[MAX_STRING];
-	Item itens[MAX_VETOR];
 	char valorTotal[MAX_STRING];
 	char nomeCliente[MAX_STRING];
 	char cpfCliente[MAX_STRING];
-	char nomeFuncionario[MAX_STRING];
+	char telefoneCliente[MAX_STRING];
 	char enderecoCliente[MAX_STRING];
 	char numEnderecoCliente[MAX_STRING];
 	char compEnderecoCliente[MAX_STRING];
@@ -147,6 +145,9 @@ typedef struct {
 	char bairroCliente[MAX_STRING];
 	char cidadeCliente[MAX_STRING];
 	char estadoCliente[MAX_STRING];
+	char numCadFuncionario[MAX_STRING];
+	char nomeFuncionario[MAX_STRING];
+	Item itens[MAX_VETOR];
 } Producao;
 
 #endif

@@ -24,6 +24,7 @@ typedef enum {
 	Erro_NovoCadastro_Mudar_AindaNaoDigitou,
 	Erro_NovoCadastro_Mudar_SoPodeOPrimeiro,
 	Erro_Arquivo_ErroAoLerArquivos,
+	Erro_Arquivo_ImpossivelLerDataAtual,
 } Erro;
 
 typedef enum {

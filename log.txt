@@ -189,5 +189,29 @@ Arquivos:
 (validacao)
 - Adicionada validação que impede a duplicação de CPFs e CNPJs no sistema.
 
-(cadastro e interface)
-- Adicionada uma nova categoria de cadastro: produtos. Responsável por armazenar dados de produtos para exibir na ordem de produção.
+(menu)
+- Reinserção da opção de ordem de produção ao menu principal.
+
+(cadastro)
+- Adicionado a possibilidade de consultar cadastros existentes através do CPF do cliente/funcionário ou do CNPJ do fornecedor.
+- Correção de possível glitch em input de usuários, removendo qualquer possibilidade de adicionar registros com ponto e vírgula. 
+- Adicionada uma nova categoria de cadastro: produtos. 
+	- Responsável por armazenar dados de produtos para exibir na ordem de produção.
+	- Já adicionado cadastro, procura e modificação de produtos existentes.
+
+(producao)
+- Adicionada novas pastas e arquivos referentes ao armazenamento e criação de ordens de produção.
+- Conceitos iniciais de produção.
+
+(interface)
+- Correção de bugs menores de interface.
+- Adição de novos Display para consulta e criação de produtos.
+- Adição de novos cases para a função de exibição da interface.
+- Adição inicial de novas funções e Displays específicos para produção.
+
+26/05/2023
+- Redefinição de alguns nomes de pastas, arquivos e variáveis.
+- Adicionadas mais categorias de erro.
+- Adicionada interface visual para criação de ordens de produção.
+- Adicionado salvamento inicial de arquivos de ordens de produção, ainda não é possível ler dados existentes.
+- Adição inicial de validação de datas geral, com interpretador contextual de datas abreviadas e/ou futuras, comandos de texto "h" e "hoje",  para inserir a data atual automaticamente.

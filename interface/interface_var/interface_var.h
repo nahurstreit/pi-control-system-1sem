@@ -14,7 +14,7 @@
 		
 		extern Display displayRefFormularioCadastroProduto[3];
 		
-		extern Display displayRefFormularioNovaOrdem[17];
+		extern Display displayRefFormularioNovaOrdem[22];
 	//
 
 	//Display de consulta

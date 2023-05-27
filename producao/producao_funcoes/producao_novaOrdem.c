@@ -32,7 +32,7 @@ void novaOrdem() {
 		exibirInterfaceNovaProducao(posicao);
 		
 		//Exibe uma mensagem diferente na parte de baixo do formulário. Se o usuário estiver digitando o primeiro dado, apenas exibirá a opção de voltar, caso esteja em algum outro dado, aparece o texto de mudar.
-		contadorCampo > 0 ? exibirTextoMeio("Digite 'SAIR' para voltar ou 'MUDAR' para alterar algum dado.\n") :
+		contadorCampo > 0 ? exibirTextoMeio("Digite 'SAIR' para voltar, 'EXIBIR' para mostrar os dados possíveis deste campo\n ou 'MUDAR' para alterar algum dado.\n") :
 							exibirTextoMeio("Digite 'SAIR' para voltar\n");
 		
 		//Exibe uma mensagem diferente caso seja a primeira vez que esteja digitando um dado, ou se estiver digitando o dado novamente

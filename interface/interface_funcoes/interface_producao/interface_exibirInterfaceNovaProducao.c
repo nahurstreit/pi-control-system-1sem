@@ -6,7 +6,7 @@ void exibirInterfaceNovaProducao(int posicao) {
 	char posicaoString[3];
 	char stringValorProduto[MAX_STRING];
 	Display *pDisplayAtual;
-	Display copiaDisplay[20];
+	Display copiaDisplay[22];
 	Display *pCopiaDisplay = copiaDisplay;
 	
 	tamanhoDisplay = sizeof(displayRefFormularioNovaOrdem);
@@ -17,7 +17,7 @@ void exibirInterfaceNovaProducao(int posicao) {
 	sprintf(&posicaoString[0], "%d", posicao+1);
 	
 	//Copia os formulários de Display em uma variável do tipo Display chamada copiaDisplay.
-	for(i = 0; i < tamanhoDisplay; i++) {
+	for(i = 0; i < 22; i++) {
 		copiaDisplay[i] = pDisplayAtual[i];
 	}
 		/*Substitui nas linhas do copiaDisplay, em espaços específicos, os conteúdo presentes no vetor de dados. Como o vetor por padrão tem o número zero em todos os campos,
@@ -37,7 +37,43 @@ void exibirInterfaceNovaProducao(int posicao) {
 	}
 	
 	for(j = 0; j < strlen(producoes[posicao].nomeCliente); j++) {
-		pCopiaDisplay[3].linhaDisplay[19 + j] = producoes[posicao].nomeCliente[j];
+		pCopiaDisplay[5].linhaDisplay[19 + j] = producoes[posicao].nomeCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].cpfCliente); j++) {
+		pCopiaDisplay[7].linhaDisplay[7 + j] = producoes[posicao].cpfCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].telefoneCliente); j++) {
+		pCopiaDisplay[7].linhaDisplay[56 + j] = producoes[posicao].telefoneCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].enderecoCliente); j++) {
+		pCopiaDisplay[9].linhaDisplay[12 + j] = producoes[posicao].enderecoCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].numEnderecoCliente); j++) {
+		pCopiaDisplay[9].linhaDisplay[89 + j] = producoes[posicao].numEnderecoCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].compEnderecoCliente); j++) {
+		pCopiaDisplay[11].linhaDisplay[15 + j] = producoes[posicao].compEnderecoCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].bairroCliente); j++) {
+		pCopiaDisplay[11].linhaDisplay[56 + j] = producoes[posicao].bairroCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].cepCliente); j++) {
+		pCopiaDisplay[13].linhaDisplay[7 + j] = producoes[posicao].cepCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].cidadeCliente); j++) {
+		pCopiaDisplay[13].linhaDisplay[38 + j] = producoes[posicao].cidadeCliente[j];
+	}
+	
+	for(j = 0; j < strlen(producoes[posicao].estadoCliente); j++) {
+		pCopiaDisplay[13].linhaDisplay[89 + j] = producoes[posicao].estadoCliente[j];
 	}
 	
 	for(j = 0; j < strlen(producoes[posicao].numCadFuncionario); j++) {
@@ -45,7 +81,7 @@ void exibirInterfaceNovaProducao(int posicao) {
 	}
 	
 	for(j = 0; j < strlen(producoes[posicao].nomeFuncionario); j++) {
-		pCopiaDisplay[9].linhaDisplay[31 + j] = producoes[posicao].nomeFuncionario[j];
+		pCopiaDisplay[17].linhaDisplay[27 + j] = producoes[posicao].nomeFuncionario[j];
 	}
 	
 	for(i = 0; i < tamanhoDisplay; i++) {
