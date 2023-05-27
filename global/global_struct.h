@@ -94,7 +94,7 @@
 	 * @brief Definição do struct do tipo TextoCampo, para armazenar os textos que serão exibidos na hora de pedir e alterar os dados de um cadastro.
 	 **/
 	typedef struct {
-		char displayCampo[70];
+		char displayCampo[MAX_STRING];
 	} TextoCampo;
 
 //
@@ -148,6 +148,7 @@ typedef struct {
 	char numCadFuncionario[MAX_STRING];
 	char nomeFuncionario[MAX_STRING];
 	Item itens[MAX_VETOR];
+	char arquivoSalvamentoItens[MAX_STRING];
 } Producao;
 
 #endif

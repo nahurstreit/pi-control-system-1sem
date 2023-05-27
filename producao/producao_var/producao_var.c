@@ -6,6 +6,7 @@ TextoCampo camposOrdem[] = {
 	"a data (H ou Hoje para adicionar a data de hoje)",
 	"o [número de cadastro] ou [CPF] do cliente",
 	"o [número de cadastro] ou [CPF] do funcionário responsável",
-	"o item comprado",
-	"quantidade",
+	"o código do item comprado",
+	"a quantidade desse item",
+	"o código do próximo item ou [0] para salvar a ordem de produção",
 };

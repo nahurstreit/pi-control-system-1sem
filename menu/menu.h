@@ -22,6 +22,7 @@
 
 			void exibirMenuOrdemProducao();
 				void exibirMenuNovaOrdemProducao();
+					void executarImpressaoOP();
 				void exibirMenuConsultarOrdemProducao();			
 	//
 

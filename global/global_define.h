@@ -1,6 +1,12 @@
 #ifndef GLOBAL_DEFINE_H
 #define GLOBAL_DEFINE_H
 
+//Configurações
+#define IDADE_MINIMA 18
+#define IDADE_MAXIMA 90
+#define DATA_INICIO_EMPRESA "01/01/2018"
+#define DATA_LIMITE_FUTURO "31/12/2031"
+
 //Menu
 
 //Interface

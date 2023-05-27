@@ -28,6 +28,9 @@ void exibirErro() {
 		case Erro_Input_CNPJ_JaCadastrado:
 			strcpy(res, "Erro: CNPJ já cadastrado no sistema!");
 			break;
+		case Erro_Input_Data_Invalida:
+			strcpy(res, "Erro: Data inválida!");
+			break;
 		case Erro_Input_DataNascimento_Invalida:
 			strcpy(res, "Erro: Data de Nascimento inválida!");
 			break;

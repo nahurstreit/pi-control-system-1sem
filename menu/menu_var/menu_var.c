@@ -98,6 +98,7 @@
 					"NOVA ORDEM DE PRODUÇÃO",
 					2,
 					{
+						"Imprimir ordem de produção", 1, &executarImpressaoOP,
 						"Voltar ao Menu Anterior", 0, &exibirMenuOrdemProducao,
 						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}

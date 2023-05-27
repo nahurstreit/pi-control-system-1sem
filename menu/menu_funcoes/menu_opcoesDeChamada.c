@@ -49,8 +49,11 @@
 					void exibirMenuNovaOrdemProducao() {
 						escolhaUser = 5;
 						novaOrdem();
-						menuAtual = menuNovaOrdemProducao;
+						
 					}
+						void executarImpressaoOP() {
+							
+						}
 					
 					void exibirMenuConsultarOrdemProducao() {
 						menuAtual = menuConsultarOrdemProducao;

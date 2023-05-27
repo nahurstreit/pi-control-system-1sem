@@ -5,6 +5,11 @@
 void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo) {
 	float valorUnit;
 	
+	char idadeMaxima[10];
+	char idadeMinima[10];
+	receberDataIdade(idadeMaxima, true);
+	receberDataIdade(idadeMinima, false);
+	
 	switch(escolhaUser) {
 		case 1:
 			switch(*contadorCampo) {
@@ -15,7 +20,7 @@ void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contador
 					if(validarCPF(string)) strcpy(clientes[posicaoDisponivel].cpf, string);
 					break;
 				case 2:
-					if(validarDataNascimento(string)) strcpy(clientes[posicaoDisponivel].dataNascimento, string);
+					if(validarData(string, idadeMaxima, idadeMinima, false, true))strcpy(clientes[posicaoDisponivel].dataNascimento, string);
 					break;
 				case 3 :
 					if(validarTelefone(string)) strcpy(clientes[posicaoDisponivel].telefone, string);
@@ -57,13 +62,13 @@ void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contador
 					if(validarCPF(string)) strcpy(funcionarios[posicaoDisponivel].cpf, string);
 					break;
 				case 3:
-					if(validarDataNascimento(string)) strcpy(funcionarios[posicaoDisponivel].dataNascimento, string);					
+					if(validarData(string, idadeMaxima, idadeMinima, false, true)) strcpy(funcionarios[posicaoDisponivel].dataNascimento, string);
 					break;
 				case 4:
 					if(validarEstadoCivil(string)) strcpy(funcionarios[posicaoDisponivel].estadoCivil, string);
 					break;
 				case 5:
-					if(validarDataAdmissao(string)) strcpy(funcionarios[posicaoDisponivel].dataAdmissao, string);
+					if(validarData(string, DATA_INICIO_EMPRESA, DATA_LIMITE_FUTURO, true, false)) strcpy(funcionarios[posicaoDisponivel].dataAdmissao, string);
 					break;
 				case 6:
 					if(validarEntrada(string, false, true, false, 10)) strcpy(funcionarios[posicaoDisponivel].salarioBase, string);

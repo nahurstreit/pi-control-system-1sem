@@ -215,3 +215,28 @@ Arquivos:
 - Adicionada interface visual para criação de ordens de produção.
 - Adicionado salvamento inicial de arquivos de ordens de produção, ainda não é possível ler dados existentes.
 - Adição inicial de validação de datas geral, com interpretador contextual de datas abreviadas e/ou futuras, comandos de texto "h" e "hoje",  para inserir a data atual automaticamente.
+
+27/05/2023 e 28/05/2023
+(menu)
+- Adicionado códigos que fazem o menu sempre iniciar em tela cheia.
+
+(validacao)
+- Adicionada funções para o cálculo de idade mínima e máxima automaticamente, bastando fornecer apenas as idades em global_define.
+- Ajuste na performance e correção de bugs na validação de datas.
+
+(interface)
+- Adicionado e refinado interfaces de produção, adicionado escalabilidade de interface conforme novos itens são adicionados
+
+(producao)
+- Adicionado e refinado criação de ordens de produção.
+- Alterado a lógica para armazenamento de itens presentes em ordens de produção.
+- Adicionado nova lógica de alteração de itens adicionados em uma ordem de produção.
+
+(arquivo)
+- Adicionadas funções responsáveis por criar pastas e salvar em um arquivo separado, os itens de uma ordem de produção.
+
+(global)
+- Adicionada novas bibliotecas <time.h> e <sys/stat.h>
+
+(geral)
+- Correção de bugs

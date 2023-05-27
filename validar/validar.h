@@ -18,6 +18,7 @@ void vetorInteiroParaString(int pVetor[], char pString[], int caso);
 void receberAnoAtual(char data[]);
 void completarDataAbreviada(char data[], bool permiteDataFutura);
 void redefinirFormato(char string[], const int excluirPosicoes[]);
+void validarIdadeMinMax(char destino[], char maximoOuMinimo[3]);
 
 //Funções de Validação
 extern bool validarCPF(char *pCpf);

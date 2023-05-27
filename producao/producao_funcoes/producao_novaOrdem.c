@@ -1,26 +1,32 @@
 #include "../../global/global.h"
 #include "../../cadastro/cadastro.h"
 #include "../producao.h"
+#include "../../menu/menu.h"
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
 void novaOrdem() {
 	char stringHolder[MAX_STRING];
 	int escolhaEntrada = 5;
-	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
+	int posicao, posicaoItem, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int holderContadorCampo;
 	int *pContadorCampo = &contadorCampo;
 	
 	//Variáveis para controle de saída e alteração de cadastro em tempo de execução.
 		char escolhaSair = 's'; //Nomeando a variável de confirmação de escolha para sair do registro de um novo cadastro.
 		int saida, alterar; //Variáveis responsáveis por controlar se o usuário está tentando sair ou alterar algum dado, durante o registro de um novo cadastro.
+		int escolhaAlterarItem = -1;
+		int valid;
 	//
 	
+	posicaoItem = posicaoDisponivel(vetorRefItensComprados);
 	posicao = posicaoDisponivel(vetorRefProducoes);
-	limiteContador = 5;
+	limiteContador = 6;
 	escolhaUser = 5;
 	
 	contadorCampo = 0;
 	alterar = 0;
+	
+	resetarVetorItens();
 	
 	do {
 		saida = 0; //Zerando o valor de saída para poder controlar a exibição da mensagem de saída caso o usuário não digitar "SAIR".
@@ -85,6 +91,17 @@ void novaOrdem() {
 						erro = Erro_NovoCadastro_Mudar_AindaNaoDigitou; 
 						contadorCampo = holderContadorCampo;
 						continue;
+					} else if(contadorCampo == 3 || contadorCampo == 4) {
+						printf("Digite o número do item que você quer alterar: ");
+						valid = scanf("%d", &posicaoItem);
+						fflush(stdin);
+						posicaoItem--;
+						if(valid == 0) {
+							erro = Erro_Input_ApenasNumeros;
+							continue;
+						}
+						alterar++;
+						continue;
 					} else {
 						alterar++;
 						continue;
@@ -96,33 +113,49 @@ void novaOrdem() {
 			}
 		}
 		
+		if(contadorCampo > 4) {
+			if(!validarPalavraChave(stringHolder, "0")) {
+				posicaoItem = posicaoDisponivel(vetorRefItensComprados);
+				contadorCampo = 3;
+			} else {
+				posicaoItem = posicaoDisponivel(vetorRefItensComprados);
+			}
+		}
+		
 		//Insere a string no vetor de dados
-		inserirStringProd(posicao, stringHolder, pContadorCampo);
+		inserirStringProd(posicao, stringHolder, pContadorCampo, posicaoItem);
 		
 		//Caso o usuário tente mudar um dado e consiga alterar o dado com sucesso, exibe uma mensagem indicando que o campo foi alterado. Se não estiver mudando um dado, a mensagem não aparece.
 		if(alterar > 0 && erro == 0) {
 			mensagem = Mensagem_CampoAlterado;
 			contadorCampo = holderContadorCampo;
+			escolhaAlterarItem = -1;
 			alterar = 0;
 			continue;
 		}
 		
+		if(contadorCampo > 2) {
+			salvarArquivo_Itens(atoi(producoes[posicao].numCadCliente), posicao);
+		}
+		
 		//Fluxo normal de contador, para ir percorrendo entre os campos.
 		if(erro == 0) contadorCampo++;
-		
-		handleSalvar(escolhaUser);
 
 	} while(contadorCampo < limiteContador);
 	
 	//Se o usuário digitar 'SAIR', não exibirá a mensagem de "enviando cadastro". Apenas retornará ao menu anterior.
 	if(saida == 0) {
+		handleSalvar(escolhaUser);
 		
-		exibirInterfaceTitulo("NOVO CADASTRO", 1);
-		exibirInterfaceFormularios(posicao);
-		printf("\n\nEnviando Cadastro...\n");
-		system("pause");
-		mensagem = Mensagem_Cadastro_Novo;
+		mensagem = Mensagem_Producao_Nova;
+		exibirInterfaceTitulo("NOVA ORDEM DE PRODUÇÃO", 1);
+		exibirMensagem();
+		exibirInterfaceNovaProducao(posicao);
+		menuAtual = menuNovaOrdemProducao;
+		exibirInterfaceOpcoes();
+		receberOpcaoMenu();
 	} else {
-		mensagem = Mensagem_Cadastro_Cancelado;
+		mensagem = Mensagem_Producao_Cancelada;
+		menuAtual = menuOrdemProducao;
 	}
 }

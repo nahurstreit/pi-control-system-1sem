@@ -17,6 +17,12 @@ void exibirMensagem() {
 		case Mensagem_CampoAlterado:
 			strcpy(res, "Sucesso! Campo alterado!");
 			break;
+		case Mensagem_Producao_Nova:
+			strcpy(res, "Sucesso! Nova Ordem de Produção gerada!");
+			break;
+		case Mensagem_Producao_Cancelada:
+			strcpy(res, "Ordem de Produção Cancelada!");
+			break;
 		default:;
 	}
 	

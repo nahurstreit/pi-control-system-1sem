@@ -7,11 +7,13 @@
 void main() {
 	setlocale(LC_ALL, "Portuguese");
 	exibirMenuPrincipal();
-	
 	popularVetores();
 
 	do{
 	    system("color E0"); //Definição da cor do sistema
+	    
+	    HWND hWnd = GetConsoleWindow();
+    	ShowWindow(hWnd, SW_MAXIMIZE);
 	    
 	    // Comente esse código para tirar a trava de tela
 //		    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -21,6 +23,7 @@ void main() {
     	//Comente esse código para tirar a trava de tela
     	
 		exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);	
+		
 		
 		exibirMensagem(); //Exibindo eventuais mensagens, por padrão erro = 0, portanto, sem mensagens
 		

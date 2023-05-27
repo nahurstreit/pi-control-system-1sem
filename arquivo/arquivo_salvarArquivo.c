@@ -176,7 +176,7 @@ void salvarArquivo_Produtos(){
 		
 		if(contadorDadosExistentes <= 0) break;
 		
-		if(vetorRefFornecedores[i] == 1) {
+		if(vetorRefProdutos[i] == 1) {
 			criarLinhaArquivo(pStringLinha, produtos[i].nomeProduto);
 			criarLinhaArquivo(pStringLinha, stringValorUnit);
 			strcat(stringLinha, "\n");
@@ -209,16 +209,19 @@ void salvarArquivo_Producoes(){
 	char stringLinha[MAX_STRING * 11];
 	char *pStringLinha = stringLinha;
 	
+	char stringArquivoCompra[MAX_STRING];
+	
 	for(i = 0; i < MAX_VETOR; i++) {
 		strcpy(stringLinha, "");
 		
 		if(contadorDadosExistentes <= 0) break;
 		
-		if(vetorRefClientes[i] == 1) {
+		if(vetorRefProducoes[i] == 1) {
 			criarLinhaArquivo(pStringLinha, producoes[i].data);
 			criarLinhaArquivo(pStringLinha, producoes[i].numCadCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].nomeCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].cpfCliente);
+			criarLinhaArquivo(pStringLinha, producoes[i].telefoneCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].enderecoCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].numEnderecoCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].compEnderecoCliente);
@@ -228,6 +231,7 @@ void salvarArquivo_Producoes(){
 			criarLinhaArquivo(pStringLinha, producoes[i].estadoCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].numCadFuncionario);
 			criarLinhaArquivo(pStringLinha, producoes[i].nomeFuncionario);
+			criarLinhaArquivo(pStringLinha, producoes[i].arquivoSalvamentoItens);
 			strcat(stringLinha, "\n");
 			contadorDadosExistentes--;
 		} else {

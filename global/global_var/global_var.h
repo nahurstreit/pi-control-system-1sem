@@ -28,4 +28,6 @@ extern int vetorRefProdutos[MAX_VETOR];
 extern Producao producoes[MAX_VETOR];
 extern int vetorRefProducoes[MAX_VETOR];
 
+extern Item itensComprados[MAX_VETOR];
+extern int vetorRefItensComprados[MAX_VETOR];
 #endif

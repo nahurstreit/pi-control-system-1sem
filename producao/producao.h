@@ -9,6 +9,6 @@
 
 extern void novaOrdem();
 
-extern void inserirStringProd(int posicaoDisponivel, char string[MAX_STRING], int *contadorCampo);
+extern void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo, int posicaoAlterarItem);
 
 #endif

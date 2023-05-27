@@ -1,6 +1,6 @@
 #include "validar_checardata.h"
 
-bool checarAno(int dataInt[], int anoMaximo[], int anoMinimo[]) {
+bool checarAno1(int dataInt[], int anoMaximo[], int anoMinimo[]) {
 	if(dataInt[4] == anoMaximo[0]) {
 		if(dataInt[5] == anoMaximo[1]) {
 			if(dataInt[6] >= anoMaximo[2]) {
@@ -22,7 +22,7 @@ bool checarAno(int dataInt[], int anoMaximo[], int anoMinimo[]) {
 	return false;
 }
 
-bool checarMes(int dataInt[]) {
+bool checarMes1(int dataInt[]) {
 	if(dataInt[2] == 1) {
 		if(dataInt[3] <= 2) {
 			return true;
@@ -34,7 +34,7 @@ bool checarMes(int dataInt[]) {
 	return false;
 }
 
-bool checarDia(int dataInt[]) {
+bool checarDia1(int dataInt[]) {
 	if((dataInt[2] == 0 && dataInt[3] == 1) || dataInt[3] == 3 || dataInt[3] == 5 || dataInt[3] == 7 || dataInt[3] == 8 || (dataInt[2] == 1 &&(dataInt[3] == 0 || dataInt[3] == 2) )) {
 		if(dataInt[0] <= 3) {
 			if(dataInt[0] == 3) {

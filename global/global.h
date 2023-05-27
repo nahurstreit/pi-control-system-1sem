@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <windows.h>
 #include <time.h>
+#include <sys/stat.h>
 
 #include "global_define.h"
 #include "global_struct.h"

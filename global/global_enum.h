@@ -10,6 +10,7 @@ typedef enum {
 	Erro_Input_CPF_JaCadastrado,
 	Erro_Input_CNPJ_Invalido,
 	Erro_Input_CNPJ_JaCadastrado,
+	Erro_Input_Data_Invalida,
 	Erro_Input_DataNascimento_Invalida,
 	Erro_Input_DataAdmissao_Invalida,
 	Erro_Input_EstadoCivil_Invalido,
@@ -32,6 +33,8 @@ typedef enum {
 	Mensagem_Cadastro_Excluido,
 	Mensagem_Cadastro_Cancelado,
 	Mensagem_CampoAlterado,
+	Mensagem_Producao_Nova,
+	Mensagem_Producao_Cancelada,
 } Mensagem;
 
 #endif

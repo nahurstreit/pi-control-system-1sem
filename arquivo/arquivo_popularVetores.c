@@ -5,12 +5,14 @@ void popularVetor_Clientes();
 void popularVetor_Funcionarios();
 void popularVetor_Fornecedores();
 void popularVetor_Produtos();
+void popularVetor_Producoes();
 
 void popularVetores() {
     popularVetor_Clientes();
     popularVetor_Funcionarios();
     popularVetor_Fornecedores();
     popularVetor_Produtos();
+	popularVetor_Producoes();
 }
 
 void popularVetor_Clientes() {
@@ -445,4 +447,12 @@ void popularVetor_Produtos() {
     }
     
     fclose(pArq_Produtos);
+}
+
+void popularVetor_Producoes() {
+	int i;
+	
+	for(i = 0; i < MAX_VETOR; i++) {
+		vetorRefProducoes[i] = 0;
+	}
 }
