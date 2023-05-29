@@ -10,6 +10,7 @@
 #include <windows.h>
 #include <time.h>
 #include <sys/stat.h>
+#include <dirent.h>
 
 #include "global_define.h"
 #include "global_struct.h"

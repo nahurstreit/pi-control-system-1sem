@@ -18,6 +18,8 @@ void novaOrdem() {
 		int valid;
 	//
 	
+	resetarVetorItens();
+	
 	posicaoItem = posicaoDisponivel(vetorRefItensComprados);
 	posicao = posicaoDisponivel(vetorRefProducoes);
 	limiteContador = 6;
@@ -25,8 +27,6 @@ void novaOrdem() {
 	
 	contadorCampo = 0;
 	alterar = 0;
-	
-	resetarVetorItens();
 	
 	do {
 		saida = 0; //Zerando o valor de saída para poder controlar a exibição da mensagem de saída caso o usuário não digitar "SAIR".
@@ -117,8 +117,6 @@ void novaOrdem() {
 			if(!validarPalavraChave(stringHolder, "0")) {
 				posicaoItem = posicaoDisponivel(vetorRefItensComprados);
 				contadorCampo = 3;
-			} else {
-				posicaoItem = posicaoDisponivel(vetorRefItensComprados);
 			}
 		}
 		
@@ -153,7 +151,10 @@ void novaOrdem() {
 		exibirInterfaceNovaProducao(posicao);
 		menuAtual = menuNovaOrdemProducao;
 		exibirInterfaceOpcoes();
+		producaoAtiva = posicao;
 		receberOpcaoMenu();
+		remove("tempImpress.txt");
+		menuAtual = menuOrdemProducao;
 	} else {
 		mensagem = Mensagem_Producao_Cancelada;
 		menuAtual = menuOrdemProducao;

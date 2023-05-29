@@ -76,6 +76,9 @@ void exibirErro() {
 		case Erro_Arquivo_ImpossivelLerDataAtual:
 			strcpy(res, "Erro ao ler a data de hoje! Por favor, insira-a manualmente!");
 			break;
+		case Erro_Filtro_NaoExiste:
+			strcpy(res, "Erro: Não existem registros para esse filtro!");
+			break;
 		default:;
 	}
 	

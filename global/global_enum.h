@@ -26,6 +26,7 @@ typedef enum {
 	Erro_NovoCadastro_Mudar_SoPodeOPrimeiro,
 	Erro_Arquivo_ErroAoLerArquivos,
 	Erro_Arquivo_ImpossivelLerDataAtual,
+	Erro_Filtro_NaoExiste,
 } Erro;
 
 typedef enum {
@@ -36,5 +37,11 @@ typedef enum {
 	Mensagem_Producao_Nova,
 	Mensagem_Producao_Cancelada,
 } Mensagem;
+
+typedef enum {
+	Filtro_Data = 1,
+	Filtro_Cliente,
+	Filtro_Funcionario,
+} Filtro;
 
 #endif

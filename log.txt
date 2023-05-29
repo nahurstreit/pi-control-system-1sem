@@ -225,7 +225,7 @@ Arquivos:
 - Ajuste na performance e correção de bugs na validação de datas.
 
 (interface)
-- Adicionado e refinado interfaces de produção, adicionado escalabilidade de interface conforme novos itens são adicionados
+- Adicionado e refinado interfaces de produção, adicionado escalabilidade de interface conforme novos itens são adicionados.
 
 (producao)
 - Adicionado e refinado criação de ordens de produção.
@@ -236,7 +236,30 @@ Arquivos:
 - Adicionadas funções responsáveis por criar pastas e salvar em um arquivo separado, os itens de uma ordem de produção.
 
 (global)
-- Adicionada novas bibliotecas <time.h> e <sys/stat.h>
+- Adicionada novas bibliotecas <time.h> e <sys/stat.h>.
 
 (geral)
-- Correção de bugs
+- Correção de bugs.
+
+29/05/2023
+(geral)
+- Readaptação de formatos e tamanhos para melhor servir em displays. 
+
+(global)
+- Criação de novo enum em global_enum, para armazenar possíveis filtros de produção existentes.
+
+(producao)
+- Criação de uma variável de producao, responsável por armazenar qual o número da ordem de produção que está sendo criada no momento, ou está sendo consultada.
+- Adição de consulta de ordens de produção existentes.
+- Adição de filtros para produções existentes.
+	- Filtros: Data Específica, Cliente - CPF ou Nº Cadastro, Funcionário - CPF ou Nº Cadastro.
+
+(interface)
+- Adição de nova função responsável por popular e criar um arquivo de impressão de producoes, aberto no windows com o comando "write".
+
+(menu)
+- Adaptação de opções do menu, na consulta ou finalização de uma ordem de produção.
+	- Adicionada opção de impressão após criação da ordem de produção, ou ao consultar uma ordem existente.
+
+(data)
+- Criação do arquivo git.txt, dentro da pasta historico_compras, para a pasta poder ser armazenada sem problemas no GitHub, visto que a ausência de tal pasta, estava acarretando em problemas de execução quando o código era copiado em outro computador.

@@ -450,9 +450,159 @@ void popularVetor_Produtos() {
 }
 
 void popularVetor_Producoes() {
-	int i;
 	
-	for(i = 0; i < MAX_VETOR; i++) {
-		vetorRefProducoes[i] = 0;
-	}
+	FILE *pArq_Producoes;
+    char linha[MAX_STRING * 20]; // tamanho máximo da linha no arquivo
+    
+    char stringValorUnit[MAX_STRING];
+    float valorUnit;
+
+    pArq_Producoes = fopen("data/producoes/data_Producoes.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+
+    if(pArq_Producoes == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        erro = Erro_Arquivo_ErroAoLerArquivos;
+    }
+
+    int i = 0;
+    while (fgets(linha, sizeof(linha), pArq_Producoes) != NULL && i < MAX_VETOR) {
+        linha[strcspn(linha, "\n")] = '\0';
+		
+        char *token = strtok(linha, ";");
+        
+        if(!checarLinhaNula(token)) {
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	            strncpy(producoes[i].data, token, MAX_STRING - 1);
+	            producoes[i].data[MAX_STRING - 1] = '\0';
+	        }
+	
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].numCadCliente, token, MAX_STRING - 1);
+	            producoes[i].numCadCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].nomeCliente, token, MAX_STRING - 1);
+	            producoes[i].nomeCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].cpfCliente, token, MAX_STRING - 1);
+	            producoes[i].cpfCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].telefoneCliente, token, MAX_STRING - 1);
+	            producoes[i].telefoneCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].enderecoCliente, token, MAX_STRING - 1);
+	            producoes[i].enderecoCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].numEnderecoCliente, token, MAX_STRING - 1);
+	            producoes[i].numEnderecoCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].compEnderecoCliente, token, MAX_STRING - 1);
+	            producoes[i].compEnderecoCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].cepCliente, token, MAX_STRING - 1);
+	            producoes[i].cepCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].bairroCliente, token, MAX_STRING - 1);
+	            producoes[i].bairroCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].cidadeCliente, token, MAX_STRING - 1);
+	            producoes[i].cidadeCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].estadoCliente, token, MAX_STRING - 1);
+	            producoes[i].estadoCliente[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].numCadFuncionario, token, MAX_STRING - 1);
+	            producoes[i].numCadFuncionario[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].nomeFuncionario, token, MAX_STRING - 1);
+	            producoes[i].nomeFuncionario[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].valorTotal, token, MAX_STRING - 1);
+	            producoes[i].valorTotal[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        token = strtok(NULL, ";");
+	
+	        if (token != NULL) {
+	        	if(checarCampoNulo_Arquivo(token))token = " ";
+	        	strncpy(producoes[i].arquivoSalvamentoItens, token, MAX_STRING - 1);
+	            producoes[i].arquivoSalvamentoItens[MAX_STRING - 1] = '\0';
+	        }
+	        
+	        popularVetorItens(i);
+	        
+	        vetorRefProducoes[i] = 1;
+		}
+        i++;
+    }
+    
+    fclose(pArq_Producoes);
 }

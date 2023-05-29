@@ -192,7 +192,52 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 				}
 			}
 			
-			break;		
+			break;
+		case 5:
+			displayCabecalhoAtual = displayRefCabecalhoConsultaProducoes;
+			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);
+			for(i = 0; i < MAX_VETOR; i++) {
+				if(vetorRefProducoes[i] == 1) {
+					for(j = 0; j < 2; j++) {
+						displayItemAtual[j] = displayRefConsulta_Producoes[j];
+					}
+					
+					sprintf(&iString[0],"%d", i + 1);
+					for(j = 0; j < strlen(iString); j++) {
+						displayItemAtual[0].linhaDisplay[7 + j] = iString[j];
+					}
+					
+					for(j = 0; j < strlen(producoes[i].data); j++) {
+						displayItemAtual[0].linhaDisplay[16 + j] = producoes[i].data[j];
+					}
+					
+					for(j = 0; j < strlen(producoes[i].numCadCliente); j++) {
+						displayItemAtual[0].linhaDisplay[30 + j] = producoes[i].numCadCliente[j];
+					}
+					
+					for(j = 0; j < strlen(producoes[i].cpfCliente); j++) {
+						displayItemAtual[0].linhaDisplay[40 + j] = producoes[i].cpfCliente[j];
+					}
+					
+					for(j = 0; j < strlen(producoes[i].telefoneCliente); j++) {
+						displayItemAtual[0].linhaDisplay[50 + j] = producoes[i].telefoneCliente[j];
+					}
+					
+					for(j = 0; j < strlen(producoes[i].numCadFuncionario); j++) {
+						displayItemAtual[0].linhaDisplay[60 + j] = producoes[i].numCadFuncionario[j];
+					}
+					
+					for(j = 0; j < strlen(producoes[i].valorTotal); j++) {
+						displayItemAtual[0].linhaDisplay[90 + j] = producoes[i].valorTotal[j];
+					}
+					
+					for(j = 0; j < 2; j++) {
+						printf("%s\n", displayItemAtual[j].linhaDisplay);
+					}
+				}
+			}
+			
+			break;
 		default:
 			printf("Não foi possível puxar os dados existentes");
 	}

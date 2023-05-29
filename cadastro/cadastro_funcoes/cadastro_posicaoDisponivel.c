@@ -10,6 +10,5 @@ int posicaoDisponivel(int *vetorReferencia) {
 			break;
 		}
 	}
-	
 	return i;
 }

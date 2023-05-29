@@ -11,8 +11,6 @@ void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo,
 	
 	int posicaoConsulta;
 	
-	float precoItemAtual;
-	
 	switch(*contadorCampo) {
 		case 0:
 			if(validarData(string, DATA_INICIO_EMPRESA, DATA_LIMITE_FUTURO, true, false)) strcpy(producoes[posicao].data, string);
@@ -93,8 +91,14 @@ void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo,
 	case 4:
 		if(validarEntrada(string, true, true, false, 100)) {
 			strcpy(producoes[posicao].itens[posicaoItem].quantidade, string);
+			int i;
+			float valorTotal = 0.0;
+			for(i = 0; i < calcularDadosExistentes(vetorRefProducoes); i++) {
+					valorTotal += atof(producoes[posicao].itens[i].valorUnit) * atof(producoes[posicao].itens[i].quantidade);
+				}
+			sprintf(producoes[posicao].valorTotal, "%.2f", valorTotal);
 		}
-//		erro = Erro_Input_ApenasNumeros;
+		erro = Erro_Input_ApenasNumeros;
 		break;
 	case 5:
 		break;

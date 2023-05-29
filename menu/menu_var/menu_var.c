@@ -108,10 +108,11 @@
 			//Consultar Ordem de Produção
 				Menu menuConsultarOrdemProducao = {
 					"CONSULTAR ORDEM DE PRODUÇÃO",
-					2,
+					3,
 					{
-						"Voltar ao Menu Anterior", 0, &exibirMenuOrdemProducao,
-						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
+						"Imprimir Ordem de Produção", 1, &executarImpressaoOP,
+						"Consultar Outro", 0, &executarConsultaOrdemProducao,
+						"Voltar ao Menu de Ordem de Produção", 9, &exibirMenuOrdemProducao,
 					}
 				};
 			//

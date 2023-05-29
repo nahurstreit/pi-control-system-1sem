@@ -231,6 +231,7 @@ void salvarArquivo_Producoes(){
 			criarLinhaArquivo(pStringLinha, producoes[i].estadoCliente);
 			criarLinhaArquivo(pStringLinha, producoes[i].numCadFuncionario);
 			criarLinhaArquivo(pStringLinha, producoes[i].nomeFuncionario);
+			criarLinhaArquivo(pStringLinha, producoes[i].valorTotal);
 			criarLinhaArquivo(pStringLinha, producoes[i].arquivoSalvamentoItens);
 			strcat(stringLinha, "\n");
 			contadorDadosExistentes--;

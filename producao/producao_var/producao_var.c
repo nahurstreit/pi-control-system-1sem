@@ -10,3 +10,5 @@ TextoCampo camposOrdem[] = {
 	"a quantidade desse item",
 	"o código do próximo item ou [0] para salvar a ordem de produção",
 };
+
+int producaoAtiva;

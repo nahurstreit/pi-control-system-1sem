@@ -144,7 +144,7 @@ void inserirString(int posicaoDisponivel, char string[MAX_STRING], int *contador
 			switch(*contadorCampo) {
 				case 0:
 					removerPontoVirgula(string);
-					if(validarEntrada(string, false, true, true, 30)) strcpy(produtos[posicaoDisponivel].nomeProduto, string);
+					if(validarEntrada(string, false, true, true, 20)) strcpy(produtos[posicaoDisponivel].nomeProduto, string);
 					break;
 				case 1:
 					valorUnit = atof(string);

@@ -1,5 +1,8 @@
 #include "../../global/global.h"
+#include "../../interface/interface.h"
+#include "../../producao/producao.h"
 #include "../menu.h"
+
 
 //Funções a serem executadas pelas opções dos Menus
 	//Funções de chamada do Menu
@@ -52,11 +55,30 @@
 						
 					}
 						void executarImpressaoOP() {
-							
+							imprimirOrdemProducao();
 						}
 					
 					void exibirMenuConsultarOrdemProducao() {
 						menuAtual = menuConsultarOrdemProducao;
+						executarConsultaOrdemProducao();
+					}
+					
+					void executarConsultaOrdemProducao() {
+						int estado = 0;
+						int *pEstado = &estado;
+						consultaProducoes(pEstado);
+						if(estado == 1) {
+							do{
+								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
+								exibirInterfaceNovaProducao(producaoAtiva);
+								menuAtual = menuConsultarOrdemProducao;
+								exibirInterfaceOpcoes();
+								receberOpcaoMenu();
+							} while(escolhaUser != 0 && escolhaUser != 9);
+							remove("tempImpress.txt");
+						} else if(estado == 0) {
+							exibirMenuOrdemProducao();
+						}
 					}
 			//
 	//

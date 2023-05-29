@@ -17,6 +17,10 @@
 		extern Display displayRefFormularioNovaOrdem[21];
 		extern Display displayRefFormularioNovaOrdem_Item[2];
 		extern Display displayRefFormularioNovaOrdem_Final[2];
+		
+		extern Display displayImpressaoNovaOrdem[25];
+		extern Display displayImpressaoNovaOrdem_Item[2];
+		extern Display displayImpressaoNovaOrdem_Final[2];
 	//
 
 	//Display de consulta
@@ -30,6 +34,8 @@
 		
 		extern Display displayRefCabecalhoConsultaProdutos[MAX_CABECALHO];
 		
+		extern Display displayRefCabecalhoConsultaProducoes[MAX_CABECALHO];
+		
 		extern Display displayRefConsulta_Cliente[2];
 		
 		extern Display displayRefConsulta_Funcionario[2];
@@ -39,6 +45,8 @@
 		extern Display displayRefConsulta_Produto[2];
 		
 		extern Display displayRefConsulta_SemDados[2];
+		
+		extern Display displayRefConsulta_Producoes[2];
 	//
 	
 	//Display logotipo

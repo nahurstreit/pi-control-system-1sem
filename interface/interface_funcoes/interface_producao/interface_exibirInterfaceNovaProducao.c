@@ -110,7 +110,7 @@ void exibirInterfaceNovaProducao(int posicao) {
 	
 	//Formulário itens
 	
-	for(i = 0; i <= qtdItensComprados; i++) {
+	for(i = 0; i < qtdItensComprados; i++) {
 		pDisplayAtual = displayRefFormularioNovaOrdem_Item;
 		
 		for(k = 0; k < 2; k++) {
@@ -169,6 +169,5 @@ void exibirInterfaceNovaProducao(int posicao) {
 	for(i = 0; i < 2; i++) {
 		printf("%s\n", pCopiaDisplay[i].linhaDisplay);
 	}
-	
 	
 }

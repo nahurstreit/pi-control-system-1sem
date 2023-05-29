@@ -7,4 +7,6 @@ extern Producao producoes[MAX_VETOR];
 
 extern TextoCampo camposOrdem[];
 
+extern int producaoAtiva;
+
 #endif
