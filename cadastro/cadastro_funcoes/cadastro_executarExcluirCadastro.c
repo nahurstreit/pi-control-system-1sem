@@ -27,17 +27,14 @@ void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod) {
 			break;
 	}
 	
+	char stringExcluir[MAX_STRING];
 	switch(tipoTexto) {
-		case 1: exibirInterfaceAlerta("Você tem certeza que deseja EXCLUIR o cadastro? Essa decisão é IRREVERSÍVEL! "); break;
-		case 2: exibirInterfaceAlerta("Você tem certeza que deseja ALTERAR TODO o cadastro? Essa decisão é IRREVERSÍVEL!"); break;
+		case 1: strcpy(stringExcluir, "Você tem certeza que deseja EXCLUIR o cadastro? Essa decisão é IRREVERSÍVEL! "); break;
+		case 2: strcpy(stringExcluir, "Você tem certeza que deseja ALTERAR TODO o cadastro? Essa decisão é IRREVERSÍVEL!"); break;
 	}
-	
-	printf("\n\n[1] Sim, tenho certeza!\t\t[2] Não, deixe-me pensar...\n\n");
-	printf("Opção: ");
-	scanf("%d", &escolhaAlterar);
-	fflush(stdin);
+	char stringOpcoes[] = "[1] Sim, tenho certeza!\t\t\t[2] Não, deixe-me pensar...";
 		
-	if(escolhaAlterar == 1) {
+	if(exibirInterfaceAlerta(stringExcluir, stringOpcoes, "1", false, true, 3)) {
 		*pEscolhaUserMod = 0;
 		mensagem = Mensagem_Cadastro_Excluido;
 		excluirCadastro(posicaoConsultaAtual);
@@ -47,6 +44,8 @@ void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod) {
 	} else {
 		exibirInterfaceTitulo(tituloHolder, 1);
 		exibirInterfaceFormularios(posicaoConsultaAtual);
+		
+		*pEscolhaUserMod = 1;
 	}
 }
 

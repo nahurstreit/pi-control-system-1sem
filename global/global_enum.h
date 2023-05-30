@@ -17,6 +17,7 @@ typedef enum {
 	Erro_Input_Telefone_Invalido,
 	Erro_Input_CEP_Invalido,
 	Erro_Input_Estado_Invalido,
+	Erro_Input_Producao_Item_NaoExiste,
 	Erro_OpcaoInvalida,
 	Erro_Consulta_NaoPossivel,
 	Erro_Consulta_NaoExiste,
@@ -36,6 +37,9 @@ typedef enum {
 	Mensagem_CampoAlterado,
 	Mensagem_Producao_Nova,
 	Mensagem_Producao_Cancelada,
+	Mensagem_Producao_Item_Adicionado,
+	Mensagem_Producao_Item_Excluido,
+	Mensagem_Impressao_Concluida,
 } Mensagem;
 
 typedef enum {

@@ -4,7 +4,7 @@
 #include "../../menu/menu.h"
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
-void novaOrdem() {
+void novaOrdem(bool adicionarItens) {
 	char stringHolder[MAX_STRING];
 	int escolhaEntrada = 5;
 	int posicao, posicaoItem, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
@@ -18,14 +18,23 @@ void novaOrdem() {
 		int valid;
 	//
 	
-	resetarVetorItens();
+	if(!adicionarItens) {
+		resetarVetorItens();
+		posicaoItem = posicaoDisponivel(vetorRefItensComprados);
+		posicao = posicaoDisponivel(vetorRefProducoes);
+		producaoAtiva = posicao;	
+		contadorCampo = 0;
+		holderContadorCampo = 0;
+	} else {
+		popularVetorItens(producaoAtiva);
+		posicaoItem = posicaoDisponivel(vetorRefItensComprados);
+		posicao = producaoAtiva;
+		contadorCampo = 3;
+		holderContadorCampo = 3;
+	}
 	
-	posicaoItem = posicaoDisponivel(vetorRefItensComprados);
-	posicao = posicaoDisponivel(vetorRefProducoes);
 	limiteContador = 6;
 	escolhaUser = 5;
-	
-	contadorCampo = 0;
 	alterar = 0;
 	
 	do {
@@ -53,11 +62,9 @@ void novaOrdem() {
 		//Valida se o usuário digitou a palavra "SAIR"
 		if(validarPalavraChave(stringHolder, KEY_STRING_SAIR)) {
 			printf("\n");
-			exibirInterfaceAlerta("Você digitou 'SAIR', TODOS os dados digitados serão perdidos, tem certeza que quer sair? ");
-			printf("\nDigite (S) para sair: ");
-			scanf("%c", &escolhaSair);
-			fflush(stdin);
-			if(escolhaSair == 's' || escolhaSair == 'S') {
+			char stringSair[] = "Você digitou 'SAIR', TODOS os dados digitados serão perdidos, tem certeza que quer sair? ";
+			char stringOpcaoSair[] = "\nDigite (S) para sair: ";
+			if(exibirInterfaceAlerta(stringSair, stringOpcaoSair, "S", true, false, 1)){
 				posicaoConsultaAtual = posicao;
 				excluirCadastro(posicao);
 				saida++;
@@ -71,15 +78,27 @@ void novaOrdem() {
 		if(validarPalavraChave(stringHolder, KEY_STRING_MUDAR)) {
 			if(contadorCampo > 0) {
 				if(contadorCampo == 1) {
-					holderContadorCampo = 1;
 					alterar++;
 					contadorCampo = 0;
 					continue;
 				} else {
-					holderContadorCampo = contadorCampo;
-					printf("Digite o número do campo você quer alterar: ");
-					scanf("%d", &contadorCampo);
-					fflush(stdin);
+					if(strlen(stringHolder) > strlen(KEY_STRING_MUDAR) + 1) {
+						char *token = strtok(stringHolder, " ");
+							token = strtok(NULL, "");
+							
+							strcpy(stringHolder, token);
+							if(!verificarContemLetras(stringHolder)) {
+								contadorCampo = atoi(stringHolder);
+							} else {
+								printf("Digite o número do campo você quer alterar: ");
+								scanf("%d", &contadorCampo);
+								fflush(stdin);
+							}
+					} else {
+						printf("Digite o número do campo você quer alterar: ");
+						scanf("%d", &contadorCampo);
+						fflush(stdin);
+					}
 					contadorCampo--;
 					if(contadorCampo == holderContadorCampo) {
 						continue;
@@ -117,6 +136,7 @@ void novaOrdem() {
 			if(!validarPalavraChave(stringHolder, "0")) {
 				posicaoItem = posicaoDisponivel(vetorRefItensComprados);
 				contadorCampo = 3;
+				holderContadorCampo = 3;
 			}
 		}
 		
@@ -137,24 +157,24 @@ void novaOrdem() {
 		}
 		
 		//Fluxo normal de contador, para ir percorrendo entre os campos.
-		if(erro == 0) contadorCampo++;
+		if(erro == 0) {
+			contadorCampo++;
+			holderContadorCampo++;
+		}
 
 	} while(contadorCampo < limiteContador);
 	
 	//Se o usuário digitar 'SAIR', não exibirá a mensagem de "enviando cadastro". Apenas retornará ao menu anterior.
 	if(saida == 0) {
 		handleSalvar(escolhaUser);
-		
-		mensagem = Mensagem_Producao_Nova;
-		exibirInterfaceTitulo("NOVA ORDEM DE PRODUÇÃO", 1);
-		exibirMensagem();
-		exibirInterfaceNovaProducao(posicao);
-		menuAtual = menuNovaOrdemProducao;
-		exibirInterfaceOpcoes();
-		producaoAtiva = posicao;
-		receberOpcaoMenu();
-		remove("tempImpress.txt");
-		menuAtual = menuOrdemProducao;
+		if(adicionarItens) {
+			salvarArquivo_Itens(atoi(producoes[posicao].numCadCliente), posicao);
+			mensagem = Mensagem_Producao_Item_Adicionado;
+			menuAtual = menuConsultarOrdemProducao;
+		} else  {
+			mensagem = Mensagem_Producao_Nova;
+			menuAtual = menuNovaOrdemProducao;
+		}
 	} else {
 		mensagem = Mensagem_Producao_Cancelada;
 		menuAtual = menuOrdemProducao;

@@ -65,10 +65,10 @@ void consultaProducoes(int *estado) {
 			posicaoString[i] = toupper(posicaoString[i]);
 		}
 		
-		if(strlen(posicaoString) <= 2 && verificarContemLetras(posicaoString)) {
-				limparFiltro++;
-				continue;
-			}
+//		if(strlen(posicaoString) <= 2 && !verificarContemLetras(posicaoString)) {
+//				limparFiltro++;
+//				continue;
+//		}
 		
 		if(strstr(posicaoString, "DATA") != NULL || strstr(posicaoString, "D ") != NULL) {
 			strcpy(stringFiltro, posicaoString);

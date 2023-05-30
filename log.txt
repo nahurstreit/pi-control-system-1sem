@@ -263,3 +263,32 @@ Arquivos:
 
 (data)
 - Criação do arquivo git.txt, dentro da pasta historico_compras, para a pasta poder ser armazenada sem problemas no GitHub, visto que a ausência de tal pasta, estava acarretando em problemas de execução quando o código era copiado em outro computador.
+
+30/05/2023
+(geral)
+- Correção de bugs.
+- Readaptação de lógicas.
+
+(interface)
+- Melhoria de interfaces gerais.
+- Adição de novo ciclo de vida para a função "exibirInterfaceAlerta", permitindo maior customização e usabilidade da mesma função. 
+- Readaptação da lógica de exibir valores totais dos itens. 
+	- Agora apenas ao cadastrar itens novos, o preço será tabelado com o preço atual em sistema.
+	- Isso foi feito para poder alterar o preço dos produtos no futuro e mesmo assim poder consultar ordens de produção antigas, sem que estas tenham o preço dos produtos alterados.
+
+(cadastro)
+- Adição da opção de manter os dados digitados, ao tentar editar um dado em cadastro.
+- Adição de interpretador rápido de mudança, agora sendo possível digitar, por exemplo: "mudar 2" para automaticamente mudar o segundo item.
+- Mudança na lógica do holderContadorCampo.
+- Mudança em textos para conformar com a lógica do programa.
+- Criação de novas variáveis de texto e lógica para lidar com as mudanças da função "exibirInterfaceAlerta"
+
+(producao)
+- Novo ciclo de vida para a função "novaOrdem", que agora recebe um parâmetro booleano, permitindo que a função seja usada para inserir novos itens em uma ordem de produção já criada.
+- Adição das funcionalidades em produções existentes:
+	- Adicionar novos itens da ordem de produção.
+	- Remover itens da ordem de produção.
+	- Editar dados e itens existentes na ordem de produção.
+
+(arquivo)
+- Readaptação da lógica de popularVetorItens, para reconfigurar a ordem de exibição conforme os itens são retirados ou adicionados.

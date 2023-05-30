@@ -49,6 +49,9 @@ void exibirErro() {
 		case Erro_Input_Estado_Invalido:
 			strcpy(res, "Erro: Estado inválido!");
 			break;
+		case Erro_Input_Producao_Item_NaoExiste:
+			strcpy(res, "Erro: Você tentou editar um item que não existe, tente novamente.");
+			break;
 		case Erro_OpcaoInvalida:
 			strcpy(res, "Erro: Opção inválida! Digite novamente!");
 			break;

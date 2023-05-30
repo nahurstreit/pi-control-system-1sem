@@ -124,9 +124,9 @@
 	 *
 	 * @param string[] é a string que será exibida no centro do alerta.
 	 *
-	 * @return: Nenhum.
+	 * @return: true ou false.
 	 **/
-	void exibirInterfaceAlerta(char string[]);
+	bool exibirInterfaceAlerta(char stringAlerta[], char stringOpcao[], char opcaoAfirmativa[], bool opcaoDireta, bool opcaoNumero, int qtdEspacos);
 	
 	
 	/**

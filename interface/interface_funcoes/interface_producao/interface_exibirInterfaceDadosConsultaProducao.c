@@ -24,12 +24,12 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 		token = strtok(NULL, "");
 		strcpy(stringFiltro, token);
 		
+		if(validarPalavraChave(stringFiltro, "H") || validarPalavraChave(stringFiltro, "HOJE")) receberAnoAtual(stringFiltro);
+		
 		if(strlen(stringFiltro) < 6) {
 			erro = Erro_Filtro_NaoExiste;
 			return;
 		}
-		
-		if(validarPalavraChave(stringFiltro, "H") || validarPalavraChave(stringFiltro, "HOJE")) receberAnoAtual(stringFiltro);
 		
 		removerCaracteresEspeciais(stringFiltro, false);
 		
@@ -37,6 +37,15 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 		
 		sprintf(stringFiltro, "%c%c/%c%c/%c%c%c%c", stringFiltro[0], stringFiltro[1], stringFiltro[2], stringFiltro[3], stringFiltro[4], stringFiltro[5], stringFiltro[6], stringFiltro[7]);
 		
+		int valid = 0;
+		for(i = 0; i < MAX_VETOR; i++) {
+			if(strcmp(stringFiltro, producoes[i].data) == 0) valid++;
+		}
+		
+		if(valid == 0) {
+			erro = Erro_Filtro_NaoExiste;
+			return;
+		}
 		filtroAtual = Filtro_Data;
 	} else if(strstr(stringFiltro, "CLIENTE") != NULL || strstr(stringFiltro, "C ")) {
 		

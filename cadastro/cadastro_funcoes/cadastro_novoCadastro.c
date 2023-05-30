@@ -37,6 +37,7 @@ void novoCadastro() {
 	}
 	
 	contadorCampo = 0;
+	holderContadorCampo = 0;
 	
 	do {
 		saida = 0; //Zerando o valor de saída para poder controlar a exibição da mensagem de saída caso o usuário não digitar "SAIR".
@@ -51,12 +52,15 @@ void novoCadastro() {
 		exibirInterfaceFormularios(posicao);
 		
 		//Exibe uma mensagem diferente na parte de baixo do formulário. Se o usuário estiver digitando o primeiro dado, apenas exibirá a opção de voltar, caso esteja em algum outro dado, aparece o texto de mudar.
-		contadorCampo > 0 ? exibirTextoMeio("Digite 'SAIR' para voltar ou 'MUDAR' para alterar algum dado.\n") :
-							exibirTextoMeio("Digite 'SAIR' para voltar\n");
+		if(contadorCampo > 0 && alterar == 0) exibirTextoMeio("Digite 'SAIR' para voltar ou 'MUDAR' para alterar algum dado.");
+		else if(alterar > 0) exibirTextoMeio("Digite 'SAIR' para voltar ou 'MANTER' para manter o dado já digitado.");
+		else exibirTextoMeio("Digite 'SAIR' para voltar");
+							
+		
 		
 		//Exibe uma mensagem diferente caso seja a primeira vez que esteja digitando um dado, ou se estiver digitando o dado novamente
-		alterar > 0 ? printf("\n[%d] Digite novamente %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo) :
-					  printf("\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
+		alterar > 0 ? printf("\n\n[%d] Digite novamente %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo) :
+					  printf("\n\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
 		
 		//Recebe o dado
 		fgets(stringHolder, MAX_STRING, stdin);
@@ -66,11 +70,9 @@ void novoCadastro() {
 		//Valida se o usuário digitou a palavra "SAIR"
 		if(validarPalavraChave(stringHolder, KEY_STRING_SAIR)) {
 			printf("\n");
-			exibirInterfaceAlerta("Você digitou 'SAIR', TODOS os dados digitados serão perdidos, tem certeza que quer sair? ");
-			printf("\nDigite (S) para sair: ");
-			scanf("%c", &escolhaSair);
-			fflush(stdin);
-			if(escolhaSair == 's' || escolhaSair == 'S') {
+			char stringSair[] = "Você digitou 'SAIR', TODOS os dados digitados serão perdidos, tem certeza que quer sair? ";
+			char stringOpcaoSair[] = "\nDigite (S) para sair: ";
+			if(exibirInterfaceAlerta(stringSair, stringOpcaoSair, "S", true, false, 1)){
 				posicaoConsultaAtual = posicao;
 				excluirCadastro(posicao);
 				saida++;
@@ -89,10 +91,23 @@ void novoCadastro() {
 					contadorCampo = 0;
 					continue;
 				} else {
-					holderContadorCampo = contadorCampo;
-					printf("Digite o número do campo você quer alterar: ");
-					scanf("%d", &contadorCampo);
-					fflush(stdin);
+					if(strlen(stringHolder) > strlen(KEY_STRING_MUDAR) + 1) {
+						char *token = strtok(stringHolder, " ");
+							token = strtok(NULL, "");
+							
+							strcpy(stringHolder, token);
+							if(!verificarContemLetras(stringHolder)) {
+								contadorCampo = atoi(stringHolder);
+							} else {
+								printf("Digite o número do campo você quer alterar: ");
+								scanf("%d", &contadorCampo);
+								fflush(stdin);
+							}
+					} else {
+						printf("Digite o número do campo você quer alterar: ");
+						scanf("%d", &contadorCampo);
+						fflush(stdin);
+					}
 					contadorCampo--;
 					if(contadorCampo == holderContadorCampo) {
 						continue;
@@ -115,6 +130,12 @@ void novoCadastro() {
 			}
 		}
 		
+		if(validarPalavraChave(stringHolder, "MANTER")) {
+			contadorCampo = holderContadorCampo;
+			alterar = 0;
+			continue;
+		}
+		
 		//Insere a string no vetor de dados
 		inserirString(posicao, stringHolder, pContadorCampo);
 		
@@ -127,7 +148,10 @@ void novoCadastro() {
 		}
 		
 		//Fluxo normal de contador, para ir percorrendo entre os campos.
-		if(erro == 0) contadorCampo++;
+		if(erro == 0) {
+			contadorCampo++;
+			holderContadorCampo++;
+		}
 
 	} while(contadorCampo < limiteContador);
 	

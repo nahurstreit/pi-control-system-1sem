@@ -1,2 +1,2 @@
-Testandoooooooooooooooooooooooo;3000,00;
+Testando;3000,00;
 Pet Feeder;239,99;

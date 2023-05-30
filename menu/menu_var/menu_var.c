@@ -108,9 +108,12 @@
 			//Consultar Ordem de Produção
 				Menu menuConsultarOrdemProducao = {
 					"CONSULTAR ORDEM DE PRODUÇÃO",
-					3,
+					6,
 					{
-						"Imprimir Ordem de Produção", 1, &executarImpressaoOP,
+						"Alterar Campo Específico da Ordem de Produção", 1, &executarAlterarOP,
+						"Adicionar Novos Itens na Ordem de Produção", 2, &executarAdicionarNovosItensOP,
+						"Excluir Item da Ordem de Produção", 3, &executarExcluirItemOP,
+						"Imprimir Ordem de Produção", 4, &executarImpressaoOP,
 						"Consultar Outro", 0, &executarConsultaOrdemProducao,
 						"Voltar ao Menu de Ordem de Produção", 9, &exibirMenuOrdemProducao,
 					}

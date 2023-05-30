@@ -23,6 +23,12 @@ void exibirMensagem() {
 		case Mensagem_Producao_Cancelada:
 			strcpy(res, "Ordem de Produção Cancelada!");
 			break;
+		case Mensagem_Impressao_Concluida:
+			strcpy(res, "Processo de impressão concluído! Arquivo de impressão deletado.");
+			break;
+		case Mensagem_Producao_Item_Excluido:
+			strcpy(res, "Item excluído da Ordem de Produção!");
+			break;
 		default:;
 	}
 	

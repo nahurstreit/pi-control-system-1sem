@@ -111,46 +111,48 @@ void exibirInterfaceNovaProducao(int posicao) {
 	//Formulário itens
 	
 	for(i = 0; i < qtdItensComprados; i++) {
-		pDisplayAtual = displayRefFormularioNovaOrdem_Item;
-		
-		for(k = 0; k < 2; k++) {
-			copiaDisplay[k] = pDisplayAtual[k];
-		}
-		
-		sprintf(stringRefItem, "(%d)", i+1);
-		
-		for(j = 0; j < strlen(stringRefItem); j++) {
-			pCopiaDisplay[0].linhaDisplay[4 + j] = stringRefItem[j];
-		}
-		
-		for(j = 0; j < strlen(producoes[posicao].itens[i].nome); j++) {
-			pCopiaDisplay[0].linhaDisplay[13 + j] = producoes[posicao].itens[i].nome[j];
-		}
-		
-		k = j;
-		
-		for(j = 0; j < strlen(producoes[posicao].itens[i].valorUnit); j++) {
-			pCopiaDisplay[0].linhaDisplay[56 + j] = producoes[posicao].itens[i].valorUnit[j];
-		}
-		
-		for(j = 0; j < strlen(producoes[posicao].itens[i].quantidade); j++) {
-			pCopiaDisplay[0].linhaDisplay[77] = producoes[posicao].itens[i].quantidade[j];
-		}
-		
-		valorUnitItemAtual = atof(producoes[posicao].itens[i].valorUnit);
-		qtdItemAtual = atof(producoes[posicao].itens[i].quantidade);
-		
-		valorTotalFinal += qtdItemAtual * valorUnitItemAtual;
-		
-		sprintf(stringValorTotalItemAtual, "%.2f", qtdItemAtual * valorUnitItemAtual);
-		
-		for(j = 0; j < strlen(stringValorTotalItemAtual); j++) {
-			pCopiaDisplay[0].linhaDisplay[90 + j] = stringValorTotalItemAtual[j];
-		}
-		
-		//Display dos itens
-		for(k = 0; k < 2; k++) {
-			printf("%s\n", pCopiaDisplay[k].linhaDisplay);
+		if(vetorRefItensComprados[i] == 1) {
+			pDisplayAtual = displayRefFormularioNovaOrdem_Item;
+			
+			for(k = 0; k < 2; k++) {
+				copiaDisplay[k] = pDisplayAtual[k];
+			}
+			
+			sprintf(stringRefItem, "(%d)", i+1);
+			
+			for(j = 0; j < strlen(stringRefItem); j++) {
+				pCopiaDisplay[0].linhaDisplay[4 + j] = stringRefItem[j];
+			}
+			
+			for(j = 0; j < strlen(producoes[posicao].itens[i].nome); j++) {
+				pCopiaDisplay[0].linhaDisplay[13 + j] = producoes[posicao].itens[i].nome[j];
+			}
+			
+			k = j;
+			
+			for(j = 0; j < strlen(producoes[posicao].itens[i].valorUnit); j++) {
+				pCopiaDisplay[0].linhaDisplay[56 + j] = producoes[posicao].itens[i].valorUnit[j];
+			}
+			
+			for(j = 0; j < strlen(producoes[posicao].itens[i].quantidade); j++) {
+				pCopiaDisplay[0].linhaDisplay[77] = producoes[posicao].itens[i].quantidade[j];
+			}
+			
+			valorUnitItemAtual = atof(producoes[posicao].itens[i].valorUnit);
+			qtdItemAtual = atof(producoes[posicao].itens[i].quantidade);
+			
+			valorTotalFinal += qtdItemAtual * valorUnitItemAtual;
+			
+			sprintf(stringValorTotalItemAtual, "%.2f", qtdItemAtual * valorUnitItemAtual);
+			
+			for(j = 0; j < strlen(stringValorTotalItemAtual); j++) {
+				pCopiaDisplay[0].linhaDisplay[90 + j] = stringValorTotalItemAtual[j];
+			}
+			
+			//Display dos itens
+			for(k = 0; k < 2; k++) {
+				printf("%s\n", pCopiaDisplay[k].linhaDisplay);
+			}
 		}
 	}
 	

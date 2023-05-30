@@ -51,11 +51,23 @@
 				}
 					void exibirMenuNovaOrdemProducao() {
 						escolhaUser = 5;
-						novaOrdem();
-						
+						novaOrdem(false);
+						if(mensagem == Mensagem_Producao_Nova){ 
+							do{
+								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
+								exibirMensagem();
+								exibirErro();
+								exibirInterfaceNovaProducao(producaoAtiva);
+								exibirInterfaceOpcoes();
+								receberOpcaoMenu();
+							} while(escolhaUser != 0);
+						}
 					}
 						void executarImpressaoOP() {
 							imprimirOrdemProducao();
+							printf("Impressão em andamento. ");
+							mensagem = Mensagem_Impressao_Concluida;
+							system("pause");
 						}
 					
 					void exibirMenuConsultarOrdemProducao() {
@@ -70,6 +82,8 @@
 						if(estado == 1) {
 							do{
 								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
+								exibirMensagem();
+								exibirErro();
 								exibirInterfaceNovaProducao(producaoAtiva);
 								menuAtual = menuConsultarOrdemProducao;
 								exibirInterfaceOpcoes();
@@ -80,6 +94,18 @@
 							exibirMenuOrdemProducao();
 						}
 					}
+						
+						void executarAlterarOP() {
+							alterarProducao();
+						}
+						
+						void executarAdicionarNovosItensOP() {
+							novaOrdem(true);
+						}
+						
+						void executarExcluirItemOP() {
+							excluirItemProducao();
+						}
 			//
 	//
 	

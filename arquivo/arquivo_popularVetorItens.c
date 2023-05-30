@@ -23,40 +23,38 @@ void popularVetorItens(int numOrdemProducao) {
 		
         char *token = strtok(linha, ";");
         
-        if(!checarLinhaNula(token)) {
-	        if (token != NULL) {
-	        	if(checarCampoNulo_Arquivo(token))token = " ";
-	            strncpy(producoes[numOrdemProducao].itens[i].codigoProduto, token, MAX_STRING - 1);
-	            producoes[numOrdemProducao].itens[i].codigoProduto[MAX_STRING - 1] = '\0';
-	        }
-	
-	        token = strtok(NULL, ";");
-	
-	        if (token != NULL) {
-	        	if(checarCampoNulo_Arquivo(token))token = " ";
-	            strncpy(producoes[numOrdemProducao].itens[i].nome, token, MAX_STRING - 1);
-	            producoes[numOrdemProducao].itens[i].nome[MAX_STRING - 1] = '\0';
-	        }
-	        
-	        token = strtok(NULL, ";");
-	
-	        if (token != NULL) {
-	        	if(checarCampoNulo_Arquivo(token))token = " ";
-	            strncpy(producoes[numOrdemProducao].itens[i].quantidade, token, MAX_STRING - 1);
-	            producoes[numOrdemProducao].itens[i].quantidade[MAX_STRING - 1] = '\0';
-	        }
-	        
-	        token = strtok(NULL, ";");
-	
-	        if (token != NULL) {
-	        	if(checarCampoNulo_Arquivo(token))token = " ";
-	            strncpy(producoes[numOrdemProducao].itens[i].valorUnit, token, MAX_STRING - 1);
-	            producoes[numOrdemProducao].itens[i].valorUnit[MAX_STRING - 1] = '\0';
-	        }
-		}
-		
-		vetorRefItensComprados[i] = 1;
-		
+        if(checarLinhaNula(token)) continue;
+        
+        if (token != NULL) {
+        	if(checarCampoNulo_Arquivo(token))token = " ";
+            strncpy(producoes[numOrdemProducao].itens[i].codigoProduto, token, MAX_STRING - 1);
+            producoes[numOrdemProducao].itens[i].codigoProduto[MAX_STRING - 1] = '\0';
+        }
+
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+        	if(checarCampoNulo_Arquivo(token))token = " ";
+            strncpy(producoes[numOrdemProducao].itens[i].nome, token, MAX_STRING - 1);
+            producoes[numOrdemProducao].itens[i].nome[MAX_STRING - 1] = '\0';
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+        	if(checarCampoNulo_Arquivo(token))token = " ";
+            strncpy(producoes[numOrdemProducao].itens[i].quantidade, token, MAX_STRING - 1);
+            producoes[numOrdemProducao].itens[i].quantidade[MAX_STRING - 1] = '\0';
+        }
+        
+        token = strtok(NULL, ";");
+
+        if (token != NULL) {
+        	if(checarCampoNulo_Arquivo(token))token = " ";
+            strncpy(producoes[numOrdemProducao].itens[i].valorUnit, token, MAX_STRING - 1);
+            producoes[numOrdemProducao].itens[i].valorUnit[MAX_STRING - 1] = '\0';
+        }
+        vetorRefItensComprados[i] = 1;
         i++;
     }
     fclose(pArq_Itens);

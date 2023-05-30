@@ -25,6 +25,9 @@
 					void executarImpressaoOP();
 				void exibirMenuConsultarOrdemProducao();	
 					void executarConsultaOrdemProducao();
+						void executarAlterarOP();
+						void executarAdicionarNovosItensOP();
+						void executarExcluirItemOP();
 						void executarAlteracaoOrdemProducao();	
 	//
 
