@@ -176,6 +176,10 @@ void novaOrdem(bool adicionarItens) {
 			menuAtual = menuNovaOrdemProducao;
 		}
 	} else {
+		excluirProducao(producaoAtiva);
+		if(contadorCampo > 2) {
+			excluirArquivoItens(atoi(producoes[producaoAtiva].numCadCliente), producaoAtiva);
+		}
 		mensagem = Mensagem_Producao_Cancelada;
 		menuAtual = menuOrdemProducao;
 	}

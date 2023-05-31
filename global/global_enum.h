@@ -34,11 +34,13 @@ typedef enum {
 	Mensagem_Cadastro_Novo = 1,
 	Mensagem_Cadastro_Excluido,
 	Mensagem_Cadastro_Cancelado,
+	Mensagem_Cadastro_Modificado,
 	Mensagem_CampoAlterado,
 	Mensagem_Producao_Nova,
 	Mensagem_Producao_Cancelada,
 	Mensagem_Producao_Item_Adicionado,
 	Mensagem_Producao_Item_Excluido,
+	Mensagem_Producao_Excluida,
 	Mensagem_Impressao_Concluida,
 } Mensagem;
 

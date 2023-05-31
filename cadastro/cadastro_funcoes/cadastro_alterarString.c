@@ -5,7 +5,7 @@
 void alterarString(int posicao, char stringNova[MAX_STRING], int campo) {
 	float valorUnit;
 	
-	switch(escolhaUser) {
+	switch(tipoConsultaAtual) {
 		case 1:
 			switch(campo) {
 				case 0:

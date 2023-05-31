@@ -12,7 +12,7 @@ void alterarCadastro() {
 	char tituloHolder[50];
 	
 	
-	switch(escolhaUser) {
+	switch(tipoConsultaAtual) {
 		case 1: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE CLIENTES"); break;
 		case 2: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FUNCIONARIOS"); break;
 		case 3: strcpy(tituloHolder, "CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES"); break;
@@ -28,7 +28,7 @@ void alterarCadastro() {
 		
 		exibirInterfaceFormularios(posicaoConsultaAtual);
 	
-		switch(escolhaUser) {
+		switch(tipoConsultaAtual) {
 			case 1: camposAtuais = camposCliente; break;
 			case 2: camposAtuais = camposFuncionario; break;
 			case 3: camposAtuais = camposFornecedor; break;

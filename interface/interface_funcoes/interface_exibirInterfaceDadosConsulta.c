@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../cadastro/cadastro.h"
 #include "../interface.h"
 
 void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
@@ -11,7 +12,7 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes) {
 	
 	int dadosEncontrados = contadorDadosExistentes;
 	
-	switch(escolhaUser) {
+	switch(tipoConsultaAtual) {
 		case 1 :
 			displayCabecalhoAtual = displayRefCabecalhoConsultaClientes;
 			exibirInterfaceCabecalhoAtual(displayCabecalhoAtual);

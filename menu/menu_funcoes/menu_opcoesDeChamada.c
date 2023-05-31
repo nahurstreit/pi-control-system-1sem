@@ -19,11 +19,11 @@
 						menuAtual = menuNovoCadastro;
 					}
 						void executarNovoCadastro() {
-							novoCadastro();
+							novoCadastro(false);
 						}
 						
 						void executarNovoProduto() {
-							novoCadastro();
+							novoCadastro(false);
 						}
 					
 					void exibirMenuConsultarCadastro() {
@@ -34,12 +34,49 @@
 							int *pEstado = &estado;
 							consultaCadastro(pEstado);
 							if(estado == 1) {
-								receberOpcoesAlteracaoCadastro();
+								do{
+									menuAtual = menuModificarCadastro;
+									exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
+									exibirMensagem();
+									exibirErro();
+									exibirInterfaceFormularios(posicaoConsultaAtual);
+									exibirInterfaceOpcoes();
+									receberOpcaoMenu();
+									if(verificarExclusaoCadastro()) {
+										mensagem = Mensagem_Cadastro_Excluido;
+										break;
+									}
+								} while(escolhaUser != 0 && escolhaUser != 9);
+								switch(escolhaUser) {
+									case 0:
+										exibirMenuConsultarCadastro();
+										executarConsultaCadastro();
+										break;
+									case 9:
+										exibirMenuCadastro();
+										break;
+								}
 							}
 						}
 							void executarAlterarCadastro() {
 								exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);
 								alterarCadastro();
+							}
+							
+							void executarAlterarCadastroInteiro() {
+								exibirInterfaceTitulo("ATENÇÃO!", 1);
+								char stringAlerta[] = "Você tem certeza que deseja ALTERAR TODO o cadastro? Essa decisão é IRREVERSÍVEL!";
+								char stringOpcoes[] = "[1] Sim, tenho certeza!\t\t\t[2] Não, deixe-me pensar...";
+								
+								if(exibirInterfaceAlerta(stringAlerta, stringOpcoes, "1", false, true, 1)) {
+									excluirCadastro(posicaoConsultaAtual);
+									novoCadastro(true);
+									if(!verificarExclusaoCadastro()) {
+										mensagem = Mensagem_Cadastro_Modificado;
+									} else if(mensagem > 0) {
+										escolhaUser = 0;
+									}
+								}
 							}
 						
 			//
@@ -65,9 +102,10 @@
 					}
 						void executarImpressaoOP() {
 							imprimirOrdemProducao();
-							printf("Impressão em andamento. ");
-							mensagem = Mensagem_Impressao_Concluida;
+							printf("Impressão em andamento.");
 							system("pause");
+							mensagem = Mensagem_Impressao_Concluida;
+							remove("tempImpress.txt");
 						}
 					
 					void exibirMenuConsultarOrdemProducao() {
@@ -105,6 +143,19 @@
 						
 						void executarExcluirItemOP() {
 							excluirItemProducao();
+						}
+						
+						void executarExclusaoOP() {
+							exibirInterfaceTitulo("ATENÇÃO!", 1);
+							char stringAlerta[] = "Você tem certeza que deseja EXCLUIR a Ordem de Produção? Essa decisão é IRREVERSÍVEL!";
+							char stringOpcoes[] = "[1] Sim, tenho certeza!\t\t\t[2] Não, deixe-me pensar...";
+							if(exibirInterfaceAlerta(stringAlerta, stringOpcoes, "1", false, true, 1)) {
+								excluirArquivoItens(atoi(producoes[producaoAtiva].numCadCliente), producaoAtiva);
+								excluirProducao(producaoAtiva);
+								mensagem = Mensagem_Producao_Excluida;
+								escolhaUser = 0;
+								executarConsultaOrdemProducao();
+							}
 						}
 			//
 	//

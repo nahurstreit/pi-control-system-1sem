@@ -2,7 +2,7 @@
 #include "../cadastro.h"
 
 void excluirCadastro(int posicaoConsultaAtual) {
-	switch(escolhaUser) {
+	switch(tipoConsultaAtual) {
 		case 1:
 			strcpy(clientes[posicaoConsultaAtual].nome, "");
 			strcpy(clientes[posicaoConsultaAtual].cpf, "");

@@ -19,6 +19,7 @@
 				extern void exibirMenuConsultarCadastro();
 					extern void executarConsultaCadastro();
 						extern void executarAlterarCadastro();
+						extern void executarAlterarCadastroInteiro();
 
 			void exibirMenuOrdemProducao();
 				void exibirMenuNovaOrdemProducao();
@@ -28,7 +29,7 @@
 						void executarAlterarOP();
 						void executarAdicionarNovosItensOP();
 						void executarExcluirItemOP();
-						void executarAlteracaoOrdemProducao();	
+						void executarExclusaoOP();
 	//
 
 	/**

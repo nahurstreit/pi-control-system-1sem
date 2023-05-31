@@ -65,11 +65,6 @@ void consultaProducoes(int *estado) {
 			posicaoString[i] = toupper(posicaoString[i]);
 		}
 		
-//		if(strlen(posicaoString) <= 2 && !verificarContemLetras(posicaoString)) {
-//				limparFiltro++;
-//				continue;
-//		}
-		
 		if(strstr(posicaoString, "DATA") != NULL || strstr(posicaoString, "D ") != NULL) {
 			strcpy(stringFiltro, posicaoString);
 			filtroAtual = Filtro_Data;
@@ -97,6 +92,10 @@ void consultaProducoes(int *estado) {
 		
 		if(erro == 0) {
 			producaoAtiva = atoi(posicaoString) -1;
+			if(vetorRefProducoes[producaoAtiva] == 0) {
+				erro = Erro_Consulta_NaoExiste;
+				continue;
+			}
 			*estado = 1;
 			break;
 		}

@@ -73,10 +73,10 @@
 						5,
 						{
 							"Alterar Campo Específico do Cadastro", 1, &executarAlterarCadastro,
-							"Alterar Todo o Cadastro", 2, &exibirMenuCadastro,
-							"Deletar o Cadastro", 3, &exibirMenuCadastro,
+							"Alterar Todo o Cadastro", 2, &executarAlterarCadastroInteiro,
+							"Deletar o Cadastro", 3, &executarExcluirCadastro,
 							"Consultar Outro", 0, &exibirMenuConsultarCadastro,
-							"Voltar ao Menu de Cadastros", 9, &exibirMenuPrincipal,
+							"Voltar ao Menu de Cadastros", 9, &exibirMenuCadastro,
 						}
 					};
 			//
@@ -108,12 +108,13 @@
 			//Consultar Ordem de Produção
 				Menu menuConsultarOrdemProducao = {
 					"CONSULTAR ORDEM DE PRODUÇÃO",
-					6,
+					7,
 					{
 						"Alterar Campo Específico da Ordem de Produção", 1, &executarAlterarOP,
 						"Adicionar Novos Itens na Ordem de Produção", 2, &executarAdicionarNovosItensOP,
 						"Excluir Item da Ordem de Produção", 3, &executarExcluirItemOP,
-						"Imprimir Ordem de Produção", 4, &executarImpressaoOP,
+						"Excluir Ordem de Produção", 4, &executarExclusaoOP,
+						"Imprimir Ordem de Produção", 5, &executarImpressaoOP,
 						"Consultar Outro", 0, &executarConsultaOrdemProducao,
 						"Voltar ao Menu de Ordem de Produção", 9, &exibirMenuOrdemProducao,
 					}

@@ -2,7 +2,7 @@
 #include "../cadastro.h"
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
-void novoCadastro() {
+void novoCadastro(bool refazerCadastro) {
 	char stringHolder[MAX_STRING];
 	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int holderContadorCampo;
@@ -13,38 +13,69 @@ void novoCadastro() {
 		int saida, alterar; //Variáveis responsáveis por controlar se o usuário está tentando sair ou alterar algum dado, durante o registro de um novo cadastro.
 	//
 	
-	switch(escolhaUser) {
+	tipoConsultaAtual = escolhaUser;
+	if(refazerCadastro) {
+		posicao = posicaoConsultaAtual;
+		switch(tipoConsultaAtual) {
+			case 1:
+				vetorRefClientes[posicaoConsultaAtual] = 1;
+				break;
+			case 2:
+				vetorRefFuncionarios[posicaoConsultaAtual] = 1;
+				break;
+			case 3:
+				vetorRefFornecedores[posicaoConsultaAtual] = 1;
+				break;
+			case 4:
+				vetorRefProdutos[posicaoConsultaAtual] = 1;
+				break;
+		}
+	}
+	
+	switch(tipoConsultaAtual) {
 		case 1:
 			camposAtuais = camposCliente;
-			posicao = posicaoDisponivel(vetorRefClientes);
+			if(!refazerCadastro) posicao = posicaoDisponivel(vetorRefClientes);
 			limiteContador = 12;
 			break;
 		case 2:
 			camposAtuais = camposFuncionario;
-			posicao = posicaoDisponivel(vetorRefFuncionarios);
+			if(!refazerCadastro) posicao = posicaoDisponivel(vetorRefFuncionarios);
 			limiteContador = 16;
 			break;
 		case 3:
 			camposAtuais = camposFornecedor;
-			posicao = posicaoDisponivel(vetorRefFornecedores);
+			if(!refazerCadastro) posicao = posicaoDisponivel(vetorRefFornecedores);
 			limiteContador = 12;
 			break;
 		case 4:
 			camposAtuais = camposProduto;
-			posicao = posicaoDisponivel(vetorRefProdutos);
+			if(!refazerCadastro) posicao = posicaoDisponivel(vetorRefProdutos);
 			limiteContador = 2;
 			break;
 	}
 	
+	posicaoConsultaAtual = posicao;
 	contadorCampo = 0;
 	holderContadorCampo = 0;
+	alterar = 0;
 	
 	do {
 		saida = 0; //Zerando o valor de saída para poder controlar a exibição da mensagem de saída caso o usuário não digitar "SAIR".
-		 if(escolhaUser == 1) exibirInterfaceTitulo("NOVO CADASTRO DE CLIENTE", 1);
-		 else if(escolhaUser == 2) exibirInterfaceTitulo("NOVO CADASTRO DE FUNCIONÁRIO", 1);
-		 else if(escolhaUser == 3) exibirInterfaceTitulo("NOVO CADASTRO DE FORNECEDOR", 1);
-		 else exibirInterfaceTitulo("NOVO CADASTRO DE PRODUTO", 1);
+		switch(tipoConsultaAtual) {
+			case 1:
+				exibirInterfaceTitulo("NOVO CADASTRO DE CLIENTE", 1);
+				break;
+			case 2:
+				exibirInterfaceTitulo("NOVO CADASTRO DE FUNCIONÁRIO", 1);
+				break;
+			case 3:
+				exibirInterfaceTitulo("NOVO CADASTRO DE FORNECEDOR", 1);
+				break;
+			case 4:
+				exibirInterfaceTitulo("NOVO CADASTRO DE PRODUTO", 1);
+				break;
+		}
 		
 		exibirMensagem();
 		exibirErro();
@@ -54,9 +85,7 @@ void novoCadastro() {
 		//Exibe uma mensagem diferente na parte de baixo do formulário. Se o usuário estiver digitando o primeiro dado, apenas exibirá a opção de voltar, caso esteja em algum outro dado, aparece o texto de mudar.
 		if(contadorCampo > 0 && alterar == 0) exibirTextoMeio("Digite 'SAIR' para voltar ou 'MUDAR' para alterar algum dado.");
 		else if(alterar > 0) exibirTextoMeio("Digite 'SAIR' para voltar ou 'MANTER' para manter o dado já digitado.");
-		else exibirTextoMeio("Digite 'SAIR' para voltar");
-							
-		
+		else exibirTextoMeio("Digite 'SAIR' para voltar");	
 		
 		//Exibe uma mensagem diferente caso seja a primeira vez que esteja digitando um dado, ou se estiver digitando o dado novamente
 		alterar > 0 ? printf("\n\n[%d] Digite novamente %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo) :
@@ -164,6 +193,7 @@ void novoCadastro() {
 		system("pause");
 		mensagem = Mensagem_Cadastro_Novo;
 	} else {
+		handleSalvar(escolhaUser);
 		mensagem = Mensagem_Cadastro_Cancelado;
 	}
 }

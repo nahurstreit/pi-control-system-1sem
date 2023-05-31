@@ -1,4 +1,5 @@
 #include "../global/global.h"
+#include "../producao/producao.h"
 #include "arquivo.h"
 
 void resetarVetorItens();
@@ -11,8 +12,7 @@ void popularVetorItens(int numOrdemProducao) {
     pArq_Itens = fopen(producoes[numOrdemProducao].arquivoSalvamentoItens, "r");
 
     if(pArq_Itens == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        erro = Erro_Arquivo_ErroAoLerArquivos;
+        return;
     }
     
     resetarVetorItens();
@@ -66,9 +66,9 @@ void resetarVetorItens() {
 	for(i = 0; i < MAX_VETOR; i++) {
 		vetorRefItensComprados[i] = 0;
 		
-		strcpy(itensComprados[i].codigoProduto, "");
-		strcpy(itensComprados[i].nome, "");
-		strcpy(itensComprados[i].quantidade, "");
-		strcpy(itensComprados[i].valorUnit, "");
+		strcpy(producoes[producaoAtiva].itens[i].codigoProduto, "");
+		strcpy(producoes[producaoAtiva].itens[i].nome, "");
+		strcpy(producoes[producaoAtiva].itens[i].quantidade, "");
+		strcpy(producoes[producaoAtiva].itens[i].valorUnit, "");
 	}
 }

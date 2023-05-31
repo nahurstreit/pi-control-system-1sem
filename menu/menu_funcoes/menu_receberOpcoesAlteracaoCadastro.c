@@ -27,7 +27,7 @@ void receberOpcoesAlteracaoCadastro() {
 				}
 				break;
 			case 3:
-				executarExcluirCadastro(1, pEscolhaUserAlterar);
+				executarExcluirCadastro();
 				if(escolhaUserAlterar == 0) {
 					menuAtual = menuConsultarCadastro;
 					executarConsultaCadastro();

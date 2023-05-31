@@ -1,5 +1,6 @@
 #include "../../../global/global.h"
 #include "../../../cadastro/cadastro.h"
+#include "../../../producao/producao.h"
 #include "../../interface.h"
 
 void exibirInterfaceNovaProducao(int posicao) {
@@ -113,7 +114,7 @@ void exibirInterfaceNovaProducao(int posicao) {
 	for(i = 0; i < qtdItensComprados; i++) {
 		if(vetorRefItensComprados[i] == 1) {
 			pDisplayAtual = displayRefFormularioNovaOrdem_Item;
-			
+		
 			for(k = 0; k < 2; k++) {
 				copiaDisplay[k] = pDisplayAtual[k];
 			}

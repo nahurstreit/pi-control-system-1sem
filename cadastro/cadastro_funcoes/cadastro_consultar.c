@@ -7,7 +7,10 @@ void consultaCadastro(int *estado) {
 	int posicao, contadorDadosExistentes;
 	char stringTipo[MAX_STRING];
 	
-	switch(escolhaUser) {
+	if(escolhaUser != 0 && escolhaUser != 9) tipoConsultaAtual = escolhaUser;
+	*estado = 0;
+	
+	switch(tipoConsultaAtual) {
 		case 1:
 			contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
 			break;
@@ -23,7 +26,7 @@ void consultaCadastro(int *estado) {
 	}
 	
 	do{
-		switch(escolhaUser) {
+		switch(tipoConsultaAtual) {
 			case 1:
 				exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
 				strcpy(stringTipo, "Digite o [NÚMERO DE CADASTRO] ou [CPF] do Cliente para consultá-lo.");
@@ -70,7 +73,7 @@ void consultaCadastro(int *estado) {
 			posicaoConsultaAtual = posicao - 1;
 		}
 		
-		switch(escolhaUser) {
+		switch(tipoConsultaAtual) {
 			case 1:
 				verificarDadosVetorDisponivel(vetorRefClientes, posicao);
 				break;
@@ -88,10 +91,6 @@ void consultaCadastro(int *estado) {
 		}
 		
 		if(erro == 0) {
-			if(escolhaUser == 1) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE CLIENTES", 1);
-		 	else if(escolhaUser == 2) exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FUNCIONÁRIOS", 1);
-		 	else exibirInterfaceTitulo("CONSULTAR E MODIFICAR CADASTROS DE FORNECEDORES", 1);
-			exibirInterfaceFormularios(posicao-1);
 			*estado = 1;
 			break;
 		}

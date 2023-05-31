@@ -20,7 +20,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	extern void novoCadastro();
+	extern void novoCadastro(bool alterarCadastro);
 	
 
 	/**
@@ -186,9 +186,11 @@
 	 *
 	 * @return: Não há retorno explícito, mas atualiza as variáveis apontadas pelos ponteiros passados como parâmetros.
 	 **/
-	extern void executarExcluirCadastro(int tipoTexto, int *pEscolhaUserMod);
+	extern void executarExcluirCadastro();
 	
 	extern int consultarCPFouCNPJ(char string[]);
+	
+	extern bool verificarExclusaoCadastro();
 	
 
 #endif

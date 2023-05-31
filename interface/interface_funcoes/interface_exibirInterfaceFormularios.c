@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../cadastro/cadastro.h"
 #include "../interface.h"
 
 void exibirInterfaceFormularios(int posicao) {
@@ -9,22 +10,28 @@ void exibirInterfaceFormularios(int posicao) {
 	Display copiaDisplay[30];
 	Display *pCopiaDisplay = copiaDisplay;
 	
-	switch(escolhaUser) {
+	if(escolhaUser == 5) tipoConsultaAtual = 5;
+	
+	switch(tipoConsultaAtual) {
 		case 1:
 			tamanhoDisplay = sizeof(displayRefFormularioCadastroCliente);
 			pDisplayAtual = displayRefFormularioCadastroCliente;
+			posicao = posicaoConsultaAtual;
 			break;
 		case 2:
 			tamanhoDisplay = sizeof(displayRefFormularioCadastroFuncionario);
 			pDisplayAtual = displayRefFormularioCadastroFuncionario;
+			posicao = posicaoConsultaAtual;
 			break;
 		case 3:
 			tamanhoDisplay = sizeof(displayRefFormularioCadastroFornecedor);
 			pDisplayAtual = displayRefFormularioCadastroFornecedor;
+			posicao = posicaoConsultaAtual;
 			break;
 		case 4:
 			tamanhoDisplay = sizeof(displayRefFormularioCadastroProduto);
 			pDisplayAtual = displayRefFormularioCadastroProduto;
+			posicao = posicaoConsultaAtual;
 			break;
 		case 5:
 			tamanhoDisplay = sizeof(displayRefFormularioNovaOrdem);
@@ -32,13 +39,9 @@ void exibirInterfaceFormularios(int posicao) {
 			break;
 	}
 	
-	
-	
 	tamanhoDisplay /= sizeof(Display);
 	//Transforma a posição passada pelo usuário como int, para string, para conseguir ser exibida ao usuário
 	sprintf(&posicaoString[0], "%d", posicao+1);
-	
-	
 	
 	//Copia os formulários de Display em uma variável do tipo Display chamada copiaDisplay.
 	for(i = 0; i < tamanhoDisplay; i++) {
@@ -47,7 +50,7 @@ void exibirInterfaceFormularios(int posicao) {
 		/*Substitui nas linhas do copiaDisplay, em espaços específicos, os conteúdo presentes no vetor de dados. Como o vetor por padrão tem o número zero em todos os campos,
 		 ao tentar imprimir nas linhas um tipo char, o resultado da atribuição fica como null. Dessa forma, por mais que, se acessados, os dados do vetor de dados for 0, 
 		 nada é atribuido, portanto a linha permanece intacta até que seja adicionada uma string. */
-		switch(escolhaUser) {
+		switch(tipoConsultaAtual) {
 			case 1:
 				//Display Número de cadastro
 					for(j = 0; j < strlen(posicaoString); j++) {

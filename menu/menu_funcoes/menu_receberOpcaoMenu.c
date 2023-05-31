@@ -2,7 +2,6 @@
 #include "../menu.h"
 
 void receberOpcaoMenu() {
-	
 	int i;
 	int valid = scanf("%d", &escolhaUser);
 	fflush(stdin);

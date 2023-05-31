@@ -167,6 +167,7 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 				displayItemAtual[0].linhaDisplay[77 + j] = producoes[i].numCadFuncionario[j];
 			}
 			
+			calcularValorTotal();
 			for(j = 0; j < strlen(producoes[i].valorTotal); j++) {
 				displayItemAtual[0].linhaDisplay[90 + j] = producoes[i].valorTotal[j];
 			}
