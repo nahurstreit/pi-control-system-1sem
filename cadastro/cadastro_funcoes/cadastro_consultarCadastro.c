@@ -10,6 +10,8 @@ void consultaCadastro(int *estado) {
 	if(escolhaUser != 0 && escolhaUser != 9) tipoConsultaAtual = escolhaUser;
 	*estado = 0;
 	
+	int i;
+	
 	switch(tipoConsultaAtual) {
 		case 1:
 			contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
@@ -24,6 +26,8 @@ void consultaCadastro(int *estado) {
 			contadorDadosExistentes = calcularDadosExistentes(vetorRefProdutos);
 			break;
 	}
+	
+	filtroAtual = 0;
 	
 	do{
 		switch(tipoConsultaAtual) {
@@ -49,25 +53,44 @@ void consultaCadastro(int *estado) {
 		
 		exibirMensagem();
 		exibirErro();
+		if(filtroAtual == Filtro_Limpar) filtroAtual = 0;
 		
-		exibirInterfaceDadosConsulta(contadorDadosExistentes);
+		exibirInterfaceDadosConsulta(contadorDadosExistentes, filtroAtual, posicaoString);
+		filtroAtual = 0;
 		
-		printf("%s\n", stringTipo);
-		printf("Ou então, digite [0] para VOLTAR à tela anterior.\n\nConsulta: ");
+		printf("Filtros:\n");
+		printf("NOME + Nome pesquisado.\n");
+		if(tipoConsultaAtual == 2) printf("STATUS + 'Ativo' ou 'Inativo'.\n");
+		if(tipoConsultaAtual <= 2) printf("DATA + Data de nascimento.\n");
+		printf("LIMPAR = Limpa os filtros.\n");	
+		printf("\n%s\n", stringTipo);
+		printf("Ou então, digite [0] para VOLTAR à tela anterior.\nConsulta: ");
 		fgets(posicaoString, MAX_STRING, stdin);
 		posicaoString[strcspn(posicaoString, "\n")] = '\0';
 		fflush(stdin);
-		
-		removerCaracteresEspeciais(posicaoString, false);
-		
-		if(verificarContemLetras(posicaoString)) {
-			erro = Erro_Input_ApenasNumeros;
-			continue;
+
+		for(i = 0; i < strlen(posicaoString); i++) {
+			posicaoString[i] = toupper(posicaoString[i]);
 		}
 		
-		if(strlen(posicaoString) > 1 && strlen(posicaoString) >= 11) {
+		if(strstr(posicaoString, "NOME")) {
+			filtroAtual = Filtro_Nome;
+			continue;
+		} else if(strstr(posicaoString, "DATA") && tipoConsultaAtual < 3) {
+			filtroAtual = Filtro_Data;
+			continue;
+		} else if(strstr(posicaoString, "STATUS") && tipoConsultaAtual == 2){
+			filtroAtual = Filtro_Status;
+			continue;
+		} else if(strstr(posicaoString, "LIMPAR")){
+			filtroAtual = Filtro_Limpar;
+			continue;
+		} else if(verificarContemLetras(posicaoString)) {
+			erro = Erro_Input_ConsultaCadastro_Filtro_Invalido;
+			continue;
+		} else if(strlen(posicaoString) > 1 && strlen(posicaoString) >= 11) {
 			posicao = consultarCPFouCNPJ(posicaoString);
-			posicaoConsultaAtual = posicao;
+			posicaoConsultaAtual = posicao - 1;
 		} else {
 			posicao = atoi(posicaoString);
 			posicaoConsultaAtual = posicao - 1;
@@ -101,5 +124,5 @@ void consultaCadastro(int *estado) {
 			break;
 		}
 		
-	} while(erro == Erro_Consulta_NaoExiste || erro == Erro_Input_ApenasNumeros);
+	} while(erro > 0 || filtroAtual > 0);
 }

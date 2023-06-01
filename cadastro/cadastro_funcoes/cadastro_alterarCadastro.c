@@ -62,8 +62,4 @@ void alterarCadastro() {
 		handleSalvar(escolhaUser);
 		mensagem = Mensagem_CampoAlterado;
 	}
-
-	exibirInterfaceTitulo(tituloHolder, 1);
-	exibirMensagem();
-	exibirInterfaceFormularios(posicaoConsultaAtual);
 }

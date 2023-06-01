@@ -55,7 +55,7 @@
 	 *
 	 *@return: Nenhum.
 	 **/	
-	void exibirInterfaceDadosConsulta(int contadorDadosExistentes);
+	void exibirInterfaceDadosConsulta(int contadorDadosExistentes, Filtro filtroAtual, char stringFiltro[]);
 
 	/**
 	 * @brief: Exibe um título na interface gráfica.

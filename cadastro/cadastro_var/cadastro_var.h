@@ -20,4 +20,6 @@ extern TextoCampo *camposAtuais;
 extern int tipoConsultaAtual;
 extern int posicaoConsultaAtual;
 
+extern Filtro filtroAtual;
+
 #endif

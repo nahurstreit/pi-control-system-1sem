@@ -59,3 +59,5 @@ TextoCampo *camposAtuais;
 int tipoConsultaAtual;
 int posicaoConsultaAtual;
 
+Filtro filtroAtual;
+

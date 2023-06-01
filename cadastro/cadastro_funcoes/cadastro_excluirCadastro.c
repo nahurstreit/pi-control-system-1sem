@@ -58,4 +58,5 @@ void excluirCadastro(int posicaoConsultaAtual) {
 			vetorRefProdutos[posicaoConsultaAtual] = 0;
 			break;
 	}
+	escolhaUser = 0;
 }

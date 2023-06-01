@@ -18,6 +18,7 @@ typedef enum {
 	Erro_Input_CEP_Invalido,
 	Erro_Input_Estado_Invalido,
 	Erro_Input_Producao_Item_NaoExiste,
+	Erro_Input_ConsultaCadastro_Filtro_Invalido,
 	Erro_OpcaoInvalida,
 	Erro_Consulta_NaoPossivel,
 	Erro_Consulta_NaoExiste,
@@ -48,6 +49,9 @@ typedef enum {
 	Filtro_Data = 1,
 	Filtro_Cliente,
 	Filtro_Funcionario,
+	Filtro_Nome,
+	Filtro_Status,
+	Filtro_Limpar,
 } Filtro;
 
 #endif

@@ -292,3 +292,45 @@ Arquivos:
 
 (arquivo)
 - Readaptação da lógica de popularVetorItens, para reconfigurar a ordem de exibição conforme os itens são retirados ou adicionados.
+
+31/05/2023
+(menu)
+- Readaptação da interação de menu com cadastros. Não se faz mais necessário uma função a parte para receber a entrada de funções específicas de alteração de cadastro.
+
+(cadastro)
+- Redefinição da condicional de execução de algumas funções, para dependerem de variáveis locais em cadastro_var.h.
+- Redefinição do método de exclusão e alteração completa de usuários (criação de novo parâmetro em novoCadastro, para refazer um cadastro).
+	- Exclusão da variável pEscolhaUserMod, agora a exclusão de cadastros é detectada através do vetor de referência da consulta atual, junto da posição atual.
+
+(producao)
+- Correção de bugs ao inserir itens novos na produção.
+- Correção para a exclusão definitiva de arquivos de itens comprados por um cliente, ao excluir uma ordem de produção.
+- Correção para a exclusão correta nos vetores ativos em memória, de itens e producões excluídas.
+- Correção de bug ao recalcular o valor da ordem de produção ao adicionar ou excluir itens de uma ordem de produção já existente.
+
+(interface)
+- Redefinição de exibição de interfaces de cadastro, para variáveis locais de cadastro_var.h.
+	- Agora a exibição de interfaces é realizada através do tipoConsultaAtual e posicaoConsultaAtual. Tais valores são atualizados sempre que entram em caminhos corretos. Ou quando é iniciado um novo cadastro de usuário.
+
+(global)
+- Novos enums de erro e mensagem.
+
+01/06/2023
+(global)
+- Novos enums de erro e mensagem.
+
+(cadastro)
+- Correção de bugs ao alterar campos de data de cadastros existentes.
+- Correção de bug ao procurar um cliente por CPF.
+- Correção do redirecionamento de tela depois de excluir o cadastro de um cliente.
+- Adição de filtros para consulta de cadastros.
+	- Clientes, Funcionários, Fornecedores e Produtos:
+		- Filtro de Nome: NOME + Nome procurado.
+		- Limpar Filtros: LIMPAR.
+	- Clientes e Funcionários:
+		- Filtro de Data de Nascimento: DATA + Data nascimento procurada.
+	- Funcionários
+		- Filtro de Status: STATUS + "Ativo" ou "Inativo".
+
+(interface)
+- Adição de nova função responsável por controlar os possíveis filtros em consulta de cadastros.

@@ -7,7 +7,7 @@ int consultarCPFouCNPJ(char string[]) {
 	int cpfInt[11];
 	int cnpjInt[14];
 	
-	switch(escolhaUser) {
+	switch(tipoConsultaAtual) {
 		case 1: case 5:
 			if(!verificarQtdDigitos(string, 11)) {
 				erro = Erro_Consulta_NaoExiste;
