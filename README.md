@@ -12,10 +12,10 @@ Faça o download do arquivo SistemaControleEmpresarial.exe, localizado dentro da
 
 Se preferir, você pode compilar o projeto por conta própria utilizando o programa [DevC++ (versão 5.11)]((https://sourceforge.net/projects/orwelldevcpp/files/latest/download)). Recomendamos a compilação através do DevC++, pois o projeto é configurado para ser compilado com o arquivo específico do DevC++ chamado "SistemaControleEmpresarial.dev", que unifica, organiza e compila o projeto sem necessidade de grandes configurações. Contudo, você também pode tentar compilar o projeto utilizando o arquivo Makefile juntamente com um compilador de sua escolha.
 
-A versão MÍNIMA do DevC++ deve ser a versão 5.11, pois versões anteriores podem apresentar problemas na compilação. Para iniciar a compilação no DevC++, abra o aplicativo e abra o arquivo "SistemControleEmpresarial.dev" localizado na pasta raiz do projeto. Em seguida, pressione o botão F11 para iniciar a compilação.
+A versão **MÍNIMA** do DevC++ deve ser a versão 5.11, pois versões anteriores podem apresentar problemas na compilação. Para iniciar a compilação no DevC++, abra o aplicativo e abra o arquivo "SistemControleEmpresarial.dev" localizado na pasta raiz do projeto. Em seguida, pressione o botão F11 para iniciar a compilação.
 
 # Autores 
-- [Matheus Antônio A. M. Valim](https://github.com/Matheus-Valim): Aauxílio na personalização e validação de dados.
+- [Matheus Antônio A. M. Valim](https://github.com/Matheus-Valim): Auxílio na personalização e validação de dados.
 
 Contribuiu com a pesquisa e implementação da personalização do projeto, incluindo a pesquisa de bibliotecas externas para a implementação, criação do logotipo 'PET FEEDER' em ASCII e desenvolvimento da validação de CNPJs no sistema.
 
