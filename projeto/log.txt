@@ -1,0 +1,340 @@
+27/04/2023
+- Alterado a condição de escape do 'do while', na função main, para uma nova lógica envolvendo uma nova variável global chamada loopMenu. 
+	Enquanto loopMenu = 1, o loop continua.
+
+- Adicionado uma nova função chamada fimDoMenu(), que altera o valor de loopMenu para 0.
+
+- Alterado a função de execução da opção [0] no menuPrincipal, para executar a função fimDoMenu() a fim de mudar o valor de loopMenu e fazer com que o programa seja encerrado corretamente.
+
+- Alterado a lógica para identificar se o usuário digitou um número que não está no menu. 
+	Agora o programa valida se foi digitado uma letra, depois valida se foi digitado um número negativo. Depois entra num laço de repetição, assume qualquer valor como inválido, atribuindo o erro 2, em seguida percorre por todas as opções do menu e caso encontre a opção digitada, reatribui o erro para 0, executa a função e termina o laço.
+
+- Com a alteração da lógica de número inválido, agora é possível atribuir qualquer número às opções. 
+	Agora é possível criar duas opções de voltar entre os sub-menus, sendo [0] Voltar ao Menu Anterior, [9] Voltar ao Menu Inicial.
+
+- Adicionado log.txt em .gitignore
+
+- Comentários adicionais foram incluídos, assim como o refinamento de comentários existentes.
+
+
+04/05/2023
+Arquivos:
+- Adicionado na nova pasta testesFuncoes, arquivos de teste e teste de implementação.
+- Criado um novo código em pasta [testesCadastro], arquivo [testeCadastro] capaz de armazenar cadastros passados pelo usuário. Arquivos: cadastro.c e cadastro.h;
+- Na pasta [testesFuncoes] foi criado um projeto do DevC++, chamado SistemaControleEmpresarial.dev responsável por facilitar a comunicação de arquivos .c e .h por uma funcionalidade padrão do DevC++
+- Adicionado no projeto SistemaControleEmpresarial.dev a integração do menu.c v1.2 com os  arquivos cadastro.h e cadastro.c, responsáveis por armazenar as funcionalidades de cadastro, separadas do menu.
+- Retirado log.txt. do gitignore
+
+menu.c
+- No arquivo menu.c foi necessário chamar funções de cadastro através de outras funções, contudo permitiu a integração com funções presentes no próprio menu.c
+- No arquivo menu.c foram modificados alguns parâmetros para funções, com pointers, de modo a comunicar plenamente com os arquivos de cadastro e poder realizar mudanças em variáveis globais do arquivo menu.c mesmo no arquivo cadastro.c.
+- No arquivo menu.c foi adicionado uma nova função chamada exibirMensagem, capaz de exibir mensagens adversas que não erro.
+- No arquivo menu.c foi alterado o escopo de algumas variáveis para manipulação global, visto que seria muito complicado no prazo atual, redefinir variáveis globais para variáveis locais a serem passadas através de parâmetros das funções.
+
+
+
+05/05/2023
+cadastro.c:
+- Refinação de algumas lógicas
+- Alterado nomes de algumas variáveis para nome mais descritivas com a lógica
+- Adicionado e implementado novo tipo de cadastro = fornecedores
+
+06/05/2023
+Arquivos:
+- Adicionado no projeto um novo arquivo chamado interface.c, que recebe o cabeçalho interface.h. Esses arquivos são responsáveis por armazenar templates visuais e por exibir dados nesses templates.
+- Adicionado no projeto o cabecalho menu.h, que recebe os structs e definições de funções.
+- Alterado o cabecalho do arquivo cadastro.h para receber os dados de struct e definições de funções do arquivo cadastro.c
+- Com a adição dos arquivos de interface, o projeto assume a seguinte postura: 
+	- menu.c: Arquivo de controle (menus, execuções e destinos, chamadas principais)
+	- cadastro.c: Arquivo de cadastros (cadastros novos, manipulação de cadastros existentes e algumas chamadas secundárias[chamadas de exibição])
+	- interface.c: Arquivo de interfaces (armazenamento de templates, manipulação dos templates para a tabulação de dados no chamado display)
+
+cadastro.c:
+- Redefinição em lógicas e implementação Inicial da alteração de cadastros já existentes
+
+interface.c:
+- Criação de modelos chamados displayRef que funcionam como um layout já definido. Em seguida através da chamada de funções esse template é copiado e então são alterados linhas específicas com os dados nos lugares corretos
+- Criação de um display que sempre atualiza os dados conforme o usuário vai inserindo dados no cadastro
+
+07/05/2023
+menu.c:
+- Alteração da lógica de acesso interno ao consultar um cadastro. Não houve exito em modular essa parte, fazendo necessário a criação de uma função separada da função padrão de receber valores, para distribuir as funções conforme o número digitado
+
+cadastros.c:
+- Adição da exclusão definitiva de um usuário
+
+interface.c:
+- Trabalhada melhor a disposição da interface
+- Criação de um display que mostra informações mínimas dos usuários já cadastrados no sistema
+- Alteração de algumas lógicas para corrigir bugs da interface
+
+08/05/2023
+Arquivos:
+- Adicionado programa.exe em gitignore
+
+menu.c:
+- Refinado as interações para exclusão e alteração completa de um usuário
+
+cadastro.c:
+- Adicionado o caminho para a alteração completa de um usuário
+
+interface.c:
+- Correção e refinamento no funcionamento da interface
+- Reformulado as lógicas de exibição dos cadastros disponíveis em memória ao entrar na tela de consulta de um tipo de cadastro(clientes, funcionários ou fornecedores)
+
+09/05/2023
+menu.h:
+- Adição de comentários explicativos sobre o uso das funções no arquivo menu.c;
+- Adição da biblioteca <windows.h>;
+menu.c:
+- Retiradas funções que já não tinham mais uso;
+- Redefinição de tipos de algumas funções, trocando de int para void;
+- Redefinição do nome de algumas variáveis para nomes mais explicativos;
+- Redefinição da cor e bloqueio do tamanho da tela;
+- Adição da exibição da logotipo no menu inteiro;
+
+cadastro.h:
+- Adição de comentários explicativos sobre o uso das funções no arquivo cadastro.c;
+cadastro.c:
+- Redefinição do nome de algumas variáveis para nomes mais explicativos;
+- Redefinição de tipos de algumas funções, trocando de int para void;
+
+interface.h:
+- Adição de comentários explicativos sobre o uso das funções no arquivo interface.c;
+interface.c:
+- Redefinição do nome de algumas variáveis para nomes mais explicativos;
+- Adição de uma layout de display de item para fornecedor, separada de item para cliente;
+- Adição de uma nova função responsável por exibir a logotipo;
+- Modificação da exibirInterfaceCabecalhoAtual para exibir a logotipo junto com o título em todas as páginas do menu;
+
+12/05/2023
+- Foi feito uma reorganização dos arquivos da branch (functions_test), para poder fazer um merge com a main branch. Branch secundária foi deletada.
+
+17/05/2023
+testeConexao
+- Adição de testes para manipulação e criação de arquivos de texto. Com o objetivo de armazenar as estruturas de dados, populadas pelo programa.
+
+18/05/2023
+[Refatoração]
+Arquivos e pastas
+- Nova pasta: global. Responsável por armazenar os códigos de cabeçalho globais. Como structs e defines.
+- Nova pasta: global/global_var. Responsável por armazenar o código de cabecalho e o código em c, da declaração de variáveis globais.
+	- Variáveis globais adicionadas:
+		- menuAtual
+		- escolhaUser
+		- erro
+		- mensagem
+		- vetor de dados e referência: clientes
+		- vetor de dados e referência: funcionários
+		- vetor de dados e referência: fornecedores
+- Adição de novos arquivos em gitignore: programa.exe, global_var.o, Projeto1.exe, Projeto1.layout, testeInicialConexao.exe, testeInicialConexao.o: 
+
+menu.h, menu.c, cadastro.h, cadastro.c, interface.h, interface.c
+- Redução no número de ponteiros em funções e mudança de local de algumas variáveis para escopo global. Com a adição de variáveis globais, não se faz mais necessário passar ponteiros como parâmetro em diversas funções para a mudança de variáveis. Agora, basta alterar o valor da variável global.
+- Redução da redundância nos includes.
+	- Os includes foram reduzidos através do include global.h, que contém os principais includes de bibliotecas padrão, além de includes globais de: defines, structs e variáveis.
+
+menu.h e menu.c
+- Structs realocados (global): OpcaoDoMenu, Menu
+- Variáveis realocadas (global): menuAtual, escolhaUser, erro, mensagem	
+- Ponteiros não mais necessários: pMenuAtual, pEscolhaUser, pErro, pMensagem
+
+cadastro.h e cadastro.c
+- Structs realocados (global): Cliente, Funcionario, Fornecedor, TextoCampo
+- Variáveis realocadas (global): clientes[], funcionarios[], fornecedores[], vetorRef(Clientes, Funcionários, Fornecedores)
+- Ponteiros não mais necessários: pMenuAtual, pErro, pMensagem, pEscolhaUser, pVetorRef(Clientes, Funcionarios, Fornecedores)
+
+interface.h e interface.c
+- Struct realocado (global): Display
+- Ponteiros não mais necessários: pMenuAtual, pEscolhaUser, clientes, funcionarios, fornecedores, pVetorRef(Clientes, Funcionarios, Fornecedores)
+
+18/05/2023 - 19/05/2023
+cadastro.c
+- Adicionada uma funcionalidade para cancelar ou alterar um dado no cadastro, em tempo de execução, antes mesmo de confirmar os dados.
+
+19/05/2023
+Arquivos:
+- Redistribuição de todas as funções dos arquivos: menu.c, cadastro.c e interface.c, para arquivos separados e com apenas uma função.
+- Criação de vários arquivos, em destaque, a alternância da função main, antes em menu.c para o arquivo main.c.
+- Melhora na codificação do .gitignore, para incluir todos os arquivos .o e .exe
+
+22/05/2023
+Arquivos: 
+(arquivo)
+- Criado arquivos e pastas referentes ao salvamento de dados inseridos no sistema. Pastas e arquivos chamados de "arquivos".
+	- Responsável por fazer a ponte entre o programa, que utiliza de vetores para fazer exibições e armazenamentos, entre o sistema de armazenamento em arquivos .txt;
+	-Fora adotada a estratégia de: 
+		- Campos vazios são representados por: <>
+		- Linhas vazias são representadas por !<>
+
+23/05/2023 e 24/05/2023
+(global)
+- Redefinição dos tipos das variáveis globais: 'erro' e 'mensagem', para enums que facilitam a leitura e identificação de exibição de erros no código. 
+
+(validar)
+- Adicionado arquivos e pastas referentes à validação de dados no sistema.
+	- Adicionada validação para inputs de todos os cadastros.
+	- Adicionada validação com cálculo para CPF e CNPJ, além de Estados do Brasil.
+
+(interface e cadastro)
+- Melhorado o tamanho máximo de inputs de usuário para se adequar ao espaçamento da interface.
+- Melhorado o display simplificado para nomes de usuário maiores do que o normal.
+- Adicionado novo campo aos fornecedores para melhorar o espaçamento da interface. Campo novo: site.
+- Em cadastro a função validarPalavraChave foi realocada para as pastas de validar.
+
+(data)
+- Adicionado nas três categorias de registro, arquivos de teste com 50, 100 e 1000 cadastros, para teste de desempenho e volume. Para usar, basta copiar e colar dentro do arquivo respectivo da categoria. Exemplo: Em clientes, copiar o conteúdo de data_Clientes(50units).txt para data_Clientes.txt.
+
+25/05/2023
+(validacao)
+- Adicionada validação que impede a duplicação de CPFs e CNPJs no sistema.
+
+(menu)
+- Reinserção da opção de ordem de produção ao menu principal.
+
+(cadastro)
+- Adicionado a possibilidade de consultar cadastros existentes através do CPF do cliente/funcionário ou do CNPJ do fornecedor.
+- Correção de possível glitch em input de usuários, removendo qualquer possibilidade de adicionar registros com ponto e vírgula. 
+- Adicionada uma nova categoria de cadastro: produtos. 
+	- Responsável por armazenar dados de produtos para exibir na ordem de produção.
+	- Já adicionado cadastro, procura e modificação de produtos existentes.
+
+(producao)
+- Adicionada novas pastas e arquivos referentes ao armazenamento e criação de ordens de produção.
+- Conceitos iniciais de produção.
+
+(interface)
+- Correção de bugs menores de interface.
+- Adição de novos Display para consulta e criação de produtos.
+- Adição de novos cases para a função de exibição da interface.
+- Adição inicial de novas funções e Displays específicos para produção.
+
+26/05/2023
+- Redefinição de alguns nomes de pastas, arquivos e variáveis.
+- Adicionadas mais categorias de erro.
+- Adicionada interface visual para criação de ordens de produção.
+- Adicionado salvamento inicial de arquivos de ordens de produção, ainda não é possível ler dados existentes.
+- Adição inicial de validação de datas geral, com interpretador contextual de datas abreviadas e/ou futuras, comandos de texto "h" e "hoje",  para inserir a data atual automaticamente.
+
+27/05/2023 e 28/05/2023
+(menu)
+- Adicionado códigos que fazem o menu sempre iniciar em tela cheia.
+
+(validacao)
+- Adicionada funções para o cálculo de idade mínima e máxima automaticamente, bastando fornecer apenas as idades em global_define.
+- Ajuste na performance e correção de bugs na validação de datas.
+
+(interface)
+- Adicionado e refinado interfaces de produção, adicionado escalabilidade de interface conforme novos itens são adicionados.
+
+(producao)
+- Adicionado e refinado criação de ordens de produção.
+- Alterado a lógica para armazenamento de itens presentes em ordens de produção.
+- Adicionado nova lógica de alteração de itens adicionados em uma ordem de produção.
+
+(arquivo)
+- Adicionadas funções responsáveis por criar pastas e salvar em um arquivo separado, os itens de uma ordem de produção.
+
+(global)
+- Adicionada novas bibliotecas <time.h> e <sys/stat.h>.
+
+(geral)
+- Correção de bugs.
+
+29/05/2023
+(geral)
+- Readaptação de formatos e tamanhos para melhor servir em displays. 
+
+(global)
+- Criação de novo enum em global_enum, para armazenar possíveis filtros de produção existentes.
+
+(producao)
+- Criação de uma variável de producao, responsável por armazenar qual o número da ordem de produção que está sendo criada no momento, ou está sendo consultada.
+- Adição de consulta de ordens de produção existentes.
+- Adição de filtros para produções existentes.
+	- Filtros: Data Específica, Cliente - CPF ou Nº Cadastro, Funcionário - CPF ou Nº Cadastro.
+
+(interface)
+- Adição de nova função responsável por popular e criar um arquivo de impressão de producoes, aberto no windows com o comando "write".
+
+(menu)
+- Adaptação de opções do menu, na consulta ou finalização de uma ordem de produção.
+	- Adicionada opção de impressão após criação da ordem de produção, ou ao consultar uma ordem existente.
+
+(data)
+- Criação do arquivo git.txt, dentro da pasta historico_compras, para a pasta poder ser armazenada sem problemas no GitHub, visto que a ausência de tal pasta, estava acarretando em problemas de execução quando o código era copiado em outro computador.
+
+30/05/2023
+(geral)
+- Correção de bugs.
+- Readaptação de lógicas.
+
+(interface)
+- Melhoria de interfaces gerais.
+- Adição de novo ciclo de vida para a função "exibirInterfaceAlerta", permitindo maior customização e usabilidade da mesma função. 
+- Readaptação da lógica de exibir valores totais dos itens. 
+	- Agora apenas ao cadastrar itens novos, o preço será tabelado com o preço atual em sistema.
+	- Isso foi feito para poder alterar o preço dos produtos no futuro e mesmo assim poder consultar ordens de produção antigas, sem que estas tenham o preço dos produtos alterados.
+
+(cadastro)
+- Adição da opção de manter os dados digitados, ao tentar editar um dado em cadastro.
+- Adição de interpretador rápido de mudança, agora sendo possível digitar, por exemplo: "mudar 2" para automaticamente mudar o segundo item.
+- Mudança na lógica do holderContadorCampo.
+- Mudança em textos para conformar com a lógica do programa.
+- Criação de novas variáveis de texto e lógica para lidar com as mudanças da função "exibirInterfaceAlerta"
+
+(producao)
+- Novo ciclo de vida para a função "novaOrdem", que agora recebe um parâmetro booleano, permitindo que a função seja usada para inserir novos itens em uma ordem de produção já criada.
+- Adição das funcionalidades em produções existentes:
+	- Adicionar novos itens da ordem de produção.
+	- Remover itens da ordem de produção.
+	- Editar dados e itens existentes na ordem de produção.
+
+(arquivo)
+- Readaptação da lógica de popularVetorItens, para reconfigurar a ordem de exibição conforme os itens são retirados ou adicionados.
+
+31/05/2023
+(menu)
+- Readaptação da interação de menu com cadastros. Não se faz mais necessário uma função a parte para receber a entrada de funções específicas de alteração de cadastro.
+
+(cadastro)
+- Redefinição da condicional de execução de algumas funções, para dependerem de variáveis locais em cadastro_var.h.
+- Redefinição do método de exclusão e alteração completa de usuários (criação de novo parâmetro em novoCadastro, para refazer um cadastro).
+	- Exclusão da variável pEscolhaUserMod, agora a exclusão de cadastros é detectada através do vetor de referência da consulta atual, junto da posição atual.
+
+(producao)
+- Correção de bugs ao inserir itens novos na produção.
+- Correção para a exclusão definitiva de arquivos de itens comprados por um cliente, ao excluir uma ordem de produção.
+- Correção para a exclusão correta nos vetores ativos em memória, de itens e producões excluídas.
+- Correção de bug ao recalcular o valor da ordem de produção ao adicionar ou excluir itens de uma ordem de produção já existente.
+
+(interface)
+- Redefinição de exibição de interfaces de cadastro, para variáveis locais de cadastro_var.h.
+	- Agora a exibição de interfaces é realizada através do tipoConsultaAtual e posicaoConsultaAtual. Tais valores são atualizados sempre que entram em caminhos corretos. Ou quando é iniciado um novo cadastro de usuário.
+
+(global)
+- Novos enums de erro e mensagem.
+
+01/06/2023
+(global)
+- Novos enums de erro e mensagem.
+
+(cadastro)
+- Correção de bugs ao alterar campos de data de cadastros existentes.
+- Correção de bug ao procurar um cliente por CPF.
+- Correção do redirecionamento de tela depois de excluir o cadastro de um cliente.
+- Adição de filtros para consulta de cadastros.
+	- Clientes, Funcionários, Fornecedores e Produtos:
+		- Filtro de Nome: NOME + Nome procurado.
+		- Limpar Filtros: LIMPAR.
+	- Clientes e Funcionários:
+		- Filtro de Data de Nascimento: DATA + Data nascimento procurada.
+	- Funcionários
+		- Filtro de Status: STATUS + "Ativo" ou "Inativo".
+
+(interface)
+- Adição de nova função responsável por controlar os possíveis filtros em consulta de cadastros.
+
+01/06/2023
+- Realocação dos arquivos.
+- Update readme.

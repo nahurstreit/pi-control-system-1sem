@@ -1,0 +1,244 @@
+# Project: SistemaControleEmpresarial
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = global/global_var/global_var.o cadastro/cadastro_var/cadastro_var.o cadastro/cadastro_funcoes/cadastro_calcularDadosExistentes.o cadastro/cadastro_funcoes/cadastro_posicaoDisponivel.o interface/interface_var/interface_var.o interface/interface_funcoes/interface_exibirInterfaceFormularios.o interface/interface_funcoes/interface_exibirInterfaceDadosConsulta.o interface/interface_funcoes/interface_exibirInterfaceCabecalhoAtual.o interface/interface_funcoes/interface_exibirInterfaceTitulo.o interface/interface_funcoes/interface_exibirInterfaceInteracao.o interface/interface_funcoes/interface_exibirInterfaceOpcoes.o interface/interface_funcoes/interface_exibirInterfaceAlerta.o interface/interface_funcoes/interface_exibirTextoMeio.o interface/interface_funcoes/interface_exibirLogotipo.o menu/menu_funcoes/menu_exibirErro.o menu/menu_funcoes/menu_exibirMensagem.o menu/menu_funcoes/menu_opcoesDeChamada.o menu/menu_funcoes/menu_receberOpcaoMenu.o menu/menu_funcoes/menu_receberOpcoesAlteracaoCadastro.o menu/menu_var/menu_var.o main.o arquivo/arquivo_funcoes/arquivo_checarCampoNulo.o arquivo/arquivo_funcoes/arquivo_checarLinhaNula.o arquivo/arquivo_popularVetores.o arquivo/arquivo_salvarArquivo.o arquivo/arquivo_funcoes/arquivo_handleSalvar.o arquivo/arquivo_funcoes/arquivo_criarLinhaArquivo.o validar/validar_funcoes/validar_validarCPF.o validar/validar_funcoes/validar_removerCaracteresEspeciais.o validar/validar_funcoes/validar_verificarContemLetras.o validar/validar_funcoes/validar_verificarQtdDigitos.o validar/validar_funcoes/validar_vetorStringParaInteiro.o validar/validar_funcoes/validar_vetorInteiroParaString.o validar/validar_funcoes/validar_verificarContemNumeros.o validar/validar_funcoes/validar_validarEntrada.o validar/validar_funcoes/validar_validarEstado.o validar/validar_funcoes/validar_validarTelefone.o validar/validar_funcoes/validar_validarCEP.o validar/validar_funcoes/validar_validarCNPJ.o validar/validar_funcoes/validar_checarData/validar_checarData.o validar/validar_funcoes/validar_validarStatus.o validar/validar_funcoes/validar_validarPalavraChave.o validar/validar_funcoes/validar_validarEstadoCivil.o validar/validar_funcoes/validar_removerPontoVirgula.o cadastro/cadastro_funcoes/cadastro_verificarDadosVetorDisponivel.o cadastro/cadastro_funcoes/cadastro_alterarCadastro.o cadastro/cadastro_funcoes/cadastro_alterarString.o cadastro/cadastro_funcoes/cadastro_consultarCPFouCNPJ.o cadastro/cadastro_funcoes/cadastro_excluirCadastro.o cadastro/cadastro_funcoes/cadastro_executarExcluirCadastro.o cadastro/cadastro_funcoes/cadastro_inserirString.o cadastro/cadastro_funcoes/cadastro_novoCadastro.o producao/producao_var/producao_var.o producao/producao_funcoes/producao_novaOrdem.o producao/producao_funcoes/producao_inserirStringProd.o interface/interface_funcoes/interface_producao/interface_exibirInterfaceNovaProducao.o validar/validar_funcoes/validar_validarData.o validar/validar_funcoes/validar_receberAnoAtual.o validar/validar_funcoes/validar_completarDataAbreviada.o validar/validar_funcoes/validar_checarData/validar_idades.o arquivo/arquivo_popularVetorItens.o arquivo/arquivo_salvarArquivoItens.o interface/interface_funcoes/interface_producao/interface_imprimirOrdemProducao.o producao/producao_funcoes/producao_consultarProducoes.o interface/interface_funcoes/interface_producao/interface_exibirInterfaceDadosConsultaProducao.o producao/producao_funcoes/producao_alterarProducao.o producao/producao_funcoes/producao_excluirItemProducao.o cadastro/cadastro_funcoes/cadastro_verificarExclusaoCadastro.o producao/producao_funcoes/producao_calcularValorTotal.o producao/producao_funcoes/producao_excluirProducao.o arquivo/arquivo_excluirArquivoItens.o cadastro/cadastro_funcoes/cadastro_consultarCadastro.o interface/interface_funcoes/interface_filtroCadastro.o
+LINKOBJ  = global/global_var/global_var.o cadastro/cadastro_var/cadastro_var.o cadastro/cadastro_funcoes/cadastro_calcularDadosExistentes.o cadastro/cadastro_funcoes/cadastro_posicaoDisponivel.o interface/interface_var/interface_var.o interface/interface_funcoes/interface_exibirInterfaceFormularios.o interface/interface_funcoes/interface_exibirInterfaceDadosConsulta.o interface/interface_funcoes/interface_exibirInterfaceCabecalhoAtual.o interface/interface_funcoes/interface_exibirInterfaceTitulo.o interface/interface_funcoes/interface_exibirInterfaceInteracao.o interface/interface_funcoes/interface_exibirInterfaceOpcoes.o interface/interface_funcoes/interface_exibirInterfaceAlerta.o interface/interface_funcoes/interface_exibirTextoMeio.o interface/interface_funcoes/interface_exibirLogotipo.o menu/menu_funcoes/menu_exibirErro.o menu/menu_funcoes/menu_exibirMensagem.o menu/menu_funcoes/menu_opcoesDeChamada.o menu/menu_funcoes/menu_receberOpcaoMenu.o menu/menu_funcoes/menu_receberOpcoesAlteracaoCadastro.o menu/menu_var/menu_var.o main.o arquivo/arquivo_funcoes/arquivo_checarCampoNulo.o arquivo/arquivo_funcoes/arquivo_checarLinhaNula.o arquivo/arquivo_popularVetores.o arquivo/arquivo_salvarArquivo.o arquivo/arquivo_funcoes/arquivo_handleSalvar.o arquivo/arquivo_funcoes/arquivo_criarLinhaArquivo.o validar/validar_funcoes/validar_validarCPF.o validar/validar_funcoes/validar_removerCaracteresEspeciais.o validar/validar_funcoes/validar_verificarContemLetras.o validar/validar_funcoes/validar_verificarQtdDigitos.o validar/validar_funcoes/validar_vetorStringParaInteiro.o validar/validar_funcoes/validar_vetorInteiroParaString.o validar/validar_funcoes/validar_verificarContemNumeros.o validar/validar_funcoes/validar_validarEntrada.o validar/validar_funcoes/validar_validarEstado.o validar/validar_funcoes/validar_validarTelefone.o validar/validar_funcoes/validar_validarCEP.o validar/validar_funcoes/validar_validarCNPJ.o validar/validar_funcoes/validar_checarData/validar_checarData.o validar/validar_funcoes/validar_validarStatus.o validar/validar_funcoes/validar_validarPalavraChave.o validar/validar_funcoes/validar_validarEstadoCivil.o validar/validar_funcoes/validar_removerPontoVirgula.o cadastro/cadastro_funcoes/cadastro_verificarDadosVetorDisponivel.o cadastro/cadastro_funcoes/cadastro_alterarCadastro.o cadastro/cadastro_funcoes/cadastro_alterarString.o cadastro/cadastro_funcoes/cadastro_consultarCPFouCNPJ.o cadastro/cadastro_funcoes/cadastro_excluirCadastro.o cadastro/cadastro_funcoes/cadastro_executarExcluirCadastro.o cadastro/cadastro_funcoes/cadastro_inserirString.o cadastro/cadastro_funcoes/cadastro_novoCadastro.o producao/producao_var/producao_var.o producao/producao_funcoes/producao_novaOrdem.o producao/producao_funcoes/producao_inserirStringProd.o interface/interface_funcoes/interface_producao/interface_exibirInterfaceNovaProducao.o validar/validar_funcoes/validar_validarData.o validar/validar_funcoes/validar_receberAnoAtual.o validar/validar_funcoes/validar_completarDataAbreviada.o validar/validar_funcoes/validar_checarData/validar_idades.o arquivo/arquivo_popularVetorItens.o arquivo/arquivo_salvarArquivoItens.o interface/interface_funcoes/interface_producao/interface_imprimirOrdemProducao.o producao/producao_funcoes/producao_consultarProducoes.o interface/interface_funcoes/interface_producao/interface_exibirInterfaceDadosConsultaProducao.o producao/producao_funcoes/producao_alterarProducao.o producao/producao_funcoes/producao_excluirItemProducao.o cadastro/cadastro_funcoes/cadastro_verificarExclusaoCadastro.o producao/producao_funcoes/producao_calcularValorTotal.o producao/producao_funcoes/producao_excluirProducao.o arquivo/arquivo_excluirArquivoItens.o cadastro/cadastro_funcoes/cadastro_consultarCadastro.o interface/interface_funcoes/interface_filtroCadastro.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = SistemaControleEmpresarial.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+global/global_var/global_var.o: global/global_var/global_var.c
+	$(CC) -c global/global_var/global_var.c -o global/global_var/global_var.o $(CFLAGS)
+
+cadastro/cadastro_var/cadastro_var.o: cadastro/cadastro_var/cadastro_var.c
+	$(CC) -c cadastro/cadastro_var/cadastro_var.c -o cadastro/cadastro_var/cadastro_var.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_calcularDadosExistentes.o: cadastro/cadastro_funcoes/cadastro_calcularDadosExistentes.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_calcularDadosExistentes.c -o cadastro/cadastro_funcoes/cadastro_calcularDadosExistentes.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_posicaoDisponivel.o: cadastro/cadastro_funcoes/cadastro_posicaoDisponivel.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_posicaoDisponivel.c -o cadastro/cadastro_funcoes/cadastro_posicaoDisponivel.o $(CFLAGS)
+
+interface/interface_var/interface_var.o: interface/interface_var/interface_var.c
+	$(CC) -c interface/interface_var/interface_var.c -o interface/interface_var/interface_var.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceFormularios.o: interface/interface_funcoes/interface_exibirInterfaceFormularios.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceFormularios.c -o interface/interface_funcoes/interface_exibirInterfaceFormularios.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceDadosConsulta.o: interface/interface_funcoes/interface_exibirInterfaceDadosConsulta.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceDadosConsulta.c -o interface/interface_funcoes/interface_exibirInterfaceDadosConsulta.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceCabecalhoAtual.o: interface/interface_funcoes/interface_exibirInterfaceCabecalhoAtual.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceCabecalhoAtual.c -o interface/interface_funcoes/interface_exibirInterfaceCabecalhoAtual.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceTitulo.o: interface/interface_funcoes/interface_exibirInterfaceTitulo.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceTitulo.c -o interface/interface_funcoes/interface_exibirInterfaceTitulo.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceInteracao.o: interface/interface_funcoes/interface_exibirInterfaceInteracao.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceInteracao.c -o interface/interface_funcoes/interface_exibirInterfaceInteracao.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceOpcoes.o: interface/interface_funcoes/interface_exibirInterfaceOpcoes.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceOpcoes.c -o interface/interface_funcoes/interface_exibirInterfaceOpcoes.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirInterfaceAlerta.o: interface/interface_funcoes/interface_exibirInterfaceAlerta.c
+	$(CC) -c interface/interface_funcoes/interface_exibirInterfaceAlerta.c -o interface/interface_funcoes/interface_exibirInterfaceAlerta.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirTextoMeio.o: interface/interface_funcoes/interface_exibirTextoMeio.c
+	$(CC) -c interface/interface_funcoes/interface_exibirTextoMeio.c -o interface/interface_funcoes/interface_exibirTextoMeio.o $(CFLAGS)
+
+interface/interface_funcoes/interface_exibirLogotipo.o: interface/interface_funcoes/interface_exibirLogotipo.c
+	$(CC) -c interface/interface_funcoes/interface_exibirLogotipo.c -o interface/interface_funcoes/interface_exibirLogotipo.o $(CFLAGS)
+
+menu/menu_funcoes/menu_exibirErro.o: menu/menu_funcoes/menu_exibirErro.c
+	$(CC) -c menu/menu_funcoes/menu_exibirErro.c -o menu/menu_funcoes/menu_exibirErro.o $(CFLAGS)
+
+menu/menu_funcoes/menu_exibirMensagem.o: menu/menu_funcoes/menu_exibirMensagem.c
+	$(CC) -c menu/menu_funcoes/menu_exibirMensagem.c -o menu/menu_funcoes/menu_exibirMensagem.o $(CFLAGS)
+
+menu/menu_funcoes/menu_opcoesDeChamada.o: menu/menu_funcoes/menu_opcoesDeChamada.c
+	$(CC) -c menu/menu_funcoes/menu_opcoesDeChamada.c -o menu/menu_funcoes/menu_opcoesDeChamada.o $(CFLAGS)
+
+menu/menu_funcoes/menu_receberOpcaoMenu.o: menu/menu_funcoes/menu_receberOpcaoMenu.c
+	$(CC) -c menu/menu_funcoes/menu_receberOpcaoMenu.c -o menu/menu_funcoes/menu_receberOpcaoMenu.o $(CFLAGS)
+
+menu/menu_funcoes/menu_receberOpcoesAlteracaoCadastro.o: menu/menu_funcoes/menu_receberOpcoesAlteracaoCadastro.c
+	$(CC) -c menu/menu_funcoes/menu_receberOpcoesAlteracaoCadastro.c -o menu/menu_funcoes/menu_receberOpcoesAlteracaoCadastro.o $(CFLAGS)
+
+menu/menu_var/menu_var.o: menu/menu_var/menu_var.c
+	$(CC) -c menu/menu_var/menu_var.c -o menu/menu_var/menu_var.o $(CFLAGS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+arquivo/arquivo_funcoes/arquivo_checarCampoNulo.o: arquivo/arquivo_funcoes/arquivo_checarCampoNulo.c
+	$(CC) -c arquivo/arquivo_funcoes/arquivo_checarCampoNulo.c -o arquivo/arquivo_funcoes/arquivo_checarCampoNulo.o $(CFLAGS)
+
+arquivo/arquivo_funcoes/arquivo_checarLinhaNula.o: arquivo/arquivo_funcoes/arquivo_checarLinhaNula.c
+	$(CC) -c arquivo/arquivo_funcoes/arquivo_checarLinhaNula.c -o arquivo/arquivo_funcoes/arquivo_checarLinhaNula.o $(CFLAGS)
+
+arquivo/arquivo_popularVetores.o: arquivo/arquivo_popularVetores.c
+	$(CC) -c arquivo/arquivo_popularVetores.c -o arquivo/arquivo_popularVetores.o $(CFLAGS)
+
+arquivo/arquivo_salvarArquivo.o: arquivo/arquivo_salvarArquivo.c
+	$(CC) -c arquivo/arquivo_salvarArquivo.c -o arquivo/arquivo_salvarArquivo.o $(CFLAGS)
+
+arquivo/arquivo_funcoes/arquivo_handleSalvar.o: arquivo/arquivo_funcoes/arquivo_handleSalvar.c
+	$(CC) -c arquivo/arquivo_funcoes/arquivo_handleSalvar.c -o arquivo/arquivo_funcoes/arquivo_handleSalvar.o $(CFLAGS)
+
+arquivo/arquivo_funcoes/arquivo_criarLinhaArquivo.o: arquivo/arquivo_funcoes/arquivo_criarLinhaArquivo.c
+	$(CC) -c arquivo/arquivo_funcoes/arquivo_criarLinhaArquivo.c -o arquivo/arquivo_funcoes/arquivo_criarLinhaArquivo.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarCPF.o: validar/validar_funcoes/validar_validarCPF.c
+	$(CC) -c validar/validar_funcoes/validar_validarCPF.c -o validar/validar_funcoes/validar_validarCPF.o $(CFLAGS)
+
+validar/validar_funcoes/validar_removerCaracteresEspeciais.o: validar/validar_funcoes/validar_removerCaracteresEspeciais.c
+	$(CC) -c validar/validar_funcoes/validar_removerCaracteresEspeciais.c -o validar/validar_funcoes/validar_removerCaracteresEspeciais.o $(CFLAGS)
+
+validar/validar_funcoes/validar_verificarContemLetras.o: validar/validar_funcoes/validar_verificarContemLetras.c
+	$(CC) -c validar/validar_funcoes/validar_verificarContemLetras.c -o validar/validar_funcoes/validar_verificarContemLetras.o $(CFLAGS)
+
+validar/validar_funcoes/validar_verificarQtdDigitos.o: validar/validar_funcoes/validar_verificarQtdDigitos.c
+	$(CC) -c validar/validar_funcoes/validar_verificarQtdDigitos.c -o validar/validar_funcoes/validar_verificarQtdDigitos.o $(CFLAGS)
+
+validar/validar_funcoes/validar_vetorStringParaInteiro.o: validar/validar_funcoes/validar_vetorStringParaInteiro.c
+	$(CC) -c validar/validar_funcoes/validar_vetorStringParaInteiro.c -o validar/validar_funcoes/validar_vetorStringParaInteiro.o $(CFLAGS)
+
+validar/validar_funcoes/validar_vetorInteiroParaString.o: validar/validar_funcoes/validar_vetorInteiroParaString.c
+	$(CC) -c validar/validar_funcoes/validar_vetorInteiroParaString.c -o validar/validar_funcoes/validar_vetorInteiroParaString.o $(CFLAGS)
+
+validar/validar_funcoes/validar_verificarContemNumeros.o: validar/validar_funcoes/validar_verificarContemNumeros.c
+	$(CC) -c validar/validar_funcoes/validar_verificarContemNumeros.c -o validar/validar_funcoes/validar_verificarContemNumeros.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarEntrada.o: validar/validar_funcoes/validar_validarEntrada.c
+	$(CC) -c validar/validar_funcoes/validar_validarEntrada.c -o validar/validar_funcoes/validar_validarEntrada.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarEstado.o: validar/validar_funcoes/validar_validarEstado.c
+	$(CC) -c validar/validar_funcoes/validar_validarEstado.c -o validar/validar_funcoes/validar_validarEstado.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarTelefone.o: validar/validar_funcoes/validar_validarTelefone.c
+	$(CC) -c validar/validar_funcoes/validar_validarTelefone.c -o validar/validar_funcoes/validar_validarTelefone.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarCEP.o: validar/validar_funcoes/validar_validarCEP.c
+	$(CC) -c validar/validar_funcoes/validar_validarCEP.c -o validar/validar_funcoes/validar_validarCEP.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarCNPJ.o: validar/validar_funcoes/validar_validarCNPJ.c
+	$(CC) -c validar/validar_funcoes/validar_validarCNPJ.c -o validar/validar_funcoes/validar_validarCNPJ.o $(CFLAGS)
+
+validar/validar_funcoes/validar_checarData/validar_checarData.o: validar/validar_funcoes/validar_checarData/validar_checarData.c
+	$(CC) -c validar/validar_funcoes/validar_checarData/validar_checarData.c -o validar/validar_funcoes/validar_checarData/validar_checarData.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarStatus.o: validar/validar_funcoes/validar_validarStatus.c
+	$(CC) -c validar/validar_funcoes/validar_validarStatus.c -o validar/validar_funcoes/validar_validarStatus.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarPalavraChave.o: validar/validar_funcoes/validar_validarPalavraChave.c
+	$(CC) -c validar/validar_funcoes/validar_validarPalavraChave.c -o validar/validar_funcoes/validar_validarPalavraChave.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarEstadoCivil.o: validar/validar_funcoes/validar_validarEstadoCivil.c
+	$(CC) -c validar/validar_funcoes/validar_validarEstadoCivil.c -o validar/validar_funcoes/validar_validarEstadoCivil.o $(CFLAGS)
+
+validar/validar_funcoes/validar_removerPontoVirgula.o: validar/validar_funcoes/validar_removerPontoVirgula.c
+	$(CC) -c validar/validar_funcoes/validar_removerPontoVirgula.c -o validar/validar_funcoes/validar_removerPontoVirgula.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_verificarDadosVetorDisponivel.o: cadastro/cadastro_funcoes/cadastro_verificarDadosVetorDisponivel.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_verificarDadosVetorDisponivel.c -o cadastro/cadastro_funcoes/cadastro_verificarDadosVetorDisponivel.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_alterarCadastro.o: cadastro/cadastro_funcoes/cadastro_alterarCadastro.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_alterarCadastro.c -o cadastro/cadastro_funcoes/cadastro_alterarCadastro.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_alterarString.o: cadastro/cadastro_funcoes/cadastro_alterarString.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_alterarString.c -o cadastro/cadastro_funcoes/cadastro_alterarString.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_consultarCPFouCNPJ.o: cadastro/cadastro_funcoes/cadastro_consultarCPFouCNPJ.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_consultarCPFouCNPJ.c -o cadastro/cadastro_funcoes/cadastro_consultarCPFouCNPJ.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_excluirCadastro.o: cadastro/cadastro_funcoes/cadastro_excluirCadastro.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_excluirCadastro.c -o cadastro/cadastro_funcoes/cadastro_excluirCadastro.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_executarExcluirCadastro.o: cadastro/cadastro_funcoes/cadastro_executarExcluirCadastro.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_executarExcluirCadastro.c -o cadastro/cadastro_funcoes/cadastro_executarExcluirCadastro.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_inserirString.o: cadastro/cadastro_funcoes/cadastro_inserirString.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_inserirString.c -o cadastro/cadastro_funcoes/cadastro_inserirString.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_novoCadastro.o: cadastro/cadastro_funcoes/cadastro_novoCadastro.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_novoCadastro.c -o cadastro/cadastro_funcoes/cadastro_novoCadastro.o $(CFLAGS)
+
+producao/producao_var/producao_var.o: producao/producao_var/producao_var.c
+	$(CC) -c producao/producao_var/producao_var.c -o producao/producao_var/producao_var.o $(CFLAGS)
+
+producao/producao_funcoes/producao_novaOrdem.o: producao/producao_funcoes/producao_novaOrdem.c
+	$(CC) -c producao/producao_funcoes/producao_novaOrdem.c -o producao/producao_funcoes/producao_novaOrdem.o $(CFLAGS)
+
+producao/producao_funcoes/producao_inserirStringProd.o: producao/producao_funcoes/producao_inserirStringProd.c
+	$(CC) -c producao/producao_funcoes/producao_inserirStringProd.c -o producao/producao_funcoes/producao_inserirStringProd.o $(CFLAGS)
+
+interface/interface_funcoes/interface_producao/interface_exibirInterfaceNovaProducao.o: interface/interface_funcoes/interface_producao/interface_exibirInterfaceNovaProducao.c
+	$(CC) -c interface/interface_funcoes/interface_producao/interface_exibirInterfaceNovaProducao.c -o interface/interface_funcoes/interface_producao/interface_exibirInterfaceNovaProducao.o $(CFLAGS)
+
+validar/validar_funcoes/validar_validarData.o: validar/validar_funcoes/validar_validarData.c
+	$(CC) -c validar/validar_funcoes/validar_validarData.c -o validar/validar_funcoes/validar_validarData.o $(CFLAGS)
+
+validar/validar_funcoes/validar_receberAnoAtual.o: validar/validar_funcoes/validar_receberAnoAtual.c
+	$(CC) -c validar/validar_funcoes/validar_receberAnoAtual.c -o validar/validar_funcoes/validar_receberAnoAtual.o $(CFLAGS)
+
+validar/validar_funcoes/validar_completarDataAbreviada.o: validar/validar_funcoes/validar_completarDataAbreviada.c
+	$(CC) -c validar/validar_funcoes/validar_completarDataAbreviada.c -o validar/validar_funcoes/validar_completarDataAbreviada.o $(CFLAGS)
+
+validar/validar_funcoes/validar_checarData/validar_idades.o: validar/validar_funcoes/validar_checarData/validar_idades.c
+	$(CC) -c validar/validar_funcoes/validar_checarData/validar_idades.c -o validar/validar_funcoes/validar_checarData/validar_idades.o $(CFLAGS)
+
+arquivo/arquivo_popularVetorItens.o: arquivo/arquivo_popularVetorItens.c
+	$(CC) -c arquivo/arquivo_popularVetorItens.c -o arquivo/arquivo_popularVetorItens.o $(CFLAGS)
+
+arquivo/arquivo_salvarArquivoItens.o: arquivo/arquivo_salvarArquivoItens.c
+	$(CC) -c arquivo/arquivo_salvarArquivoItens.c -o arquivo/arquivo_salvarArquivoItens.o $(CFLAGS)
+
+interface/interface_funcoes/interface_producao/interface_imprimirOrdemProducao.o: interface/interface_funcoes/interface_producao/interface_imprimirOrdemProducao.c
+	$(CC) -c interface/interface_funcoes/interface_producao/interface_imprimirOrdemProducao.c -o interface/interface_funcoes/interface_producao/interface_imprimirOrdemProducao.o $(CFLAGS)
+
+producao/producao_funcoes/producao_consultarProducoes.o: producao/producao_funcoes/producao_consultarProducoes.c
+	$(CC) -c producao/producao_funcoes/producao_consultarProducoes.c -o producao/producao_funcoes/producao_consultarProducoes.o $(CFLAGS)
+
+interface/interface_funcoes/interface_producao/interface_exibirInterfaceDadosConsultaProducao.o: interface/interface_funcoes/interface_producao/interface_exibirInterfaceDadosConsultaProducao.c
+	$(CC) -c interface/interface_funcoes/interface_producao/interface_exibirInterfaceDadosConsultaProducao.c -o interface/interface_funcoes/interface_producao/interface_exibirInterfaceDadosConsultaProducao.o $(CFLAGS)
+
+producao/producao_funcoes/producao_alterarProducao.o: producao/producao_funcoes/producao_alterarProducao.c
+	$(CC) -c producao/producao_funcoes/producao_alterarProducao.c -o producao/producao_funcoes/producao_alterarProducao.o $(CFLAGS)
+
+producao/producao_funcoes/producao_excluirItemProducao.o: producao/producao_funcoes/producao_excluirItemProducao.c
+	$(CC) -c producao/producao_funcoes/producao_excluirItemProducao.c -o producao/producao_funcoes/producao_excluirItemProducao.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_verificarExclusaoCadastro.o: cadastro/cadastro_funcoes/cadastro_verificarExclusaoCadastro.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_verificarExclusaoCadastro.c -o cadastro/cadastro_funcoes/cadastro_verificarExclusaoCadastro.o $(CFLAGS)
+
+producao/producao_funcoes/producao_calcularValorTotal.o: producao/producao_funcoes/producao_calcularValorTotal.c
+	$(CC) -c producao/producao_funcoes/producao_calcularValorTotal.c -o producao/producao_funcoes/producao_calcularValorTotal.o $(CFLAGS)
+
+producao/producao_funcoes/producao_excluirProducao.o: producao/producao_funcoes/producao_excluirProducao.c
+	$(CC) -c producao/producao_funcoes/producao_excluirProducao.c -o producao/producao_funcoes/producao_excluirProducao.o $(CFLAGS)
+
+arquivo/arquivo_excluirArquivoItens.o: arquivo/arquivo_excluirArquivoItens.c
+	$(CC) -c arquivo/arquivo_excluirArquivoItens.c -o arquivo/arquivo_excluirArquivoItens.o $(CFLAGS)
+
+cadastro/cadastro_funcoes/cadastro_consultarCadastro.o: cadastro/cadastro_funcoes/cadastro_consultarCadastro.c
+	$(CC) -c cadastro/cadastro_funcoes/cadastro_consultarCadastro.c -o cadastro/cadastro_funcoes/cadastro_consultarCadastro.o $(CFLAGS)
+
+interface/interface_funcoes/interface_filtroCadastro.o: interface/interface_funcoes/interface_filtroCadastro.c
+	$(CC) -c interface/interface_funcoes/interface_filtroCadastro.c -o interface/interface_funcoes/interface_filtroCadastro.o $(CFLAGS)

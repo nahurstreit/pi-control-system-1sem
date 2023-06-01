@@ -1,0 +1,2 @@
+NÃO EXCLUIR!
+Arquivo apenas para a pasta poder aparecer no repositório do github.
