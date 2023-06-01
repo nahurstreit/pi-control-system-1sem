@@ -1,4 +1,0 @@
-Nahur Streit;416.338.218-62;28/08/1998;(19) 9 8440-9427;nahur.streit@hotmail.com;Rua Armando Salles de Oliveira;860;Apto. 133;Cidade Nova I;13334-160;Indaiatuba;SP
-Cliente1;12345678901;25/05/1990;1234567890;cliente1@email.com;Rua A;123;Complemento A;Bairro A;12345-678;Cidade A;Estado A
-Cliente2;98765432109;10/12/1985;9876543210;cliente2@email.com;Rua B;456;Complemento B;Bairro B;98765-432;Cidade B;Estado B
-Cliente3;56789012345;01/07/1998;5678901234;cliente3@email.com;Rua C;789;Complemento C;Bairro C;56789-012;Cidade C;Estado C

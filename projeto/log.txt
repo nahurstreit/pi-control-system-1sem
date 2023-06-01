@@ -334,3 +334,7 @@ Arquivos:
 
 (interface)
 - Adição de nova função responsável por controlar os possíveis filtros em consulta de cadastros.
+
+01/06/2023
+- Realocação dos arquivos.
+- Update readme.
