@@ -8,7 +8,7 @@ Este projeto foi desenvolvido para simular um sistema de organização e control
 # Como utilizar
 Para utilizar o sistema, siga as instruções abaixo:
 
-Faça o download do arquivo SistemaControleEmpresarial.exe, localizado dentro da pasta "executavel". Esse arquivo é o projeto já compilado, pronto para teste, uso e demonstração do sistema.
+Faça o download do projeto. Dentro do arquivo baixado, acesse a pasta "executavel". Essa pasta, possui um arquivo executável, que é o projeto já compilado e pronto para teste, uso e demonstração do sistema. Além do executável, existe de uma pasta chamada "data", responsável por armazenar os dados do sistema.
 
 Se preferir, você pode compilar o projeto por conta própria utilizando o programa [DevC++ (versão 5.11)]((https://sourceforge.net/projects/orwelldevcpp/files/latest/download)). Recomendamos a compilação através do DevC++, pois o projeto é configurado para ser compilado com o arquivo específico do DevC++ chamado "SistemaControleEmpresarial.dev", que unifica, organiza e compila o projeto sem necessidade de grandes configurações. Contudo, você também pode tentar compilar o projeto utilizando o arquivo Makefile juntamente com um compilador de sua escolha.
 
