@@ -13,6 +13,12 @@ void exibirErro() {
 		case Erro_Input_ApenasLetras:
 			strcpy(res, "Erro: Digite apenas letras!");
 			break;
+		case Erro_Input_EntradaInvalida:
+			strcpy(res, "Erro: Entrada inválida! Digite novamente.");
+			break;
+		case Erro_Input_CampoObrigatorio:
+			strcpy(res, "O preenchimento desse campo é obrigatório!");
+			break;
 		case Erro_Input_Status_Invalido:
 			strcpy(res, "Erro: Status inválido! Apenas (1) Ativo ou (0) Inativo.");
 			break;

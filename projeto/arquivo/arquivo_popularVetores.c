@@ -199,14 +199,6 @@ void popularVetor_Funcionarios() {
 	        }
 	
 	        token = strtok(NULL, ";");
-	        
-	        if (token != NULL) {
-	        	if(checarCampoNulo_Arquivo(token))token = " ";
-	            strncpy(funcionarios[i].salarioBase, token, MAX_STRING - 1);
-	            funcionarios[i].salarioBase[MAX_STRING - 1] = '\0';
-	        }
-	
-	        token = strtok(NULL, ";");
 	
 	        if (token != NULL) {
 	        	if(checarCampoNulo_Arquivo(token))token = " ";

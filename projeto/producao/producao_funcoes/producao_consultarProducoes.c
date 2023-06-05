@@ -65,25 +65,25 @@ void consultaProducoes(int *estado) {
 			posicaoString[i] = toupper(posicaoString[i]);
 		}
 		
-		if(strstr(posicaoString, "DATA") != NULL || strstr(posicaoString, "D ") != NULL) {
+		if(strstr(posicaoString, "DATA") != NULL && strlen(posicaoString) > 5) {
 			strcpy(stringFiltro, posicaoString);
 			filtroAtual = Filtro_Data;
 			continue;
 		}
 		
-		if(strstr(posicaoString, "CLIENTE") != NULL || strstr(posicaoString, "C ") != NULL) {
+		if(strstr(posicaoString, "CLIENTE") != NULL && strlen(posicaoString) > 8) {
 			strcpy(stringFiltro, posicaoString);
 			filtroAtual = Filtro_Cliente;
 			continue;
 		}
 		
-		if(strstr(posicaoString, "FUNCIONARIO") != NULL || strstr(posicaoString, "F ") != NULL) {
+		if(strstr(posicaoString, "FUNCIONARIO") != NULL && strlen(posicaoString) > 12) {
 			strcpy(stringFiltro, posicaoString);
 			filtroAtual = Filtro_Funcionario;
 			continue;
 		}
 		
-		if(validarPalavraChave(posicaoString, "LIMPAR") || validarPalavraChave(posicaoString, "L")) {
+		if(validarPalavraChave(posicaoString, "LIMPAR")) {
 			limparFiltro++;
 			continue;
 		}

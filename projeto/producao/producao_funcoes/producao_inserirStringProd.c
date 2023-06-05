@@ -31,6 +31,7 @@ void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo,
 				break;
 			}
 			
+			tipoConsultaAtual = 5;
 			if(strlen(string) > 1 && strlen(string) >= 11) {
 				x = consultarCPFouCNPJ(string);
 			} else {
@@ -60,7 +61,7 @@ void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo,
 	case 2:
 		removerCaracteresEspeciais(string, false);
 			
-		escolhaUser = 2;
+		tipoConsultaAtual = 2;
 		if(verificarContemLetras(string)) {
 			erro = Erro_Input_ApenasNumeros;
 			break;
@@ -73,7 +74,7 @@ void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo,
 		}
 		
 		x -=1;
-		escolhaUser = 5;
+		tipoConsultaAtual = 5;
 		
 		if(vetorRefFuncionarios[x] == 0) {
 			erro = Erro_Consulta_NaoExiste;
@@ -97,11 +98,16 @@ void inserirStringProd(int posicao, char string[MAX_STRING], int *contadorCampo,
 		sprintf(producoes[posicao].itens[posicaoItem].valorUnit, "%.2f", produtos[posicaoConsulta].valorUnitario);
 		break;
 	case 4:
-		if(validarEntrada(string, true, true, false, 100)) {
-			strcpy(producoes[posicao].itens[posicaoItem].quantidade, string);
+		if(validarEntradaVazia(string)) {
+			erro = Erro_Input_EntradaInvalida;
 			break;
 		}
-		erro = Erro_Input_ApenasNumeros;
+		if(validarEntrada(string, true, true, false, 100)) {
+			strcpy(producoes[posicao].itens[posicaoItem].quantidade, string);
+		} else if(verificarContemLetras(string)) {
+			erro = Erro_Input_ApenasNumeros;
+		}
+		
 		break;
 	case 5:
 		break;

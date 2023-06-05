@@ -41,12 +41,12 @@
 			//Criar novo Cadastro
 				Menu menuNovoCadastro = {
 					"NOVO CADASTRO",
-					6,
+					5,
 					{
 						"Clientes", 1, &executarNovoCadastro,
 						"Funcionários", 2, &executarNovoCadastro,
-						"Fornecedores", 3, &executarNovoCadastro,
-						"Produtos", 4, &executarNovoCadastro,
+//						"Fornecedores", 3, &executarNovoCadastro,
+						"Produtos", 3, &executarNovoCadastro,
 						"Voltar ao Menu Anterior", 0, &exibirMenuCadastro,
 						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}
@@ -60,8 +60,8 @@
 					{
 						"Clientes", 1, &executarConsultaCadastro,
 						"Funcionários", 2, & executarConsultaCadastro,
-						"Fornecedores", 3, &executarConsultaCadastro,
-						"Produtos", 4, &executarConsultaCadastro,
+//						"Fornecedores", 3, &executarConsultaCadastro,
+						"Produtos", 3, &executarConsultaCadastro,
 						"Voltar ao Menu Anterior", 0, &exibirMenuCadastro,
 						"Voltar ao Menu Inicial", 9, &exibirMenuPrincipal,
 					}

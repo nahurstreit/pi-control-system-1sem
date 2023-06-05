@@ -20,7 +20,7 @@
 	 *
 	 * @return: Nenhum.
 	 **/
-	extern void novoCadastro(bool alterarCadastro);
+	extern void novoCadastro(bool alterarCadastro, bool trocarConsultaAtual);
 	
 
 	/**

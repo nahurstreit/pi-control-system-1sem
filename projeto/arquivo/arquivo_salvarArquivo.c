@@ -80,7 +80,7 @@ void salvarArquivo_Funcionarios(){
 			criarLinhaArquivo(pStringLinha, funcionarios[i].dataNascimento);
 			criarLinhaArquivo(pStringLinha, funcionarios[i].estadoCivil);
 			criarLinhaArquivo(pStringLinha, funcionarios[i].dataAdmissao);
-			criarLinhaArquivo(pStringLinha, funcionarios[i].salarioBase);
+//			criarLinhaArquivo(pStringLinha, funcionarios[i].salarioBase);
 			criarLinhaArquivo(pStringLinha, funcionarios[i].telefone);
 			criarLinhaArquivo(pStringLinha, funcionarios[i].email);
 			criarLinhaArquivo(pStringLinha, funcionarios[i].endereco);

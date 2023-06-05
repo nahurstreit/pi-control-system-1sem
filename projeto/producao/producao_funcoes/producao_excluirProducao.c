@@ -1,4 +1,5 @@
 #include "../../global/global.h"
+#include "../../cadastro/cadastro.h"
 #include "../producao.h"
 
 void excluirProducao(int numProd) {

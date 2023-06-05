@@ -19,11 +19,11 @@
 						menuAtual = menuNovoCadastro;
 					}
 						void executarNovoCadastro() {
-							novoCadastro(false);
+							novoCadastro(false, true);
 						}
 						
 						void executarNovoProduto() {
-							novoCadastro(false);
+							novoCadastro(false, true);
 						}
 					
 					void exibirMenuConsultarCadastro() {
@@ -70,7 +70,7 @@
 								
 								if(exibirInterfaceAlerta(stringAlerta, stringOpcoes, "1", false, true, 1)) {
 									excluirCadastro(posicaoConsultaAtual);
-									novoCadastro(true);
+									novoCadastro(true, false);
 									if(!verificarExclusaoCadastro()) {
 										mensagem = Mensagem_Cadastro_Modificado;
 									} else if(mensagem > 0) {
@@ -126,6 +126,11 @@
 								menuAtual = menuConsultarOrdemProducao;
 								exibirInterfaceOpcoes();
 								receberOpcaoMenu();
+								if(producaoAtiva == -1) {
+									executarConsultaOrdemProducao();
+									exibirMenuOrdemProducao();
+									break;
+								}
 							} while(escolhaUser != 0 && escolhaUser != 9);
 							remove("tempImpress.txt");
 						} else if(estado == 0) {

@@ -17,7 +17,6 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes, Filtro filtroAtua
 	
 	int encontrou = 0;
 	
-	
 	switch(tipoConsultaAtual) {
 		case 1 :
 			displayCabecalhoAtual = displayRefCabecalhoConsultaClientes;
@@ -127,7 +126,7 @@ void exibirInterfaceDadosConsulta(int contadorDadosExistentes, Filtro filtroAtua
 					}
 					
 					for(j = 0; j < strlen(funcionarios[i].telefone); j++) {
-						displayItemAtual[0].linhaDisplay[85 + j] = funcionarios[i].telefone[j];
+						displayItemAtual[0].linhaDisplay[84 + j] = funcionarios[i].telefone[j];
 					}
 					
 					for(j = 0; j < 2; j++) {

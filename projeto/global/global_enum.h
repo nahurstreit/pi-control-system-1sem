@@ -5,6 +5,8 @@ typedef enum {
 	Erro_Nenhum = 0,
 	Erro_Input_ApenasNumeros,
 	Erro_Input_ApenasLetras,
+	Erro_Input_EntradaInvalida,
+	Erro_Input_CampoObrigatorio,
 	Erro_Input_Status_Invalido,
 	Erro_Input_CPF_Invalido,
 	Erro_Input_CPF_JaCadastrado,

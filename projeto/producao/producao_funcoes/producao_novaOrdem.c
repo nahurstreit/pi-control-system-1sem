@@ -13,7 +13,7 @@ void novaOrdem(bool adicionarItens) {
 	
 	//Variáveis para controle de saída e alteração de cadastro em tempo de execução.
 		char escolhaSair = 's'; //Nomeando a variável de confirmação de escolha para sair do registro de um novo cadastro.
-		int saida, alterar; //Variáveis responsáveis por controlar se o usuário está tentando sair ou alterar algum dado, durante o registro de um novo cadastro.
+		int saida, alterar, exibir; //Variáveis responsáveis por controlar se o usuário está tentando sair ou alterar algum dado, durante o registro de um novo cadastro.
 		int escolhaAlterarItem = -1;
 		int valid;
 	//
@@ -36,7 +36,8 @@ void novaOrdem(bool adicionarItens) {
 	limiteContador = 6;
 	escolhaUser = 5;
 	alterar = 0;
-	
+	exibir = 0;
+	int contadorDadosExistentes = calcularDadosExistentes(vetorRefClientes);
 	do {
 		saida = 0; //Zerando o valor de saída para poder controlar a exibição da mensagem de saída caso o usuário não digitar "SAIR".
 		exibirInterfaceTitulo("NOVA ORDEM DE PRODUÇÃO", 1);
@@ -47,7 +48,7 @@ void novaOrdem(bool adicionarItens) {
 		exibirInterfaceNovaProducao(posicao);
 		
 		//Exibe uma mensagem diferente na parte de baixo do formulário. Se o usuário estiver digitando o primeiro dado, apenas exibirá a opção de voltar, caso esteja em algum outro dado, aparece o texto de mudar.
-		contadorCampo > 0 ? exibirTextoMeio("Digite 'SAIR' para voltar, 'EXIBIR' para mostrar os dados possíveis deste campo\n ou 'MUDAR' para alterar algum dado.\n") :
+		contadorCampo > 0 ? exibirTextoMeio("Digite 'SAIR' para voltar ou 'MUDAR' para alterar algum dado.\n") :
 							exibirTextoMeio("Digite 'SAIR' para voltar\n");
 		
 		//Exibe uma mensagem diferente caso seja a primeira vez que esteja digitando um dado, ou se estiver digitando o dado novamente
@@ -65,8 +66,6 @@ void novaOrdem(bool adicionarItens) {
 			char stringSair[] = "Você digitou 'SAIR', TODOS os dados digitados serão perdidos, tem certeza que quer sair? ";
 			char stringOpcaoSair[] = "\nDigite (S) para sair: ";
 			if(exibirInterfaceAlerta(stringSair, stringOpcaoSair, "S", true, false, 1)){
-				posicaoConsultaAtual = posicao;
-				excluirCadastro(posicao);
 				saida++;
 				break;
 			} else {
@@ -111,13 +110,17 @@ void novaOrdem(bool adicionarItens) {
 						contadorCampo = holderContadorCampo;
 						continue;
 					} else if(contadorCampo == 3 || contadorCampo == 4) {
-						printf("Digite o número do item que você quer alterar: ");
-						valid = scanf("%d", &posicaoItem);
-						fflush(stdin);
-						posicaoItem--;
-						if(valid == 0) {
-							erro = Erro_Input_ApenasNumeros;
-							continue;
+						if(calcularDadosExistentes(vetorRefItensComprados) <= 1) {
+							posicaoItem = 0;
+						} else {
+							printf("Digite o número do item que você quer alterar: ");
+							valid = scanf("%d", &posicaoItem);
+							fflush(stdin);
+							posicaoItem--;
+							if(valid == 0) {
+								erro = Erro_Input_ApenasNumeros;
+								continue;
+							}
 						}
 						alterar++;
 						continue;
@@ -180,6 +183,7 @@ void novaOrdem(bool adicionarItens) {
 		if(contadorCampo > 2) {
 			excluirArquivoItens(atoi(producoes[producaoAtiva].numCadCliente), producaoAtiva);
 		}
+		
 		mensagem = Mensagem_Producao_Cancelada;
 		menuAtual = menuOrdemProducao;
 	}

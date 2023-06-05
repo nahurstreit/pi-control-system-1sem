@@ -338,3 +338,33 @@ Arquivos:
 01/06/2023
 - Realocação dos arquivos.
 - Update readme.
+
+03/06/2023 - 05/06/2023
+(geral)
+- Realização de testes.
+- Correção de bugs de cadastro: alteração de cadastro, exclusão de cadastro.
+- Correção de bugs de consulta: filtros e consultas.
+- Correção de bugs de interface.
+- Correção de bugs de ordem de produção: alteração, criação, exclusão de itens e da ordem de produção.
+- Update do readme.
+
+(data)
+- Excluído arquivos de peso para funcionários e fornecedores.
+- Criação de novos arquivos teste de dados, padrões do sistema.
+	- Esses arquivos também foram transferidos para a pasta executável.
+	- Contém dados aleatórios de clientes e funcionários para testes e exemplificação.
+
+(validar)
+- Adicionada uma função que impede a entrada vazia em campos específicos de cadastro, tornando possível a obrigatoriedade ou não do preenchimento de um cadastro.
+
+(menu)
+- Retirado o acesso às opções de cadastro de fornecedor, para o projeto fazer mais sentido com o Projeto Integrador como um todo.
+- Readaptado alguns comandos para que o cadastro de produtos assuma a posição do fornecedor na seleção.
+
+(cadastro)
+- Reajustada a lógica e inputs de funcionários para readequar o sistema à exclusão do campo salário base.
+- Reajustado algumas lógicas para lidar com a desabilitação do cadastro de fornecedores.
+
+(interface)
+- Readaptação de tamanhos e disposição dos displays.
+- Em Formulários de Funcionários, foi retirada a opção de salário base.

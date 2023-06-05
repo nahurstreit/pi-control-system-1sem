@@ -1,0 +1,15 @@
+Criação de Clientes, Funcionários e Produtos
+- Testar combinações de dados
+Consulta de Clientes, Funcionários e Produtos
+- Testar inputs inválidos para filtros
+- Testar entrada de indivíduos
+Modificação de Clientes
+- Modficar um dado, excluir um cliente ou alterar todos os dados.	
+	
+Criação de produções
+- Adição de novos itens depois de criados
+- Exclusão de itens
+- Adição novamente e exclusão novamente
+	- Verificar alteração de preços dentro e fora, bem como a impressão
+Consulta de produções
+- Testar inputs inválidos para consultas

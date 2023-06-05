@@ -22,7 +22,6 @@ TextoCampo camposFuncionario[] = {
 	"a data de nascimento",
 	"o estado civil (Solteiro / Casado / Divorciado / Viuvo)",
 	"a data de admissão (H ou Hoje para adicionar a data de hoje)",
-	"o salario base (R$)",
 	"o telefone (com DDD)",
 	"o email",
 	"o endereço",

@@ -5,7 +5,7 @@
 #include "arquivo/arquivo.h"
 
 void main() {
-	setlocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL, "Portuguese_Brazil");
 	exibirMenuPrincipal();
 	popularVetores();
 

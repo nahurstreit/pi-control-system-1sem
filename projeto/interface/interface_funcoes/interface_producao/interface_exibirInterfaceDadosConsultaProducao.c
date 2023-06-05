@@ -11,12 +11,13 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 	Display displayItemAtual[2];
 	
 	int dadosEncontrados = calcularDadosExistentes(vetorRefProducoes);
+	int encontrou = 0;
 	
 	Filtro filtroAtual = 0;
 	
 	char copiaCPF[11];
 	
-	if(strstr(stringFiltro, "DATA") != NULL || strstr(stringFiltro, "D ") != NULL) {
+	if(strstr(stringFiltro, "DATA") != NULL) {
 		removerCaracteresEspeciais(stringFiltro, true);
 		
 		char *token = strtok(stringFiltro, " ");
@@ -47,7 +48,7 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 			return;
 		}
 		filtroAtual = Filtro_Data;
-	} else if(strstr(stringFiltro, "CLIENTE") != NULL || strstr(stringFiltro, "C ")) {
+	} else if(strstr(stringFiltro, "CLIENTE") != NULL) {
 		
 		removerCaracteresEspeciais(stringFiltro, true);
 		
@@ -66,7 +67,7 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 		removerCaracteresEspeciais(stringFiltro, false);
 		
 		filtroAtual = Filtro_Cliente;
-	} else if(strstr(stringFiltro, "FUNCIONARIO") != NULL || strstr(stringFiltro, "F ") != NULL) {
+	} else if(strstr(stringFiltro, "FUNCIONARIO") != NULL) {
 		removerCaracteresEspeciais(stringFiltro, true);
 		
 		char *token = strtok(stringFiltro, " ");
@@ -132,6 +133,7 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 						}						
 						break;
 				}
+				encontrou++;
 			}
 			for(j = 0; j < 2; j++) {
 				displayItemAtual[j] = displayRefConsulta_Producoes[j];
@@ -178,7 +180,7 @@ void exibirInterfaceDadosConsultaProducao(char stringFiltro[]) {
 		}
 	}
 	
-	if(dadosEncontrados == 0) {
+	if(dadosEncontrados == 0 || (filtroAtual > 0 && encontrou == 0)) {
 		for(i = 0; i < 2; i++) {
 			printf("%s\n", displayRefConsulta_SemDados[i]);
 		}

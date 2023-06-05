@@ -2,7 +2,7 @@
 #include "../cadastro.h"
 
 //Função de execução criação de novoCadastro. A chamada desse função acontece em menu.c dentro de algumas opções.
-void novoCadastro(bool refazerCadastro) {
+void novoCadastro(bool refazerCadastro, bool trocarConsultaAtual) {
 	char stringHolder[MAX_STRING];
 	int posicao, tipoCadastroAtual = 0, contadorCampo, limiteContador = 0;
 	int holderContadorCampo;
@@ -13,7 +13,8 @@ void novoCadastro(bool refazerCadastro) {
 		int saida, alterar; //Variáveis responsáveis por controlar se o usuário está tentando sair ou alterar algum dado, durante o registro de um novo cadastro.
 	//
 	
-	tipoConsultaAtual = escolhaUser;
+	if(trocarConsultaAtual) tipoConsultaAtual = escolhaUser;
+	
 	if(refazerCadastro) {
 		posicao = posicaoConsultaAtual;
 		switch(tipoConsultaAtual) {
@@ -41,7 +42,7 @@ void novoCadastro(bool refazerCadastro) {
 		case 2:
 			camposAtuais = camposFuncionario;
 			if(!refazerCadastro) posicao = posicaoDisponivel(vetorRefFuncionarios);
-			limiteContador = 16;
+			limiteContador = 15;
 			break;
 		case 3:
 			camposAtuais = camposFornecedor;
@@ -79,7 +80,8 @@ void novoCadastro(bool refazerCadastro) {
 		
 		exibirMensagem();
 		exibirErro();
-
+		
+		
 		exibirInterfaceFormularios(posicao);
 		
 		//Exibe uma mensagem diferente na parte de baixo do formulário. Se o usuário estiver digitando o primeiro dado, apenas exibirá a opção de voltar, caso esteja em algum outro dado, aparece o texto de mudar.
@@ -87,9 +89,10 @@ void novoCadastro(bool refazerCadastro) {
 		else if(alterar > 0) exibirTextoMeio("Digite 'SAIR' para voltar ou 'MANTER' para manter o dado já digitado.");
 		else exibirTextoMeio("Digite 'SAIR' para voltar");	
 		
+		printf("\n(*) Campos Obrigatórios. Digite todos os campos sem acentuação!");
 		//Exibe uma mensagem diferente caso seja a primeira vez que esteja digitando um dado, ou se estiver digitando o dado novamente
-		alterar > 0 ? printf("\n\n[%d] Digite novamente %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo) :
-					  printf("\n\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
+		alterar > 0 ? printf("\n[%d] Digite novamente %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo) :
+					  printf("\n[%d] Digite %s: ", contadorCampo+1, camposAtuais[contadorCampo].displayCampo);
 		
 		//Recebe o dado
 		fgets(stringHolder, MAX_STRING, stdin);
@@ -186,14 +189,14 @@ void novoCadastro(bool refazerCadastro) {
 	
 	//Se o usuário digitar 'SAIR', não exibirá a mensagem de "enviando cadastro". Apenas retornará ao menu anterior.
 	if(saida == 0) {
-		handleSalvar(escolhaUser);
+		handleSalvar(tipoConsultaAtual);
 		exibirInterfaceTitulo("NOVO CADASTRO", 1);
 		exibirInterfaceFormularios(posicao);
 		printf("\n\nEnviando Cadastro...\n");
 		system("pause");
 		mensagem = Mensagem_Cadastro_Novo;
 	} else {
-		handleSalvar(escolhaUser);
+		handleSalvar(tipoConsultaAtual);
 		mensagem = Mensagem_Cadastro_Cancelado;
 	}
 }

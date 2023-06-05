@@ -1,0 +1,4 @@
+Yago Breno Danilo Farias;Inativo;857.902.278-99;19/04/1990;Solteiro(a);15/02/2018;(19) 9 8195-7997;yago.breno.farias@ozzape.com;Rua dos Faisoes;692;Apto. 3;Lagos de Shanadu;13348-825;Indaiatuba;SP;
+Jose Anderson Ricardo Alves;Ativo;580.991.608-27;03/05/1980;Divorciado(a);20/01/2021;(19) 9 9848-3135;jose_anderson_alves@allurepesquisa.com.b;Estrada dos Leites;688;<>;Chacara Polaris;13337-055;Indaiatuba;SP;
+Vitoria Mariana Sales;Inativo;815.360.003-61;01/06/1980;Casado(a);28/09/2020;(77) 9 8264-0761;vitoriamarianasales@tera.com.br;Rua David Silvero;819;<>;Jardim Regente;13336-318;Indaiatuba;SP;
+Natalia Fabiana Brenda da Costa;Ativo;461.477.678-79;03/06/1987;Casado(a);30/11/2022;(19) 9 8420-0569;nataliafabianadacosta@edu.uniso.br;Rua Luiz B‚rgamo;173;<>;Jardim Morada do Sol;13348-110;Indaiatuba;SP;

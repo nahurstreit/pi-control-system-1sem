@@ -73,13 +73,15 @@ void consultaCadastro(int *estado) {
 			posicaoString[i] = toupper(posicaoString[i]);
 		}
 		
-		if(strstr(posicaoString, "NOME")) {
+		removerCaracteresEspeciais(posicaoString, true);
+		
+		if(strstr(posicaoString, "NOME") && strlen(posicaoString) > 5) {
 			filtroAtual = Filtro_Nome;
 			continue;
-		} else if(strstr(posicaoString, "DATA") && tipoConsultaAtual < 3) {
+		} else if(strstr(posicaoString, "DATA") && tipoConsultaAtual < 3 && strlen(posicaoString) > 5) {
 			filtroAtual = Filtro_Data;
 			continue;
-		} else if(strstr(posicaoString, "STATUS") && tipoConsultaAtual == 2){
+		} else if(strstr(posicaoString, "STATUS") && tipoConsultaAtual == 2 && strlen(posicaoString) > 7){
 			filtroAtual = Filtro_Status;
 			continue;
 		} else if(strstr(posicaoString, "LIMPAR")){

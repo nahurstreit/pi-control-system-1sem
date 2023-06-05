@@ -5,6 +5,7 @@
 //Funções de remoção
 void removerCaracteresEspeciais(char *pString, bool permitirEspacos);
 void removerPontoVirgula(char *pString);
+void removerAcentos(char *texto);
 
 //Funções de verificação
 bool verificarContemLetras(char pString[]);
@@ -19,6 +20,7 @@ void receberAnoAtual(char data[]);
 void completarDataAbreviada(char data[], bool permiteDataFutura);
 void redefinirFormato(char string[], const int excluirPosicoes[]);
 void validarIdadeMinMax(char destino[], char maximoOuMinimo[3]);
+
 
 //Funções de Validação
 extern bool validarCPF(char *pCpf);

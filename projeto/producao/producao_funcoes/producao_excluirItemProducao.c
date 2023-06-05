@@ -6,13 +6,17 @@
 #include "../producao.h"
 
 void excluirItemProducao() {
-	int escolhaCampo = 0, posicaoItem;
+	int escolhaCampo = 0, posicaoItem = 0, copiaPosicaoItem;
 	int *pEscolhaCampo = &escolhaCampo;
-	int alterar = 0, saida = 0;
+	int alterar = 0, saida = 0, ordemExcluida = 0;
 	
 	int i, valid;
 	
+	char stringAlerta[MAX_STRING + 100];
+	char stringOpcoes[MAX_STRING];
+	
 	do{
+		ordemExcluida = 0;
 		saida = 0;
 		valid = 0;
 		if(erro > 0) alterar = 1;
@@ -35,27 +39,37 @@ void excluirItemProducao() {
 				continue;
 			}
 		} else {
-			posicaoItem = 1;
+			strcpy(stringAlerta, "Você está tentando excluir o único item dessa Produção. A Ordem INTEIRA será excluída. ");
+			strcpy(stringOpcoes, "[1] Sim, quero excluir a ordem inteira!\t\t\t[2] Não, deixe-me pensar...");
+			fflush(stdin);
+			if(exibirInterfaceAlerta(stringAlerta, stringOpcoes, "1", false, true, 1)) {
+				excluirProducao(producaoAtiva);
+				ordemExcluida++;
+				break;
+			}
 		}
 		
-		char stringAlerta[MAX_STRING];
-		sprintf(stringAlerta, "Você está tentando excluir o item %d. A exclusão é irreversível, tem certeza disso? ", posicaoItem);
-		char stringOpcoes[] = "[1] Sim, tenho certeza\t\t\t[2] Não, deixe-me pensar...";
+		sprintf(stringAlerta, "Você está tentando excluir o item %d. Essa decisão é IRREVERSÍVEL, tem certeza disso?", posicaoItem);
+		strcpy(stringOpcoes, "[1] Sim, tenho certeza!\t\t\t[2] Não, deixe-me pensar...");
+		
 		
 		printf("\n\n");
 		if(exibirInterfaceAlerta(stringAlerta, stringOpcoes, "1", false, true, 1)) {
 			vetorRefItensComprados[posicaoItem - 1] = 0;
+			salvarArquivo_Itens(atoi(producoes[producaoAtiva].numCadCliente), producaoAtiva);
+			popularVetorItens(producaoAtiva);
 		}
-		
-		posicaoItem--;
 //		
 //		inserirStringProd(producaoAtiva, stringNova, pEscolhaCampo, posicaoItem);
 	} while(erro != 0);
 	
-	if(saida != 1) {
+	escolhaUser = 5;
+	if(saida != 0 && ordemExcluida == 0) {
 		handleSalvar(escolhaUser);
-		salvarArquivo_Itens(atoi(producoes[producaoAtiva].numCadCliente), producaoAtiva);
-		popularVetorItens(producaoAtiva);
 		mensagem = Mensagem_Producao_Item_Excluido;
+	} else if(ordemExcluida > 0) {
+		producaoAtiva = -1;
+		handleSalvar(escolhaUser);
+		mensagem = Mensagem_Producao_Excluida;
 	}
 }

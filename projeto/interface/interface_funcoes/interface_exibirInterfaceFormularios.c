@@ -58,19 +58,19 @@ void exibirInterfaceFormularios(int posicao) {
 					}
 				//Display Nome
 					for(j = 0; j < strlen(clientes[posicao].nome); j++) {
-						pCopiaDisplay[1].linhaDisplay[32 + j] = clientes[posicao].nome[j];
+						pCopiaDisplay[1].linhaDisplay[33 + j] = clientes[posicao].nome[j];
 					}
 				//Display CPF
 					for(j = 0; j < strlen(clientes[posicao].cpf); j++) {
-						pCopiaDisplay[3].linhaDisplay[11 + j] = clientes[posicao].cpf[j];
+						pCopiaDisplay[3].linhaDisplay[12 + j] = clientes[posicao].cpf[j];
 					}
 				//Display Data Nascimento
 					for(j = 0; j < strlen(clientes[posicao].dataNascimento); j++) {
-						pCopiaDisplay[3].linhaDisplay[63 + j] = clientes[posicao].dataNascimento[j];
+						pCopiaDisplay[3].linhaDisplay[64 + j] = clientes[posicao].dataNascimento[j];
 					}
 				//Display Telefone
 					for(j = 0; j < strlen(clientes[posicao].telefone); j++) {
-						pCopiaDisplay[5].linhaDisplay[16 + j] = clientes[posicao].telefone[j];
+						pCopiaDisplay[5].linhaDisplay[17 + j] = clientes[posicao].telefone[j];
 					}
 				//Display E-mail
 					for(j = 0; j < strlen(clientes[posicao].email); j++) {
@@ -78,11 +78,11 @@ void exibirInterfaceFormularios(int posicao) {
 					}
 				//Display Endereço
 					for(j = 0; j < strlen(clientes[posicao].endereco); j++) {
-						pCopiaDisplay[7].linhaDisplay[16 + j] = clientes[posicao].endereco[j];
+						pCopiaDisplay[7].linhaDisplay[17 + j] = clientes[posicao].endereco[j];
 					}
 				//Display Número Endereço
 					for(j = 0; j < strlen(clientes[posicao].numEndereco); j++) {
-						pCopiaDisplay[7].linhaDisplay[93 + j] = clientes[posicao].numEndereco[j];
+						pCopiaDisplay[7].linhaDisplay[94 + j] = clientes[posicao].numEndereco[j];
 					}
 				//Display Complemento Endereço
 					for(j = 0; j < strlen(clientes[posicao].compEndereco); j++) {
@@ -90,19 +90,19 @@ void exibirInterfaceFormularios(int posicao) {
 					}
 				//Display Bairro
 					for(j = 0; j < strlen(clientes[posicao].bairro); j++) {
-						pCopiaDisplay[9].linhaDisplay[59 + j] = clientes[posicao].bairro[j];
+						pCopiaDisplay[9].linhaDisplay[60 + j] = clientes[posicao].bairro[j];
 					}
 				//Display CEP
 					for(j = 0; j < strlen(clientes[posicao].cep); j++) {
-						pCopiaDisplay[11].linhaDisplay[12 + j] = clientes[posicao].cep[j];
+						pCopiaDisplay[11].linhaDisplay[13 + j] = clientes[posicao].cep[j];
 					}
 				//Display Cidade
 					for(j = 0; j < strlen(clientes[posicao].cidade); j++) {
-						pCopiaDisplay[11].linhaDisplay[43 + j] = clientes[posicao].cidade[j];
+						pCopiaDisplay[11].linhaDisplay[44 + j] = clientes[posicao].cidade[j];
 					}
 				//Display Estado
 					for(j = 0; j < strlen(clientes[posicao].estado); j++) {
-						pCopiaDisplay[11].linhaDisplay[94 + j] = clientes[posicao].estado[j];
+						pCopiaDisplay[11].linhaDisplay[95 + j] = clientes[posicao].estado[j];
 					}
 				break;
 			case 2:				
@@ -112,35 +112,31 @@ void exibirInterfaceFormularios(int posicao) {
 				}
 				//Display nome
 					for(j = 0; j < strlen(funcionarios[posicao].nome); j++) {
-						pCopiaDisplay[1].linhaDisplay[32 + j] = funcionarios[posicao].nome[j];
+						pCopiaDisplay[1].linhaDisplay[33 + j] = funcionarios[posicao].nome[j];
 					}
 				//Display Status
 					for(j = 0; j < strlen(funcionarios[posicao].status); j++) {
-						pCopiaDisplay[1].linhaDisplay[93 + j] = funcionarios[posicao].status[j];
+						pCopiaDisplay[3].linhaDisplay[15 + j] = funcionarios[posicao].status[j];
 					}
 				//Display CPF
 					for(j = 0; j < strlen(funcionarios[posicao].cpf); j++) {
-						pCopiaDisplay[3].linhaDisplay[11 + j] = funcionarios[posicao].cpf[j];
+						pCopiaDisplay[3].linhaDisplay[40 + j] = funcionarios[posicao].cpf[j];
 					}				
 				//Display Data Nascimento
 					for(j = 0; j < strlen(funcionarios[posicao].dataNascimento); j++) {
-						pCopiaDisplay[3].linhaDisplay[55 + j] = funcionarios[posicao].dataNascimento[j];
+						pCopiaDisplay[3].linhaDisplay[83 + j] = funcionarios[posicao].dataNascimento[j];
 					}
 				//Display Estado Civil
 					for(j = 0; j < strlen(funcionarios[posicao].estadoCivil); j++) {
-						pCopiaDisplay[3].linhaDisplay[86 + j] = funcionarios[posicao].estadoCivil[j];
+						pCopiaDisplay[5].linhaDisplay[21 + j] = funcionarios[posicao].estadoCivil[j];
 					}
 				//Display Data Admissão				
 					for(j = 0; j < strlen(funcionarios[posicao].dataAdmissao); j++) {
-						pCopiaDisplay[5].linhaDisplay[24 + j] = funcionarios[posicao].dataAdmissao[j];
-					}
-				//Display Salário Base: 
-					for(j = 0; j < strlen(funcionarios[posicao].salarioBase); j++) {
-						pCopiaDisplay[5].linhaDisplay[68 + j] = funcionarios[posicao].salarioBase[j];
+						pCopiaDisplay[5].linhaDisplay[71 + j] = funcionarios[posicao].dataAdmissao[j];
 					}
 				//Display Telefone:
 					for(j = 0; j < strlen(funcionarios[posicao].telefone); j++) {
-						pCopiaDisplay[7].linhaDisplay[16 + j] = funcionarios[posicao].telefone[j];
+						pCopiaDisplay[7].linhaDisplay[17 + j] = funcionarios[posicao].telefone[j];
 					}
 				//Display E-mail:
 					for(j = 0; j < strlen(funcionarios[posicao].email); j++) {
@@ -160,19 +156,19 @@ void exibirInterfaceFormularios(int posicao) {
 					}
 				//Display Bairro
 					for(j = 0; j < strlen(funcionarios[posicao].bairro); j++) {
-						pCopiaDisplay[11].linhaDisplay[61 + j] = funcionarios[posicao].bairro[j];
+						pCopiaDisplay[11].linhaDisplay[62 + j] = funcionarios[posicao].bairro[j];
 					}
 				//Display CEP
 					for(j = 0; j < strlen(funcionarios[posicao].cep); j++) {
-						pCopiaDisplay[13].linhaDisplay[12 + j] = funcionarios[posicao].cep[j];
+						pCopiaDisplay[13].linhaDisplay[13 + j] = funcionarios[posicao].cep[j];
 					}
 				//Display Cidade
 					for(j = 0; j < strlen(funcionarios[posicao].cidade); j++) {
-						pCopiaDisplay[13].linhaDisplay[43 + j] = funcionarios[posicao].cidade[j];
+						pCopiaDisplay[13].linhaDisplay[44 + j] = funcionarios[posicao].cidade[j];
 					}
 				//Display Estado
 					for(j = 0; j < strlen(funcionarios[posicao].estado); j++) {
-						pCopiaDisplay[13].linhaDisplay[94 + j] = funcionarios[posicao].estado[j];
+						pCopiaDisplay[13].linhaDisplay[95 + j] = funcionarios[posicao].estado[j];
 					}
 				break;
 			case 3:				
