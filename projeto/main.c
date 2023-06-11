@@ -14,16 +14,8 @@ void main() {
 	    
 	    HWND hWnd = GetConsoleWindow();
     	ShowWindow(hWnd, SW_MAXIMIZE);
-	    
-	    // Comente esse código para tirar a trava de tela
-//		    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-//			SMALL_RECT rect = {0, 0, 101, 42}; // Define o tamanho da janela
-//			SetConsoleWindowInfo(hConsole, TRUE, &rect); // Define o tamanho da janela
-//			SetWindowLong(GetConsoleWindow(), GWL_STYLE, GetWindowLong(GetConsoleWindow(), GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
-    	//Comente esse código para tirar a trava de tela
     	
 		exibirInterfaceTitulo(menuAtual.tituloDoMenu, 1);	
-		
 		
 		exibirMensagem(); //Exibindo eventuais mensagens, por padrão erro = 0, portanto, sem mensagens
 		

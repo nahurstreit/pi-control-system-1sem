@@ -4,7 +4,7 @@ Andre Luiz Oliveira;014.471.800-62;05/03/1982;(11) 9 1234-5678;andreluiz.oliveir
 Paulo Henrique Santos;242.571.300-08;18/07/1995;(11) 9 2345-6789;paulohenrique.santos@email.com;Rua das Flores;321;<>;Centro;32145-678;Sao Paulo;SP;
 Maria Aparecida Rodrigues;760.794.920-83;29/11/1988;(11) 9 3456-7890;mariaaparecida.rodrigues@email.com;Avenida Paulista;987;Casa 2;Bela Vista;98765-432;Sao Paulo;SP;
 Jose Roberto Almeida;313.516.600-71;07/05/1993;(11) 94567-8901;joseroberto.almeida@email.com;Rua das Oliveiras;654;<>;Jardim Europa;65432-109;Sao Paulo;SP;
-Fernanda Costa Lima;338.010.410-85;30/08/1990;(11) 9 5678-9012;fernanda.costa@email.com;Avenida Faria Lima;321;Apto 102;Itaim Bibi;32145-678;Sao Paulo;SP;
+Fernanda Costa Lima;338.010.410-85;14/09/1990;(11) 9 5678-9012;fernanda.costa@email.com;Avenida Faria Lima;321;Apto 102;Itaim Bibi;32145-678;Sao Paulo;SP;
 Lucas Santos Silva;287.492.400-80;12/12/1985;(11) 9 6789-0123;lucassantos.silva@email.com;Rua dos Pinheiros;987;<>;Pinheiros;98765-432;Sao Paulo;SP;
 Patricia Oliveira Rocha;892.671.930-82;25/06/1991;(11) 9 7890-1234;patriciaoliveira.rocha@email.com;Rua das Aca¡cias;123;<>;Vila Mariana;12345-678;Sao Paulo;SP;
 Mariana Goncalves Pereira;051.583.230-89;08/09/1987;(11) 9 9012-3456;marianagoncalves.pereira@email.com;Avenida Brigadeiro Faria Lima;456;Casa 1;Itaim Bibi;45678-901;Sao Paulo;SP;
@@ -23,7 +23,7 @@ Fernando Santos Costa;974.018.240-27;26/05/1991;(11) 9 2345-6789;fernandosantos.
 Vanessa Oliveira Rocha;766.376.040-97;09/11/1987;(11) 9 3456-7890;vanessaoliveira.rocha@email.com;Avenida dos Geranios;321;<>;Jardim Paulista;32145-678;Sao Paulo;SP;
 Rafaela Goncalves Pereira;744.093.390-79;22/03/1994;(11) 9 4567-8901;rafaelagoncalves.pereira@email.com;Rua das Violetas;987;<>;Itaim Bibi;98765-432;Sao Paulo;SP;
 Marcelo Lima Santos;214.852.920-00;05/07/1989;(11) 5678-9012;marcelolima.santos@email.com;Avenida das Orquideas;123;<>;Paraiso;12345-678;Sao Paulo;SP;
-Carolina Oliveira Silva;787.201.950-79;18/02/1995;(11) 9 6789-0123;carolinaoliveira.silva@email.com;Rua das Garberas;456;Casa 1;Jardim Paulista;45678-901;Sao Paulo;SP;
+Carolina Oliveira Silva;787.201.950-79;20/02/1995;(11) 9 6789-0123;carolinaoliveira.silva@email.com;Rua das Garberas;456;Casa 1;Jardim Paulista;45678-901;Sao Paulo;SP;
 Pedro Santos Almeida;324.260.570-50;01/09/1985;(11) 9 7890-1234;pedrosantos.almeida@email.com;Avenida dos Crisantemos;789;<>;Itaim Bibi;78901-234;Sao Paulo;SP;
 Mariana Rodrigues Lima;552.181.810-30;14/04/1992;(11) 9 9012-3456;marianarodrigues.lima@email.com;Rua dos Girassois;321;<>;Moema;32145-678;Sao Paulo;SP;
 Lucas Oliveira Silva;294.919.250-59;27/11/1988;(11) 9 0123-4567;lucasoliveira.silva@email.com;Avenida Paulista;987;<>;Bela Vista;98765-432;Sao Paulo;SP;

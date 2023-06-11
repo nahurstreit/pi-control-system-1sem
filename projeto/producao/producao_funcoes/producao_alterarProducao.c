@@ -67,6 +67,7 @@ void alterarProducao() {
 		inserirStringProd(producaoAtiva, stringNova, pEscolhaCampo, posicaoItem);
 	} while(erro != 0);
 	
+	escolhaUser = 5;
 	if(saida != 1) {
 		handleSalvar(escolhaUser);
 		salvarArquivo_Itens(atoi(producoes[producaoAtiva].numCadCliente), producaoAtiva);

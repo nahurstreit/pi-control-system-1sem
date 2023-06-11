@@ -136,7 +136,7 @@ void novaOrdem(bool adicionarItens) {
 		}
 		
 		if(contadorCampo > 4) {
-			if(!validarPalavraChave(stringHolder, "0")) {
+			if(!validarPalavraChave(stringHolder, "0") && strlen(stringHolder) > 0) {
 				posicaoItem = posicaoDisponivel(vetorRefItensComprados);
 				contadorCampo = 3;
 				holderContadorCampo = 3;

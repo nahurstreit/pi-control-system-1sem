@@ -19,7 +19,7 @@ void popularVetor_Clientes() {
 	FILE *pArq_Clientes;
     char linha[MAX_STRING * 20]; // tamanho máximo da linha no arquivo
 
-    pArq_Clientes = fopen("data/clientes/data_Clientes.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+    pArq_Clientes = fopen("data/clientes/data_Clientes.txt", "r");
 
     if(pArq_Clientes == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -138,7 +138,7 @@ void popularVetor_Funcionarios() {
 	FILE *pArq_Funcionarios;
     char linha[MAX_STRING * 20]; // tamanho máximo da linha no arquivo
 
-    pArq_Funcionarios = fopen("data/funcionarios/data_Funcionarios.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+    pArq_Funcionarios = fopen("data/funcionarios/data_Funcionarios.txt", "r");
 
     if(pArq_Funcionarios == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -281,7 +281,7 @@ void popularVetor_Fornecedores() {
 		FILE *pArq_Fornecedores;
     char linha[MAX_STRING * 20]; // tamanho máximo da linha no arquivo
 
-    pArq_Fornecedores = fopen("data/fornecedores/data_Fornecedores.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+    pArq_Fornecedores = fopen("data/fornecedores/data_Fornecedores.txt", "r"); 
 
     if(pArq_Fornecedores == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -403,7 +403,7 @@ void popularVetor_Produtos() {
     char stringValorUnit[MAX_STRING];
     float valorUnit;
 
-    pArq_Produtos = fopen("data/produtos/data_Produtos.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+    pArq_Produtos = fopen("data/produtos/data_Produtos.txt", "r");
 
     if(pArq_Produtos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -449,7 +449,7 @@ void popularVetor_Producoes() {
     char stringValorUnit[MAX_STRING];
     float valorUnit;
 
-    pArq_Producoes = fopen("data/producoes/data_Producoes.txt", "r"); // substitua "dados.txt" pelo nome do seu arquivo
+    pArq_Producoes = fopen("data/producoes/data_Producoes.txt", "r");
 
     if(pArq_Producoes == NULL) {
         printf("Erro ao abrir o arquivo.\n");
